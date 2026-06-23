@@ -3,10 +3,8 @@ import { ArrowUpRight, Check } from "lucide-react"
 import { Reveal } from "./reveal"
 
 export type Pkg = {
-  index: string
   name: string
   tagline: string
-  forWho: string
   price: string
   cadence: string
   receive: string[]
@@ -16,10 +14,8 @@ export type Pkg = {
 
 export const packages: Pkg[] = [
   {
-    index: "01 / 03",
     name: "Starter Install",
-    tagline: "Core email follow-up system.",
-    forWho: "Best for one inbox, one team, and a simple setup.",
+    tagline: "For one inbox and a simple setup.",
     price: "From A$2,997",
     cadence: "+ A$497 / month",
     receive: [
@@ -33,11 +29,8 @@ export const packages: Pkg[] = [
     cta: "Get started",
   },
   {
-    index: "02 / 03",
     name: "Growth Install",
-    tagline: "Beyond the inbox: web, Google and phone.",
-    forWho:
-      "Best for businesses getting leads from website forms, Google, and phone enquiries.",
+    tagline: "For web, Google and phone enquiries.",
     price: "From A$4,997",
     cadence: "+ A$997 / month",
     receive: [
@@ -53,10 +46,8 @@ export const packages: Pkg[] = [
     featured: true,
   },
   {
-    index: "03 / 03",
     name: "Enterprise Install",
-    tagline: "Multi-channel lead system.",
-    forWho: "Best for multiple teams, locations, inboxes, or higher lead volume.",
+    tagline: "For multiple teams, locations or high volume.",
     price: "Custom",
     cadence: "Custom install + from A$1,997 / month",
     receive: [
@@ -76,45 +67,35 @@ function Spec({ pkg }: { pkg: Pkg }) {
   const featured = pkg.featured
   return (
     <div
-      className={`ps-card ${featured ? "ps-card-warm" : ""} flex h-full flex-col rounded-[20px] p-5 sm:p-6 lg:rounded-[24px] lg:p-8`}
+      className={`ps-card ${featured ? "ps-card-warm ring-1 ring-white/15 shadow-[0_30px_80px_-50px_rgba(0,0,0,0.95)]" : ""} flex h-full flex-col rounded-[20px] p-5 sm:p-6 lg:rounded-[24px] lg:p-8`}
     >
-      {/* header row */}
-      <div className="flex items-center justify-between">
-        <span className="ps-label">{pkg.index}</span>
+      {/* title + recommended */}
+      <div className="flex items-start justify-between gap-3">
+        <h3 className="text-[22px] font-medium tracking-tight text-white">{pkg.name}</h3>
         {featured && (
-          <span className="rounded-full border border-[#537FEA]/40 bg-[#537FEA]/[0.08] px-2.5 py-1 text-[10px] font-medium uppercase tracking-[0.18em] text-[#86A2F0]">
+          <span className="shrink-0 rounded-full border border-[#537FEA]/40 bg-[#537FEA]/[0.08] px-2.5 py-1 text-[10px] font-medium uppercase tracking-[0.18em] text-[#86A2F0]">
             Recommended
           </span>
         )}
       </div>
+      <p className="mt-2 text-[14px] text-[var(--muted)]">{pkg.tagline}</p>
 
-      <h3 className="mt-5 text-[22px] font-medium tracking-tight text-white lg:mt-6">
-        {pkg.name}
-      </h3>
-      <p className="mt-1.5 text-[15px] text-[var(--silver)]">{pkg.tagline}</p>
-
-      <p className="mt-3 text-[14px] leading-relaxed text-[var(--muted)] sm:mt-4 md:min-h-[2.6rem]">
-        {pkg.forWho}
-      </p>
-
-      <div className="ps-rule my-5 sm:my-7" />
-
-      {/* price */}
-      <div>
-        <div className="text-[26px] font-medium tracking-tight text-white tabular-nums">
+      {/* price — install fee (hero) over monthly fee (distinct secondary line) */}
+      <div className="mt-6">
+        <div className="text-[28px] font-medium leading-none tracking-tight text-white tabular-nums">
           {pkg.price}
         </div>
-        <div className="mt-1 text-[13px] text-[var(--muted)]">{pkg.cadence}</div>
+        <div className="mt-2 text-[14px] text-[var(--silver)] tabular-nums">{pkg.cadence}</div>
       </div>
 
-      {/* receive list */}
-      <ul className="mt-5 flex-1 space-y-3 sm:mt-7 sm:space-y-3.5">
+      <div className="ps-rule my-6" />
+
+      {/* key features */}
+      <ul className="flex-1 space-y-2.5">
         {pkg.receive.map((item) => (
-          <li key={item} className="flex items-start gap-3 text-[14px] text-[var(--silver)]">
+          <li key={item} className="flex items-start gap-2.5 text-[14px] leading-snug text-[var(--silver)]">
             <Check
-              className={`mt-0.5 h-3.5 w-3.5 shrink-0 ${
-                featured ? "text-[#86A2F0]" : "text-[var(--muted)]"
-              }`}
+              className="mt-[3px] h-3.5 w-3.5 shrink-0 text-[var(--muted)]"
               strokeWidth={2.5}
             />
             <span>{item}</span>

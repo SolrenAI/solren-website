@@ -1,7 +1,5 @@
 import type { Metadata } from "next"
-import Link from "next/link"
 import {
-  ArrowUpRight,
   ShieldCheck,
   Settings2,
   LifeBuoy,
@@ -27,19 +25,6 @@ const includes = [
   { icon: LifeBuoy, title: "Managed monthly", body: "Monitoring, support and improvements every month." },
 ]
 
-/* contained, edge-fading divider between major sections — aligned to the page
-   content width, never a full browser-width cut */
-function SectionDivider() {
-  return (
-    <div className="mx-auto max-w-[1240px] px-5 sm:px-6">
-      <div
-        aria-hidden="true"
-        className="h-px w-full bg-gradient-to-r from-transparent via-white/[0.08] to-transparent"
-      />
-    </div>
-  )
-}
-
 export default function PricingPage() {
   return (
     <>
@@ -49,61 +34,28 @@ export default function PricingPage() {
         sub="Pick how much you install. Every package is built for you, shaped around your business, and managed month to month."
       />
 
-      {/* Solren Beta — selective early-access callout, placed above pricing so it
-          frames the installs being opened. Warm amber is reserved for the beta /
-          referral accent; blue stays for the primary CTA. */}
-      <section className="pt-12 sm:pt-24">
+      {/* Founder Beta — a compact announcement banner, not a card, so the pricing
+          plans stay the clear focus of the page. Warm amber stays reserved for the
+          beta accent; blue is for the primary actions in the plans. */}
+      <section className="pt-8 sm:pt-10">
         <div className="mx-auto max-w-[1240px] px-5 sm:px-6">
           <Reveal>
-            <div className="ps-card rounded-[20px] p-4 sm:rounded-[28px] sm:p-12">
-              <div className="grid items-start gap-10 lg:grid-cols-[1.45fr_1fr] lg:gap-14">
-                {/* the program */}
-                <div>
-                  <span className="ps-label inline-flex items-center gap-2.5 text-[#E0AE70]">
-                    <span aria-hidden="true" className="h-1.5 w-1.5 rounded-full bg-[#E2A95E]" />
-                    Solren Beta
-                  </span>
-                  <h2 className="mt-3 max-w-xl text-[1.5rem] font-medium leading-[1.1] tracking-[-0.02em] ps-silver sm:mt-6 sm:text-[clamp(1.8rem,3.2vw,2.5rem)] sm:leading-[1.08]">
-                    5 founder installs available.
-                  </h2>
-                  <p className="mt-2.5 max-w-sm text-[14.5px] leading-snug text-[var(--silver)] sm:mt-5 sm:max-w-xl sm:text-[16px] sm:leading-relaxed">
-                    We are opening a small number of beta installs so each business
-                    can be set up carefully, tested properly, and shaped around how
-                    their enquiries come in.
-                  </p>
-                  <Link
-                    href="/contact"
-                    className="group mt-5 inline-flex items-center gap-2 rounded-full bg-[#537FEA] px-7 py-3.5 text-[15px] font-medium text-black transition-colors hover:bg-[#6A8FEE] sm:mt-9"
-                  >
-                    Get started
-                    <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-                  </Link>
-                </div>
-
-                {/* referral credit — restrained warm-amber sub-panel, not a coupon.
-                    Hidden on mobile to keep the redesigned pricing flow lean. */}
-                <div className="hidden rounded-2xl border border-[#E2A95E]/20 bg-[#E2A95E]/[0.04] p-6 sm:p-7 lg:block">
-                  <span className="ps-label inline-flex items-center gap-2 text-[#E0AE70]">
-                    <span aria-hidden="true" className="h-1.5 w-1.5 rounded-full bg-[#E2A95E]" />
-                    Referral credit
-                  </span>
-                  <p className="mt-3 text-[15px] leading-relaxed">
-                    <span className="font-medium text-white">Introduce another business.</span>{" "}
-                    <span className="text-[var(--silver)]">
-                      When they install, your next month is on us.
-                    </span>
-                  </p>
-                </div>
-              </div>
+            <div className="flex flex-wrap items-center gap-x-3 gap-y-1 rounded-2xl border border-[var(--hair)] bg-white/[0.02] px-5 py-3.5">
+              <span className="ps-label inline-flex shrink-0 items-center gap-2">
+                <span aria-hidden="true" className="h-1.5 w-1.5 rounded-full bg-[var(--muted)]" />
+                Founder Beta
+              </span>
+              <span className="text-[14px] font-medium text-white">
+                5 founder installs available
+              </span>
             </div>
           </Reveal>
         </div>
       </section>
 
-      {/* Pricing — grouped tightly under the Beta callout. Mobile/tablet show one
-          package at a time via tabs + a collapsed compare accordion; desktop keeps
-          the three-up grid. */}
-      <section className="pt-14 pb-20 sm:pb-24">
+      {/* Pricing — the hero of the page. Mobile/tablet show one package at a time
+          via tabs + a collapsed compare accordion; desktop keeps the three-up grid. */}
+      <section className="pt-4 pb-16 sm:pt-6 sm:pb-20">
         <div className="mx-auto max-w-[1240px] px-5 sm:px-6">
           <div className="lg:hidden">
             <PricingMobile />
@@ -111,29 +63,31 @@ export default function PricingPage() {
           <div className="hidden lg:block">
             <Packages detailed />
           </div>
+          <p className="mx-auto mt-8 max-w-xl text-center text-[13px] leading-relaxed text-[var(--muted)]">
+            <span className="text-[var(--silver)]">Referral credit</span> — introduce another
+            business and when they install, your next month is on us.
+          </p>
         </div>
       </section>
 
-      <SectionDivider />
-
-      {/* Every install includes — sits on the page background, light cards that
-          echo the pricing grid above (no separate slab / dashboard panel) */}
-      <section className="py-16 sm:py-24">
+      {/* Every install includes — a light, borderless feature row (no card chrome)
+          so it supports the plans without competing with them. */}
+      <section className="border-t border-[var(--hair)] py-14 sm:py-20">
         <div className="mx-auto max-w-[1240px] px-5 sm:px-6">
           <Reveal>
-            <h2 className="max-w-xl text-[clamp(1.9rem,4vw,2.8rem)] font-medium leading-[1.05] tracking-[-0.02em] ps-silver">
+            <h2 className="text-[clamp(1.55rem,3vw,2.1rem)] font-medium leading-[1.1] tracking-[-0.02em] ps-silver">
               Every install includes.
             </h2>
           </Reveal>
-          <div className="mt-7 grid grid-cols-2 gap-3 sm:mt-12 sm:grid-cols-2 sm:gap-5 md:gap-6 lg:grid-cols-4">
+          <div className="mt-8 grid grid-cols-2 gap-x-6 gap-y-9 sm:mt-12 sm:gap-y-10 lg:grid-cols-4 lg:gap-x-10">
             {includes.map(({ icon: Icon, title, body }, i) => (
               <Reveal key={title} delay={i * 70}>
-                <div className="ps-card ps-card-soft-m h-full rounded-[16px] p-3.5 sm:rounded-[24px] sm:p-8">
-                  <Icon className="h-[18px] w-[18px] text-[#86A2F0] sm:h-7 sm:w-7" strokeWidth={1.5} />
-                  <h3 className="mt-2.5 text-[15px] font-medium tracking-tight text-white sm:mt-8 sm:text-[18px]">
+                <div>
+                  <Icon className="h-5 w-5 text-[var(--silver)]" strokeWidth={1.5} />
+                  <h3 className="mt-3.5 text-[15px] font-medium tracking-tight text-white sm:text-[16px]">
                     {title}
                   </h3>
-                  <p className="mt-1.5 text-[13px] leading-relaxed text-[var(--silver)] sm:mt-3 sm:text-[14px]">
+                  <p className="mt-1.5 text-[13px] leading-relaxed text-[var(--silver)] sm:text-[13.5px]">
                     {body}
                   </p>
                 </div>
@@ -142,33 +96,6 @@ export default function PricingPage() {
           </div>
         </div>
       </section>
-
-      {/* Final CTA — quiet close, single primary action. Hidden on mobile so the
-          footer (which already carries a Get started CTA) closes the page; shown
-          from tablet up. */}
-      <div className="hidden md:block">
-        <SectionDivider />
-
-        <section className="py-16 text-center sm:py-28">
-          <div className="mx-auto max-w-2xl px-5 sm:px-6">
-            <Reveal>
-              <h2 className="text-[clamp(2rem,4.5vw,3.2rem)] font-medium leading-[1.04] tracking-[-0.02em]">
-                <span className="ps-silver">Let&apos;s find your install.</span>
-              </h2>
-              <p className="mx-auto mt-6 max-w-md text-[16px] leading-relaxed text-[var(--silver)]">
-                Tell us how work comes in. We&apos;ll point you to the right install.
-              </p>
-              <Link
-                href="/contact"
-                className="group mt-9 inline-flex items-center gap-2 rounded-full bg-[#537FEA] px-7 py-3.5 text-[15px] font-medium text-black transition-colors hover:bg-[#6A8FEE]"
-              >
-                Get started
-                <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-              </Link>
-            </Reveal>
-          </div>
-        </section>
-      </div>
     </>
   )
 }

@@ -69,23 +69,23 @@ export function PricingMobile() {
         )}
         <p className="mt-3 text-[15px] leading-relaxed text-[var(--silver)]">{pkg.tagline}</p>
 
-        <div className="mt-5 flex items-baseline gap-2">
-          <span className="text-[28px] font-medium tracking-tight text-white tabular-nums">
+        <div className="mt-5">
+          <div className="text-[28px] font-medium leading-none tracking-tight text-white tabular-nums">
             {pkg.price}
-          </span>
-          <span className="text-[13px] text-[var(--muted)]">{pkg.cadence}</span>
+          </div>
+          <div className="mt-2 text-[14px] text-[var(--silver)] tabular-nums">{pkg.cadence}</div>
         </div>
 
         <div className="ps-rule my-6" />
 
         <span className="ps-label">Features</span>
-        <ul className="mt-4 space-y-3">
+        <ul className="mt-3.5 space-y-2.5">
           {pkg.receive.map((item) => (
             <li
               key={item}
-              className="flex items-start gap-3 text-[14px] leading-snug text-[var(--silver)]"
+              className="flex items-start gap-2.5 text-[14px] leading-snug text-[var(--silver)]"
             >
-              <Check className="mt-0.5 h-3.5 w-3.5 shrink-0 text-[#86A2F0]" strokeWidth={2.5} />
+              <Check className="mt-[3px] h-3.5 w-3.5 shrink-0 text-[var(--muted)]" strokeWidth={2.5} />
               <span>{item}</span>
             </li>
           ))}
@@ -111,7 +111,7 @@ export function PricingMobile() {
         >
           <span className="text-[15px] font-medium text-white">Compare packages</span>
           <ChevronDown
-            className={`h-4 w-4 shrink-0 text-[#537FEA] transition-transform duration-300 ${
+            className={`h-4 w-4 shrink-0 text-[var(--muted)] transition-transform duration-300 ${
               compareOpen ? "rotate-180" : ""
             }`}
           />

@@ -1,5 +1,4 @@
 import Link from "next/link"
-import Image from "next/image"
 import { PaymentLogos } from "./payment-logos"
 
 type FooterLink = { label: string; href?: string }
@@ -144,8 +143,6 @@ export function PublicFooter() {
   return (
     <footer className="relative border-t border-white/[0.08] bg-[#050608]">
       <div className="mx-auto px-5 py-10 sm:px-6 md:hidden">
-        {/* Logo intentionally omitted on mobile — the sticky header already shows
-            the Solren wordmark. Desktop keeps the footer logo below. */}
         <p className="max-w-[18rem] text-[13.5px] leading-[1.6] text-[var(--silver)]">
           Intelligent response infrastructure for service businesses.
         </p>
@@ -194,17 +191,7 @@ export function PublicFooter() {
         <div className="flex flex-col gap-y-12 sm:gap-y-14 lg:flex-row lg:gap-x-20">
           {/* Brand area — the anchor of the footer, given more presence than the nav */}
           <div className="lg:w-[300px] lg:shrink-0">
-            <Link href="/" aria-label="Solren home" className="inline-flex items-center leading-none">
-              <Image
-                src="/logos/solren-wordmark-clean.png"
-                alt="Solren"
-                width={1305}
-                height={183}
-                sizes="240px"
-                className="block h-[30px] w-auto sm:h-[34px]"
-              />
-            </Link>
-            <div className="mt-6 max-w-[18rem] space-y-2.5 text-[13.5px] leading-[1.6] sm:mt-8 sm:space-y-3">
+            <div className="max-w-[18rem] space-y-2.5 text-[13.5px] leading-[1.6] sm:space-y-3">
               <p className="text-[var(--silver)]">
                 Intelligent response infrastructure
                 <br />
