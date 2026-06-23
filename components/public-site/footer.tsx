@@ -82,7 +82,7 @@ const socials: { label: string; path: string }[] = [
 
 function FooterLinkItem({ link }: { link: FooterLink }) {
   const cls =
-    "text-[14px] text-white/60 transition-colors duration-200 hover:text-[var(--spark)]"
+    "inline-flex min-h-11 items-center text-[14px] text-white/60 transition-colors duration-200 hover:text-[var(--spark)] lg:min-h-0"
   return link.href ? (
     <Link href={link.href} className={cls}>
       {link.label}
@@ -116,7 +116,7 @@ function FooterBlock({ block }: { block: Block }) {
           ))}
         </div>
       ) : (
-        <ul className="mt-5 space-y-3">
+        <ul className="mt-3 space-y-0 lg:mt-5 lg:space-y-3">
           {block.links!.map((l) => (
             <li key={l.label}>
               <FooterLinkItem link={l} />

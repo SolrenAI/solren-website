@@ -41,7 +41,7 @@ export function ThemeToggle() {
       type="button"
       onClick={toggle}
       aria-label={theme === "dark" ? "Switch to light mode" : "Switch to dark mode"}
-      className="group fixed bottom-3 left-3 z-40 inline-flex h-11 w-11 items-center justify-center rounded-full border border-[var(--hair-strong)] bg-[var(--card)] text-[var(--silver)] opacity-75 shadow-[0_2px_10px_-4px_rgba(0,0,0,0.4)] backdrop-blur-sm transition-all duration-300 hover:opacity-100 hover:text-[var(--white)] focus-visible:opacity-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#537FEA]/50 sm:bottom-4 sm:left-4 sm:h-9 sm:w-9 sm:opacity-65"
+      className="group fixed bottom-3 left-3 z-40 inline-flex h-11 w-11 items-center justify-center rounded-full border border-[var(--hair-strong)] bg-[var(--card)] text-[var(--silver)] opacity-75 shadow-[0_2px_10px_-4px_rgba(0,0,0,0.4)] backdrop-blur-sm transition-all duration-300 hover:opacity-100 hover:text-[var(--white)] focus-visible:opacity-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#537FEA]/50 sm:bottom-4 sm:left-4 lg:h-9 lg:w-9 lg:opacity-65"
     >
       {/* In dark mode show the sun (switch to light); in light mode show the moon */}
       {theme === "dark" ? (

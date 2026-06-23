@@ -97,7 +97,7 @@ export default function AboutPage() {
           </div>
 
           <Reveal>
-            <div className="mt-16 border-t border-[var(--hair)] pt-10">
+            <div className="mt-12 border-t border-[var(--hair)] pt-8 sm:mt-16 sm:pt-10">
               <p className="text-[16px] leading-[1.7] text-[var(--silver)]">
                 Want to see how Solren would work for your business?
               </p>

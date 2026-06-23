@@ -243,7 +243,7 @@ export function PublicNav() {
                         key={c.href}
                         href={c.href}
                         onClick={() => setOpen(false)}
-                        className={`flex min-h-10 items-center gap-1.5 py-2 text-[14px] ${
+                        className={`flex min-h-11 items-center gap-1.5 py-2 text-[14px] ${
                           c.all ? "text-white" : "text-[#6f6f6f]"
                         }`}
                       >

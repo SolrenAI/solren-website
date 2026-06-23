@@ -146,7 +146,7 @@ export default function SecurityPage() {
       <section className="pb-24 sm:pb-28">
         <div className="mx-auto max-w-[1080px] px-6">
           <Reveal>
-            <div className="mt-16 border-t border-white/[0.05] pt-14 text-center sm:mt-20 sm:pt-16">
+            <div className="mt-12 border-t border-white/[0.05] pt-10 text-center sm:mt-20 sm:pt-16">
               <h2 className="text-[clamp(1.6rem,3vw,2.1rem)] font-medium leading-[1.1] tracking-[-0.02em] ps-silver">
                 Report a vulnerability.
               </h2>

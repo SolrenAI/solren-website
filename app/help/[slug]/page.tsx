@@ -106,7 +106,7 @@ export default async function HelpArticlePage({
           )}
 
           {/* previous / next */}
-          <div className="mt-16 grid grid-cols-1 gap-4 border-t border-[var(--hair)] pt-10 sm:grid-cols-2">
+          <div className="mt-12 grid grid-cols-1 gap-4 border-t border-[var(--hair)] pt-8 sm:mt-16 sm:grid-cols-2 sm:pt-10">
             {prev ? (
               <Link
                 href={`/help/${prev.slug}`}
@@ -137,7 +137,7 @@ export default async function HelpArticlePage({
 
           {/* still need help — quiet support close */}
           <Reveal>
-            <div className="mt-16 border-t border-[var(--hair)] pt-12 text-center">
+            <div className="mt-12 border-t border-[var(--hair)] pt-10 text-center sm:mt-16 sm:pt-12">
               <h2 className="text-[clamp(1.4rem,2.6vw,1.8rem)] font-medium leading-[1.1] tracking-[-0.02em] ps-silver">
                 Still need help?
               </h2>

@@ -126,7 +126,7 @@ export default function StatusPage() {
 
           {/* Recent history — calm record, no fake timeline when there are none */}
           <Reveal>
-            <div className="mt-16 border-t border-[var(--hair)] pt-12">
+            <div className="mt-12 border-t border-[var(--hair)] pt-10 sm:mt-16 sm:pt-12">
               <h2 className="text-[19px] font-medium tracking-tight text-white">
                 Recent history
               </h2>

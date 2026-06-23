@@ -82,7 +82,7 @@ export default function TrustPage() {
 
           {/* Built for reliability: customer-friendly, calm, plain English */}
           <Reveal>
-            <div className="mt-16 border-t border-[var(--hair)] pt-14">
+            <div className="mt-12 border-t border-[var(--hair)] pt-10 sm:mt-16 sm:pt-14">
               <span className="ps-label ps-label-legible">Reliability</span>
               <h2 className="mt-5 max-w-xl text-[clamp(1.6rem,3.2vw,2.2rem)] font-medium leading-[1.1] tracking-[-0.02em] ps-silver">
                 Designed to keep work moving.

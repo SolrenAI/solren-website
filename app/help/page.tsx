@@ -21,13 +21,13 @@ export default function HelpPage() {
         sub="Find answers about setup, billing, integrations and support."
       />
 
-      <section className="pt-14 pb-20 sm:pt-16 sm:pb-24">
+      <section className="pb-16 pt-12 sm:pb-24 sm:pt-16">
         <div className="mx-auto max-w-[1080px] px-6">
           <HelpIndex categories={helpCategories} articles={helpArticles} />
 
           {/* Still need help — quiet support close, above the footer */}
           <Reveal>
-            <div className="mt-16 border-t border-[var(--hair)] pt-14 text-center">
+            <div className="mt-12 border-t border-[var(--hair)] pt-10 text-center sm:mt-16 sm:pt-14">
               <h2 className="text-[clamp(1.5rem,3vw,2rem)] font-medium leading-[1.1] tracking-[-0.02em] ps-silver">
                 Still need help?
               </h2>
