@@ -68,6 +68,18 @@ const footerColumns: { top: Block; bottom: Block; tight?: boolean }[] = [
   { top: support, bottom: social, tight: true },
 ]
 
+const mobileLinks: FooterLink[] = [
+  { label: "Platform", href: "/how-it-works" },
+  { label: "Pricing", href: "/pricing" },
+  { label: "Industries", href: "/industries" },
+  { label: "Trust Centre", href: "/trust" },
+  { label: "Security", href: "/security" },
+  { label: "Privacy", href: "/privacy" },
+  { label: "Contact", href: "/contact" },
+  { label: "Help Centre", href: "/help" },
+  { label: "Status", href: "/status" },
+]
+
 /* Monochrome social glyphs (currentColor). Non-navigating until real profile
    links are wired up. Lucide lacks X / TikTok / Discord, so they are inline. */
 const socials: { label: string; path: string }[] = [
@@ -131,7 +143,60 @@ function FooterBlock({ block }: { block: Block }) {
 export function PublicFooter() {
   return (
     <footer className="relative border-t border-white/[0.08] bg-[#050608]">
-      <div className="mx-auto max-w-[1340px] px-5 py-14 sm:px-6 sm:py-[84px]">
+      <div className="mx-auto px-5 py-10 sm:px-6 md:hidden">
+        <Link href="/" aria-label="Solren home" className="inline-flex items-center leading-none">
+          <Image
+            src="/logos/solren-wordmark-clean.png"
+            alt="Solren"
+            width={1305}
+            height={183}
+            sizes="200px"
+            className="block h-7 w-auto"
+          />
+        </Link>
+
+        <p className="mt-4 max-w-[18rem] text-[13.5px] leading-[1.6] text-[var(--silver)]">
+          Intelligent response infrastructure for service businesses.
+        </p>
+
+        <nav aria-label="Footer" className="mt-7">
+          <ul className="grid grid-cols-2 gap-x-8">
+            {mobileLinks.map((link) => (
+              <li key={link.label}>
+                <FooterLinkItem link={link} />
+              </li>
+            ))}
+          </ul>
+        </nav>
+
+        <div className="mt-7 flex flex-wrap items-center gap-x-4 gap-y-3.5">
+          {socials.map((item) => (
+            <span
+              key={item.label}
+              title={`${item.label} profile coming soon`}
+              className="text-white/45"
+            >
+              <svg
+                viewBox="0 0 24 24"
+                className="h-[18px] w-[18px]"
+                fill="currentColor"
+                fillRule="evenodd"
+                aria-hidden="true"
+              >
+                <path d={item.path} />
+              </svg>
+            </span>
+          ))}
+        </div>
+
+        <div className="mt-8 h-px w-full bg-gradient-to-r from-transparent via-white/[0.14] to-transparent" />
+
+        <p className="mt-6 text-[12.5px] text-[var(--muted)]">
+          © {new Date().getFullYear()} Solren. All rights reserved.
+        </p>
+      </div>
+
+      <div className="mx-auto hidden max-w-[1340px] px-5 py-14 sm:px-6 sm:py-[84px] md:block">
         {/* Top: brand area (left) · vertical divider · three column-pairs (right) */}
         <div className="flex flex-col gap-y-12 sm:gap-y-14 lg:flex-row lg:gap-x-20">
           {/* Brand area — the anchor of the footer, given more presence than the nav */}

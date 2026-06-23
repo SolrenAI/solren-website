@@ -118,7 +118,7 @@ function LogoItem({ item }: { item: Item }) {
 
 export function Trust() {
   return (
-    <section className="relative bg-[#0A0D12] pb-12">
+    <section className="relative hidden bg-[#0A0D12] pb-12 md:block">
       {/* contained, edge-fading seam instead of a harsh full-width border */}
       <div
         aria-hidden="true"
