@@ -102,7 +102,7 @@ export const helpArticles: HelpArticle[] = [
   },
   {
     slug: "businesses",
-    title: "Which businesses is Solren designed for?",
+    title: "Which businesses does Solren work best for?",
     category: "getting-started",
     summary: "Built for service businesses that rely on enquiries to win work.",
     body: [

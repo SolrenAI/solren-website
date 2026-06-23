@@ -114,9 +114,9 @@ export default async function HelpArticlePage({
               >
                 <div className="text-left md:hidden">
                   <span className="ps-label !text-[9px] !tracking-[0.2em]">Previous</span>
-                  <div className="mt-2 flex items-start gap-2 text-[14.5px] font-medium leading-snug text-white">
+                  <div className="mt-2 flex items-start gap-3 text-[14.5px] font-medium leading-snug text-white">
                     <ArrowLeft className="mt-0.5 h-4 w-4 shrink-0 text-[#537FEA]/80 transition-all group-hover:-translate-x-0.5 group-hover:text-[#537FEA]" />
-                    <span>{prev.title}</span>
+                    <span className="min-w-0">{prev.title}</span>
                   </div>
                 </div>
                 <div className="hidden md:block">
@@ -137,8 +137,8 @@ export default async function HelpArticlePage({
               >
                 <div className="text-left md:hidden">
                   <span className="ps-label !text-[9px] !tracking-[0.2em]">Next</span>
-                  <div className="mt-2 flex items-start gap-2 text-[14.5px] font-medium leading-snug text-white">
-                    <span>{next.title}</span>
+                  <div className="mt-2 flex items-start justify-between gap-3 text-[14.5px] font-medium leading-snug text-white">
+                    <span className="min-w-0 flex-1">{next.title}</span>
                     <ArrowRight className="mt-0.5 h-4 w-4 shrink-0 text-[#537FEA]/80 transition-all group-hover:translate-x-0.5 group-hover:text-[#537FEA]" />
                   </div>
                 </div>
