@@ -1,6 +1,6 @@
 import Link from "next/link"
 import Image from "next/image"
-import { PaymentMarks } from "./payment-marks"
+import { PaymentLogos } from "./payment-logos"
 
 type FooterLink = { label: string; href?: string }
 type Block = { title: string; links?: FooterLink[]; social?: boolean }
@@ -144,18 +144,9 @@ export function PublicFooter() {
   return (
     <footer className="relative border-t border-white/[0.08] bg-[#050608]">
       <div className="mx-auto px-5 py-10 sm:px-6 md:hidden">
-        <Link href="/" aria-label="Solren home" className="inline-flex items-center leading-none">
-          <Image
-            src="/logos/solren-wordmark-clean.png"
-            alt="Solren"
-            width={1305}
-            height={183}
-            sizes="200px"
-            className="block h-7 w-auto"
-          />
-        </Link>
-
-        <p className="mt-4 max-w-[18rem] text-[13.5px] leading-[1.6] text-[var(--silver)]">
+        {/* Logo intentionally omitted on mobile — the sticky header already shows
+            the Solren wordmark. Desktop keeps the footer logo below. */}
+        <p className="max-w-[18rem] text-[13.5px] leading-[1.6] text-[var(--silver)]">
           Intelligent response infrastructure for service businesses.
         </p>
 
@@ -191,7 +182,9 @@ export function PublicFooter() {
 
         <div className="mt-8 h-px w-full bg-gradient-to-r from-transparent via-white/[0.14] to-transparent" />
 
-        <p className="mt-6 text-[12.5px] text-[var(--muted)]">
+        <PaymentLogos className="mt-6" />
+
+        <p className="mt-5 text-[12.5px] text-[var(--muted)]">
           © {new Date().getFullYear()} Solren. All rights reserved.
         </p>
       </div>
@@ -253,12 +246,12 @@ export function PublicFooter() {
         {/* Contained, edge-fading divider above the bottom bar — no harsh full-width line */}
         <div className="mx-auto mt-12 h-px w-full max-w-[1100px] bg-gradient-to-r from-transparent via-white/[0.14] to-transparent sm:mt-16" />
 
-        {/* Bottom bar: copyright (left) · payment methods (right) */}
-        <div className="mt-7 flex flex-col items-start gap-y-5 text-left sm:mt-8 sm:flex-row sm:items-center sm:justify-between">
-          <p className="text-[12.5px] text-[var(--muted)]">
+        {/* Bottom: payment marks above the copyright line */}
+        <div className="mt-7 sm:mt-8">
+          <PaymentLogos />
+          <p className="mt-6 text-[12.5px] text-[var(--muted)]">
             © {new Date().getFullYear()} Solren. All rights reserved.
           </p>
-          <PaymentMarks className="justify-start sm:flex-nowrap sm:justify-end" />
         </div>
       </div>
     </footer>
