@@ -144,9 +144,7 @@ export function EnquiryFlow() {
               <span
                 aria-hidden="true"
                 className="absolute bottom-[38px] left-9 top-[38px] w-px -translate-x-1/2 bg-gradient-to-b from-[#537FEA]/15 via-[#537FEA]/35 to-[#537FEA]/60 md:hidden"
-              >
-                <span className="ps-flow-pulse-y absolute left-1/2 top-0 h-1 w-1 -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#6f93ee] opacity-0 shadow-[0_0_5px_rgba(83,127,234,0.35)]" />
-              </span>
+              />
               {stages.map((stage, index) => {
                 const Icon = mobileStageIcons[index]!
                 const last = index === stages.length - 1

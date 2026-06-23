@@ -106,30 +106,52 @@ export default async function HelpArticlePage({
           )}
 
           {/* previous / next */}
-          <div className="mt-12 grid grid-cols-1 gap-4 border-t border-[var(--hair)] pt-8 sm:mt-16 sm:grid-cols-2 sm:pt-10">
+          <div className="mt-12 grid auto-rows-fr grid-cols-1 gap-4 border-t border-[var(--hair)] pt-8 md:mt-16 md:auto-rows-auto md:grid-cols-2 md:pt-10">
             {prev ? (
               <Link
                 href={`/help/${prev.slug}`}
                 className="group rounded-2xl border border-white/[0.08] p-5 transition-colors hover:border-white/20 hover:bg-white/[0.02]"
               >
-                <span className="ps-label !text-[9px] !tracking-[0.2em]">Previous</span>
-                <div className="mt-2 flex items-center gap-2 text-[14.5px] font-medium text-white">
-                  <ArrowLeft className="h-4 w-4 text-[#537FEA]/80 transition-all group-hover:-translate-x-0.5 group-hover:text-[#537FEA]" />
-                  {prev.title}
+                <div className="grid grid-cols-[16px_minmax(0,1fr)] grid-rows-[auto_auto] gap-x-3 gap-y-2 text-left md:hidden">
+                  <span className="ps-label col-start-2 row-start-1 !text-[9px] !tracking-[0.2em]">
+                    Previous
+                  </span>
+                  <ArrowLeft className="col-start-1 row-start-2 h-4 w-4 self-center text-[#537FEA]/80 transition-all group-hover:-translate-x-0.5 group-hover:text-[#537FEA]" />
+                  <span className="col-start-2 row-start-2 text-[14.5px] font-medium leading-snug text-white">
+                    {prev.title}
+                  </span>
+                </div>
+                <div className="hidden md:block">
+                  <span className="ps-label !text-[9px] !tracking-[0.2em]">Previous</span>
+                  <div className="mt-2 flex items-center gap-2 text-[14.5px] font-medium text-white">
+                    <ArrowLeft className="h-4 w-4 text-[#537FEA]/80 transition-all group-hover:-translate-x-0.5 group-hover:text-[#537FEA]" />
+                    {prev.title}
+                  </div>
                 </div>
               </Link>
             ) : (
-              <span />
+              <span className="hidden md:block" />
             )}
             {next && (
               <Link
                 href={`/help/${next.slug}`}
-                className="group rounded-2xl border border-white/[0.08] p-5 text-right transition-colors hover:border-white/20 hover:bg-white/[0.02] sm:col-start-2"
+                className="group rounded-2xl border border-white/[0.08] p-5 text-right transition-colors hover:border-white/20 hover:bg-white/[0.02] md:col-start-2"
               >
-                <span className="ps-label !text-[9px] !tracking-[0.2em]">Next</span>
-                <div className="mt-2 flex items-center justify-end gap-2 text-[14.5px] font-medium text-white">
-                  {next.title}
-                  <ArrowRight className="h-4 w-4 text-[#537FEA]/80 transition-all group-hover:translate-x-0.5 group-hover:text-[#537FEA]" />
+                <div className="grid grid-cols-[minmax(0,1fr)_16px] grid-rows-[auto_auto] gap-x-3 gap-y-2 text-left md:hidden">
+                  <span className="ps-label col-start-1 row-start-1 !text-[9px] !tracking-[0.2em]">
+                    Next
+                  </span>
+                  <span className="col-start-1 row-start-2 text-[14.5px] font-medium leading-snug text-white">
+                    {next.title}
+                  </span>
+                  <ArrowRight className="col-start-2 row-start-2 h-4 w-4 self-center text-[#537FEA]/80 transition-all group-hover:translate-x-0.5 group-hover:text-[#537FEA]" />
+                </div>
+                <div className="hidden md:block">
+                  <span className="ps-label !text-[9px] !tracking-[0.2em]">Next</span>
+                  <div className="mt-2 flex items-center justify-end gap-2 text-[14.5px] font-medium text-white">
+                    {next.title}
+                    <ArrowRight className="h-4 w-4 text-[#537FEA]/80 transition-all group-hover:translate-x-0.5 group-hover:text-[#537FEA]" />
+                  </div>
                 </div>
               </Link>
             )}

@@ -78,17 +78,15 @@ export function ProcessPreview() {
         {/* right: vertical setup sequence on a quiet signal line */}
         <Reveal delay={120}>
           <ol className="relative grid grid-cols-[34px_minmax(0,1fr)] gap-x-4 gap-y-7 sm:gap-x-5 sm:gap-y-9 md:hidden">
-            <span
-              aria-hidden="true"
-              className="pointer-events-none relative z-0 col-start-1 row-start-1 row-end-4"
-            >
-              <span className="absolute bottom-[-17px] left-1/2 top-[17px] w-px -translate-x-1/2 bg-gradient-to-b from-[#537FEA]/18 via-[#537FEA]/26 to-[#537FEA]/38">
-                <span className="ps-flow-pulse-y absolute left-1/2 top-0 h-1 w-1 -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#6f93ee] opacity-0 shadow-[0_0_5px_rgba(83,127,234,0.35)]" />
-              </span>
-            </span>
             {phases.map((p, index) => (
               <li key={p.n} className="contents">
                 <div className="relative z-10 col-start-1" style={{ gridRow: index + 1 }}>
+                  {index < phases.length - 1 && (
+                    <span
+                      aria-hidden="true"
+                      className="absolute bottom-[-45px] left-1/2 top-[17px] z-0 w-px -translate-x-1/2 bg-gradient-to-b from-[#537FEA]/18 via-[#537FEA]/26 to-[#537FEA]/38 sm:bottom-[-53px]"
+                    />
+                  )}
                   <StepNode n={p.n} tone={p.tone} />
                 </div>
                 <div className="col-start-2 pt-1" style={{ gridRow: index + 1 }}>
