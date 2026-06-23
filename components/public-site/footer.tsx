@@ -141,7 +141,12 @@ function FooterBlock({ block }: { block: Block }) {
 
 export function PublicFooter() {
   return (
-    <footer className="relative border-t border-white/[0.08] bg-[#050608]">
+    <footer className="relative bg-[#050608]">
+      {/* soft, edge-fading divider above the footer (replaces the hard border line) */}
+      <div
+        aria-hidden="true"
+        className="mx-auto h-px w-full max-w-[1340px] bg-gradient-to-r from-transparent via-white/[0.12] to-transparent"
+      />
       <div className="mx-auto px-5 py-10 sm:px-6 md:hidden">
         <p className="max-w-[18rem] text-[13.5px] leading-[1.6] text-[var(--silver)]">
           Intelligent response infrastructure for service businesses.
@@ -186,9 +191,9 @@ export function PublicFooter() {
         </p>
       </div>
 
-      <div className="mx-auto hidden max-w-[1340px] px-5 py-14 sm:px-6 sm:py-[84px] md:block md:py-16 lg:py-[84px]">
+      <div className="mx-auto hidden max-w-[1340px] px-5 py-14 sm:px-6 sm:py-[84px] md:block md:py-14 lg:py-[70px]">
         {/* Top: brand area (left) · vertical divider · three column-pairs (right) */}
-        <div className="flex flex-col gap-y-12 sm:gap-y-14 lg:flex-row lg:gap-x-20">
+        <div className="flex flex-col gap-y-12 sm:gap-y-14 lg:flex-row lg:gap-x-16">
           {/* Brand area — the anchor of the footer, given more presence than the nav */}
           <div className="lg:w-[300px] lg:shrink-0">
             <div className="max-w-[18rem] space-y-2.5 text-[13.5px] leading-[1.6] sm:space-y-3">
@@ -213,7 +218,7 @@ export function PublicFooter() {
           />
 
           {/* Three column-pairs — read across each row */}
-          <div className="grid flex-1 grid-cols-2 gap-x-7 gap-y-12 sm:grid-cols-3 sm:gap-x-8 sm:gap-y-14 lg:gap-x-10">
+          <div className="grid flex-1 grid-cols-2 gap-x-7 gap-y-12 sm:grid-cols-3 sm:gap-x-8 sm:gap-y-14 lg:gap-x-8">
             {footerColumns.map((col, index) => (
               <div
                 key={col.top.title}
@@ -231,7 +236,7 @@ export function PublicFooter() {
         </div>
 
         {/* Contained, edge-fading divider above the bottom bar — no harsh full-width line */}
-        <div className="mx-auto mt-12 h-px w-full max-w-[1100px] bg-gradient-to-r from-transparent via-white/[0.14] to-transparent sm:mt-16" />
+        <div className="mx-auto mt-10 h-px w-full max-w-[1100px] bg-gradient-to-r from-transparent via-white/[0.14] to-transparent sm:mt-12" />
 
         {/* Bottom: payment marks above the copyright line */}
         <div className="mt-7 sm:mt-8">

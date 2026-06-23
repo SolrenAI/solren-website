@@ -56,7 +56,7 @@ function isActive(pathname: string, item: NavItem): boolean {
 /* Nav link: 14px / medium / muted grey. Active or hovered → white. Active is the
    subtle, premium signal (brighter text), never an orange block. */
 function navLinkClass(active: boolean): string {
-  return `text-[14px] font-medium transition-colors ${
+  return `inline-flex items-center leading-none text-[14px] font-medium transition-colors ${
     active ? "text-white" : "text-[#8f8f8f] hover:text-white"
   }`
 }
@@ -64,14 +64,14 @@ function navLinkClass(active: boolean): string {
 /* Desktop dropdown: opens on hover and on keyboard focus, closes on mouse-out,
    on focus leaving the group, and on Escape (which returns focus to the trigger
    without re-opening). No heavy animation — a 150ms opacity fade only. */
-function NavDropdown({ item, active }: { item: NavItem; active: boolean }) {
+function NavDropdown({ item, active, className = "" }: { item: NavItem; active: boolean; className?: string }) {
   const [open, setOpen] = useState(false)
   const triggerRef = useRef<HTMLAnchorElement>(null)
   const closedByEsc = useRef(false)
 
   return (
     <div
-      className="relative"
+      className={`relative ${className}`}
       onMouseEnter={() => setOpen(true)}
       onMouseLeave={() => setOpen(false)}
       onFocus={() => {
@@ -158,7 +158,7 @@ export function PublicNav() {
   return (
     <header className="fixed inset-x-0 top-0 z-40 border-b border-white/[0.05] bg-[#08090C]">
       {/* One compact bar: logo + nav grouped left, CTA far right. */}
-      <div className="mx-auto flex h-[58px] max-w-[1440px] items-center justify-between px-5 sm:px-6 lg:h-[54px] lg:px-8">
+      <div className="mx-auto flex h-[58px] max-w-[1440px] items-center justify-between px-5 sm:px-6 lg:h-[60px] lg:px-8">
         {/* left: logo + nav as one compact group, tight even spacing */}
         <div className="flex items-center gap-3">
           <Link
@@ -178,7 +178,7 @@ export function PublicNav() {
           </Link>
 
           {/* nav: even 12px gap between links */}
-          <nav className="hidden items-center gap-3 lg:flex">
+          <nav className="hidden items-center gap-3 lg:ml-16 lg:flex">
             {links.map((l) => {
               const active = isActive(pathname, l)
               return l.children ? (
