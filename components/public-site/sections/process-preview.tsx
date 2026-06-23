@@ -77,7 +77,31 @@ export function ProcessPreview() {
 
         {/* right: vertical setup sequence on a quiet signal line */}
         <Reveal delay={120}>
-          <ol className="relative space-y-7 sm:space-y-9">
+          <ol className="relative grid grid-cols-[34px_minmax(0,1fr)] gap-x-4 gap-y-7 sm:gap-x-5 sm:gap-y-9 md:hidden">
+            <span
+              aria-hidden="true"
+              className="pointer-events-none relative z-0 col-start-1 row-start-1 row-end-4"
+            >
+              <span className="absolute bottom-[-17px] left-1/2 top-[17px] w-px -translate-x-1/2 bg-gradient-to-b from-[#537FEA]/18 via-[#537FEA]/26 to-[#537FEA]/38">
+                <span className="ps-flow-pulse-y absolute left-1/2 top-0 h-1 w-1 -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#6f93ee] opacity-0 shadow-[0_0_5px_rgba(83,127,234,0.35)]" />
+              </span>
+            </span>
+            {phases.map((p, index) => (
+              <li key={p.n} className="contents">
+                <div className="relative z-10 col-start-1" style={{ gridRow: index + 1 }}>
+                  <StepNode n={p.n} tone={p.tone} />
+                </div>
+                <div className="col-start-2 pt-1" style={{ gridRow: index + 1 }}>
+                  <h3 className="text-[17px] font-medium tracking-tight text-white">{p.title}</h3>
+                  <p className="mt-1.5 max-w-md text-[14.5px] leading-relaxed text-[var(--silver)]">
+                    {p.body}
+                  </p>
+                </div>
+              </li>
+            ))}
+          </ol>
+
+          <ol className="relative hidden space-y-7 sm:space-y-9 md:block">
             <span
               aria-hidden="true"
               className="absolute left-[17px] top-[17px] bottom-[17px] w-px bg-gradient-to-b from-[#537FEA]/18 via-[#537FEA]/26 to-[#537FEA]/38"
