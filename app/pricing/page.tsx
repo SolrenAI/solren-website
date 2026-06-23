@@ -64,7 +64,7 @@ export default function PricingPage() {
             <Packages detailed />
           </div>
           <p className="mx-auto mt-8 max-w-xl text-center text-[13px] leading-relaxed text-[var(--muted)]">
-            <span className="text-[var(--silver)]">Referral credit</span> — introduce another
+            <span className="text-[var(--silver)]">Referral credit:</span> Introduce another
             business and when they install, your next month is on us.
           </p>
         </div>
