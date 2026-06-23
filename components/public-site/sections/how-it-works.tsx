@@ -118,6 +118,13 @@ export function WorkSplit() {
 /* ---------- 3. Installed around your business ---------- */
 
 const CHANNELS = ["Gmail", "Website Forms", "Facebook Leads", "Service Enquiries", "Follow-up Logic"]
+const MOBILE_CHANNELS = [
+  "Website forms",
+  "Google enquiries",
+  "Facebook leads",
+  "Service enquiries",
+  "Follow-up logic",
+]
 
 export function InstalledAround() {
   return (
@@ -141,9 +148,17 @@ export function InstalledAround() {
         <Reveal delay={90}>
           {/* one grouped capsule — the channels and logic read as a single system layer */}
           <div className="mt-8 flex justify-center">
-            <ul className="flex w-full max-w-sm flex-col items-start gap-y-2.5 rounded-[24px] border border-[var(--hair)] bg-white/[0.02] px-5 py-5 text-left md:inline-flex md:w-auto md:max-w-none md:flex-row md:flex-wrap md:items-center md:justify-center md:gap-x-5 md:gap-y-2 md:px-11 md:py-5">
+            <ul className="flex w-full max-w-sm flex-col items-start gap-y-2.5 rounded-[24px] border border-[var(--hair)] bg-white/[0.02] px-5 py-5 text-left md:hidden">
+              {MOBILE_CHANNELS.map((channel) => (
+                <li key={channel} className="flex w-full items-center gap-x-3">
+                  <span aria-hidden="true" className="h-1 w-1 rounded-full bg-[#537FEA]" />
+                  <span className="text-[14px] font-medium text-[var(--silver)]">{channel}</span>
+                </li>
+              ))}
+            </ul>
+            <ul className="hidden flex-wrap items-center justify-center gap-x-5 gap-y-2 rounded-[24px] border border-[var(--hair)] bg-white/[0.02] px-11 py-5 md:inline-flex">
               {CHANNELS.map((c) => (
-                <li key={c} className="flex w-full items-center gap-x-3 md:w-auto md:gap-x-5">
+                <li key={c} className="flex items-center gap-x-5">
                   <span aria-hidden="true" className="h-1 w-1 rounded-full bg-[#537FEA]" />
                   <span className="text-[14px] font-medium text-[var(--silver)]">{c}</span>
                 </li>
