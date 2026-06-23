@@ -8,7 +8,7 @@ import { Check } from "lucide-react"
 
 export function HowItWorks() {
   return (
-    <section id="how" className="relative pt-28 pb-24 sm:pt-32 sm:pb-32">
+    <section id="how" className="relative pt-16 pb-16 sm:pt-24 sm:pb-24 lg:pt-32 lg:pb-32">
       <div className="mx-auto max-w-[1180px] px-6">
         {/* the four-beat story — the single process system, with one soft flow spine
             + slow pulse carrying the eye from first lead to booked job */}
@@ -57,7 +57,7 @@ function HandleColumn({
 }) {
   return (
     <div
-      className={`rounded-2xl p-7 sm:p-8 ${
+      className={`rounded-2xl p-6 sm:p-8 ${
         accent
           ? "border border-[#537FEA]/25 bg-[#0F141B]"
           : "border border-[var(--hair)] bg-[#0A0D12]"
@@ -92,7 +92,7 @@ export function WorkSplit() {
         aria-hidden="true"
         className="mx-auto h-px w-full max-w-[1080px] bg-gradient-to-r from-transparent via-[var(--hair-strong)] to-transparent"
       />
-      <div className="mx-auto max-w-[1080px] px-6 pt-20 sm:pt-24">
+      <div className="mx-auto max-w-[1080px] px-6 pt-12 sm:pt-16 lg:pt-24">
         <Reveal>
           <h2 className="max-w-2xl text-[clamp(1.5rem,3vw,2.25rem)] font-medium leading-[1.1] tracking-[-0.02em] ps-silver">
             You work. Solren follows up.

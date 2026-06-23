@@ -70,7 +70,7 @@ export function LegalDoc({
     <>
       <PageHeader eyebrow={eyebrow} title={title} sub={sub} note={`${dateLabel}: ${lastUpdated}`} />
 
-      <section className={tightTop ? "pb-16 pt-8 sm:pb-24 sm:pt-14" : "py-16 sm:py-24"}>
+      <section className={tightTop ? "pb-12 pt-6 sm:pb-24 sm:pt-14" : "py-12 sm:py-24"}>
         {/* When a contents box is shown, the box sits a touch wider than the
             policy body so the index reads clearly while the legal text keeps a
             comfortable reading measure. */}
@@ -78,7 +78,7 @@ export function LegalDoc({
           {intro && (
             <Reveal>
               <p
-                className={`mb-14 text-[16.5px] leading-relaxed text-[var(--silver)] ${measure}`}
+                className={`mb-10 text-[16.5px] leading-relaxed text-[var(--silver)] lg:mb-14 ${measure}`}
               >
                 {intro}
               </p>
@@ -87,7 +87,7 @@ export function LegalDoc({
 
           {summary && (
             <Reveal>
-              <div className="mb-14 rounded-2xl bg-white/[0.02] p-6 sm:p-8">
+              <div className="mb-10 rounded-2xl bg-white/[0.02] p-6 sm:p-8 lg:mb-14">
                 <h2 className="ps-label ps-label-legible">{summary.title}</h2>
                 <ul className="mt-5 space-y-3">
                   {summary.items.map((item, i) => (

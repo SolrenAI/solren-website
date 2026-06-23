@@ -5,13 +5,13 @@ import { Reveal } from "../reveal"
    stays a pure statement — the same points are never listed twice. */
 export function TrustSignals() {
   return (
-    <section className="relative pb-14 pt-16 sm:pb-20 sm:pt-24 lg:pb-24 lg:pt-32">
+    <section className="relative pb-12 pt-12 sm:pb-20 sm:pt-24 lg:pb-24 lg:pt-32">
       <div className="mx-auto max-w-[1000px] px-5 text-center sm:px-6">
         <Reveal>
           <span className="ps-label !text-[12px] !tracking-[0.3em] !text-[var(--silver)]">
             The difference
           </span>
-          <h2 className="mx-auto mt-5 max-w-[15ch] text-[clamp(2rem,9vw,3.7rem)] font-medium leading-[1.08] tracking-[-0.02em] sm:mt-6 sm:leading-[1.04]">
+          <h2 className="mx-auto mt-5 max-w-[15ch] text-[clamp(1.85rem,8vw,3.7rem)] font-medium leading-[1.08] tracking-[-0.02em] sm:mt-6 sm:leading-[1.04]">
             <span className="text-[var(--muted)]">From missed enquiries</span>{" "}
             <span className="ps-silver">to booked jobs.</span>
           </h2>

@@ -57,7 +57,7 @@ export function ProcessPreview() {
         <Reveal>
           <div>
             <span className="ps-label">How it works</span>
-            <h2 className="mt-5 text-[clamp(1.9rem,8.5vw,3rem)] font-medium leading-[1.08] tracking-[-0.02em] sm:mt-6 sm:leading-[1.05]">
+            <h2 className="mt-5 text-[clamp(1.7rem,7.5vw,3rem)] font-medium leading-[1.08] tracking-[-0.02em] sm:mt-6 sm:leading-[1.05]">
               <span className="ps-silver">Connected once.</span>{" "}
               <span className="text-[var(--muted)]">Working every day.</span>
             </h2>

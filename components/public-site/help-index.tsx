@@ -44,7 +44,7 @@ export function HelpIndex({
         />
       </div>
 
-      <div className="mt-12 space-y-16">
+      <div className="mt-10 space-y-12 lg:mt-12 lg:space-y-16">
         {categories.map((cat) => {
           const items = filtered.filter((a) => a.category === cat.id)
           if (items.length === 0) return null

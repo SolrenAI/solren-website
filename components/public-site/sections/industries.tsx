@@ -99,8 +99,8 @@ function Card({ name, label, icon, src, objectPosition }: Trade) {
 
 export function Industries() {
   return (
-    <section className="relative overflow-hidden border-y border-[var(--hair)] bg-[#0A0D12] py-28 sm:py-36">
-      <div className="mx-auto mb-14 max-w-[1240px] px-6">
+    <section className="relative overflow-hidden border-y border-[var(--hair)] bg-[#0A0D12] py-16 sm:py-20 lg:py-36">
+      <div className="mx-auto mb-8 max-w-[1240px] px-6 sm:mb-10 lg:mb-14">
         <Reveal>
           <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
             <div>

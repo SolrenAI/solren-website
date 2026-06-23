@@ -26,7 +26,7 @@ export function SecurityAccordion({
             <button
               type="button"
               onClick={() => setOpen(isOpen ? null : i)}
-              className="group flex w-full items-center justify-between gap-6 py-5 text-left"
+              className="group flex w-full items-center justify-between gap-4 py-5 text-left lg:gap-6"
               aria-expanded={isOpen}
               aria-controls={`sec-panel-${i}`}
             >

@@ -227,13 +227,13 @@ const features: Feature[] = [
 
 export function Benefits() {
   return (
-    <section className="relative border-t border-[var(--hair)] py-24 sm:py-28">
+    <section className="relative border-t border-[var(--hair)] py-16 sm:py-20 lg:py-28">
       <div className="mx-auto max-w-[1100px] px-6">
         <Reveal>
           <span className="ps-label">What changes after install</span>
         </Reveal>
 
-        <div className="mt-16 space-y-20 sm:space-y-24">
+        <div className="mt-10 space-y-14 sm:space-y-20 lg:mt-16 lg:space-y-24">
           {features.map((f, i) => {
             const flip = i % 2 === 1
             return (

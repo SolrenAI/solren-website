@@ -49,8 +49,8 @@ export default async function HelpArticlePage({
         note={`Last updated: ${LAST_UPDATED}`}
       />
 
-      <section className="py-16 sm:py-24">
-        <div className="mx-auto max-w-[760px] px-6">
+      <section className="py-12 sm:py-24">
+        <div className="mx-auto max-w-[760px] px-5 sm:px-6">
           <Link
             href="/help"
             className="group inline-flex items-center gap-2 text-[13.5px] text-[var(--muted)] transition-colors hover:text-white"
@@ -106,15 +106,15 @@ export default async function HelpArticlePage({
           )}
 
           {/* previous / next */}
-          <div className="mt-12 grid auto-rows-fr grid-cols-1 gap-4 border-t border-[var(--hair)] pt-8 md:mt-16 md:auto-rows-auto md:grid-cols-2 md:pt-10">
+          <div className="mt-10 grid auto-rows-fr grid-cols-1 gap-3 border-t border-[var(--hair)] pt-8 md:mt-16 md:auto-rows-auto md:grid-cols-2 md:gap-4 md:pt-10">
             {prev ? (
               <Link
                 href={`/help/${prev.slug}`}
-                className="group rounded-2xl border border-white/[0.08] p-5 transition-colors hover:border-white/20 hover:bg-white/[0.02]"
+                className="group rounded-2xl border border-white/[0.08] p-4 transition-colors hover:border-white/20 hover:bg-white/[0.02] lg:p-5"
               >
                 <div className="text-left md:hidden">
                   <span className="ps-label !text-[9px] !tracking-[0.2em]">Previous</span>
-                  <div className="mt-2 flex items-start gap-3 text-[14.5px] font-medium leading-snug text-white">
+                  <div className="mt-2 inline-flex items-start gap-2 text-[14.5px] font-medium leading-snug text-white">
                     <ArrowLeft className="mt-0.5 h-4 w-4 shrink-0 text-[#537FEA]/80 transition-all group-hover:-translate-x-0.5 group-hover:text-[#537FEA]" />
                     <span className="min-w-0">{prev.title}</span>
                   </div>
@@ -133,12 +133,12 @@ export default async function HelpArticlePage({
             {next && (
               <Link
                 href={`/help/${next.slug}`}
-                className="group rounded-2xl border border-white/[0.08] p-5 text-right transition-colors hover:border-white/20 hover:bg-white/[0.02] md:col-start-2"
+                className="group rounded-2xl border border-white/[0.08] p-4 text-right transition-colors hover:border-white/20 hover:bg-white/[0.02] md:col-start-2 lg:p-5"
               >
                 <div className="text-left md:hidden">
                   <span className="ps-label !text-[9px] !tracking-[0.2em]">Next</span>
-                  <div className="mt-2 flex items-start justify-between gap-3 text-[14.5px] font-medium leading-snug text-white">
-                    <span className="min-w-0 flex-1">{next.title}</span>
+                  <div className="mt-2 inline-flex items-start gap-2 text-[14.5px] font-medium leading-snug text-white">
+                    <span className="min-w-0">{next.title}</span>
                     <ArrowRight className="mt-0.5 h-4 w-4 shrink-0 text-[#537FEA]/80 transition-all group-hover:translate-x-0.5 group-hover:text-[#537FEA]" />
                   </div>
                 </div>

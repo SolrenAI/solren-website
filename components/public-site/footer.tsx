@@ -196,7 +196,7 @@ export function PublicFooter() {
         </p>
       </div>
 
-      <div className="mx-auto hidden max-w-[1340px] px-5 py-14 sm:px-6 sm:py-[84px] md:block">
+      <div className="mx-auto hidden max-w-[1340px] px-5 py-14 sm:px-6 sm:py-[84px] md:block md:py-16 lg:py-[84px]">
         {/* Top: brand area (left) · vertical divider · three column-pairs (right) */}
         <div className="flex flex-col gap-y-12 sm:gap-y-14 lg:flex-row lg:gap-x-20">
           {/* Brand area — the anchor of the footer, given more presence than the nav */}

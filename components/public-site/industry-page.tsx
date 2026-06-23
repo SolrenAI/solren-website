@@ -79,7 +79,7 @@ export function IndustryPage({ slug }: { slug: string }) {
         />
       </div>
 
-      <section className="py-16 sm:py-24">
+      <section className="py-12 sm:py-24">
         <div className="mx-auto max-w-[820px] px-5 sm:px-6">
           {industry.image && (
             <Reveal>

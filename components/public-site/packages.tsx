@@ -76,7 +76,7 @@ function Spec({ pkg }: { pkg: Pkg }) {
   const featured = pkg.featured
   return (
     <div
-      className={`ps-card ${featured ? "ps-card-warm" : ""} flex h-full flex-col rounded-[24px] p-8`}
+      className={`ps-card ${featured ? "ps-card-warm" : ""} flex h-full flex-col rounded-[20px] p-6 lg:rounded-[24px] lg:p-8`}
     >
       {/* header row */}
       <div className="flex items-center justify-between">
@@ -88,7 +88,7 @@ function Spec({ pkg }: { pkg: Pkg }) {
         )}
       </div>
 
-      <h3 className="mt-6 text-[22px] font-medium tracking-tight text-white">
+      <h3 className="mt-5 text-[22px] font-medium tracking-tight text-white lg:mt-6">
         {pkg.name}
       </h3>
       <p className="mt-1.5 text-[15px] text-[var(--silver)]">{pkg.tagline}</p>
@@ -124,7 +124,7 @@ function Spec({ pkg }: { pkg: Pkg }) {
 
       <Link
         href="/contact"
-        className={`group mt-9 inline-flex items-center justify-center gap-2 rounded-full px-5 py-3.5 text-[14px] font-medium transition-all ${
+        className={`group mt-7 inline-flex items-center justify-center gap-2 rounded-full px-5 py-3.5 text-[14px] font-medium transition-all lg:mt-9 ${
           featured
             ? "bg-[#537FEA] text-black hover:bg-[#6A8FEE]"
             : "border border-[var(--hair-strong)] text-white hover:border-white/30 hover:bg-white/[0.03]"

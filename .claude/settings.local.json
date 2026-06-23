@@ -8,7 +8,8 @@
       "Bash(echo \"exit: $?\")",
       "Bash(npx next *)",
       "PowerShell(npx tsc --noEmit 2>&1 | Select-Object -First 30; \"exit: $LASTEXITCODE\")",
-      "PowerShell(npx tsc --noEmit 2>&1 | Select-Object -First 20; \"exit: $LASTEXITCODE\")"
+      "PowerShell(npx tsc --noEmit 2>&1 | Select-Object -First 20; \"exit: $LASTEXITCODE\")",
+      "PowerShell(npm run *)"
     ]
   }
 }

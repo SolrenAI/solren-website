@@ -57,7 +57,7 @@ export function IndustriesPreview() {
         <Reveal>
           <div className="mb-7 sm:mb-8">
             <span className="ps-label">Who it&apos;s for</span>
-            <h2 className="mt-5 max-w-xl text-[clamp(1.9rem,8.5vw,3rem)] font-medium leading-[1.08] tracking-[-0.02em] sm:mt-6 sm:leading-[1.05]">
+            <h2 className="mt-5 max-w-xl text-[clamp(1.7rem,7.5vw,3rem)] font-medium leading-[1.08] tracking-[-0.02em] sm:mt-6 sm:leading-[1.05]">
               <span className="ps-silver">Built for teams customers call</span>{" "}
               <span className="text-[var(--muted)]">when something needs fixing.</span>
             </h2>
@@ -77,7 +77,7 @@ export function IndustriesPreview() {
 
         {/* editorial bento: one feature image + three smaller cards */}
         <Reveal delay={80}>
-          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:h-[430px] lg:grid-cols-4 lg:grid-rows-2 lg:gap-5">
+          <div className="grid grid-cols-2 gap-3 sm:grid-cols-2 sm:gap-4 lg:h-[430px] lg:grid-cols-4 lg:grid-rows-2 lg:gap-5">
             {trades.map((t, i) => {
               const Icon = t.icon
               return (

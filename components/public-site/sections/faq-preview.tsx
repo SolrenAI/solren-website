@@ -6,8 +6,8 @@ import { faqs } from "../faq-data"
 export function FaqPreview() {
   const preview = faqs.slice(0, 4)
   return (
-    <section className="relative py-28 sm:py-36">
-      <div className="mx-auto grid max-w-[1240px] grid-cols-1 gap-14 px-6 lg:grid-cols-[0.8fr_1.2fr]">
+    <section className="relative py-16 sm:py-20 lg:py-36">
+      <div className="mx-auto grid max-w-[1240px] grid-cols-1 gap-8 px-6 lg:grid-cols-[0.8fr_1.2fr] lg:gap-14">
         {/* Left: heading, sticky */}
         <Reveal>
           <div className="lg:sticky lg:top-28">
@@ -29,7 +29,7 @@ export function FaqPreview() {
         <div>
           {preview.map((f, i) => (
             <Reveal key={f.q} delay={i * 70}>
-              <div className="border-t border-[var(--hair)] py-8 first:border-t-0 first:pt-0">
+              <div className="border-t border-[var(--hair)] py-6 sm:py-8 first:border-t-0 first:pt-0">
                 <h3 className="text-[18px] font-medium tracking-tight text-white">
                   {f.q}
                 </h3>

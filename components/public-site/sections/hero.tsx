@@ -4,7 +4,7 @@ import { RotatingHighlight } from "../rotating-highlight"
 
 export function Hero() {
   return (
-    <section className="relative pb-16 pt-28 sm:pb-24 sm:pt-36 lg:pb-28 lg:pt-40">
+    <section className="relative pb-14 pt-24 sm:pb-24 sm:pt-36 lg:pb-28 lg:pt-40">
       {/* heading block — one centred vertical stack */}
       <div className="mx-auto max-w-[1080px] px-5 text-center sm:px-6">
         <div className="inline-flex items-center gap-2">

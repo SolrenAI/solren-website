@@ -33,7 +33,7 @@ export function PageHeader({
 }) {
   return (
     <>
-      <header className="relative overflow-hidden pb-14 pt-28 sm:pb-16 sm:pt-36 lg:pb-20 lg:pt-44">
+      <header className="relative overflow-hidden pb-12 pt-24 sm:pb-16 sm:pt-36 lg:pb-20 lg:pt-44">
       {decoration}
       <div
         className={`relative z-10 mx-auto max-w-[1240px] px-5 sm:px-6 ${
@@ -50,7 +50,7 @@ export function PageHeader({
               `looseTitle` opens the line-height and padding further for headlines
               that wrap, so glyph tops and bottoms render cleanly. */}
           <h1
-            className={`mt-5 max-w-3xl overflow-visible text-[clamp(2.15rem,10vw,4.4rem)] font-medium tracking-[-0.03em] ps-silver sm:mt-7 ${
+            className={`mt-5 max-w-3xl overflow-visible text-[clamp(2.05rem,8.5vw,4.4rem)] font-medium tracking-[-0.03em] ps-silver sm:mt-7 ${
               looseTitle ? "leading-[1.08] pb-[0.2em] pt-[0.04em]" : "leading-[1.02] pb-[0.14em] sm:leading-[0.98]"
             }`}
           >

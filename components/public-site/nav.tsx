@@ -222,7 +222,7 @@ export function PublicNav() {
       {open && (
         <div
           id="mobile-menu"
-          className="max-h-[calc(100dvh-58px)] overflow-y-auto border-t border-[var(--hair)] bg-[#08090C] px-5 pb-7 pt-3 sm:px-6 lg:hidden"
+          className="max-h-[calc(100dvh-58px)] overflow-y-auto border-t border-[var(--hair)] bg-[#08090C] px-5 pb-5 pt-3 sm:px-6 lg:hidden"
         >
           <div className="mx-auto flex max-w-xl flex-col">
             {links.map((l) => {
@@ -230,7 +230,7 @@ export function PublicNav() {
               return l.children ? (
                 <details key={l.label} className="group/mobile border-b border-[var(--hair)]">
                   <summary
-                    className={`flex min-h-12 cursor-pointer list-none items-center justify-between py-3 text-[16px] font-medium ${
+                    className={`flex min-h-12 cursor-pointer list-none items-center justify-between py-2 text-[16px] font-medium ${
                       active ? "text-white" : "text-[var(--silver)]"
                     }`}
                   >
@@ -259,7 +259,7 @@ export function PublicNav() {
                   href={l.href}
                   onClick={() => setOpen(false)}
                   aria-current={active ? "page" : undefined}
-                  className={`flex min-h-12 items-center border-b border-[var(--hair)] py-3 text-[16px] font-medium ${active ? "text-white" : "text-[var(--silver)]"}`}
+                  className={`flex min-h-12 items-center border-b border-[var(--hair)] py-2 text-[16px] font-medium ${active ? "text-white" : "text-[var(--silver)]"}`}
                 >
                   {l.label}
                 </Link>
@@ -268,10 +268,10 @@ export function PublicNav() {
             <Link
               href="/contact"
               onClick={() => setOpen(false)}
-              className="mt-5 inline-flex h-12 items-center justify-center gap-1.5 rounded-full bg-[#537FEA] px-[18px] text-[15px] font-medium text-black"
+              className="mt-4 inline-flex h-12 items-center justify-center gap-1.5 rounded-full bg-[#537FEA] px-[18px] text-[15px] font-medium text-black"
             >
               Get started
-              <ArrowUpRight className="h-4 w-4 text-[#537FEA]" />
+              <ArrowUpRight className="h-4 w-4 text-black" />
             </Link>
           </div>
         </div>
