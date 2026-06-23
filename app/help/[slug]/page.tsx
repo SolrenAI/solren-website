@@ -105,55 +105,42 @@ export default async function HelpArticlePage({
             </Reveal>
           )}
 
-          {/* previous / next */}
-          <div className="mt-10 grid auto-rows-fr grid-cols-1 gap-3 border-t border-[var(--hair)] pt-8 md:mt-16 md:auto-rows-auto md:grid-cols-2 md:gap-4 md:pt-10">
-            {prev ? (
-              <Link
-                href={`/help/${prev.slug}`}
-                className="group rounded-2xl border border-white/[0.08] p-5 transition-colors hover:border-white/20 hover:bg-white/[0.02]"
-              >
-                <div className="flex h-full flex-col text-left md:hidden">
-                  <ArrowLeft className="h-4 w-4 text-[#537FEA] transition-transform group-hover:-translate-x-0.5" />
-                  <span className="ps-label mt-4 !text-[9px] !tracking-[0.2em]">Previous</span>
-                  <p className="mt-1.5 text-[14.5px] font-medium leading-snug text-white">
-                    {prev.title}
-                  </p>
-                </div>
-                <div className="hidden md:block">
-                  <span className="ps-label !text-[9px] !tracking-[0.2em]">Previous</span>
-                  <div className="mt-2 flex items-center gap-2 text-[14.5px] font-medium text-white">
-                    <ArrowLeft className="h-4 w-4 text-[#537FEA]/80 transition-all group-hover:-translate-x-0.5 group-hover:text-[#537FEA]" />
-                    {prev.title}
-                  </div>
-                </div>
-              </Link>
-            ) : (
-              <span className="hidden md:block" />
-            )}
-            {next && (
-              <Link
-                href={`/help/${next.slug}`}
-                className="group rounded-2xl border border-white/[0.08] p-5 text-right transition-colors hover:border-white/20 hover:bg-white/[0.02] md:col-start-2 lg:p-5"
-              >
-                <div className="flex h-full items-center gap-3 text-left md:hidden">
-                  <div className="min-w-0 flex-1">
-                    <span className="ps-label !text-[9px] !tracking-[0.2em]">Next</span>
-                    <p className="mt-1.5 text-[14.5px] font-medium leading-snug text-white">
-                      {next.title}
-                    </p>
-                  </div>
-                  <ArrowRight className="h-4 w-4 shrink-0 text-[#537FEA] transition-transform group-hover:translate-x-0.5" />
-                </div>
-                <div className="hidden md:block">
-                  <span className="ps-label !text-[9px] !tracking-[0.2em]">Next</span>
-                  <div className="mt-2 flex items-center justify-end gap-2 text-[14.5px] font-medium text-white">
-                    {next.title}
-                    <ArrowRight className="h-4 w-4 text-[#537FEA]/80 transition-all group-hover:translate-x-0.5 group-hover:text-[#537FEA]" />
-                  </div>
-                </div>
-              </Link>
-            )}
-          </div>
+          {/* previous / next — minimal circular controls, arrows only */}
+          {(prev || next) && (
+            <nav
+              aria-label="Help article navigation"
+              className="mt-10 flex items-center justify-center gap-8 border-t border-[var(--hair)] pt-8 md:mt-16 md:pt-10"
+            >
+              {prev ? (
+                <Link
+                  href={`/help/${prev.slug}`}
+                  aria-label={`Previous: ${prev.title}`}
+                  className="group inline-flex h-12 w-12 items-center justify-center rounded-full border border-white/[0.12] text-[#537FEA] transition-colors hover:border-white/25 hover:bg-white/[0.03]"
+                >
+                  <ArrowLeft className="h-5 w-5 transition-transform group-hover:-translate-x-0.5" />
+                </Link>
+              ) : (
+                <span
+                  aria-hidden="true"
+                  className="h-12 w-12 rounded-full border border-white/[0.06] opacity-40"
+                />
+              )}
+              {next ? (
+                <Link
+                  href={`/help/${next.slug}`}
+                  aria-label={`Next: ${next.title}`}
+                  className="group inline-flex h-12 w-12 items-center justify-center rounded-full border border-white/[0.12] text-[#537FEA] transition-colors hover:border-white/25 hover:bg-white/[0.03]"
+                >
+                  <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-0.5" />
+                </Link>
+              ) : (
+                <span
+                  aria-hidden="true"
+                  className="h-12 w-12 rounded-full border border-white/[0.06] opacity-40"
+                />
+              )}
+            </nav>
+          )}
 
           {/* still need help — quiet support close */}
           <Reveal>
