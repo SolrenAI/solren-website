@@ -10,6 +10,7 @@ import {
 
 import { PageHeader } from "@/components/public-site/page-header"
 import { Packages } from "@/components/public-site/packages"
+import { PricingMobile } from "@/components/public-site/pricing-mobile"
 import { Reveal } from "@/components/public-site/reveal"
 
 export const metadata: Metadata = {
@@ -79,8 +80,9 @@ export default function PricingPage() {
                   </Link>
                 </div>
 
-                {/* referral credit — restrained warm-amber sub-panel, not a coupon */}
-                <div className="rounded-2xl border border-[#E2A95E]/20 bg-[#E2A95E]/[0.04] p-6 sm:p-7">
+                {/* referral credit — restrained warm-amber sub-panel, not a coupon.
+                    Hidden on mobile to keep the redesigned pricing flow lean. */}
+                <div className="hidden rounded-2xl border border-[#E2A95E]/20 bg-[#E2A95E]/[0.04] p-6 sm:p-7 lg:block">
                   <span className="ps-label inline-flex items-center gap-2 text-[#E0AE70]">
                     <span aria-hidden="true" className="h-1.5 w-1.5 rounded-full bg-[#E2A95E]" />
                     Referral credit
@@ -98,10 +100,17 @@ export default function PricingPage() {
         </div>
       </section>
 
-      {/* Pricing — grouped tightly under the Beta callout */}
+      {/* Pricing — grouped tightly under the Beta callout. Mobile/tablet show one
+          package at a time via tabs + a collapsed compare accordion; desktop keeps
+          the three-up grid. */}
       <section className="pt-14 pb-20 sm:pb-24">
         <div className="mx-auto max-w-[1240px] px-5 sm:px-6">
-          <Packages detailed />
+          <div className="lg:hidden">
+            <PricingMobile />
+          </div>
+          <div className="hidden lg:block">
+            <Packages detailed />
+          </div>
         </div>
       </section>
 

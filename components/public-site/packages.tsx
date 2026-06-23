@@ -2,7 +2,7 @@ import Link from "next/link"
 import { ArrowUpRight, Check } from "lucide-react"
 import { Reveal } from "./reveal"
 
-type Pkg = {
+export type Pkg = {
   index: string
   name: string
   tagline: string
@@ -14,7 +14,7 @@ type Pkg = {
   featured?: boolean
 }
 
-const packages: Pkg[] = [
+export const packages: Pkg[] = [
   {
     index: "01 / 03",
     name: "Starter Install",

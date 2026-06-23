@@ -318,13 +318,18 @@ export function BookDemo() {
             Solren is installed and managed for you. Tell us where leads are slipping,
             and we&apos;ll map the right install.
           </p>
-          <div className="mt-6 rounded-[20px] border border-[var(--hair)] bg-white/[0.015] p-5 sm:p-6">
-            <span className="text-[13px] font-medium text-[var(--silver)]">After you submit</span>
-            <NextStepsList />
+          {/* Desktop: reassurance sits in the left column beside the form. On mobile
+              it is hidden here and re-rendered below the form (lg:hidden block after
+              the form) so the form is reachable without scrolling past it. */}
+          <div className="mt-6 hidden lg:block">
+            <div className="rounded-[20px] border border-[var(--hair)] bg-white/[0.015] p-5 sm:p-6">
+              <span className="text-[13px] font-medium text-[var(--silver)]">After you submit</span>
+              <NextStepsList />
+            </div>
+            <p className="mt-6 text-[13.5px] leading-relaxed text-[var(--muted)]">
+              You speak to the people who build and run your install.
+            </p>
           </div>
-          <p className="mt-6 text-[13.5px] leading-relaxed text-[var(--muted)]">
-            You speak to the people who build and run your install.
-          </p>
         </div>
 
         {/* ---------------------------------------------------------- */}
@@ -504,6 +509,16 @@ export function BookDemo() {
               </p>
             </div>
           </form>
+        )}
+
+        {/* Mobile only: reassurance moves below the form so the form is reachable
+            without scrolling past it. Hidden from lg up, where it sits in the left
+            column instead. */}
+        {!submitted && (
+          <div className="border-t border-[var(--hair)] pt-7 lg:hidden">
+            <span className="text-[13px] font-medium text-[var(--silver)]">After you submit</span>
+            <NextStepsList />
+          </div>
         )}
       </div>
     </section>
