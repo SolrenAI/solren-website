@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npx tsc *)",
+      "PowerShell(New-Item *)",
+      "PowerShell(Copy-Item *)",
+      "PowerShell($paths = @\\(\"C:\\\\Users\\\\James\\\\Desktop\\\\Homepage\\\\Robot.jpg\",\"C:\\\\Users\\\\James\\\\OneDrive\\\\Attachments\\\\Desktop\\\\Homepage\\\\Robot.jpg\"\\); foreach \\($p in $paths\\) { if \\(Test-Path $p\\) { Write-Output \"FOUND: $p\" } }; Write-Output \"---search---\"; Get-ChildItem -Path C:\\\\Users\\\\James -Recurse -Include Robot.jpg,robot.jpg -ErrorAction SilentlyContinue | Select-Object FullName)",
+      "Bash(echo \"exit: $?\")",
+      "Bash(npx next *)",
+      "PowerShell(npx tsc --noEmit 2>&1 | Select-Object -First 30; \"exit: $LASTEXITCODE\")",
+      "PowerShell(npx tsc --noEmit 2>&1 | Select-Object -First 20; \"exit: $LASTEXITCODE\")"
+    ]
+  }
+}

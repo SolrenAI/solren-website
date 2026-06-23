@@ -1,0 +1,13 @@
+@import "tailwindcss";
+
+/* Standalone website ground. The full design system lives in public-site.css
+   (the .ps scope). This keeps a dark base so there is no white flash before
+   the page paints. */
+html {
+  color-scheme: dark;
+  background-color: #040506;
+}
+
+body {
+  margin: 0;
+}
