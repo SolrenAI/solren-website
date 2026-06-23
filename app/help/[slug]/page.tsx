@@ -135,12 +135,14 @@ export default async function HelpArticlePage({
                 href={`/help/${next.slug}`}
                 className="group rounded-2xl border border-white/[0.08] p-5 text-right transition-colors hover:border-white/20 hover:bg-white/[0.02] md:col-start-2 lg:p-5"
               >
-                <div className="flex h-full flex-col items-end text-right md:hidden">
-                  <span className="ps-label !text-[9px] !tracking-[0.2em]">Next</span>
-                  <p className="mt-1.5 text-[14.5px] font-medium leading-snug text-white">
-                    {next.title}
-                  </p>
-                  <ArrowRight className="mt-3 h-4 w-4 text-[#537FEA] transition-transform group-hover:translate-x-0.5" />
+                <div className="flex h-full items-center gap-3 text-left md:hidden">
+                  <div className="min-w-0 flex-1">
+                    <span className="ps-label !text-[9px] !tracking-[0.2em]">Next</span>
+                    <p className="mt-1.5 text-[14.5px] font-medium leading-snug text-white">
+                      {next.title}
+                    </p>
+                  </div>
+                  <ArrowRight className="h-4 w-4 shrink-0 text-[#537FEA] transition-transform group-hover:translate-x-0.5" />
                 </div>
                 <div className="hidden md:block">
                   <span className="ps-label !text-[9px] !tracking-[0.2em]">Next</span>
