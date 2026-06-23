@@ -148,7 +148,7 @@ export function InstalledAround() {
         <Reveal delay={90}>
           {/* one grouped capsule — the channels and logic read as a single system layer */}
           <div className="mt-8 flex justify-center">
-            <ul className="flex w-full max-w-sm flex-col items-start gap-y-2.5 rounded-[24px] border border-[var(--hair)] bg-white/[0.02] px-5 py-5 text-left md:hidden">
+            <ul className="flex w-full max-w-[340px] flex-col items-start gap-y-2.5 rounded-[24px] border border-[var(--hair)] bg-white/[0.02] px-4 py-4 text-left md:hidden">
               {MOBILE_CHANNELS.map((channel) => (
                 <li key={channel} className="flex w-full items-center gap-x-3">
                   <span aria-hidden="true" className="h-1 w-1 rounded-full bg-[#537FEA]" />

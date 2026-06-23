@@ -112,14 +112,12 @@ export default async function HelpArticlePage({
                 href={`/help/${prev.slug}`}
                 className="group rounded-2xl border border-white/[0.08] p-5 transition-colors hover:border-white/20 hover:bg-white/[0.02]"
               >
-                <div className="grid grid-cols-[16px_minmax(0,1fr)] grid-rows-[auto_auto] gap-x-3 gap-y-2 text-left md:hidden">
-                  <span className="ps-label col-start-2 row-start-1 !text-[9px] !tracking-[0.2em]">
-                    Previous
-                  </span>
-                  <ArrowLeft className="col-start-1 row-start-2 h-4 w-4 self-center text-[#537FEA]/80 transition-all group-hover:-translate-x-0.5 group-hover:text-[#537FEA]" />
-                  <span className="col-start-2 row-start-2 text-[14.5px] font-medium leading-snug text-white">
-                    {prev.title}
-                  </span>
+                <div className="text-left md:hidden">
+                  <span className="ps-label !text-[9px] !tracking-[0.2em]">Previous</span>
+                  <div className="mt-2 flex items-start gap-2 text-[14.5px] font-medium leading-snug text-white">
+                    <ArrowLeft className="mt-0.5 h-4 w-4 shrink-0 text-[#537FEA]/80 transition-all group-hover:-translate-x-0.5 group-hover:text-[#537FEA]" />
+                    <span>{prev.title}</span>
+                  </div>
                 </div>
                 <div className="hidden md:block">
                   <span className="ps-label !text-[9px] !tracking-[0.2em]">Previous</span>
@@ -137,14 +135,12 @@ export default async function HelpArticlePage({
                 href={`/help/${next.slug}`}
                 className="group rounded-2xl border border-white/[0.08] p-5 text-right transition-colors hover:border-white/20 hover:bg-white/[0.02] md:col-start-2"
               >
-                <div className="grid grid-cols-[minmax(0,1fr)_16px] grid-rows-[auto_auto] gap-x-3 gap-y-2 text-left md:hidden">
-                  <span className="ps-label col-start-1 row-start-1 !text-[9px] !tracking-[0.2em]">
-                    Next
-                  </span>
-                  <span className="col-start-1 row-start-2 text-[14.5px] font-medium leading-snug text-white">
-                    {next.title}
-                  </span>
-                  <ArrowRight className="col-start-2 row-start-2 h-4 w-4 self-center text-[#537FEA]/80 transition-all group-hover:translate-x-0.5 group-hover:text-[#537FEA]" />
+                <div className="text-left md:hidden">
+                  <span className="ps-label !text-[9px] !tracking-[0.2em]">Next</span>
+                  <div className="mt-2 flex items-start gap-2 text-[14.5px] font-medium leading-snug text-white">
+                    <span>{next.title}</span>
+                    <ArrowRight className="mt-0.5 h-4 w-4 shrink-0 text-[#537FEA]/80 transition-all group-hover:translate-x-0.5 group-hover:text-[#537FEA]" />
+                  </div>
                 </div>
                 <div className="hidden md:block">
                   <span className="ps-label !text-[9px] !tracking-[0.2em]">Next</span>

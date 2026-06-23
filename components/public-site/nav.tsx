@@ -164,7 +164,7 @@ export function PublicNav() {
           <Link
             href="/"
             aria-label="Solren home"
-            className="-my-1 -ml-1 inline-flex items-center py-1 sm:-ml-2"
+            className="-my-1 ml-1 inline-flex items-center py-1 sm:ml-2"
           >
             <Image
               src="/logos/solren-wordmark-clean.png"
@@ -172,8 +172,8 @@ export function PublicNav() {
               width={1305}
               height={183}
               priority
-              sizes="190px"
-              className="h-[24px] w-auto sm:h-[26px]"
+              sizes="210px"
+              className="h-[26px] w-auto sm:h-[29px]"
             />
           </Link>
 
