@@ -109,7 +109,7 @@ export default async function HelpArticlePage({
           {(prev || next) && (
             <nav
               aria-label="Help article navigation"
-              className="mt-10 flex items-center justify-center gap-8 border-t border-[var(--hair)] pt-8 md:mt-16 md:pt-10"
+              className="mt-10 flex items-center justify-center gap-16 border-t border-[var(--hair)] pt-8 md:mt-16 md:gap-20 md:pt-10"
             >
               {prev ? (
                 <Link
