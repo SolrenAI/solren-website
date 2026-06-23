@@ -116,15 +116,15 @@ export default function PricingPage() {
               Every install includes.
             </h2>
           </Reveal>
-          <div className="mt-9 grid grid-cols-1 gap-5 sm:mt-12 sm:grid-cols-2 md:gap-6 lg:grid-cols-4">
+          <div className="mt-9 grid grid-cols-2 gap-3 sm:mt-12 sm:grid-cols-2 sm:gap-5 md:gap-6 lg:grid-cols-4">
             {includes.map(({ icon: Icon, title, body }, i) => (
               <Reveal key={title} delay={i * 70}>
-                <div className="ps-card h-full rounded-[22px] p-6 sm:rounded-[24px] sm:p-8">
-                  <Icon className="h-7 w-7 text-[#86A2F0]" strokeWidth={1.5} />
-                  <h3 className="mt-6 text-[18px] font-medium tracking-tight text-white sm:mt-8">
+                <div className="ps-card h-full rounded-[18px] p-4 sm:rounded-[24px] sm:p-8">
+                  <Icon className="h-5 w-5 text-[#86A2F0] sm:h-7 sm:w-7" strokeWidth={1.5} />
+                  <h3 className="mt-3 text-[15px] font-medium tracking-tight text-white sm:mt-8 sm:text-[18px]">
                     {title}
                   </h3>
-                  <p className="mt-3 text-[14px] leading-relaxed text-[var(--silver)]">
+                  <p className="mt-2 text-[13px] leading-relaxed text-[var(--silver)] sm:mt-3 sm:text-[14px]">
                     {body}
                   </p>
                 </div>
@@ -134,28 +134,32 @@ export default function PricingPage() {
         </div>
       </section>
 
-      <SectionDivider />
+      {/* Final CTA — quiet close, single primary action. Hidden on mobile so the
+          footer (which already carries a Get started CTA) closes the page; shown
+          from tablet up. */}
+      <div className="hidden md:block">
+        <SectionDivider />
 
-      {/* Final CTA — quiet close, single primary action */}
-      <section className="py-16 text-center sm:py-28">
-        <div className="mx-auto max-w-2xl px-5 sm:px-6">
-          <Reveal>
-            <h2 className="text-[clamp(2rem,4.5vw,3.2rem)] font-medium leading-[1.04] tracking-[-0.02em]">
-              <span className="ps-silver">Let&apos;s find your install.</span>
-            </h2>
-            <p className="mx-auto mt-6 max-w-md text-[16px] leading-relaxed text-[var(--silver)]">
-              Tell us how work comes in. We&apos;ll point you to the right install.
-            </p>
-            <Link
-              href="/contact"
-              className="group mt-9 inline-flex items-center gap-2 rounded-full bg-[#537FEA] px-7 py-3.5 text-[15px] font-medium text-black transition-colors hover:bg-[#6A8FEE]"
-            >
-              Get started
-              <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-            </Link>
-          </Reveal>
-        </div>
-      </section>
+        <section className="py-16 text-center sm:py-28">
+          <div className="mx-auto max-w-2xl px-5 sm:px-6">
+            <Reveal>
+              <h2 className="text-[clamp(2rem,4.5vw,3.2rem)] font-medium leading-[1.04] tracking-[-0.02em]">
+                <span className="ps-silver">Let&apos;s find your install.</span>
+              </h2>
+              <p className="mx-auto mt-6 max-w-md text-[16px] leading-relaxed text-[var(--silver)]">
+                Tell us how work comes in. We&apos;ll point you to the right install.
+              </p>
+              <Link
+                href="/contact"
+                className="group mt-9 inline-flex items-center gap-2 rounded-full bg-[#537FEA] px-7 py-3.5 text-[15px] font-medium text-black transition-colors hover:bg-[#6A8FEE]"
+              >
+                Get started
+                <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+              </Link>
+            </Reveal>
+          </div>
+        </section>
+      </div>
     </>
   )
 }

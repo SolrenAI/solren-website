@@ -76,7 +76,7 @@ function Spec({ pkg }: { pkg: Pkg }) {
   const featured = pkg.featured
   return (
     <div
-      className={`ps-card ${featured ? "ps-card-warm" : ""} flex h-full flex-col rounded-[20px] p-6 lg:rounded-[24px] lg:p-8`}
+      className={`ps-card ${featured ? "ps-card-warm" : ""} flex h-full flex-col rounded-[20px] p-5 sm:p-6 lg:rounded-[24px] lg:p-8`}
     >
       {/* header row */}
       <div className="flex items-center justify-between">
@@ -93,11 +93,11 @@ function Spec({ pkg }: { pkg: Pkg }) {
       </h3>
       <p className="mt-1.5 text-[15px] text-[var(--silver)]">{pkg.tagline}</p>
 
-      <p className="mt-4 text-[14px] leading-relaxed text-[var(--muted)] md:min-h-[2.6rem]">
+      <p className="mt-3 text-[14px] leading-relaxed text-[var(--muted)] sm:mt-4 md:min-h-[2.6rem]">
         {pkg.forWho}
       </p>
 
-      <div className="ps-rule my-7" />
+      <div className="ps-rule my-5 sm:my-7" />
 
       {/* price */}
       <div>
@@ -108,7 +108,7 @@ function Spec({ pkg }: { pkg: Pkg }) {
       </div>
 
       {/* receive list */}
-      <ul className="mt-7 flex-1 space-y-3.5">
+      <ul className="mt-5 flex-1 space-y-3 sm:mt-7 sm:space-y-3.5">
         {pkg.receive.map((item) => (
           <li key={item} className="flex items-start gap-3 text-[14px] text-[var(--silver)]">
             <Check
@@ -124,7 +124,7 @@ function Spec({ pkg }: { pkg: Pkg }) {
 
       <Link
         href="/contact"
-        className={`group mt-7 inline-flex items-center justify-center gap-2 rounded-full px-5 py-3.5 text-[14px] font-medium transition-all lg:mt-9 ${
+        className={`group mt-6 inline-flex items-center justify-center gap-2 rounded-full px-5 py-3.5 text-[14px] font-medium transition-all sm:mt-7 lg:mt-9 ${
           featured
             ? "bg-[#537FEA] text-black hover:bg-[#6A8FEE]"
             : "border border-[var(--hair-strong)] text-white hover:border-white/30 hover:bg-white/[0.03]"
@@ -139,7 +139,7 @@ function Spec({ pkg }: { pkg: Pkg }) {
 
 export function Packages({ detailed = false }: { detailed?: boolean }) {
   return (
-    <div className="grid items-stretch gap-5 lg:grid-cols-3 lg:gap-6">
+    <div className="grid items-stretch gap-4 sm:gap-5 lg:grid-cols-3 lg:gap-6">
       {packages.map((pkg, i) => (
         <Reveal key={pkg.name} delay={i * 90}>
           <Spec pkg={pkg} />

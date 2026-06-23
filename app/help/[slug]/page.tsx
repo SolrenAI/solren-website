@@ -114,10 +114,9 @@ export default async function HelpArticlePage({
               >
                 <div className="text-left md:hidden">
                   <span className="ps-label !text-[9px] !tracking-[0.2em]">Previous</span>
-                  <div className="mt-2 inline-flex items-start gap-2 text-[14.5px] font-medium leading-snug text-white">
-                    <ArrowLeft className="mt-0.5 h-4 w-4 shrink-0 text-[#537FEA]/80 transition-all group-hover:-translate-x-0.5 group-hover:text-[#537FEA]" />
-                    <span className="min-w-0">{prev.title}</span>
-                  </div>
+                  <p className="mt-1.5 text-[14.5px] font-medium leading-snug text-white">
+                    {prev.title}
+                  </p>
                 </div>
                 <div className="hidden md:block">
                   <span className="ps-label !text-[9px] !tracking-[0.2em]">Previous</span>
@@ -137,10 +136,9 @@ export default async function HelpArticlePage({
               >
                 <div className="text-left md:hidden">
                   <span className="ps-label !text-[9px] !tracking-[0.2em]">Next</span>
-                  <div className="mt-2 inline-flex items-start gap-2 text-[14.5px] font-medium leading-snug text-white">
-                    <span className="min-w-0">{next.title}</span>
-                    <ArrowRight className="mt-0.5 h-4 w-4 shrink-0 text-[#537FEA]/80 transition-all group-hover:translate-x-0.5 group-hover:text-[#537FEA]" />
-                  </div>
+                  <p className="mt-1.5 text-[14.5px] font-medium leading-snug text-white">
+                    {next.title}
+                  </p>
                 </div>
                 <div className="hidden md:block">
                   <span className="ps-label !text-[9px] !tracking-[0.2em]">Next</span>
