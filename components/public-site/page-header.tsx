@@ -33,10 +33,10 @@ export function PageHeader({
 }) {
   return (
     <>
-      <header className="relative overflow-hidden pt-40 pb-20 sm:pt-44">
+      <header className="relative overflow-hidden pb-14 pt-28 sm:pb-16 sm:pt-36 lg:pb-20 lg:pt-44">
       {decoration}
       <div
-        className={`relative z-10 mx-auto max-w-[1240px] px-6 ${
+        className={`relative z-10 mx-auto max-w-[1240px] px-5 sm:px-6 ${
           nudgeLeft ? "min-[1360px]:-translate-x-[50px]" : ""
         }`}
       >
@@ -50,31 +50,35 @@ export function PageHeader({
               `looseTitle` opens the line-height and padding further for headlines
               that wrap, so glyph tops and bottoms render cleanly. */}
           <h1
-            className={`mt-7 max-w-3xl overflow-visible text-[clamp(2.6rem,6vw,4.4rem)] font-medium tracking-[-0.03em] ps-silver ${
-              looseTitle ? "leading-[1.06] pb-[0.2em] pt-[0.04em]" : "leading-[0.98] pb-[0.14em]"
+            className={`mt-5 max-w-3xl overflow-visible text-[clamp(2.15rem,10vw,4.4rem)] font-medium tracking-[-0.03em] ps-silver sm:mt-7 ${
+              looseTitle ? "leading-[1.08] pb-[0.2em] pt-[0.04em]" : "leading-[1.02] pb-[0.14em] sm:leading-[0.98]"
             }`}
           >
             {title}
           </h1>
           {sub && (
-            <p className="mt-7 max-w-lg text-[16px] leading-relaxed text-[var(--silver)]">
+            <p className="mt-5 max-w-[34rem] text-[15.5px] leading-[1.65] text-[var(--silver)] sm:mt-7 sm:text-[16px]">
               {sub}
             </p>
           )}
           {note && (
-            <div className="mt-7 inline-flex items-center gap-2.5 rounded-full border border-[var(--hair-strong)] bg-white/[0.02] px-3.5 py-1.5">
+            <div className="mt-6 inline-flex max-w-full items-center gap-2.5 rounded-full border border-[var(--hair-strong)] bg-white/[0.02] px-3.5 py-2 sm:mt-7 sm:py-1.5">
               <span className="ps-live-dot h-1.5 w-1.5 rounded-full bg-[#537FEA]" />
               <span className="text-[12.5px] font-medium text-[var(--silver)]">{note}</span>
             </div>
           )}
-          {actions && <div className="mt-9 flex flex-wrap items-center gap-3">{actions}</div>}
+          {actions && (
+            <div className="mt-7 flex flex-col items-stretch gap-3 sm:mt-9 sm:flex-row sm:flex-wrap sm:items-center [&>*]:justify-center sm:[&>*]:w-auto">
+              {actions}
+            </div>
+          )}
         </Reveal>
       </div>
       </header>
       {/* contained, edge-fading divider under the hero — aligned to the page
           container, never a full browser-width cut */}
       {divider && (
-        <div className="mx-auto max-w-[1240px] px-6">
+        <div className="mx-auto max-w-[1240px] px-5 sm:px-6">
           <div
             aria-hidden="true"
             className="h-px w-full bg-gradient-to-r from-transparent via-white/[0.08] to-transparent"

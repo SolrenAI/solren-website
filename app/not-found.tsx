@@ -8,26 +8,26 @@ export const metadata: Metadata = {
 
 export default function NotFound() {
   return (
-    <section className="flex min-h-[70vh] items-center justify-center px-6 py-32 text-center">
+    <section className="flex min-h-[70vh] items-center justify-center px-5 py-24 text-center sm:px-6 sm:py-32">
       <div className="mx-auto max-w-xl">
         <span className="ps-label">Not found</span>
-        <h1 className="mt-6 overflow-visible pb-[0.1em] text-[clamp(2.4rem,6vw,3.6rem)] font-medium leading-[1.02] tracking-[-0.03em] ps-silver">
+        <h1 className="mt-6 overflow-visible pb-[0.1em] text-[clamp(2.15rem,10vw,3.6rem)] font-medium leading-[1.02] tracking-[-0.03em] ps-silver">
           Page not found.
         </h1>
         <p className="mx-auto mt-6 max-w-md text-[16px] leading-relaxed text-[var(--silver)]">
           The page may have moved, or the link may be incorrect.
         </p>
-        <div className="mt-9 flex flex-wrap items-center justify-center gap-3">
+        <div className="mx-auto mt-9 flex max-w-[320px] flex-col items-stretch gap-3 sm:max-w-none sm:flex-row sm:flex-wrap sm:items-center sm:justify-center">
           <Link
             href="/"
-            className="group inline-flex items-center gap-2 rounded-full bg-[#537FEA] px-7 py-3.5 text-[15px] font-medium text-black transition-colors hover:bg-[#6A8FEE]"
+            className="group inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-[#537FEA] px-7 py-3.5 text-[15px] font-medium text-black transition-colors hover:bg-[#6A8FEE]"
           >
             Back home
             <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
           </Link>
           <Link
             href="/contact-support"
-            className="inline-flex items-center gap-2 rounded-full border border-[var(--hair-strong)] px-7 py-3.5 text-[15px] font-medium text-white transition-colors hover:bg-white/[0.03]"
+            className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full border border-[var(--hair-strong)] px-7 py-3.5 text-[15px] font-medium text-white transition-colors hover:bg-white/[0.03]"
           >
             Contact support
           </Link>

@@ -70,11 +70,11 @@ export function LegalDoc({
     <>
       <PageHeader eyebrow={eyebrow} title={title} sub={sub} note={`${dateLabel}: ${lastUpdated}`} />
 
-      <section className={tightTop ? "pt-10 pb-20 sm:pt-14 sm:pb-24" : "py-20 sm:py-24"}>
+      <section className={tightTop ? "pb-16 pt-8 sm:pb-24 sm:pt-14" : "py-16 sm:py-24"}>
         {/* When a contents box is shown, the box sits a touch wider than the
             policy body so the index reads clearly while the legal text keeps a
             comfortable reading measure. */}
-        <div className={`mx-auto px-6 ${containerW}`}>
+        <div className={`mx-auto px-5 sm:px-6 ${containerW}`}>
           {intro && (
             <Reveal>
               <p
@@ -146,7 +146,7 @@ export function LegalDoc({
               <Reveal key={s.h} delay={i * 30}>
                 <div
                   id={slugify(s.h)}
-                  className="scroll-mt-28 border-t border-[var(--hair)] pt-10 first:border-t-0 first:pt-0"
+                  className="scroll-mt-28 border-t border-[var(--hair)] pt-8 first:border-t-0 first:pt-0 sm:pt-10"
                 >
                   <h2 className="text-[19px] font-medium tracking-tight text-white">
                     {s.h}

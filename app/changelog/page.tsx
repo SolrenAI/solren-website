@@ -79,7 +79,7 @@ export default function ChangelogPage() {
         sub="A clear record of improvements to Solren's automation, dashboard and customer experience."
       />
 
-      <section className="py-20 sm:py-24">
+      <section className="py-16 sm:py-24">
         <div className="mx-auto max-w-[760px] px-6">
           <div className="space-y-14">
             {releases.map((release) => (

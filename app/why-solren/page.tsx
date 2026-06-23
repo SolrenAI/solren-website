@@ -112,7 +112,7 @@ export default function WhySolrenPage() {
         }
       />
 
-      <section className="py-20 sm:py-24">
+      <section className="py-16 sm:py-24">
         <div className="mx-auto max-w-[1080px] px-6">
           {/* Section 1 - the real problem */}
           <Reveal>

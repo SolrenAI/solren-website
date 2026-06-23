@@ -45,7 +45,7 @@ export default function IntegrationsPage() {
         />
       </div>
 
-      <section className="py-20 sm:py-24">
+      <section className="py-16 sm:py-24">
         <div className="mx-auto max-w-[1080px] px-6">
           {/* the trusted services */}
           <Reveal>

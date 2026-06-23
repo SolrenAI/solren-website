@@ -97,7 +97,7 @@ export default function SiteMapPage() {
         sub="Every public page on the Solren website, grouped by section."
       />
 
-      <section className="py-20 sm:py-24">
+      <section className="py-16 sm:py-24">
         <div className="mx-auto max-w-[1080px] px-6">
           {/* Multi-column masonry: groups vary a lot in length (Industries has
               13 links, Integrations has 1), so cards pack and fill the space

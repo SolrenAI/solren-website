@@ -91,8 +91,8 @@ export default function StatusPage() {
         note="Last checked: 22 June 2026"
       />
 
-      <section className="py-20 sm:py-24">
-        <div className="mx-auto max-w-[820px] px-6">
+      <section className="py-16 sm:py-24">
+        <div className="mx-auto max-w-[820px] px-5 sm:px-6">
           {/* Detailed rows — cleaner, un-boxed, subtle dividers */}
           <div className="space-y-12">
             {groups.map((group) => (
@@ -105,7 +105,7 @@ export default function StatusPage() {
                     {group.systems.map((s) => (
                       <div
                         key={s.name}
-                        className="flex items-center justify-between gap-4 py-4"
+                        className="flex items-start justify-between gap-4 py-4"
                       >
                         <div>
                           <div className="text-[15px] font-medium tracking-tight text-white">
@@ -115,7 +115,7 @@ export default function StatusPage() {
                             {s.desc}
                           </div>
                         </div>
-                        <StatusDot state="operational" />
+                        <span className="mt-0.5"><StatusDot state="operational" /></span>
                       </div>
                     ))}
                   </div>

@@ -13,6 +13,8 @@ export function RotatingHighlight() {
   const [index, setIndex] = useState(0)
 
   useEffect(() => {
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)")
+    if (reducedMotion.matches) return
     const id = setInterval(() => setIndex((p) => (p + 1) % WORDS.length), INTERVAL_MS)
     return () => clearInterval(id)
   }, [])

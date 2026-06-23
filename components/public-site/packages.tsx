@@ -139,7 +139,7 @@ function Spec({ pkg }: { pkg: Pkg }) {
 
 export function Packages({ detailed = false }: { detailed?: boolean }) {
   return (
-    <div className="grid items-stretch gap-5 md:grid-cols-3 md:gap-6">
+    <div className="grid items-stretch gap-5 lg:grid-cols-3 lg:gap-6">
       {packages.map((pkg, i) => (
         <Reveal key={pkg.name} delay={i * 90}>
           <Spec pkg={pkg} />

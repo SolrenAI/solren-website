@@ -75,7 +75,7 @@ export default function AboutPage() {
         />
       </div>
 
-      <section className="py-20 sm:py-24">
+      <section className="py-16 sm:py-24">
         <div className="mx-auto max-w-[760px] px-6">
           <div className="space-y-16">
             {sections.map((s, i) => (

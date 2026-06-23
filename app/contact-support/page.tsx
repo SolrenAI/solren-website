@@ -65,7 +65,7 @@ export default function ContactSupportPage() {
         }
       />
 
-      <section className="py-20 sm:py-24">
+      <section className="py-16 sm:py-24">
         <div className="mx-auto max-w-[760px] px-6">
           {/* What to include — quick, scannable guidance */}
           <Reveal>

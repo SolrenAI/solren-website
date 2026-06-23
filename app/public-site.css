@@ -24,6 +24,7 @@
   font-family: var(--font-inter), Inter, system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
+  overflow-x: clip;
 }
 
 .ps ::selection {
@@ -148,6 +149,7 @@
 .ps-reveal.is-in {
   opacity: 1;
   transform: none;
+  will-change: auto;
 }
 
 /* Slow drift for the industries marquee */
@@ -229,6 +231,7 @@
   .ps-reveal { opacity: 1; transform: none; transition: none; }
   .ps-marquee { animation: none; }
   .ps-live-dot, .ps-scan, .ps-flow-pulse, .ps-flow-pulse-y { animation: none; }
+  .ef-motion { display: none; }
 }
 
 /* ============================================================

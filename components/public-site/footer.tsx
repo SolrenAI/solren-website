@@ -104,16 +104,15 @@ function FooterBlock({ block }: { block: Block }) {
         /* icons raised slightly so they sit near the first-link line */
         <div className="mt-4 flex flex-wrap items-center gap-x-4 gap-y-3.5">
           {socials.map((s) => (
-            <button
+            <span
               key={s.label}
-              type="button"
-              aria-label={s.label}
-              className="text-white/55 transition-colors duration-200 hover:text-[var(--spark)] focus-visible:text-[var(--spark)] focus-visible:outline-none"
+              title={`${s.label} profile coming soon`}
+              className="text-white/45"
             >
               <svg viewBox="0 0 24 24" className="h-[18px] w-[18px]" fill="currentColor" fillRule="evenodd" aria-hidden="true">
                 <path d={s.path} />
               </svg>
-            </button>
+            </span>
           ))}
         </div>
       ) : (
@@ -132,9 +131,9 @@ function FooterBlock({ block }: { block: Block }) {
 export function PublicFooter() {
   return (
     <footer className="relative border-t border-white/[0.08] bg-[#050608]">
-      <div className="mx-auto max-w-[1340px] px-6 py-[70px] sm:py-[84px]">
+      <div className="mx-auto max-w-[1340px] px-5 py-14 sm:px-6 sm:py-[84px]">
         {/* Top: brand area (left) · vertical divider · three column-pairs (right) */}
-        <div className="flex flex-col gap-y-14 lg:flex-row lg:gap-x-20">
+        <div className="flex flex-col gap-y-12 sm:gap-y-14 lg:flex-row lg:gap-x-20">
           {/* Brand area — the anchor of the footer, given more presence than the nav */}
           <div className="lg:w-[300px] lg:shrink-0">
             <Link href="/" aria-label="Solren home" className="inline-flex items-center leading-none">
@@ -144,10 +143,10 @@ export function PublicFooter() {
                 width={1305}
                 height={183}
                 sizes="240px"
-                className="block h-[34px] w-auto"
+                className="block h-[30px] w-auto sm:h-[34px]"
               />
             </Link>
-            <div className="mt-8 max-w-[18rem] space-y-3 text-[13.5px] leading-[1.6]">
+            <div className="mt-6 max-w-[18rem] space-y-2.5 text-[13.5px] leading-[1.6] sm:mt-8 sm:space-y-3">
               <p className="text-[var(--silver)]">
                 Intelligent response infrastructure
                 <br />
@@ -169,13 +168,16 @@ export function PublicFooter() {
           />
 
           {/* Three column-pairs — read across each row */}
-          <div className="grid flex-1 grid-cols-1 gap-x-8 gap-y-14 sm:grid-cols-3 lg:gap-x-10">
-            {footerColumns.map((col) => (
-              <div key={col.top.title}>
+          <div className="grid flex-1 grid-cols-2 gap-x-7 gap-y-12 sm:grid-cols-3 sm:gap-x-8 sm:gap-y-14 lg:gap-x-10">
+            {footerColumns.map((col, index) => (
+              <div
+                key={col.top.title}
+                className={index === 2 ? "col-span-2 grid grid-cols-2 gap-7 sm:col-span-1 sm:block" : ""}
+              >
                 <FooterBlock block={col.top} />
                 {/* wider gap for Product→Company & Trust→Legal; tighter for
                     Support→Social so the pair reads as related */}
-                <div className={col.tight ? "mt-10" : "mt-14"}>
+                <div className={index === 2 ? "mt-0 sm:mt-10" : col.tight ? "mt-10" : "mt-12 sm:mt-14"}>
                   <FooterBlock block={col.bottom} />
                 </div>
               </div>
@@ -184,14 +186,14 @@ export function PublicFooter() {
         </div>
 
         {/* Contained, edge-fading divider above the bottom bar — no harsh full-width line */}
-        <div className="mx-auto mt-16 h-px w-full max-w-[1100px] bg-gradient-to-r from-transparent via-white/[0.14] to-transparent" />
+        <div className="mx-auto mt-12 h-px w-full max-w-[1100px] bg-gradient-to-r from-transparent via-white/[0.14] to-transparent sm:mt-16" />
 
         {/* Bottom bar: copyright (left) · payment methods (right) */}
-        <div className="mt-8 flex flex-col items-center gap-y-4 text-center sm:flex-row sm:items-center sm:justify-between sm:text-left">
+        <div className="mt-7 flex flex-col items-start gap-y-5 text-left sm:mt-8 sm:flex-row sm:items-center sm:justify-between">
           <p className="text-[12.5px] text-[var(--muted)]">
             © {new Date().getFullYear()} Solren. All rights reserved.
           </p>
-          <PaymentMarks className="justify-center sm:flex-nowrap sm:justify-end" />
+          <PaymentMarks className="justify-start sm:flex-nowrap sm:justify-end" />
         </div>
       </div>
     </footer>

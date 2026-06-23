@@ -49,7 +49,7 @@ export default async function HelpArticlePage({
         note={`Last updated: ${LAST_UPDATED}`}
       />
 
-      <section className="py-20 sm:py-24">
+      <section className="py-16 sm:py-24">
         <div className="mx-auto max-w-[760px] px-6">
           <Link
             href="/help"

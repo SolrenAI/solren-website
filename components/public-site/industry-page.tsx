@@ -72,18 +72,18 @@ export function IndustryPage({ slug }: { slug: string }) {
       />
 
       {/* short, soft divider aligned to the body content width, fading at the ends */}
-      <div className="mx-auto max-w-[820px] px-6">
+      <div className="mx-auto max-w-[820px] px-5 sm:px-6">
         <div
           aria-hidden="true"
           className="h-px w-full bg-gradient-to-r from-transparent via-white/[0.08] to-transparent"
         />
       </div>
 
-      <section className="py-20 sm:py-24">
-        <div className="mx-auto max-w-[820px] px-6">
+      <section className="py-16 sm:py-24">
+        <div className="mx-auto max-w-[820px] px-5 sm:px-6">
           {industry.image && (
             <Reveal>
-              <div className="mb-3">
+              <div className="mb-10 sm:mb-12">
                 <ImageFrame
                   label={industry.label}
                   alt={industry.name}
@@ -99,7 +99,7 @@ export function IndustryPage({ slug }: { slug: string }) {
             </Reveal>
           )}
 
-          <div className="space-y-12">
+          <div className="space-y-10 sm:space-y-12">
             <Block eyebrow={industry.name} title={`Common problems ${industry.audience} face`}>
               <Bullets items={industry.problems} />
             </Block>

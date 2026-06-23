@@ -51,17 +51,17 @@ function StepNode({ n, tone }: { n: string; tone: Phase["tone"] }) {
 
 export function ProcessPreview() {
   return (
-    <section className="relative py-20 sm:py-24">
-      <div className="mx-auto grid max-w-[1200px] gap-12 px-6 lg:grid-cols-[0.85fr_1.15fr] lg:gap-14">
+    <section className="relative py-16 sm:py-20 lg:py-24">
+      <div className="mx-auto grid max-w-[1200px] gap-10 px-5 sm:px-6 lg:grid-cols-[0.85fr_1.15fr] lg:gap-14">
         {/* left: heading + copy */}
         <Reveal>
           <div>
             <span className="ps-label">How it works</span>
-            <h2 className="mt-6 text-[clamp(2rem,4vw,3rem)] font-medium leading-[1.05] tracking-[-0.02em]">
+            <h2 className="mt-5 text-[clamp(1.9rem,8.5vw,3rem)] font-medium leading-[1.08] tracking-[-0.02em] sm:mt-6 sm:leading-[1.05]">
               <span className="ps-silver">Connected once.</span>{" "}
               <span className="text-[var(--muted)]">Working every day.</span>
             </h2>
-            <p className="mt-6 max-w-md text-[15.5px] leading-relaxed text-[var(--silver)]">
+            <p className="mt-5 max-w-md text-[15px] leading-[1.65] text-[var(--silver)] sm:mt-6 sm:text-[15.5px]">
               We map where enquiries come from, connect your channels, test the
               replies and turn Solren on around the way your business already works.
             </p>
@@ -77,13 +77,13 @@ export function ProcessPreview() {
 
         {/* right: vertical setup sequence on a quiet signal line */}
         <Reveal delay={120}>
-          <ol className="relative space-y-9">
+          <ol className="relative space-y-7 sm:space-y-9">
             <span
               aria-hidden="true"
               className="absolute left-[17px] top-[17px] bottom-[17px] w-px bg-gradient-to-b from-[#537FEA]/18 via-[#537FEA]/26 to-[#537FEA]/38"
             />
             {phases.map((p) => (
-              <li key={p.n} className="relative flex items-start gap-5">
+              <li key={p.n} className="relative flex items-start gap-4 sm:gap-5">
                 <StepNode n={p.n} tone={p.tone} />
                 <div className="pt-1">
                   <h3 className="text-[17px] font-medium tracking-tight text-white">{p.title}</h3>

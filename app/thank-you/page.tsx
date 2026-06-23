@@ -25,8 +25,8 @@ export default function ThankYouPage() {
         sub="We'll review your business and reply with the next step."
       />
 
-      <section className="py-20 sm:py-24">
-        <div className="mx-auto max-w-[760px] px-6">
+      <section className="py-16 sm:py-24">
+        <div className="mx-auto max-w-[760px] px-5 sm:px-6">
           <Reveal>
             <h2 className="text-[19px] font-medium tracking-tight text-white">
               What happens next
@@ -62,17 +62,17 @@ export default function ThankYouPage() {
           </Reveal>
 
           <Reveal>
-            <div className="mt-10 flex flex-wrap items-center gap-3">
+            <div className="mt-10 flex flex-col items-stretch gap-3 sm:flex-row sm:flex-wrap sm:items-center">
               <Link
                 href="/"
-                className="group inline-flex items-center gap-2 rounded-full bg-[#537FEA] px-6 py-3 text-[14.5px] font-medium text-black transition-colors hover:bg-[#6A8FEE]"
+                className="group inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-[#537FEA] px-6 py-3 text-[14.5px] font-medium text-black transition-colors hover:bg-[#6A8FEE]"
               >
                 Back to home
                 <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
               </Link>
               <Link
                 href="/pricing"
-                className="inline-flex items-center gap-2 rounded-full border border-[var(--hair-strong)] px-6 py-3 text-[14.5px] font-medium text-white transition-colors hover:bg-white/[0.03]"
+                className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full border border-[var(--hair-strong)] px-6 py-3 text-[14.5px] font-medium text-white transition-colors hover:bg-white/[0.03]"
               >
                 View pricing
               </Link>

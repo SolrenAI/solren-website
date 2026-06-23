@@ -52,12 +52,12 @@ const trades: Trade[] = [
 
 export function IndustriesPreview() {
   return (
-    <section className="relative py-24 sm:py-28">
-      <div className="mx-auto max-w-[1240px] px-6">
+    <section className="relative py-16 sm:py-24 lg:py-28">
+      <div className="mx-auto max-w-[1240px] px-5 sm:px-6">
         <Reveal>
-          <div className="mb-8">
+          <div className="mb-7 sm:mb-8">
             <span className="ps-label">Who it&apos;s for</span>
-            <h2 className="mt-6 max-w-xl text-[clamp(2rem,4vw,3rem)] font-medium leading-[1.05] tracking-[-0.02em]">
+            <h2 className="mt-5 max-w-xl text-[clamp(1.9rem,8.5vw,3rem)] font-medium leading-[1.08] tracking-[-0.02em] sm:mt-6 sm:leading-[1.05]">
               <span className="ps-silver">Built for teams customers call</span>{" "}
               <span className="text-[var(--muted)]">when something needs fixing.</span>
             </h2>
@@ -77,7 +77,7 @@ export function IndustriesPreview() {
 
         {/* editorial bento: one feature image + three smaller cards */}
         <Reveal delay={80}>
-          <div className="grid grid-cols-2 gap-4 lg:h-[430px] lg:grid-cols-4 lg:grid-rows-2 lg:gap-5">
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:h-[430px] lg:grid-cols-4 lg:grid-rows-2 lg:gap-5">
             {trades.map((t, i) => {
               const Icon = t.icon
               return (
@@ -87,7 +87,7 @@ export function IndustriesPreview() {
                     icon={Icon}
                     src={t.src}
                     objectPosition={t.objectPosition}
-                    sizes={i === 0 ? "(min-width:1024px) 600px, 50vw" : "(min-width:1024px) 300px, 50vw"}
+                    sizes={i === 0 ? "(min-width:1024px) 600px, (min-width:640px) 50vw, 100vw" : "(min-width:1024px) 300px, (min-width:640px) 50vw, 100vw"}
                     hideCaption
                     aspectClass="aspect-[4/3] lg:aspect-auto lg:h-full"
                   />

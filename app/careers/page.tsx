@@ -127,7 +127,7 @@ export default function CareersPage() {
         sub="We are growing carefully. We expect one sales and growth role to open soon, and we are always interested in hearing from exceptional builders and engineers."
       />
 
-      <section className="py-20 sm:py-24">
+      <section className="py-16 sm:py-24">
         {/* editorial intro — narrow, readable */}
         <div className="mx-auto max-w-[820px] px-6">
           <div className="space-y-12">

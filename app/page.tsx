@@ -15,7 +15,7 @@ export const metadata: Metadata = {
    full-width border cutting across the page. */
 function SectionRule() {
   return (
-    <div aria-hidden="true" className="px-6">
+    <div aria-hidden="true" className="px-5 sm:px-6">
       <div className="mx-auto h-px max-w-[1200px] bg-gradient-to-r from-transparent via-[var(--hair-strong)] to-transparent" />
     </div>
   )

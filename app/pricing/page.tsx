@@ -30,7 +30,7 @@ const includes = [
    content width, never a full browser-width cut */
 function SectionDivider() {
   return (
-    <div className="mx-auto max-w-[1240px] px-6">
+    <div className="mx-auto max-w-[1240px] px-5 sm:px-6">
       <div
         aria-hidden="true"
         className="h-px w-full bg-gradient-to-r from-transparent via-white/[0.08] to-transparent"
@@ -51,10 +51,10 @@ export default function PricingPage() {
       {/* Solren Beta — selective early-access callout, placed above pricing so it
           frames the installs being opened. Warm amber is reserved for the beta /
           referral accent; blue stays for the primary CTA. */}
-      <section className="pt-20 sm:pt-24">
-        <div className="mx-auto max-w-[1240px] px-6">
+      <section className="pt-16 sm:pt-24">
+        <div className="mx-auto max-w-[1240px] px-5 sm:px-6">
           <Reveal>
-            <div className="ps-card rounded-[28px] p-8 sm:p-12">
+            <div className="ps-card rounded-[24px] p-6 sm:rounded-[28px] sm:p-12">
               <div className="grid items-start gap-10 lg:grid-cols-[1.45fr_1fr] lg:gap-14">
                 {/* the program */}
                 <div>
@@ -100,7 +100,7 @@ export default function PricingPage() {
 
       {/* Pricing — grouped tightly under the Beta callout */}
       <section className="pt-14 pb-20 sm:pb-24">
-        <div className="mx-auto max-w-[1240px] px-6">
+        <div className="mx-auto max-w-[1240px] px-5 sm:px-6">
           <Packages detailed />
         </div>
       </section>
@@ -109,19 +109,19 @@ export default function PricingPage() {
 
       {/* Every install includes — sits on the page background, light cards that
           echo the pricing grid above (no separate slab / dashboard panel) */}
-      <section className="py-20 sm:py-24">
-        <div className="mx-auto max-w-[1240px] px-6">
+      <section className="py-16 sm:py-24">
+        <div className="mx-auto max-w-[1240px] px-5 sm:px-6">
           <Reveal>
             <h2 className="max-w-xl text-[clamp(1.9rem,4vw,2.8rem)] font-medium leading-[1.05] tracking-[-0.02em] ps-silver">
               Every install includes.
             </h2>
           </Reveal>
-          <div className="mt-12 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4 md:gap-6">
+          <div className="mt-9 grid grid-cols-1 gap-5 sm:mt-12 sm:grid-cols-2 md:gap-6 lg:grid-cols-4">
             {includes.map(({ icon: Icon, title, body }, i) => (
               <Reveal key={title} delay={i * 70}>
-                <div className="ps-card h-full rounded-[24px] p-8">
+                <div className="ps-card h-full rounded-[22px] p-6 sm:rounded-[24px] sm:p-8">
                   <Icon className="h-7 w-7 text-[#86A2F0]" strokeWidth={1.5} />
-                  <h3 className="mt-8 text-[18px] font-medium tracking-tight text-white">
+                  <h3 className="mt-6 text-[18px] font-medium tracking-tight text-white sm:mt-8">
                     {title}
                   </h3>
                   <p className="mt-3 text-[14px] leading-relaxed text-[var(--silver)]">
@@ -137,8 +137,8 @@ export default function PricingPage() {
       <SectionDivider />
 
       {/* Final CTA — quiet close, single primary action */}
-      <section className="py-24 text-center sm:py-28">
-        <div className="mx-auto max-w-2xl px-6">
+      <section className="py-16 text-center sm:py-28">
+        <div className="mx-auto max-w-2xl px-5 sm:px-6">
           <Reveal>
             <h2 className="text-[clamp(2rem,4.5vw,3.2rem)] font-medium leading-[1.04] tracking-[-0.02em]">
               <span className="ps-silver">Let&apos;s find your install.</span>

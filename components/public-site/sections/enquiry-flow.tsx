@@ -1,3 +1,4 @@
+import { Check, MessageSquare, RefreshCw, Send } from "lucide-react"
 import { Reveal } from "../reveal"
 
 /* Faithful evolution of the original "Solren Service Enquiry Animation" asset,
@@ -115,19 +116,72 @@ function StageIcon({ x, kind, stroke }: { x: number; kind: StageKind; stroke: st
   )
 }
 
+const mobileStageIcons = [MessageSquare, Send, RefreshCw, Check] as const
+
 export function EnquiryFlow() {
   return (
-    <section className="relative -mt-24 overflow-hidden pt-16 pb-12 sm:-mt-28 sm:pt-24 sm:pb-16">
-      <div className="relative mx-auto max-w-[1440px] px-6 lg:px-8">
+    <section className="relative overflow-hidden pb-14 pt-2 sm:pb-16 sm:pt-4 lg:-mt-28 lg:pb-16 lg:pt-24">
+      <div className="relative mx-auto max-w-[1440px] px-5 sm:px-6 lg:px-8">
         <Reveal>
-          {/* On mobile the wide diagram would shrink to an unreadable size, so it
-             scrolls horizontally at a legible min-width; at sm+ it fits normally. */}
-          <div className="overflow-x-auto overflow-y-hidden sm:overflow-visible">
+          {/* Compact responsive flow for phones and tablets. It keeps the same
+              story as the wide diagram without horizontal scrolling. */}
+          <div className="lg:hidden">
+            <div className="text-center">
+              <span className="ps-label !text-[10px]">Enquiries from</span>
+              <div className="mx-auto mt-4 flex max-w-[34rem] flex-wrap justify-center gap-2">
+                {channels.map((channel) => (
+                  <span
+                    key={channel.label}
+                    className="rounded-full border border-[var(--hair)] bg-white/[0.02] px-3 py-1.5 text-[12px] font-medium text-[var(--silver)]"
+                  >
+                    {channel.label}
+                  </span>
+                ))}
+              </div>
+            </div>
+
+            <ol className="relative mx-auto mt-7 grid max-w-[42rem] grid-cols-1 gap-3 sm:grid-cols-2 sm:gap-4">
+              <span
+                aria-hidden="true"
+                className="absolute bottom-8 left-[23px] top-8 w-px bg-gradient-to-b from-[#537FEA]/15 via-[#537FEA]/35 to-[#537FEA]/60 sm:hidden"
+              />
+              {stages.map((stage, index) => {
+                const Icon = mobileStageIcons[index]!
+                const last = index === stages.length - 1
+                return (
+                  <li
+                    key={stage.title}
+                    className={`relative flex min-h-[76px] items-center gap-4 rounded-2xl border px-4 py-3.5 ${
+                      last
+                        ? "border-[#537FEA]/35 bg-[#537FEA]/[0.08]"
+                        : "border-[var(--hair)] bg-white/[0.015]"
+                    }`}
+                  >
+                    <span
+                      className={`relative z-10 flex h-10 w-10 shrink-0 items-center justify-center rounded-full border ${
+                        last
+                          ? "border-[#537FEA]/50 bg-[#537FEA]/[0.16] text-[#b8c8f4]"
+                          : "border-[var(--hair-strong)] bg-[var(--card)] text-[var(--muted-blue)]"
+                      }`}
+                    >
+                      <Icon className="h-[18px] w-[18px]" strokeWidth={1.7} />
+                    </span>
+                    <div className="min-w-0">
+                      <p className="text-[15px] font-medium text-white">{stage.title}</p>
+                      <p className="mt-0.5 text-[12.5px] text-[var(--muted)]">{stage.sub}</p>
+                    </div>
+                  </li>
+                )
+              })}
+            </ol>
+          </div>
+
+          <div className="hidden lg:block">
           <svg
             viewBox="0 0 1500 276"
             role="img"
             aria-label="Every enquiry channel — Website, Google, Facebook, Instagram, SMS — merges into one system: new enquiry, Solren replies, Solren follows up, job booked."
-            className="h-auto w-full min-w-[1050px] sm:min-w-0"
+            className="h-auto w-full"
             style={{ overflow: "visible", fontFamily: "inherit" }}
             textRendering="geometricPrecision"
             shapeRendering="geometricPrecision"
@@ -175,7 +229,7 @@ export function EnquiryFlow() {
             ))}
             {/* converging connector curves — animated blue signal flow */}
             {channels.map((c) => (
-              <path key={`b${c.y}`} d={`M240 ${c.y} C 330 ${c.y}, 400 178, ${MERGE_X} 178`} fill="none" stroke={BLUE} strokeOpacity={0.56} strokeWidth={1} strokeDasharray="2 12">
+              <path className="ef-motion" key={`b${c.y}`} d={`M240 ${c.y} C 330 ${c.y}, 400 178, ${MERGE_X} 178`} fill="none" stroke={BLUE} strokeOpacity={0.56} strokeWidth={1} strokeDasharray="2 12">
                 <animate attributeName="stroke-dashoffset" values="0;-140" dur="2.4s" repeatCount="indefinite" />
               </path>
             ))}
@@ -195,7 +249,7 @@ export function EnquiryFlow() {
             <line x1={MERGE_X} y1={178} x2={RAIL_END_X} y2={178} strokeWidth={1.5} style={{ stroke: "var(--ef-line)" }} />
 
             {/* blue rail fill that grows as the signal travels, then resets */}
-            <rect x={MERGE_X} y={177.25} height={1.5} width={0} fill="url(#ef-railfill)">
+            <rect className="ef-motion" x={MERGE_X} y={177.25} height={1.5} width={0} fill="url(#ef-railfill)">
               <animate attributeName="width" values={`0;0;${RAIL_END_X - MERGE_X};${RAIL_END_X - MERGE_X}`} keyTimes="0;0.05;0.82;1" dur="4s" repeatCount="indefinite" />
               <animate attributeName="opacity" values="1;1;1;0" keyTimes="0;0.05;0.82;1" dur="4s" repeatCount="indefinite" />
             </rect>
@@ -219,7 +273,7 @@ export function EnquiryFlow() {
             ))}
 
             {/* the travelling signal pulse: comet trail + bright head */}
-            <g>
+            <g className="ef-motion">
               <rect y={176.5} height={3} rx={1.5} width={64} fill="url(#ef-comet)">
                 <animate attributeName="x" values={`${MERGE_X - 64};${MERGE_X - 64};${RAIL_END_X - 64};${RAIL_END_X - 64}`} keyTimes="0;0.05;0.82;1" dur="4s" repeatCount="indefinite" />
                 <animate attributeName="opacity" values="0;0.9;0.9;0" keyTimes="0;0.05;0.82;1" dur="4s" repeatCount="indefinite" />

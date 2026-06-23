@@ -147,19 +147,24 @@ export function PublicNav() {
       if (e.key === "Escape") setOpen(false)
     }
     window.addEventListener("keydown", onKey)
-    return () => window.removeEventListener("keydown", onKey)
+    const previousOverflow = document.body.style.overflow
+    document.body.style.overflow = "hidden"
+    return () => {
+      window.removeEventListener("keydown", onKey)
+      document.body.style.overflow = previousOverflow
+    }
   }, [open])
 
   return (
     <header className="fixed inset-x-0 top-0 z-40 border-b border-white/[0.05] bg-[#08090C]">
       {/* One compact bar: logo + nav grouped left, CTA far right. */}
-      <div className="mx-auto flex h-[54px] max-w-[1440px] items-center justify-between px-6 lg:px-8">
+      <div className="mx-auto flex h-[58px] max-w-[1440px] items-center justify-between px-5 sm:px-6 lg:h-[54px] lg:px-8">
         {/* left: logo + nav as one compact group, tight even spacing */}
         <div className="flex items-center gap-3">
           <Link
             href="/"
             aria-label="Solren home"
-            className="-my-1 -ml-2 inline-flex items-center py-1"
+            className="-my-1 -ml-1 inline-flex items-center py-1 sm:-ml-2"
           >
             <Image
               src="/logos/solren-wordmark-clean.png"
@@ -168,12 +173,12 @@ export function PublicNav() {
               height={183}
               priority
               sizes="190px"
-              className="h-[26px] w-auto"
+              className="h-[24px] w-auto sm:h-[26px]"
             />
           </Link>
 
           {/* nav: even 12px gap between links */}
-          <nav className="hidden items-center gap-3 md:flex">
+          <nav className="hidden items-center gap-3 lg:flex">
             {links.map((l) => {
               const active = isActive(pathname, l)
               return l.children ? (
@@ -196,14 +201,14 @@ export function PublicNav() {
         <div className="flex items-center">
           <Link
             href="/contact"
-            className="group hidden h-9 items-center gap-1.5 rounded-full border border-[var(--hair-strong)] bg-white/[0.02] px-[18px] text-[13.5px] font-medium text-white transition-colors hover:border-[#537FEA]/50 hover:bg-[#537FEA]/[0.06] md:inline-flex"
+            className="group hidden h-9 items-center gap-1.5 rounded-full border border-[var(--hair-strong)] bg-white/[0.02] px-[18px] text-[13.5px] font-medium text-white transition-colors hover:border-[#537FEA]/50 hover:bg-[#537FEA]/[0.06] lg:inline-flex"
           >
             Get started
             <ArrowUpRight className="h-3.5 w-3.5 text-[#537FEA] transition-transform group-hover:translate-x-px group-hover:-translate-y-px" />
           </Link>
 
           <button
-            className="-mr-2 p-2 text-[#8f8f8f] md:hidden"
+            className="-mr-2 inline-flex h-11 w-11 items-center justify-center rounded-full text-[#8f8f8f] transition-colors hover:bg-white/[0.04] hover:text-white lg:hidden"
             onClick={() => setOpen((v) => !v)}
             aria-label={open ? "Close menu" : "Open menu"}
             aria-expanded={open}
@@ -217,29 +222,28 @@ export function PublicNav() {
       {open && (
         <div
           id="mobile-menu"
-          className="border-t border-[var(--hair)] bg-[#08090C] px-6 py-5 md:hidden"
+          className="max-h-[calc(100dvh-58px)] overflow-y-auto border-t border-[var(--hair)] bg-[#08090C] px-5 pb-7 pt-3 sm:px-6 lg:hidden"
         >
-          <div className="flex flex-col gap-1">
+          <div className="mx-auto flex max-w-xl flex-col">
             {links.map((l) => {
               const active = isActive(pathname, l)
               return l.children ? (
-                <div key={l.label} className="py-1">
-                  <Link
-                    href={l.href}
-                    onClick={() => setOpen(false)}
-                    aria-current={active ? "page" : undefined}
-                    className={`block py-2.5 text-[15px] ${active ? "text-white" : "text-[#8f8f8f]"}`}
+                <details key={l.label} className="group/mobile border-b border-[var(--hair)]">
+                  <summary
+                    className={`flex min-h-12 cursor-pointer list-none items-center justify-between py-3 text-[16px] font-medium ${
+                      active ? "text-white" : "text-[var(--silver)]"
+                    }`}
                   >
                     {l.label}
-                  </Link>
-                  {/* industry sub-links kept simple: a quiet indented list */}
-                  <div className="ml-3 flex flex-col gap-0.5 border-l border-[var(--hair)] pl-4">
+                    <ChevronDown className="h-4 w-4 text-[var(--muted)] transition-transform group-open/mobile:rotate-180" />
+                  </summary>
+                  <div className="mb-3 ml-1 flex flex-col border-l border-[var(--hair)] pl-4">
                     {l.children.map((c) => (
                       <Link
                         key={c.href}
                         href={c.href}
                         onClick={() => setOpen(false)}
-                        className={`flex items-center gap-1.5 py-2 text-[14px] ${
+                        className={`flex min-h-10 items-center gap-1.5 py-2 text-[14px] ${
                           c.all ? "text-white" : "text-[#6f6f6f]"
                         }`}
                       >
@@ -248,14 +252,14 @@ export function PublicNav() {
                       </Link>
                     ))}
                   </div>
-                </div>
+                </details>
               ) : (
                 <Link
                   key={l.label}
                   href={l.href}
                   onClick={() => setOpen(false)}
                   aria-current={active ? "page" : undefined}
-                  className={`py-2.5 text-[15px] ${active ? "text-white" : "text-[#8f8f8f]"}`}
+                  className={`flex min-h-12 items-center border-b border-[var(--hair)] py-3 text-[16px] font-medium ${active ? "text-white" : "text-[var(--silver)]"}`}
                 >
                   {l.label}
                 </Link>
@@ -264,7 +268,7 @@ export function PublicNav() {
             <Link
               href="/contact"
               onClick={() => setOpen(false)}
-              className="mt-3 inline-flex h-9 items-center justify-center gap-1.5 rounded-full border border-[var(--hair-strong)] px-[18px] text-[14px] font-medium text-white"
+              className="mt-5 inline-flex h-12 items-center justify-center gap-1.5 rounded-full bg-[#537FEA] px-[18px] text-[15px] font-medium text-black"
             >
               Get started
               <ArrowUpRight className="h-4 w-4 text-[#537FEA]" />

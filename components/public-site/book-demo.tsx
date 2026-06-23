@@ -218,17 +218,17 @@ function SuccessPanel() {
         <NextStepsList />
       </div>
 
-      <div className="mt-8 flex flex-wrap items-center gap-3 border-t border-[var(--hair)] pt-7">
+      <div className="mt-8 flex flex-col items-stretch gap-3 border-t border-[var(--hair)] pt-7 sm:flex-row sm:flex-wrap sm:items-center">
         <Link
           href="/how-it-works"
-          className="group inline-flex items-center gap-2 rounded-full bg-[#537FEA] px-6 py-3 text-[14.5px] font-medium text-black transition-colors hover:bg-[#6A8FEE]"
+          className="group inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-[#537FEA] px-6 py-3 text-[14.5px] font-medium text-black transition-colors hover:bg-[#6A8FEE]"
         >
           See how it works
           <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
         </Link>
         <Link
           href="/"
-          className="inline-flex items-center gap-2 rounded-full border border-[var(--hair-strong)] px-6 py-3 text-[14.5px] font-medium text-white transition-colors hover:bg-white/[0.03]"
+          className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full border border-[var(--hair-strong)] px-6 py-3 text-[14.5px] font-medium text-white transition-colors hover:bg-white/[0.03]"
         >
           Back to home
         </Link>
@@ -308,8 +308,8 @@ export function BookDemo() {
   }
 
   return (
-    <section className="relative pt-6 pb-20 sm:pt-8 sm:pb-24">
-      <div className="mx-auto grid max-w-[1240px] grid-cols-1 gap-12 px-6 lg:grid-cols-[1fr_minmax(0,520px)] lg:gap-14">
+    <section className="relative pb-16 pt-4 sm:pb-24 sm:pt-8">
+      <div className="mx-auto grid max-w-[1240px] grid-cols-1 gap-10 px-5 sm:px-6 lg:grid-cols-[1fr_minmax(0,520px)] lg:gap-14">
         {/* ---------------------------------------------------------- */}
         {/* LEFT: short copy + what happens after you submit           */}
         {/* ---------------------------------------------------------- */}
