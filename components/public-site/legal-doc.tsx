@@ -105,7 +105,7 @@ export function LegalDoc({
           )}
 
           {toc && (
-            <Reveal>
+            <Reveal className="hidden md:block">
               <nav
                 aria-label="On this page"
                 className="mb-16 rounded-2xl bg-white/[0.02] p-6 sm:p-8"

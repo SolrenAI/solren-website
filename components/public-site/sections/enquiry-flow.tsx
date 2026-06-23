@@ -140,10 +140,10 @@ export function EnquiryFlow() {
               </div>
             </div>
 
-            <ol className="relative mx-auto mt-7 grid max-w-[42rem] grid-cols-1 gap-3 sm:grid-cols-2 sm:gap-4">
+            <ol className="relative mx-auto mt-7 grid max-w-[42rem] grid-cols-1 gap-3 md:grid-cols-2 md:gap-4">
               <span
                 aria-hidden="true"
-                className="absolute bottom-8 left-[23px] top-8 w-px bg-gradient-to-b from-[#537FEA]/15 via-[#537FEA]/35 to-[#537FEA]/60 sm:hidden"
+                className="absolute bottom-[38px] left-9 top-[38px] w-px -translate-x-1/2 bg-gradient-to-b from-[#537FEA]/15 via-[#537FEA]/35 to-[#537FEA]/60 md:hidden"
               />
               {stages.map((stage, index) => {
                 const Icon = mobileStageIcons[index]!
