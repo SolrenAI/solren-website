@@ -94,6 +94,18 @@
     0 24px 50px -40px rgba(0, 0, 0, 0.9);
 }
 
+/* Lighter card treatment for dense secondary grids on mobile — a soft flat
+   ground, a more subtle hairline, and no inner highlight so the cards read as
+   lighter and more premium. Reverts to the standard .ps-card from sm up, so
+   desktop is unchanged. Two-class selector keeps it ahead of .ps-card. */
+@media (max-width: 639px) {
+  .ps-card.ps-card-soft-m {
+    background: rgba(255, 255, 255, 0.02);
+    border-color: rgba(255, 255, 255, 0.05);
+    box-shadow: none;
+  }
+}
+
 /* Hairline rule */
 .ps-rule {
   height: 1px;

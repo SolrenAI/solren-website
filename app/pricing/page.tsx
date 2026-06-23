@@ -52,10 +52,10 @@ export default function PricingPage() {
       {/* Solren Beta — selective early-access callout, placed above pricing so it
           frames the installs being opened. Warm amber is reserved for the beta /
           referral accent; blue stays for the primary CTA. */}
-      <section className="pt-16 sm:pt-24">
+      <section className="pt-12 sm:pt-24">
         <div className="mx-auto max-w-[1240px] px-5 sm:px-6">
           <Reveal>
-            <div className="ps-card rounded-[24px] p-6 sm:rounded-[28px] sm:p-12">
+            <div className="ps-card rounded-[20px] p-4 sm:rounded-[28px] sm:p-12">
               <div className="grid items-start gap-10 lg:grid-cols-[1.45fr_1fr] lg:gap-14">
                 {/* the program */}
                 <div>
@@ -63,17 +63,17 @@ export default function PricingPage() {
                     <span aria-hidden="true" className="h-1.5 w-1.5 rounded-full bg-[#E2A95E]" />
                     Solren Beta
                   </span>
-                  <h2 className="mt-6 max-w-xl text-[clamp(1.8rem,3.2vw,2.5rem)] font-medium leading-[1.08] tracking-[-0.02em] ps-silver">
+                  <h2 className="mt-3 max-w-xl text-[1.5rem] font-medium leading-[1.1] tracking-[-0.02em] ps-silver sm:mt-6 sm:text-[clamp(1.8rem,3.2vw,2.5rem)] sm:leading-[1.08]">
                     5 founder installs available.
                   </h2>
-                  <p className="mt-5 max-w-xl text-[16px] leading-relaxed text-[var(--silver)]">
+                  <p className="mt-2.5 max-w-sm text-[14.5px] leading-snug text-[var(--silver)] sm:mt-5 sm:max-w-xl sm:text-[16px] sm:leading-relaxed">
                     We are opening a small number of beta installs so each business
                     can be set up carefully, tested properly, and shaped around how
                     their enquiries come in.
                   </p>
                   <Link
                     href="/contact"
-                    className="group mt-9 inline-flex items-center gap-2 rounded-full bg-[#537FEA] px-7 py-3.5 text-[15px] font-medium text-black transition-colors hover:bg-[#6A8FEE]"
+                    className="group mt-5 inline-flex items-center gap-2 rounded-full bg-[#537FEA] px-7 py-3.5 text-[15px] font-medium text-black transition-colors hover:bg-[#6A8FEE] sm:mt-9"
                   >
                     Get started
                     <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
@@ -125,15 +125,15 @@ export default function PricingPage() {
               Every install includes.
             </h2>
           </Reveal>
-          <div className="mt-9 grid grid-cols-2 gap-3 sm:mt-12 sm:grid-cols-2 sm:gap-5 md:gap-6 lg:grid-cols-4">
+          <div className="mt-7 grid grid-cols-2 gap-3 sm:mt-12 sm:grid-cols-2 sm:gap-5 md:gap-6 lg:grid-cols-4">
             {includes.map(({ icon: Icon, title, body }, i) => (
               <Reveal key={title} delay={i * 70}>
-                <div className="ps-card h-full rounded-[18px] p-4 sm:rounded-[24px] sm:p-8">
-                  <Icon className="h-5 w-5 text-[#86A2F0] sm:h-7 sm:w-7" strokeWidth={1.5} />
-                  <h3 className="mt-3 text-[15px] font-medium tracking-tight text-white sm:mt-8 sm:text-[18px]">
+                <div className="ps-card ps-card-soft-m h-full rounded-[16px] p-3.5 sm:rounded-[24px] sm:p-8">
+                  <Icon className="h-[18px] w-[18px] text-[#86A2F0] sm:h-7 sm:w-7" strokeWidth={1.5} />
+                  <h3 className="mt-2.5 text-[15px] font-medium tracking-tight text-white sm:mt-8 sm:text-[18px]">
                     {title}
                   </h3>
-                  <p className="mt-2 text-[13px] leading-relaxed text-[var(--silver)] sm:mt-3 sm:text-[14px]">
+                  <p className="mt-1.5 text-[13px] leading-relaxed text-[var(--silver)] sm:mt-3 sm:text-[14px]">
                     {body}
                   </p>
                 </div>
