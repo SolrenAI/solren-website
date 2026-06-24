@@ -7,6 +7,7 @@ import { TrustSignals } from "@/components/public-site/sections/trust-signals"
 import { FinalCta } from "@/components/public-site/sections/final-cta"
 import { industries } from "@/components/public-site/industries-data"
 import Link from "next/link"
+import { ArrowUpRight, Check } from "lucide-react"
 
 export const metadata: Metadata = {
   title: "Industries",
@@ -62,7 +63,78 @@ export default function IndustriesPage() {
 
       <TrustSignals tightTop />
 
-      <FinalCta premium />
+      {/* Desktop conclusion — the payoff after the headline. Two open benefit
+          panels (no card) split by a quiet fading divider; CTAs sit below. Kept
+          before the mobile FinalCta so FinalCta stays the last child and the
+          footer-gap rule still governs spacing. */}
+      <section className="hidden lg:block lg:pb-6 lg:pt-8">
+        <div className="mx-auto max-w-[840px] px-6">
+          <Reveal>
+            <div className="grid grid-cols-[1fr_auto_1fr] items-stretch gap-x-16">
+              <div>
+                <div className="flex items-center gap-2.5">
+                  <span aria-hidden="true" className="h-1.5 w-1.5 rounded-full bg-[#537FEA]" />
+                  <span className="ps-label !text-[11.5px] !tracking-[0.22em] !text-[var(--silver)]">
+                    Business results
+                  </span>
+                </div>
+                <ul className="mt-7 space-y-4">
+                  {["Faster replies", "More booked work", "Higher conversion rates"].map((b) => (
+                    <li key={b} className="flex items-center gap-3">
+                      <Check className="h-4 w-4 shrink-0 text-[#6A8FEE]" strokeWidth={2.4} />
+                      <span className="text-[16px] leading-snug text-[var(--silver)]">{b}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              {/* quiet vertical divider, fading at both ends — not a card edge */}
+              <div
+                aria-hidden="true"
+                className="w-px self-stretch bg-gradient-to-b from-transparent via-white/[0.12] to-transparent"
+              />
+
+              <div>
+                <div className="flex items-center gap-2.5">
+                  <span aria-hidden="true" className="h-1.5 w-1.5 rounded-full bg-[#537FEA]" />
+                  <span className="ps-label !text-[11.5px] !tracking-[0.22em] !text-[var(--silver)]">
+                    Less admin
+                  </span>
+                </div>
+                <ul className="mt-7 space-y-4">
+                  {["No chasing enquiries", "Follow-up handled automatically", "Installed and managed"].map((b) => (
+                    <li key={b} className="flex items-center gap-3">
+                      <Check className="h-4 w-4 shrink-0 text-[#6A8FEE]" strokeWidth={2.4} />
+                      <span className="text-[16px] leading-snug text-[var(--silver)]">{b}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+
+            {/* CTAs sit below the panels, not inside them */}
+            <div className="mt-12 flex items-center justify-center gap-3">
+              <Link
+                href="/contact"
+                className="group inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-[#537FEA] px-7 py-3.5 text-[15px] font-medium text-black transition-colors hover:bg-[#6A8FEE]"
+              >
+                Get started
+                <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+              </Link>
+              <Link
+                href="/pricing"
+                className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full border border-[var(--hair-strong)] px-7 py-3.5 text-[15px] font-medium text-white transition-colors hover:bg-white/[0.03]"
+              >
+                See pricing
+              </Link>
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* Mobile/tablet keep the existing premium CTA card (last child for the
+          footer-gap rule); the desktop version above replaces it from lg up. */}
+      <FinalCta premium mobileOnly />
     </>
   )
 }

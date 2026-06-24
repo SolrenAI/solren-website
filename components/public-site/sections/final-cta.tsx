@@ -14,9 +14,21 @@ const benefits = [
   "Installed & managed",
 ]
 
-export function FinalCta({ premium = false }: { premium?: boolean }) {
+export function FinalCta({
+  premium = false,
+  mobileOnly = false,
+}: {
+  premium?: boolean
+  /* render only below lg (a desktop variant of this closing section is supplied
+     separately) while staying the last child so the footer-gap rule still applies */
+  mobileOnly?: boolean
+}) {
   return (
-    <section className="relative px-5 pb-16 pt-6 sm:px-6 sm:pb-24 sm:pt-8">
+    <section
+      className={`relative px-5 pb-16 pt-6 sm:px-6 sm:pb-24 sm:pt-8 ${
+        mobileOnly ? "lg:hidden" : ""
+      }`}
+    >
       <Reveal>
         {/* `premium` (desktop only): wider, calmer closing section — more side
             padding, reduced height, tighter inner spacing and a subtler hairline,
