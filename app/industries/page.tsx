@@ -68,7 +68,7 @@ export default function IndustriesPage() {
           before the mobile FinalCta so FinalCta stays the last child and the
           footer-gap rule still governs spacing. */}
       <section className="hidden lg:block lg:pb-2 lg:pt-4">
-        <div className="mx-auto max-w-[700px] px-6">
+        <div className="mx-auto max-w-[760px] px-6">
           <Reveal>
             <div className="grid grid-cols-[1fr_auto_1fr] items-stretch gap-x-7">
               <div>
@@ -101,7 +101,10 @@ export default function IndustriesPage() {
               {/* subtle 1px divider between the two columns — solid, low contrast */}
               <div aria-hidden="true" className="w-px self-stretch bg-white/[0.08]" />
 
-              <div>
+              {/* Less admin aligned to the right of its column so it mirrors Business
+                  results and gains breathing room from the divider (content stays
+                  internally left-aligned, so the check marks stay aligned) */}
+              <div className="flex flex-col items-end">
                 <div className="flex items-center gap-2.5">
                   <span aria-hidden="true" className="h-1.5 w-1.5 rounded-full bg-[#537FEA]" />
                   <span className="ps-label !text-[11.5px] !tracking-[0.22em] !text-[var(--silver)]">
