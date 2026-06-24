@@ -86,6 +86,16 @@ export default function IndustriesPage() {
                     </li>
                   ))}
                 </ul>
+                {/* primary CTA, aligned under the Business results column */}
+                <div className="mt-9">
+                  <Link
+                    href="/contact"
+                    className="group inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-[#537FEA] px-7 py-3.5 text-[15px] font-medium text-black transition-colors hover:bg-[#6A8FEE]"
+                  >
+                    Get started
+                    <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                  </Link>
+                </div>
               </div>
 
               <div>
@@ -103,24 +113,16 @@ export default function IndustriesPage() {
                     </li>
                   ))}
                 </ul>
+                {/* secondary CTA, aligned under the Less admin column */}
+                <div className="mt-9">
+                  <Link
+                    href="/pricing"
+                    className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full border border-[var(--hair-strong)] px-7 py-3.5 text-[15px] font-medium text-white transition-colors hover:bg-white/[0.03]"
+                  >
+                    See pricing
+                  </Link>
+                </div>
               </div>
-            </div>
-
-            {/* CTAs sit just below the panels — part of the same section */}
-            <div className="mt-8 flex items-center justify-center gap-3">
-              <Link
-                href="/contact"
-                className="group inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-[#537FEA] px-7 py-3.5 text-[15px] font-medium text-black transition-colors hover:bg-[#6A8FEE]"
-              >
-                Get started
-                <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-              </Link>
-              <Link
-                href="/pricing"
-                className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full border border-[var(--hair-strong)] px-7 py-3.5 text-[15px] font-medium text-white transition-colors hover:bg-white/[0.03]"
-              >
-                See pricing
-              </Link>
             </div>
           </Reveal>
         </div>

@@ -17,7 +17,7 @@ export function TrustSignals({ tightTop = false }: { tightTop?: boolean }) {
         <Reveal>
           <span
             className={`ps-label !text-[12px] !tracking-[0.3em] !text-[var(--silver)] ${
-              tightTop ? "lg:!text-[#537FEA]/80" : ""
+              tightTop ? "lg:!text-[#537FEA]/90" : ""
             }`}
           >
             The difference
