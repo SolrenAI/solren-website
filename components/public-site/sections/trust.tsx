@@ -16,10 +16,10 @@ type Item =
 //   Row 1: OpenAI · Supabase · n8n · Vercel
 //   Row 2: Google Workspace · Hetzner · Stripe
 const items: Item[] = [
-  { kind: "lockup", name: "OpenAI", icon: "openai.svg", label: "OpenAI", color: "#FFFFFF", icon_size: 25 },
-  { kind: "lockup", name: "Supabase", icon: "supabase.svg", label: "Supabase", color: "#3ECF8E", icon_size: 30 },
-  { kind: "lockup", name: "n8n", icon: "n8n.svg", label: "n8n", color: "#EA4B71", icon_size: 30 },
-  { kind: "lockup", name: "Vercel", icon: "vercel.svg", label: "Vercel", color: "#FFFFFF", icon_size: 19 },
+  { kind: "lockup", name: "OpenAI", icon: "openai.svg", label: "OpenAI", color: "#FFFFFF", icon_size: 21 },
+  { kind: "lockup", name: "Supabase", icon: "supabase.svg", label: "Supabase", color: "#3ECF8E", icon_size: 26 },
+  { kind: "lockup", name: "n8n", icon: "n8n.svg", label: "n8n", color: "#EA4B71", icon_size: 26 },
+  { kind: "lockup", name: "Vercel", icon: "vercel.svg", label: "Vercel", color: "#FFFFFF", icon_size: 16 },
   {
     kind: "pill",
     name: "Google Workspace",
@@ -29,20 +29,20 @@ const items: Item[] = [
     icon_gradient:
       "conic-gradient(#EA4335 0deg 45deg, #4285F4 45deg 135deg, #34A853 135deg 225deg, #FBBC05 225deg 315deg, #EA4335 315deg 360deg)",
     text_color: "#3C4043",
-    icon_size: 16,
+    icon_size: 14,
     pill_bg: "#ECECEE",
   },
-  { kind: "image", name: "Hetzner Cloud", file: "hetzner.png", w: 27, h: 27, label: "Hetzner", label_color: "#E8344C" },
-  { kind: "image", name: "Stripe", file: "stripe.svg", w: 77, h: 32 },
+  { kind: "image", name: "Hetzner Cloud", file: "hetzner.png", w: 23, h: 23, label: "Hetzner", label_color: "#E8344C" },
+  { kind: "image", name: "Stripe", file: "stripe.svg", w: 65, h: 27 },
 ]
 
 const logoRows = [items.slice(0, 4), items.slice(4)]
 
-const NAME = "whitespace-nowrap text-[21px] font-semibold tracking-tight sm:text-[22px]"
+const NAME = "whitespace-nowrap text-[18px] font-semibold tracking-tight sm:text-[19px]"
 
 function LogoItem({ item }: { item: Item }) {
   return (
-    <div className="flex shrink-0 items-center gap-3 opacity-70 transition-opacity duration-300 hover:opacity-100">
+    <div className="flex shrink-0 items-center gap-2.5 opacity-70 transition-opacity duration-300 hover:opacity-100">
       {item.kind === "image" && (
         <>
           {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -99,7 +99,7 @@ function LogoItem({ item }: { item: Item }) {
             }}
           />
           <span
-            className="whitespace-nowrap text-[15px] font-semibold tracking-tight sm:text-[16px]"
+            className="whitespace-nowrap text-[13px] font-semibold tracking-tight sm:text-[14px]"
             style={{ color: item.text_color }}
           >
             {item.label}
@@ -118,20 +118,25 @@ function LogoItem({ item }: { item: Item }) {
 
 export function Trust() {
   return (
-    <section className="relative hidden bg-[#0A0D12] pb-12 md:block">
+    /* How It Works only (hidden md:block = desktop-only). A modest top margin
+       sets it slightly lower than the custom-built section above; the inline
+       paddingBottom (44px) intentionally overrides the global #main last-child
+       cap (24px) to leave a little more room before the footer — content ->
+       ~44px + footer's 96px margin ≈ a tasteful gap, not the old huge one. */
+    <section className="relative mt-8 hidden bg-[#0A0D12] md:block" style={{ paddingBottom: "2.75rem" }}>
       {/* contained, edge-fading seam instead of a harsh full-width border */}
       <div
         aria-hidden="true"
         className="mx-auto h-px w-full max-w-[1080px] bg-gradient-to-r from-transparent via-[var(--hair-strong)] to-transparent"
       />
-      <div className="mx-auto max-w-[1240px] px-6 pt-8">
+      <div className="mx-auto max-w-[1240px] px-6 pt-6">
         <Reveal>
           <div className="mx-auto max-w-2xl text-center">
             <span className="ps-label">Infrastructure</span>
-            <h2 className="mt-3 text-[clamp(1.4rem,2.6vw,1.95rem)] font-medium leading-[1.15] tracking-[-0.02em] ps-silver">
+            <h2 className="mt-3 text-[clamp(1.25rem,2.3vw,1.65rem)] font-medium leading-[1.15] tracking-[-0.02em] ps-silver">
               Built on proven infrastructure.
             </h2>
-            <p className="mx-auto mt-3.5 max-w-lg text-[14.5px] leading-relaxed text-[var(--muted)]">
+            <p className="mx-auto mt-3 max-w-lg text-[14px] leading-relaxed text-[var(--muted)]">
               Trusted technology behind Solren&apos;s automation, messaging and
               payments.
             </p>
@@ -140,11 +145,11 @@ export function Trust() {
 
         {/* two balanced centered rows (4 over 3) — a distinct trust layer, no marquee */}
         <Reveal delay={90}>
-          <div className="mx-auto mt-5 flex max-w-[920px] flex-col items-center gap-y-8">
+          <div className="mx-auto mt-4 flex max-w-[920px] flex-col items-center gap-y-6">
             {logoRows.map((row, r) => (
               <div
                 key={r}
-                className="flex flex-wrap items-center justify-center gap-x-[54px] gap-y-7 sm:gap-x-[72px]"
+                className="flex flex-wrap items-center justify-center gap-x-[46px] gap-y-6 sm:gap-x-[62px]"
               >
                 {row.map((item) => (
                   <LogoItem key={item.name} item={item} />
