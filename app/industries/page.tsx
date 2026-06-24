@@ -63,55 +63,51 @@ export default function IndustriesPage() {
 
       <TrustSignals tightTop />
 
-      {/* Desktop conclusion — the payoff after the headline. Two open benefit
-          panels (no card) split by a quiet fading divider; CTAs sit below. Kept
-          before the mobile FinalCta so FinalCta stays the last child and the
-          footer-gap rule still governs spacing. */}
+      {/* Desktop conclusion — the payoff after the headline. A centred two-column
+          benefit grid (no card) with a 1px divider between equal columns; each CTA
+          sits centred under its column. Kept before the mobile FinalCta so FinalCta
+          stays the last child and the footer-gap rule still governs spacing. */}
       <section className="hidden lg:block lg:pb-2 lg:pt-4">
         <div className="mx-auto max-w-[760px] px-6">
           <Reveal>
+            {/* Equal 1fr columns with a centred divider between them. Each column's
+                content is left-aligned inside a w-fit block, and each button is
+                centred under that block — structural, no manual margins. */}
             <div className="grid grid-cols-[1fr_auto_1fr] items-stretch gap-x-7">
+              {/* Business results */}
               <div>
-                {/* heading, bullets and the centred button share one block, so the
-                    button centres under this column's text rather than the column */}
                 <div className="w-fit">
-                <div className="flex items-center gap-2.5">
-                  <span aria-hidden="true" className="h-1.5 w-1.5 rounded-full bg-[#537FEA]" />
-                  <span className="ps-label !text-[11.5px] !tracking-[0.22em] !text-[var(--silver)]">
-                    Business results
-                  </span>
-                </div>
-                <ul className="mt-7 space-y-4">
-                  {["Faster replies", "More booked work", "Higher conversion rates"].map((b) => (
-                    <li key={b} className="flex items-center gap-3">
-                      <Check className="h-4 w-4 shrink-0 text-[#6A8FEE]" strokeWidth={2.4} />
-                      <span className="text-[16px] leading-snug text-[var(--silver)]">{b}</span>
-                    </li>
-                  ))}
-                </ul>
-                {/* primary CTA, centred under the Business results text group */}
-                <div className="mt-9 flex justify-center">
-                  <Link
-                    href="/contact"
-                    className="group inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-[#537FEA] px-7 py-3.5 text-[15px] font-medium text-black transition-colors hover:bg-[#6A8FEE]"
-                  >
-                    Get started
-                    <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-                  </Link>
-                </div>
+                  <div className="flex items-center gap-2.5">
+                    <span aria-hidden="true" className="h-1.5 w-1.5 rounded-full bg-[#537FEA]" />
+                    <span className="ps-label !text-[11.5px] !tracking-[0.22em] !text-[var(--silver)]">
+                      Business results
+                    </span>
+                  </div>
+                  <ul className="mt-7 space-y-4">
+                    {["Faster replies", "More booked work", "Higher conversion rates"].map((b) => (
+                      <li key={b} className="flex items-center gap-3">
+                        <Check className="h-4 w-4 shrink-0 text-[#6A8FEE]" strokeWidth={2.4} />
+                        <span className="text-[16px] leading-snug text-[var(--silver)]">{b}</span>
+                      </li>
+                    ))}
+                  </ul>
+                  <div className="mt-9 flex justify-center">
+                    <Link
+                      href="/contact"
+                      className="group inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-[#537FEA] px-7 py-3.5 text-[15px] font-medium text-black transition-colors hover:bg-[#6A8FEE]"
+                    >
+                      Get started
+                      <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                    </Link>
+                  </div>
                 </div>
               </div>
 
-              {/* subtle 1px divider between the two columns — solid, low contrast */}
+              {/* centre divider — spans the content/button area only */}
               <div aria-hidden="true" className="w-px self-stretch bg-white/[0.08]" />
 
-              {/* Less admin aligned to the right of its column so it mirrors Business
-                  results and gains breathing room from the divider (content stays
-                  internally left-aligned, so the check marks stay aligned) */}
-              <div className="flex flex-col items-end">
-                {/* heading + bullets in one right-positioned block so they share the
-                    same left rail (left-aligned inside); the button stays a separate
-                    right-aligned sibling, exactly where it was */}
+              {/* Less admin */}
+              <div>
                 <div className="w-fit">
                   <div className="flex items-center gap-2.5">
                     <span aria-hidden="true" className="h-1.5 w-1.5 rounded-full bg-[#537FEA]" />
@@ -127,7 +123,6 @@ export default function IndustriesPage() {
                       </li>
                     ))}
                   </ul>
-                  {/* secondary CTA, centred under the Less admin text group */}
                   <div className="mt-9 flex justify-center">
                     <Link
                       href="/pricing"
