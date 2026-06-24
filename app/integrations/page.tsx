@@ -38,7 +38,7 @@ export default function IntegrationsPage() {
 
       {/* section divider aligned to the card grid width (not full page):
           left edge of the OpenAI card to the right edge of Google Workspace */}
-      <div className="mx-auto max-w-[1080px] px-6">
+      <div className="mx-auto max-w-[1240px] px-6">
         <div
           aria-hidden="true"
           className="h-px w-full bg-gradient-to-r from-transparent via-white/[0.08] to-transparent"
@@ -46,7 +46,7 @@ export default function IntegrationsPage() {
       </div>
 
       <section className="py-16 sm:py-24">
-        <div className="mx-auto max-w-[1080px] px-6">
+        <div className="mx-auto max-w-[1240px] px-6">
           {/* the trusted services */}
           <Reveal>
             <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:gap-5">
