@@ -119,13 +119,13 @@ function LogoItem({ item }: { item: Item }) {
 export function Trust() {
   return (
     /* How It Works only (hidden md:block = desktop-only). No background panel —
-       the strip blends into the page ground and is set apart only by a subtle,
-       edge-fading divider above it, so it reads as a trust strip rather than a
-       separate block. A modest top margin sets it slightly lower than the
-       custom-built section above; the inline paddingBottom (44px) overrides the
-       global #main last-child cap (24px) to leave a tasteful gap before the
-       footer (~44px + footer's 96px margin). */
-    <section className="relative mt-8 hidden md:block" style={{ paddingBottom: "2.75rem" }}>
+       the strip blends into the page ground, set apart only by a subtle,
+       edge-fading divider above it. A generous top margin gives breathing room
+       from the custom-built section and pushes the strip down toward the footer;
+       the small inline paddingBottom keeps the gap before the footer modest
+       (overriding the global #main last-child cap, so the footer's 96px margin
+       reads as a tidy gap rather than dead space). */
+    <section className="relative mt-20 hidden md:block" style={{ paddingBottom: "0.5rem" }}>
       {/* subtle, low-opacity divider that fades at both edges — no heavy panel */}
       <div
         aria-hidden="true"
