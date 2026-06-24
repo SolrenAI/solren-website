@@ -425,3 +425,20 @@ html[data-theme="light"] .ps .if-frame {
   border-color: #e2e6ec;
   box-shadow: 0 1px 2px rgba(17, 22, 31, 0.04), 0 12px 28px -20px rgba(17, 22, 31, 0.28);
 }
+
+/* ============================================================
+   Footer breathing room (desktop only)
+   The footer already carries generous space above it via its top
+   margin, so the final content section on each page should not also
+   contribute a large bottom padding — that "double gap" (section
+   padding + footer margin) is what left an oversized empty band above
+   the footer. Trimming the last section's bottom padding on desktop
+   keeps a single, tasteful gap: content -> breathing room -> footer.
+   Scoped to md+ so the mobile layout is untouched. The footer is a
+   sibling of #main, so it is never affected by this rule.
+   ============================================================ */
+@media (min-width: 768px) {
+  #main > *:last-child {
+    padding-bottom: 1.5rem;
+  }
+}
