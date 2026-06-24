@@ -70,29 +70,43 @@ export default function PricingPage() {
         </div>
       </section>
 
-      {/* Every install includes — a light, borderless feature row (no card chrome)
-          so it supports the plans without competing with them. */}
-      <section className="border-t border-[var(--hair)] py-14 sm:py-20">
+      {/* Included with every install — a calm, borderless trust strip that supports
+          the plans. A contained, edge-fading divider (aligned to the pricing cards)
+          replaces the old full-width rule; the top gap is tightened on desktop. */}
+      <section className="pb-14 sm:pb-20">
         <div className="mx-auto max-w-[1240px] px-5 sm:px-6">
-          <Reveal>
-            <h2 className="text-[clamp(1.55rem,3vw,2.1rem)] font-medium leading-[1.1] tracking-[-0.02em] ps-silver">
-              Every install includes.
-            </h2>
-          </Reveal>
-          <div className="mt-8 grid grid-cols-2 gap-x-6 gap-y-9 sm:mt-12 sm:gap-y-10 lg:grid-cols-4 lg:gap-x-10">
-            {includes.map(({ icon: Icon, title, body }, i) => (
-              <Reveal key={title} delay={i * 70}>
-                <div>
-                  <Icon className="h-5 w-5 text-[var(--silver)]" strokeWidth={1.5} />
-                  <h3 className="mt-3.5 text-[15px] font-medium tracking-tight text-white sm:text-[16px]">
-                    {title}
-                  </h3>
-                  <p className="mt-1.5 text-[13px] leading-relaxed text-[var(--silver)] sm:text-[13.5px]">
-                    {body}
-                  </p>
-                </div>
-              </Reveal>
-            ))}
+          {/* contained, edge-fading divider — aligned to the cards, never full-bleed */}
+          <div
+            aria-hidden="true"
+            className="h-px w-full bg-gradient-to-r from-transparent via-white/[0.08] to-transparent"
+          />
+          <div className="pt-14 sm:pt-20 lg:pt-12">
+            <Reveal>
+              <div className="flex items-center gap-3">
+                <span aria-hidden="true" className="h-2 w-2 shrink-0 rounded-full bg-[#537FEA]" />
+                <h2 className="text-[clamp(1.55rem,3vw,2.1rem)] font-medium leading-[1.1] tracking-[-0.02em] ps-silver">
+                  Included with every install.
+                </h2>
+              </div>
+              <p className="mt-3 max-w-xl text-[14px] leading-relaxed text-[var(--muted)] sm:text-[14.5px]">
+                Setup, replies, follow-up logic and monthly tuning are handled for you.
+              </p>
+            </Reveal>
+            <div className="mt-8 grid grid-cols-2 gap-x-6 gap-y-9 sm:mt-12 sm:gap-y-10 lg:grid-cols-4 lg:gap-x-10">
+              {includes.map(({ icon: Icon, title, body }, i) => (
+                <Reveal key={title} delay={i * 70}>
+                  <div>
+                    <Icon className="h-5 w-5 text-[var(--silver)]" strokeWidth={1.5} />
+                    <h3 className="mt-3.5 text-[15px] font-medium tracking-tight text-white sm:text-[16px]">
+                      {title}
+                    </h3>
+                    <p className="mt-1.5 text-[13px] leading-relaxed text-[var(--silver)] sm:text-[13.5px]">
+                      {body}
+                    </p>
+                  </div>
+                </Reveal>
+              ))}
+            </div>
           </div>
         </div>
       </section>
