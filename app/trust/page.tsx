@@ -71,7 +71,7 @@ export default function TrustPage() {
       />
 
       <section className="pt-14 pb-20 sm:pt-16 sm:pb-24">
-        <div className="mx-auto max-w-[1080px] px-6">
+        <div className="mx-auto max-w-[1240px] px-6">
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {cards.map((c, i) => (
               <Reveal key={c.title} delay={(i % 3) * 70}>
@@ -87,7 +87,7 @@ export default function TrustPage() {
               <h2 className="mt-5 max-w-xl text-[clamp(1.6rem,3.2vw,2.2rem)] font-medium leading-[1.1] tracking-[-0.02em] ps-silver">
                 Designed to keep work moving.
               </h2>
-              <p className="mt-5 max-w-2xl text-[15.5px] leading-relaxed text-[var(--silver)]">
+              <p className="mt-5 max-w-[800px] text-[15.5px] leading-relaxed text-[var(--silver)]">
                 Solren is designed to keep enquiries moving, keep an eye on how
                 things run, and keep your team in control, so work does not slip
                 when you are busy.
