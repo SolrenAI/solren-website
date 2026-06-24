@@ -118,16 +118,18 @@ function LogoItem({ item }: { item: Item }) {
 
 export function Trust() {
   return (
-    /* How It Works only (hidden md:block = desktop-only). A modest top margin
-       sets it slightly lower than the custom-built section above; the inline
-       paddingBottom (44px) intentionally overrides the global #main last-child
-       cap (24px) to leave a little more room before the footer — content ->
-       ~44px + footer's 96px margin ≈ a tasteful gap, not the old huge one. */
-    <section className="relative mt-8 hidden bg-[#0A0D12] md:block" style={{ paddingBottom: "2.75rem" }}>
-      {/* contained, edge-fading seam instead of a harsh full-width border */}
+    /* How It Works only (hidden md:block = desktop-only). No background panel —
+       the strip blends into the page ground and is set apart only by a subtle,
+       edge-fading divider above it, so it reads as a trust strip rather than a
+       separate block. A modest top margin sets it slightly lower than the
+       custom-built section above; the inline paddingBottom (44px) overrides the
+       global #main last-child cap (24px) to leave a tasteful gap before the
+       footer (~44px + footer's 96px margin). */
+    <section className="relative mt-8 hidden md:block" style={{ paddingBottom: "2.75rem" }}>
+      {/* subtle, low-opacity divider that fades at both edges — no heavy panel */}
       <div
         aria-hidden="true"
-        className="mx-auto h-px w-full max-w-[1080px] bg-gradient-to-r from-transparent via-[var(--hair-strong)] to-transparent"
+        className="mx-auto h-px w-full max-w-[1080px] bg-gradient-to-r from-transparent via-white/[0.10] to-transparent"
       />
       <div className="mx-auto max-w-[1240px] px-6 pt-6">
         <Reveal>
