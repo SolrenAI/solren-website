@@ -81,7 +81,7 @@ export default function IndustriesPage() {
               ))}
             </div>
 
-            <div className="mt-9 flex items-center justify-center gap-3">
+            <div className="mt-7 flex items-center justify-center gap-3">
               <Link
                 href="/contact"
                 className="group inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-[#537FEA] px-7 py-3.5 text-[15px] font-medium text-black transition-colors hover:bg-[#6A8FEE]"
