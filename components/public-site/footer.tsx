@@ -93,7 +93,7 @@ const socials: { label: string; path: string }[] = [
 
 function FooterLinkItem({ link }: { link: FooterLink }) {
   const cls =
-    "inline-flex min-h-11 items-center text-[14px] text-white/60 transition-colors duration-200 hover:text-[var(--spark)] lg:min-h-0"
+    "inline-flex min-h-11 items-center text-[14px] text-white/60 transition-colors duration-200 hover:text-[var(--spark)] lg:min-h-0 lg:leading-tight"
   return link.href ? (
     <Link href={link.href} className={cls}>
       {link.label}
@@ -127,7 +127,7 @@ function FooterBlock({ block }: { block: Block }) {
           ))}
         </div>
       ) : (
-        <ul className="mt-3 space-y-0 lg:mt-5 lg:space-y-3">
+        <ul className="mt-3 space-y-0 lg:mt-4 lg:space-y-2">
           {block.links!.map((l) => (
             <li key={l.label}>
               <FooterLinkItem link={l} />
@@ -141,7 +141,11 @@ function FooterBlock({ block }: { block: Block }) {
 
 export function PublicFooter() {
   return (
-    <footer className="relative bg-[#050608]">
+    /* md+ only: push the whole footer (divider included) well down the page so the
+       divider line starts around the old "Privacy" link height, leaving generous
+       black breathing room after the CTA card. Pure outer margin — the footer's own
+       compact height is unchanged. Mobile (below md) is untouched. */
+    <footer className="relative bg-[#050608] md:mt-[320px]">
       {/* soft, edge-fading divider above the footer (replaces the hard border line) */}
       <div
         aria-hidden="true"
@@ -191,7 +195,7 @@ export function PublicFooter() {
         </p>
       </div>
 
-      <div className="mx-auto hidden max-w-[1340px] px-5 py-14 sm:px-6 sm:py-[84px] md:block md:py-14 lg:py-[70px]">
+      <div className="mx-auto hidden max-w-[1340px] px-5 py-14 sm:px-6 sm:py-[84px] md:block md:py-10 lg:py-[40px]">
         {/* Top: brand area (left) · vertical divider · three column-pairs (right) */}
         <div className="flex flex-col gap-y-12 sm:gap-y-14 lg:flex-row lg:gap-x-16">
           {/* Brand area — the anchor of the footer, given more presence than the nav */}
@@ -227,7 +231,7 @@ export function PublicFooter() {
                 <FooterBlock block={col.top} />
                 {/* wider gap for Product→Company & Trust→Legal; tighter for
                     Support→Social so the pair reads as related */}
-                <div className={index === 2 ? "mt-0 sm:mt-10" : col.tight ? "mt-10" : "mt-12 sm:mt-14"}>
+                <div className={index === 2 ? "mt-0 sm:mt-6" : col.tight ? "mt-6" : "mt-7 sm:mt-8"}>
                   <FooterBlock block={col.bottom} />
                 </div>
               </div>
@@ -236,14 +240,14 @@ export function PublicFooter() {
         </div>
 
         {/* Contained, edge-fading divider above the bottom bar — no harsh full-width line */}
-        <div className="mx-auto mt-10 h-px w-full max-w-[1100px] bg-gradient-to-r from-transparent via-white/[0.14] to-transparent sm:mt-12" />
+        <div className="mx-auto mt-6 h-px w-full max-w-[1100px] bg-gradient-to-r from-transparent via-white/[0.14] to-transparent sm:mt-7" />
 
-        {/* Bottom: payment marks above the copyright line */}
-        <div className="mt-7 sm:mt-8">
-          <PaymentLogos />
-          <p className="mt-6 text-[12.5px] text-[var(--muted)]">
+        {/* Bottom bar: copyright far left, payment marks far right — balanced row */}
+        <div className="mt-5 flex items-center justify-between gap-6 sm:mt-6">
+          <p className="text-[12.5px] text-[var(--muted)]">
             © {new Date().getFullYear()} Solren. All rights reserved.
           </p>
+          <PaymentLogos />
         </div>
       </div>
     </footer>
