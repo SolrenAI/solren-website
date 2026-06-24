@@ -30,25 +30,29 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL("https://solren.ai"),
   title: {
-    default: "Solren. Reply faster. Book more jobs.",
+    default: "Solren",
     template: "%s · Solren",
   },
   description:
-    "Solren installs a follow-up system for service businesses: reply faster, recover missed leads, less admin, more booked jobs. Built for electricians, roofers, HVAC, plumbers and more.",
+    "AI lead recovery, installed and managed for service businesses.",
+  /* Open Graph / Twitter images are intentionally NOT set here. The
+     app/opengraph-image.tsx file convention generates the "Never lose another
+     lead." card and Next wires it into both og:image and twitter:image for every
+     route. Setting images here would override (and shadow) that card. */
   openGraph: {
     type: "website",
     siteName: "Solren",
     locale: "en_AU",
     url: "https://solren.ai",
-    title: "Solren. Reply faster. Book more jobs.",
+    title: "Solren",
     description:
-      "Solren installs a follow-up system for service businesses: reply faster, recover missed leads, less admin, more booked jobs.",
+      "AI lead recovery, installed and managed for service businesses.",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Solren. Reply faster. Book more jobs.",
+    title: "Solren",
     description:
-      "Solren installs a follow-up system for service businesses: reply faster, recover missed leads, less admin, more booked jobs.",
+      "AI lead recovery, installed and managed for service businesses.",
   },
 }
 
