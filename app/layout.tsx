@@ -27,32 +27,48 @@ const geistMono = Geist_Mono({
   display: "swap",
 })
 
+const SITE_DESCRIPTION =
+  "Never lose another lead. Solren catches enquiries, replies fast, and follows up until the job is booked."
+const SOCIAL_IMAGE = "/og-image.png"
+const SOCIAL_IMAGE_ALT = "Solren - Never lose another lead"
+
 export const metadata: Metadata = {
   metadataBase: new URL("https://solren.ai"),
   title: {
     default: "Solren",
     template: "%s · Solren",
   },
-  description:
-    "AI lead recovery, installed and managed for service businesses.",
-  /* Open Graph / Twitter images are intentionally NOT set here. The
-     app/opengraph-image.tsx file convention generates the "Never lose another
-     lead." card and Next wires it into both og:image and twitter:image for every
-     route. Setting images here would override (and shadow) that card. */
+  description: SITE_DESCRIPTION,
+  authors: [{ name: "Solren", url: "https://solren.ai" }],
   openGraph: {
     type: "website",
     siteName: "Solren",
     locale: "en_AU",
     url: "https://solren.ai",
     title: "Solren",
-    description:
-      "AI lead recovery, installed and managed for service businesses.",
+    description: SITE_DESCRIPTION,
+    images: [
+      {
+        url: SOCIAL_IMAGE,
+        width: 1200,
+        height: 630,
+        alt: SOCIAL_IMAGE_ALT,
+        type: "image/png",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "Solren",
-    description:
-      "AI lead recovery, installed and managed for service businesses.",
+    description: SITE_DESCRIPTION,
+    images: [
+      {
+        url: SOCIAL_IMAGE,
+        width: 1200,
+        height: 630,
+        alt: SOCIAL_IMAGE_ALT,
+      },
+    ],
   },
 }
 
