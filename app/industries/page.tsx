@@ -18,22 +18,20 @@ export const metadata: Metadata = {
 export default function IndustriesPage() {
   return (
     <>
+      {/* Hero shares the grid's 1480 container so the title's left edge lines up
+          with the first card, and a tighter desktop bottom padding lets the grid
+          tuck in directly beneath it (Apple collection feel). No divider — the
+          hero introduces the grid rather than being a separate section. */}
       <PageHeader
         eyebrow="Industries"
         title={<>Built for service businesses.</>}
         sub="Helping busy businesses turn more enquiries into booked work."
         divider={false}
+        containerClass="max-w-[1480px]"
+        bottomClass="pb-12 sm:pb-16 lg:pb-10"
       />
 
-      {/* short, soft divider aligned to the photo grid width, fading at the ends */}
-      <div className="mx-auto max-w-[1240px] px-6">
-        <div
-          aria-hidden="true"
-          className="h-px w-full bg-gradient-to-r from-transparent via-white/[0.08] to-transparent"
-        />
-      </div>
-
-      <section className="pt-20 pb-10 sm:pt-24 sm:pb-12">
+      <section className="pt-20 pb-10 sm:pt-24 sm:pb-12 lg:pt-2">
         <div className="mx-auto max-w-[1480px] px-6">
           <div className="grid grid-cols-2 gap-3 sm:grid-cols-2 sm:gap-5 lg:grid-cols-4 lg:gap-6">
             {industries.map((it, i) => (

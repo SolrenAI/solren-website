@@ -11,6 +11,8 @@ export function PageHeader({
   eyebrowPulse = false,
   looseTitle = false,
   nudgeLeft = false,
+  containerClass = "max-w-[1240px]",
+  bottomClass = "pb-12 sm:pb-16 lg:pb-20",
 }: {
   eyebrow: string
   title: React.ReactNode
@@ -30,13 +32,18 @@ export function PageHeader({
   /* nudge the hero text block slightly left for a more intentional, less
      centred feel; only on wide viewports where there is margin to absorb it */
   nudgeLeft?: boolean
+  /* override the hero container max-width (defaults to the standard 1240px) so a
+     page can align its hero to a wider content grid */
+  containerClass?: string
+  /* override the hero bottom padding (e.g. to tuck a grid closer beneath it) */
+  bottomClass?: string
 }) {
   return (
     <>
-      <header className="relative overflow-hidden pb-12 pt-24 sm:pb-16 sm:pt-36 lg:pb-20 lg:pt-44">
+      <header className={`relative overflow-hidden pt-24 sm:pt-36 lg:pt-44 ${bottomClass}`}>
       {decoration}
       <div
-        className={`relative z-10 mx-auto max-w-[1240px] px-5 sm:px-6 ${
+        className={`relative z-10 mx-auto ${containerClass} px-5 sm:px-6 ${
           nudgeLeft ? "min-[1360px]:-translate-x-[50px]" : ""
         }`}
       >
@@ -78,7 +85,7 @@ export function PageHeader({
       {/* contained, edge-fading divider under the hero — aligned to the page
           container, never a full browser-width cut */}
       {divider && (
-        <div className="mx-auto max-w-[1240px] px-5 sm:px-6">
+        <div className={`mx-auto ${containerClass} px-5 sm:px-6`}>
           <div
             aria-hidden="true"
             className="h-px w-full bg-gradient-to-r from-transparent via-white/[0.08] to-transparent"
