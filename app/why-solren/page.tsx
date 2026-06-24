@@ -83,7 +83,7 @@ const blockClass =
 const eyebrowClass = "ps-label ps-label-legible"
 const headingClass =
   "mt-5 text-[clamp(1.5rem,3vw,2rem)] font-medium leading-[1.15] tracking-[-0.02em] text-white"
-const proseClass = "mt-5 max-w-[680px] text-[16px] leading-[1.7] text-[var(--silver)]"
+const proseClass = "mt-5 max-w-[800px] text-[16px] leading-[1.7] text-[var(--silver)]"
 
 export default function WhySolrenPage() {
   return (
@@ -113,7 +113,7 @@ export default function WhySolrenPage() {
       />
 
       <section className="py-16 sm:py-24">
-        <div className="mx-auto max-w-[1080px] px-6">
+        <div className="mx-auto max-w-[1240px] px-6">
           {/* Section 1 - the real problem */}
           <Reveal>
             <div className={blockClass}>
