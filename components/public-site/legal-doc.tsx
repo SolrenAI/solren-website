@@ -58,13 +58,16 @@ export function LegalDoc({
      pages whose content benefits from more room, e.g. a provider table. */
   wide?: boolean
 }) {
-  /* `wide` (e.g. the provider table) uses one full ~880px column. Standard legal
-     pages share an 820px container with a ~780px reading column — slightly more
-     open than before so the prose feels less squeezed on desktop, while still
-     reading as a premium legal page. The contents box spans the container, so it
-     stays a touch wider than the body. */
-  const containerW = wide ? "max-w-[880px]" : "max-w-[820px]"
-  const measure = wide ? "" : "mx-auto max-w-[780px]"
+  /* Desktop documentation layout: the content shares the hero's 1240px container
+     (so its left edge sits directly under the title) and inner blocks are
+     left-aligned for a wider, more confident feel. Prose keeps a readable measure
+     (~800px); the "On this page" box and any tables/cards extend further right.
+     On mobile every block is full-width (narrower than these caps) with px-5
+     gutters, so the mobile layout is unchanged. */
+  const containerW = "max-w-[1240px]"
+  const read = "max-w-[800px]" // prose reading column, left-aligned
+  const box = "max-w-[1040px]" // "On this page" / summary boxes — wider
+  const wideArea = wide ? "max-w-[1180px]" : "max-w-[1040px]" // tables / custom content
 
   return (
     <>
@@ -78,7 +81,7 @@ export function LegalDoc({
           {intro && (
             <Reveal>
               <p
-                className={`mb-10 text-[16.5px] leading-relaxed text-[var(--silver)] lg:mb-14 ${measure}`}
+                className={`mb-10 text-[16.5px] leading-relaxed text-[var(--silver)] lg:mb-14 ${read}`}
               >
                 {intro}
               </p>
@@ -87,7 +90,7 @@ export function LegalDoc({
 
           {summary && (
             <Reveal>
-              <div className="mb-10 rounded-2xl bg-white/[0.02] p-6 sm:p-8 lg:mb-14">
+              <div className={`mb-10 rounded-2xl bg-white/[0.02] p-6 sm:p-8 lg:mb-14 ${box}`}>
                 <h2 className="ps-label ps-label-legible">{summary.title}</h2>
                 <ul className="mt-5 space-y-3">
                   {summary.items.map((item, i) => (
@@ -108,7 +111,7 @@ export function LegalDoc({
             <Reveal className="hidden md:block">
               <nav
                 aria-label="On this page"
-                className="mb-16 rounded-2xl bg-white/[0.02] p-6 sm:p-8"
+                className={`mb-16 rounded-2xl bg-white/[0.02] p-6 sm:p-8 ${box}`}
               >
                 <h2 className="ps-label ps-label-legible">On this page</h2>
                 <ol
@@ -139,9 +142,9 @@ export function LegalDoc({
             </Reveal>
           )}
 
-          {afterToc && <div className={`mb-16 ${measure}`}>{afterToc}</div>}
+          {afterToc && <div className={`mb-16 ${wideArea}`}>{afterToc}</div>}
 
-          <div className={`space-y-12 ${measure}`}>
+          <div className={`space-y-12 ${read}`}>
             {sections.map((s, i) => (
               <Reveal key={s.h} delay={i * 30}>
                 <div
@@ -179,7 +182,7 @@ export function LegalDoc({
           {footer && (
             <Reveal>
               <p
-                className={`mt-14 border-t border-[var(--hair)] pt-10 text-[14px] leading-relaxed text-[var(--muted)] ${measure}`}
+                className={`mt-14 border-t border-[var(--hair)] pt-10 text-[14px] leading-relaxed text-[var(--muted)] ${read}`}
               >
                 {footer}
               </p>
