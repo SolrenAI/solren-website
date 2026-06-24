@@ -66,7 +66,7 @@ export function LegalDoc({
      gutters, so the mobile layout is unchanged. */
   const containerW = "max-w-[1240px]"
   const read = "max-w-[800px]" // prose reading column, left-aligned
-  const box = "max-w-[1040px]" // "On this page" / summary boxes — wider
+  const box = "max-w-[800px]" // "On this page" / summary boxes — align to the writing column
   const wideArea = wide ? "max-w-[1180px]" : "max-w-[1040px]" // tables / custom content
 
   return (
