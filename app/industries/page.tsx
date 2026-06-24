@@ -42,6 +42,7 @@ export default function IndustriesPage() {
                     label={it.label}
                     icon={it.icon}
                     src={it.image}
+                    srcDesktop={it.imageDesktop}
                     objectPosition={it.objectPosition}
                     hideCaption
                     bare

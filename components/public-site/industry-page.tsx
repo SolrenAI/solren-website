@@ -4,6 +4,7 @@ import { PageHeader } from "./page-header"
 import { Reveal } from "./reveal"
 import { ImageFrame } from "./image-frame"
 import { FinalCta } from "./sections/final-cta"
+import { IndustryCta } from "./sections/industry-cta"
 import { FaqStructuredData } from "./structured-data"
 import { getIndustry } from "./industries-data"
 
@@ -91,7 +92,9 @@ export function IndustryPage({ slug }: { slug: string }) {
                   label={industry.label}
                   alt={industry.name}
                   icon={industry.icon}
-                  src={industry.image}
+                  src={industry.heroImage ?? industry.image}
+                  srcDesktop={industry.heroImageDesktop}
+                  fit={industry.imageFit}
                   objectPosition={industry.objectPosition}
                   bare
                   hideCaption
@@ -151,7 +154,10 @@ export function IndustryPage({ slug }: { slug: string }) {
         </div>
       </section>
 
-      <FinalCta />
+      {/* Desktop: the two-card Get Started / See Pricing close. Mobile keeps the
+          existing FinalCta card (last child, for the footer-gap rule). */}
+      <IndustryCta />
+      <FinalCta mobileOnly />
     </>
   )
 }

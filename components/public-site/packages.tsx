@@ -119,17 +119,49 @@ function Spec({ pkg }: { pkg: Pkg }) {
 }
 
 export function Packages({ detailed = false }: { detailed?: boolean }) {
+  /* Desktop only (this component renders inside the page's `hidden lg:block`):
+     two primary plans side by side, with a compact custom-install row in place
+     of the old Enterprise card. The shared `packages` data is left intact —
+     Enterprise still appears in the mobile layout (PricingMobile); here it is
+     simply omitted from the cards and folded into the custom-install row. */
+  const primary = packages.filter((p) => p.name !== "Enterprise Install")
   return (
-    <div className="grid items-stretch gap-4 sm:gap-5 lg:grid-cols-3 lg:gap-6">
-      {packages.map((pkg, i) => (
-        <Reveal key={pkg.name} delay={i * 90}>
-          <Spec pkg={pkg} />
-        </Reveal>
-      ))}
+    <div>
+      {/* Starter vs Growth — the first decision */}
+      <div className="mx-auto grid max-w-[900px] items-stretch gap-6 lg:grid-cols-2">
+        {primary.map((pkg, i) => (
+          <Reveal key={pkg.name} delay={i * 90}>
+            <Spec pkg={pkg} />
+          </Reveal>
+        ))}
+      </div>
+
+      {/* Custom install — a quiet, restrained row below the two plans. The
+          secondary outline action keeps Growth's blue button the primary choice. */}
+      <Reveal delay={180}>
+        <div className="mx-auto mt-6 flex max-w-[900px] flex-col gap-4 rounded-[24px] border border-[var(--hair)] bg-white/[0.02] px-8 py-7 sm:flex-row sm:items-center sm:justify-between sm:gap-8">
+          <div>
+            <h3 className="text-[17px] font-medium tracking-tight text-white">
+              Need a custom install?
+            </h3>
+            <p className="mt-1.5 text-[14px] leading-relaxed text-[var(--muted)]">
+              For multiple locations, high-volume enquiries, custom routing or team workflows.
+            </p>
+          </div>
+          <Link
+            href="/contact"
+            className="group inline-flex shrink-0 items-center justify-center gap-2 rounded-full border border-[var(--hair-strong)] px-6 py-3 text-[14px] font-medium text-white transition-colors hover:border-white/30 hover:bg-white/[0.03]"
+          >
+            Talk to us
+            <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+          </Link>
+        </div>
+      </Reveal>
+
       {detailed && (
-        <div className="md:col-span-3">
-          <div className="ps-rule mb-7 mt-4" />
-          <p className="mx-auto max-w-2xl text-center text-[13.5px] leading-relaxed text-[var(--muted)]">
+        <div className="mx-auto mt-8 max-w-2xl">
+          <div className="ps-rule mb-7" />
+          <p className="text-center text-[13.5px] leading-relaxed text-[var(--muted)]">
             Prices are in AUD and exclude GST. SMS, Meta lead routing, and custom
             integrations depend on your current tools and approval.
           </p>

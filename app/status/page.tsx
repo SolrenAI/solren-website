@@ -87,16 +87,17 @@ export default function StatusPage() {
       <PageHeader
         eyebrow="System Status"
         looseTitle
+        titleClass="text-[clamp(2.05rem,8.5vw,4.4rem)] lg:text-[2.6rem]"
         title={<>All systems operational.</>}
         sub="Current availability across Solren's website, dashboard, automation, messaging and billing systems."
       />
 
-      <section className="py-16 sm:pb-24 sm:pt-12">
+      <section className="py-16 sm:pb-20 sm:pt-10">
         <div className="mx-auto max-w-[1240px] px-5 sm:px-6">
           {/* Overall status summary — the at-a-glance operational banner that makes
               this read as a real public status page, not an internal table. */}
           <Reveal>
-            <div className="flex max-w-[1040px] flex-col gap-4 rounded-2xl border border-white/[0.08] bg-white/[0.02] px-5 py-4 sm:flex-row sm:items-center sm:justify-between sm:px-6 sm:py-5">
+            <div className="flex max-w-[1040px] flex-col gap-3 rounded-2xl border border-white/[0.08] bg-white/[0.02] px-5 py-4 sm:flex-row sm:items-center sm:justify-between sm:px-6 sm:py-4">
               <div className="flex items-center gap-3">
                 <span className="ps-live-dot h-2 w-2 shrink-0 rounded-full bg-[#537FEA]" />
                 <div>
@@ -116,7 +117,7 @@ export default function StatusPage() {
 
           {/* Detailed rows — cleaner, un-boxed, subtle dividers. Wider than the
               prose blocks so the operational list extends right like a status table. */}
-          <div className="mt-10 max-w-[1040px] space-y-10 sm:mt-12">
+          <div className="mt-8 max-w-[1040px] space-y-8">
             {groups.map((group) => (
               <Reveal key={group.title}>
                 <div>
@@ -127,7 +128,7 @@ export default function StatusPage() {
                     {group.systems.map((s) => (
                       <div
                         key={s.name}
-                        className="flex items-start justify-between gap-4 py-4"
+                        className="flex items-start justify-between gap-4 py-3.5"
                       >
                         <div>
                           <div className="text-[15px] font-medium tracking-tight text-white">
@@ -148,18 +149,15 @@ export default function StatusPage() {
 
           {/* Recent history — calm record, no fake timeline when there are none */}
           <Reveal>
-            <div className="mt-12 max-w-[800px] border-t border-[var(--hair)] pt-10 sm:mt-16 sm:pt-12">
+            <div className="mt-10 max-w-[800px] border-t border-[var(--hair)] pt-8 sm:mt-12 sm:pt-10">
               <h2 className="text-[19px] font-medium tracking-tight text-white">
                 Recent history
               </h2>
-              <div className="mt-6 rounded-2xl border border-white/[0.08] bg-white/[0.015] p-6">
+              <div className="mt-5 rounded-2xl border border-white/[0.08] bg-white/[0.015] p-5">
                 <div className="text-[15px] font-medium tracking-tight text-white">
                   No incidents reported.
                 </div>
-                <p className="mt-2 text-[14.5px] leading-relaxed text-[var(--silver)]">
-                  Solren has no reported incidents for the current period.
-                </p>
-                <p className="mt-3 text-[13px] leading-relaxed text-[var(--muted)]">
+                <p className="mt-2 text-[13px] leading-relaxed text-[var(--muted)]">
                   Last reviewed June 2026.
                 </p>
               </div>
@@ -168,7 +166,7 @@ export default function StatusPage() {
 
           {/* Support */}
           <Reveal>
-            <div className="mt-12 max-w-[800px] border-t border-[var(--hair)] pt-10">
+            <div className="mt-10 max-w-[800px] border-t border-[var(--hair)] pt-8">
               <h2 className="text-[15px] font-medium tracking-tight text-white">
                 Need help?
               </h2>

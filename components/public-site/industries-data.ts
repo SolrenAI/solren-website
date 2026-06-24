@@ -29,6 +29,15 @@ export type Industry = {
   label: string
   icon: LucideIcon
   image?: string
+  /* desktop-only Industries-grid card image; mobile keeps `image` */
+  imageDesktop?: string
+  /* optional distinct hero image for the detail page (falls back to `image`) */
+  heroImage?: string
+  /* desktop-only detail-page image; mobile keeps `heroImage`/`image` (card photo) */
+  heroImageDesktop?: string
+  /* detail-page hero object-fit; defaults to "cover". "contain" shows the whole
+     photo (letterboxed against the frame's near-black ground) without cropping */
+  imageFit?: "cover" | "contain"
   objectPosition?: string
   heroTitle: string
   heroSub: string
@@ -48,7 +57,8 @@ export const industries: Industry[] = [
     audience: "electricians",
     label: "Electrical · on site",
     icon: Zap,
-    image: "/images/trades/electrician-01.jpg",
+    image: "/images/trades/electricians/industries-electrician.jpg",
+    heroImage: "/images/trades/electricians/electricians-industry.jpg",
     objectPosition: "center",
     heroTitle: "Stay responsive while you are on the tools.",
     heroSub: "Solren catches every callout and quote while you are up a ladder or in a roof space.",
@@ -87,7 +97,8 @@ export const industries: Industry[] = [
     audience: "plumbers",
     label: "Plumbing · call out",
     icon: Droplets,
-    image: "/images/industries/plumbers.jpg",
+    image: "/images/trades/plumbing/industries-plumbing.jpg",
+    heroImage: "/images/trades/plumbing/plumbing-industry.jpg",
     objectPosition: "center",
     heroTitle: "Plumbing enquiries answered faster.",
     heroSub: "From burst pipes to hot water quotes, Solren replies before the next plumber does.",
@@ -126,8 +137,9 @@ export const industries: Industry[] = [
     audience: "builders",
     label: "Building · on site",
     icon: Hammer,
-    image: "/images/trades/builder-01.jpg",
-    objectPosition: "50% 42%",
+    image: "/images/trades/builders/builders-industry.jpg",
+    heroImage: "/images/trades/builders/builders-individual.jpg",
+    objectPosition: "center",
     heroTitle: "Keep building enquiries organised.",
     heroSub: "Solren tracks every enquiry while you manage sites, subbies and clients.",
     problems: [
@@ -165,7 +177,8 @@ export const industries: Industry[] = [
     audience: "roofers",
     label: "Roofing · at height",
     icon: HardHat,
-    image: "/images/trades/roofer-01.jpg",
+    image: "/images/trades/roofers/industries-roofing.jpg",
+    heroImage: "/images/trades/roofers/roofers-page.jpg",
     objectPosition: "50% 40%",
     heroTitle: "Keep roofing enquiries moving while you are on site.",
     heroSub: "When storm work floods in, Solren answers every enquiry so none slip.",
@@ -204,7 +217,8 @@ export const industries: Industry[] = [
     audience: "landscapers",
     label: "Landscaping · grounds",
     icon: Trees,
-    image: "/images/trades/landscaper-01.jpg",
+    image: "/images/trades/landscapers/landscapers-industry.jpg",
+    heroImage: "/images/trades/landscapers/landscapers-page.jpg",
     objectPosition: "center",
     heroTitle: "Stay on top of seasonal enquiries and quotes.",
     heroSub: "Solren replies and follows up while you are out on site or the mowing round.",
@@ -244,6 +258,7 @@ export const industries: Industry[] = [
     label: "HVAC · rooftop",
     icon: Wind,
     image: "/images/trades/hvac-01.webp",
+    heroImage: "/images/trades/hvac/hvac-page.jpg",
     objectPosition: "center",
     heroTitle: "Keep HVAC enquiries moving.",
     heroSub: "Solren keeps up with peak-season demand so no install or breakdown waits until morning.",
@@ -282,7 +297,8 @@ export const industries: Industry[] = [
     audience: "cleaners",
     label: "Cleaning · crew",
     icon: SprayCan,
-    image: "/images/trades/cleaner-01.jpg",
+    image: "/images/trades/cleaners/cleaners-industry.jpg",
+    heroImage: "/images/trades/cleaners/cleaners-page.jpg",
     objectPosition: "center",
     heroTitle: "Turn cleaning enquiries into scheduled work.",
     heroLoose: true,
@@ -322,7 +338,8 @@ export const industries: Industry[] = [
     audience: "pest control businesses",
     label: "Pest control · field",
     icon: Bug,
-    image: "/images/trades/pest-01.jpg",
+    image: "/images/trades/pest-control/pest-control-industry.jpg",
+    heroImage: "/images/trades/pest-control/pest-control-page.jpg",
     objectPosition: "40% center",
     heroTitle: "Respond fast before pests become someone else's job.",
     heroSub: "Solren catches urgent callouts and recurring plans before they go cold.",
@@ -361,7 +378,8 @@ export const industries: Industry[] = [
     audience: "painters",
     label: "Painting · on site",
     icon: Paintbrush,
-    image: "/images/industries/painters.jpg",
+    image: "/images/trades/painters/painters-industry.jpg",
+    heroImage: "/images/trades/painters/painters-page.jpg",
     objectPosition: "60% center",
     heroTitle: "Keep painting quotes moving without the chase.",
     heroLoose: true,
@@ -401,7 +419,8 @@ export const industries: Industry[] = [
     audience: "concreters",
     label: "Concrete · on site",
     icon: Layers,
-    image: "/images/industries/concreters.jpg",
+    image: "/images/trades/concreters/concreters-industry-desktop.jpg",
+    heroImage: "/images/trades/concreters/concreters-page.webp",
     objectPosition: "center",
     heroTitle: "Keep concrete enquiries moving before the schedule fills.",
     heroSub: "Solren catches enquiries and locks in pours while your hands are full on the slab.",
@@ -440,7 +459,8 @@ export const industries: Industry[] = [
     audience: "pool service businesses",
     label: "Pool services · maintenance",
     icon: Waves,
-    image: "/images/industries/pool-services.jpg",
+    image: "/images/trades/pool-service/pool-service-industry.jpg",
+    heroImage: "/images/trades/pool-service/pool-service-page.jpg",
     objectPosition: "center",
     heroTitle: "Keep pool service enquiries moving all season.",
     heroSub: "From green pools to regular servicing, Solren keeps every job on track.",
@@ -480,6 +500,7 @@ export const industries: Industry[] = [
     label: "Handyman · local jobs",
     icon: Wrench,
     image: "/images/industries/handyman.jpg",
+    heroImage: "/images/trades/handyman/handyman-page.jpg",
     objectPosition: "60% center",
     heroTitle: "Turn small jobs and callouts into booked work.",
     heroSub: "Solren replies fast to a steady stream of enquiries so you are not living in your inbox.",
