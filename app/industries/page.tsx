@@ -70,7 +70,7 @@ export default function IndustriesPage() {
       <section className="hidden lg:block lg:pb-2 lg:pt-4">
         <div className="mx-auto max-w-[700px] px-6">
           <Reveal>
-            <div className="grid grid-cols-2 items-start gap-x-12">
+            <div className="grid grid-cols-[1fr_auto_1fr] items-stretch gap-x-7">
               <div>
                 <div className="flex items-center gap-2.5">
                   <span aria-hidden="true" className="h-1.5 w-1.5 rounded-full bg-[#537FEA]" />
@@ -97,6 +97,9 @@ export default function IndustriesPage() {
                   </Link>
                 </div>
               </div>
+
+              {/* subtle 1px divider between the two columns — solid, low contrast */}
+              <div aria-hidden="true" className="w-px self-stretch bg-white/[0.08]" />
 
               <div>
                 <div className="flex items-center gap-2.5">
@@ -127,13 +130,6 @@ export default function IndustriesPage() {
           </Reveal>
         </div>
       </section>
-
-      {/* Desktop only: an extremely subtle dark-to-black fade that eases the eye
-          from the content into the footer — full width, no line, border or glow. */}
-      <div
-        aria-hidden="true"
-        className="hidden h-24 w-full bg-gradient-to-b from-transparent to-black lg:block"
-      />
 
       {/* Mobile/tablet keep the existing premium CTA card (last child for the
           footer-gap rule); the desktop version above replaces it from lg up. */}
