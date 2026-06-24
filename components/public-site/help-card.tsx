@@ -8,16 +8,16 @@ export function HelpCard({
   summary,
   href,
   accent = false,
-  mobileBlue = false,
+  blue = false,
 }: {
   title: string
   summary: string
   href: string
   /* use the restrained Solren-blue arrow as a branded navigation accent */
   accent?: boolean
-  /* show the Solren-blue arrow on mobile only (<768px), reverting to the default
-     grey treatment from md up — keeps desktop unchanged (used on Trust Centre) */
-  mobileBlue?: boolean
+  /* Solren-blue arrow on all breakpoints (used on Trust Centre) — the arrow itself
+     is #537FEA; no background, highlight or glow, keeping the existing hover lift */
+  blue?: boolean
 }) {
   return (
     <Link
@@ -30,8 +30,8 @@ export function HelpCard({
           className={`mt-0.5 h-4 w-4 shrink-0 transition-all duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 ${
             accent
               ? "text-[#537FEA]/80 group-hover:text-[#537FEA]"
-              : mobileBlue
-                ? "text-[#537FEA] group-hover:text-[#537FEA] md:text-[var(--faint)] md:group-hover:text-[#86A2F0]"
+              : blue
+                ? "text-[#537FEA] group-hover:text-[#86A2F0]"
                 : "text-[var(--faint)] group-hover:text-[#86A2F0]"
           }`}
         />

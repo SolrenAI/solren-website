@@ -75,7 +75,7 @@ export default function TrustPage() {
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {cards.map((c, i) => (
               <Reveal key={c.title} delay={(i % 3) * 70}>
-                <HelpCard title={c.title} summary={c.summary} href={c.href} mobileBlue />
+                <HelpCard title={c.title} summary={c.summary} href={c.href} blue />
               </Reveal>
             ))}
           </div>
