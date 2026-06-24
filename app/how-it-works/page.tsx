@@ -49,7 +49,12 @@ export default function HowItWorksPage() {
 
       <WorkSplit />
 
-      <InstalledAround />
+      {/* The "Custom-built" pill is removed from the md+ layout in favour of the
+          simpler closing trust strip below; kept on phones (where Trust is hidden)
+          so the mobile layout is unchanged for now. */}
+      <div className="md:hidden">
+        <InstalledAround />
+      </div>
 
       <Trust />
     </>

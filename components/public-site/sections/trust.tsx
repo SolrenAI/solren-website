@@ -12,9 +12,7 @@ type Item =
   | { kind: "pill"; name: string; icon: string; label: string; icon_color: string; text_color: string; icon_size: number; pill_bg: string; icon_gradient?: string }
   | { kind: "text"; name: string; label: string; color: string }
 
-// ordered to read as two balanced centered rows (4 over 3), no logo stranded:
-//   Row 1: OpenAI · Supabase · n8n · Vercel
-//   Row 2: Google Workspace · Hetzner · Stripe
+// a single compact trust strip: OpenAI · Supabase · n8n · Vercel · Google Workspace · Stripe
 const items: Item[] = [
   { kind: "lockup", name: "OpenAI", icon: "openai.svg", label: "OpenAI", color: "#FFFFFF", icon_size: 21 },
   { kind: "lockup", name: "Supabase", icon: "supabase.svg", label: "Supabase", color: "#3ECF8E", icon_size: 26 },
@@ -32,7 +30,6 @@ const items: Item[] = [
     icon_size: 14,
     pill_bg: "#ECECEE",
   },
-  { kind: "image", name: "Hetzner Cloud", file: "hetzner.png", w: 23, h: 23, label: "Hetzner", label_color: "#E8344C" },
   { kind: "image", name: "Stripe", file: "stripe.svg", w: 65, h: 27 },
 ]
 
@@ -116,26 +113,24 @@ function LogoItem({ item }: { item: Item }) {
 
 export function Trust() {
   return (
-    /* How It Works only (hidden md:block = desktop-only). No background panel —
-       the strip blends into the page ground, set apart only by a subtle,
-       edge-fading divider above it. A generous top margin gives breathing room
-       from the custom-built section and pushes the strip down toward the footer;
-       the small inline paddingBottom keeps the gap before the footer modest
-       (overriding the global #main last-child cap, so the footer's 96px margin
-       reads as a tidy gap rather than dead space). */
-    <section className="relative mt-20 hidden md:block" style={{ paddingBottom: "0.5rem" }}>
+    /* How It Works only (hidden md:block). The page's closing trust strip: one
+       quiet line + a compact logo row on the open page ground, framed by the
+       divider above and the footer's divider below. No panel, no pill, no heading
+       hierarchy. The small inline paddingBottom keeps the gap before the footer
+       modest (overriding the global #main last-child cap). */
+    <section className="relative hidden md:block" style={{ paddingBottom: "0.5rem" }}>
       {/* subtle, low-opacity divider that fades at both edges — no heavy panel */}
       <div
         aria-hidden="true"
         className="mx-auto h-px w-full max-w-[1240px] bg-gradient-to-r from-transparent via-white/[0.10] to-transparent"
       />
-      <div className="mx-auto max-w-[1240px] px-6 pt-6">
-        {/* Compact trust strip: a small label + one flowing row of marks. No
-            heading hierarchy, no standalone-section framing — a quiet trust signal
-            that wraps gracefully rather than reading as its own content block. */}
+      <div className="mx-auto max-w-[1240px] px-6 pt-10">
+        {/* compact trust strip: one quiet line + one flowing row of marks */}
         <Reveal>
-          <div className="flex flex-col items-start gap-5">
-            <span className="ps-label">Built on proven infrastructure</span>
+          <div className="flex flex-col items-start gap-6">
+            <p className="text-[15px] leading-relaxed text-[var(--silver)]">
+              Installed around the tools you already use.
+            </p>
             <div className="flex max-w-[1040px] flex-wrap items-center justify-start gap-x-10 gap-y-5">
               {items.map((item) => (
                 <LogoItem key={item.name} item={item} />
