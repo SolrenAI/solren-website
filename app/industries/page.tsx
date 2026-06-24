@@ -7,7 +7,7 @@ import { TrustSignals } from "@/components/public-site/sections/trust-signals"
 import { FinalCta } from "@/components/public-site/sections/final-cta"
 import { industries } from "@/components/public-site/industries-data"
 import Link from "next/link"
-import { ArrowUpRight, Check } from "lucide-react"
+import { ArrowUpRight } from "lucide-react"
 
 export const metadata: Metadata = {
   title: "Industries",
@@ -63,76 +63,38 @@ export default function IndustriesPage() {
 
       <TrustSignals tightTop />
 
-      {/* Desktop conclusion — the payoff after the headline. A centred two-column
-          benefit grid (no card) with a 1px divider between equal columns; each CTA
-          sits centred under its column. Kept before the mobile FinalCta so FinalCta
-          stays the last child and the footer-gap rule still governs spacing. */}
+      {/* Desktop conclusion — a single centred benefit strip under the headline:
+          one line of benefits separated by subtle Solren-blue dots, then the two
+          CTAs centred beneath. No card, no divider, no columns. Kept before the
+          mobile FinalCta so FinalCta stays the last child for the footer-gap rule. */}
       <section className="hidden lg:block lg:pb-2 lg:pt-4">
-        <div className="mx-auto max-w-[760px] px-6">
+        <div className="mx-auto max-w-[760px] px-6 text-center">
           <Reveal>
-            {/* Equal 1fr columns with a centred divider between them. Each column's
-                content is left-aligned inside a w-fit block, and each button is
-                centred under that block — structural, no manual margins. */}
-            <div className="grid grid-cols-[1fr_auto_1fr] items-stretch gap-x-7">
-              {/* Business results */}
-              <div>
-                <div className="w-fit">
-                  <div className="flex items-center gap-2.5">
-                    <span aria-hidden="true" className="h-1.5 w-1.5 rounded-full bg-[#537FEA]" />
-                    <span className="ps-label !text-[11.5px] !tracking-[0.22em] !text-[var(--silver)]">
-                      Business results
-                    </span>
-                  </div>
-                  <ul className="mt-7 space-y-4">
-                    {["Faster replies", "More booked work", "Higher conversion rates"].map((b) => (
-                      <li key={b} className="flex items-center gap-3">
-                        <Check className="h-4 w-4 shrink-0 text-[#6A8FEE]" strokeWidth={2.4} />
-                        <span className="text-[16px] leading-snug text-[var(--silver)]">{b}</span>
-                      </li>
-                    ))}
-                  </ul>
-                  <div className="mt-9 flex justify-center">
-                    <Link
-                      href="/contact"
-                      className="group inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-[#537FEA] px-7 py-3.5 text-[15px] font-medium text-black transition-colors hover:bg-[#6A8FEE]"
-                    >
-                      Get started
-                      <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-                    </Link>
-                  </div>
-                </div>
-              </div>
+            <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-2 text-[15px] leading-snug text-[var(--silver)]">
+              {["Faster replies", "More booked work", "Less admin", "Follow-up handled"].map((b, i) => (
+                <span key={b} className="flex items-center gap-x-4">
+                  {i > 0 && (
+                    <span aria-hidden="true" className="h-1 w-1 shrink-0 rounded-full bg-[#537FEA]" />
+                  )}
+                  <span>{b}</span>
+                </span>
+              ))}
+            </div>
 
-              {/* centre divider — spans the content/button area only */}
-              <div aria-hidden="true" className="w-px self-stretch bg-white/[0.08]" />
-
-              {/* Less admin */}
-              <div>
-                <div className="w-fit">
-                  <div className="flex items-center gap-2.5">
-                    <span aria-hidden="true" className="h-1.5 w-1.5 rounded-full bg-[#537FEA]" />
-                    <span className="ps-label !text-[11.5px] !tracking-[0.22em] !text-[var(--silver)]">
-                      Less admin
-                    </span>
-                  </div>
-                  <ul className="mt-7 space-y-4">
-                    {["No chasing enquiries", "Follow-up handled automatically", "Installed and managed"].map((b) => (
-                      <li key={b} className="flex items-center gap-3">
-                        <Check className="h-4 w-4 shrink-0 text-[#6A8FEE]" strokeWidth={2.4} />
-                        <span className="text-[16px] leading-snug text-[var(--silver)]">{b}</span>
-                      </li>
-                    ))}
-                  </ul>
-                  <div className="mt-9 flex justify-center">
-                    <Link
-                      href="/pricing"
-                      className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full border border-[var(--hair-strong)] px-7 py-3.5 text-[15px] font-medium text-white transition-colors hover:bg-white/[0.03]"
-                    >
-                      See pricing
-                    </Link>
-                  </div>
-                </div>
-              </div>
+            <div className="mt-9 flex items-center justify-center gap-3">
+              <Link
+                href="/contact"
+                className="group inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-[#537FEA] px-7 py-3.5 text-[15px] font-medium text-black transition-colors hover:bg-[#6A8FEE]"
+              >
+                Get started
+                <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+              </Link>
+              <Link
+                href="/pricing"
+                className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full border border-[var(--hair-strong)] px-7 py-3.5 text-[15px] font-medium text-white transition-colors hover:bg-white/[0.03]"
+              >
+                See pricing
+              </Link>
             </div>
           </Reveal>
         </div>
