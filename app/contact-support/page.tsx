@@ -66,13 +66,13 @@ export default function ContactSupportPage() {
       />
 
       <section className="py-16 sm:py-24">
-        <div className="mx-auto max-w-[760px] px-6">
+        <div className="mx-auto max-w-[1240px] px-6">
           {/* What to include — quick, scannable guidance */}
           <Reveal>
             <h2 className="text-[19px] font-medium tracking-tight text-white">
               What to include
             </h2>
-            <div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-3">
+            <div className="mt-6 grid max-w-[1040px] grid-cols-1 gap-4 sm:grid-cols-3">
               {include.map((c) => (
                 <div
                   key={c.title}
@@ -90,7 +90,7 @@ export default function ContactSupportPage() {
           </Reveal>
 
           {/* detail sections */}
-          <div className="mt-14 space-y-12">
+          <div className="mt-14 max-w-[800px] space-y-12">
             {sections.map((s, i) => (
               <Reveal key={s.h} delay={i * 30}>
                 <div className="border-t border-[var(--hair)] pt-10">
@@ -107,7 +107,7 @@ export default function ContactSupportPage() {
 
           {/* Useful links */}
           <Reveal>
-            <div className="mt-12 border-t border-[var(--hair)] pt-10">
+            <div className="mt-12 max-w-[800px] border-t border-[var(--hair)] pt-10">
               <h2 className="text-[19px] font-medium tracking-tight text-white">
                 Useful links
               </h2>
@@ -131,7 +131,7 @@ export default function ContactSupportPage() {
 
           {/* final note */}
           <Reveal>
-            <p className="mt-12 border-t border-[var(--hair)] pt-10 text-[14px] leading-relaxed text-[var(--muted)]">
+            <p className="mt-12 max-w-[800px] border-t border-[var(--hair)] pt-10 text-[14px] leading-relaxed text-[var(--muted)]">
               We&apos;ll review your request and reply with the next step. For
               anything else, email{" "}
               <a
