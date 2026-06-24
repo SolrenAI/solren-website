@@ -5,6 +5,7 @@ import { IndustriesPreview } from "@/components/public-site/sections/industries-
 import { ProcessPreview } from "@/components/public-site/sections/process-preview"
 import { TrustSignals } from "@/components/public-site/sections/trust-signals"
 import { FinalCta } from "@/components/public-site/sections/final-cta"
+import { ClosingCards } from "@/components/public-site/sections/closing-cards"
 
 export const metadata: Metadata = {
   alternates: { canonical: "/" },
@@ -31,7 +32,10 @@ export default function PublicSiteHome() {
       <ProcessPreview />
       <SectionRule />
       <TrustSignals />
-      <FinalCta />
+      {/* Desktop: the stronger two-card closing area. Mobile/tablet keep the
+          FinalCta card (last child, for the footer-gap rule). */}
+      <ClosingCards />
+      <FinalCta mobileOnly />
     </>
   )
 }
