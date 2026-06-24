@@ -105,20 +105,25 @@ export default function IndustriesPage() {
                   results and gains breathing room from the divider (content stays
                   internally left-aligned, so the check marks stay aligned) */}
               <div className="flex flex-col items-end">
-                <div className="flex items-center gap-2.5">
-                  <span aria-hidden="true" className="h-1.5 w-1.5 rounded-full bg-[#537FEA]" />
-                  <span className="ps-label !text-[11.5px] !tracking-[0.22em] !text-[var(--silver)]">
-                    Less admin
-                  </span>
+                {/* heading + bullets in one right-positioned block so they share the
+                    same left rail (left-aligned inside); the button stays a separate
+                    right-aligned sibling, exactly where it was */}
+                <div className="w-fit">
+                  <div className="flex items-center gap-2.5">
+                    <span aria-hidden="true" className="h-1.5 w-1.5 rounded-full bg-[#537FEA]" />
+                    <span className="ps-label !text-[11.5px] !tracking-[0.22em] !text-[var(--silver)]">
+                      Less admin
+                    </span>
+                  </div>
+                  <ul className="mt-7 space-y-4">
+                    {["No chasing enquiries", "Follow-up handled automatically", "Installed and managed"].map((b) => (
+                      <li key={b} className="flex items-center gap-3">
+                        <Check className="h-4 w-4 shrink-0 text-[#6A8FEE]" strokeWidth={2.4} />
+                        <span className="text-[16px] leading-snug text-[var(--silver)]">{b}</span>
+                      </li>
+                    ))}
+                  </ul>
                 </div>
-                <ul className="mt-7 space-y-4">
-                  {["No chasing enquiries", "Follow-up handled automatically", "Installed and managed"].map((b) => (
-                    <li key={b} className="flex items-center gap-3">
-                      <Check className="h-4 w-4 shrink-0 text-[#6A8FEE]" strokeWidth={2.4} />
-                      <span className="text-[16px] leading-snug text-[var(--silver)]">{b}</span>
-                    </li>
-                  ))}
-                </ul>
                 {/* secondary CTA, aligned under the Less admin column */}
                 <div className="mt-9">
                   <Link
