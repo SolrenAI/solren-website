@@ -118,20 +118,21 @@ export function Trust() {
        divider above and the footer's divider below. No panel, no pill, no heading
        hierarchy. The small inline paddingBottom keeps the gap before the footer
        modest (overriding the global #main last-child cap). */
-    <section className="relative hidden md:block" style={{ paddingBottom: "0.5rem" }}>
+    <section className="relative hidden md:mt-4 md:block" style={{ paddingBottom: "0.5rem" }}>
       {/* subtle, low-opacity divider that fades at both edges — no heavy panel */}
       <div
         aria-hidden="true"
         className="mx-auto h-px w-full max-w-[1240px] bg-gradient-to-r from-transparent via-white/[0.10] to-transparent"
       />
-      <div className="mx-auto max-w-[1240px] px-6 pt-10">
-        {/* compact trust strip: one quiet line + one flowing row of marks */}
+      <div className="mx-auto max-w-[1240px] px-6 pt-8">
+        {/* compact trust strip: one quiet centred line + one flowing centred row of
+            marks, so it reads as a single quiet strip echoing the centred cards above */}
         <Reveal>
-          <div className="flex flex-col items-start gap-6">
-            <p className="text-[15px] leading-relaxed text-[var(--silver)]">
+          <div className="flex flex-col items-center gap-6">
+            <p className="text-center text-[15px] leading-relaxed text-[var(--silver)]">
               Installed around the tools you already use.
             </p>
-            <div className="flex max-w-[1040px] flex-wrap items-center justify-start gap-x-10 gap-y-5">
+            <div className="mx-auto flex max-w-[1040px] flex-wrap items-center justify-center gap-x-8 gap-y-5">
               {items.map((item) => (
                 <LogoItem key={item.name} item={item} />
               ))}

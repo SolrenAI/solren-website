@@ -94,7 +94,10 @@ export default function TrustPage() {
               </p>
               <div className="mt-10 grid grid-cols-1 gap-x-10 gap-y-8 sm:grid-cols-3">
                 {reliability.map((r) => (
-                  <div key={r.title} className="border-t border-[var(--hair)] pt-5">
+                  /* On mobile the stacked columns keep a top rule as a separator;
+                     from sm up they sit side-by-side, where three short rules read
+                     as wireframe — so the rule is dropped in favour of whitespace. */
+                  <div key={r.title} className="border-t border-[var(--hair)] pt-5 sm:border-t-0 sm:pt-0">
                     <h3 className="text-[15.5px] font-medium tracking-tight text-white">
                       {r.title}
                     </h3>
@@ -109,7 +112,7 @@ export default function TrustPage() {
 
           {/* quiet closing CTA — single line, one action, no sales section */}
           <Reveal>
-            <div className="mt-12 border-t border-[var(--hair)] pt-10">
+            <div className="mt-12 border-t border-[var(--hair)] pt-10 sm:mt-8 sm:pb-6 sm:pt-8 sm:text-center">
               <p className="text-[16px] leading-relaxed text-[var(--silver)]">
                 Ready to see how Solren handles your enquiries?
               </p>
@@ -124,7 +127,9 @@ export default function TrustPage() {
           </Reveal>
 
           <Reveal>
-            <p className="mt-12 border-t border-[var(--hair)] pt-10 text-[14px] leading-relaxed text-[var(--muted)]">
+            {/* Mobile keeps this small print; on desktop it is hidden so the Get
+                started button is the final element before the footer. */}
+            <p className="mt-12 border-t border-[var(--hair)] pt-10 text-[14px] leading-relaxed text-[var(--muted)] sm:hidden">
               You can also read our{" "}
               <a href="/terms" className="text-[var(--silver)] underline-offset-2 hover:underline">
                 Terms of Service

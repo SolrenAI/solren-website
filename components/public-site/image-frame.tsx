@@ -16,6 +16,7 @@ export function ImageFrame({
   icon: Icon,
   className = "",
   src,
+  srcDesktop,
   tall = false,
   priority = false,
   sizes = "(min-width: 1024px) 420px, 100vw",
@@ -32,6 +33,10 @@ export function ImageFrame({
   icon: LucideIcon
   className?: string
   src?: string
+  /* optional desktop-only photo: when set, `src` renders below lg and this
+     renders from lg up (same frame, size, fit and overlays). Lets a page swap a
+     photo on desktop without touching the mobile/tablet image. */
+  srcDesktop?: string
   tall?: boolean
   priority?: boolean
   sizes?: string
@@ -72,9 +77,23 @@ export function ImageFrame({
             priority={priority}
             className={`${
               fit === "contain" ? "object-contain" : "object-cover"
-            } ${clear ? "if-photo-clear" : "if-photo"}`}
+            } ${clear ? "if-photo-clear" : "if-photo"} ${srcDesktop ? "lg:hidden" : ""}`}
             style={{ objectPosition }}
           />
+          {/* desktop-only override image: identical frame, shown from lg up */}
+          {srcDesktop && (
+            <Image
+              src={srcDesktop}
+              alt={alt ?? label}
+              fill
+              sizes={sizes}
+              priority={priority}
+              className={`hidden ${
+                fit === "contain" ? "object-contain" : "object-cover"
+              } ${clear ? "if-photo-clear" : "if-photo"} lg:block`}
+              style={{ objectPosition }}
+            />
+          )}
           {/* theme-aware overlays: a flat tint, a bottom gradient that keeps the
               caption readable, and a soft vignette — lighter in light mode. The
               `clear` variant softens the tint and drops the bottom gradient so a

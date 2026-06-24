@@ -11,6 +11,8 @@ type Trade = {
   label: string
   icon: LucideIcon
   src: string
+  /* optional desktop-only (lg+) photo override; mobile/tablet keep `src` */
+  srcDesktop?: string
   objectPosition: string
   span: string
 }
@@ -45,6 +47,7 @@ const trades: Trade[] = [
     label: "HVAC · rooftop",
     icon: Wind,
     src: "/images/trades/hvac-01.webp",
+    srcDesktop: "/images/trades/hvac-rooftop.jpg",
     objectPosition: "center",
     span: "lg:col-start-3 lg:col-span-2 lg:row-start-2",
   },
@@ -86,6 +89,7 @@ export function IndustriesPreview() {
                     label={t.name}
                     icon={Icon}
                     src={t.src}
+                    srcDesktop={t.srcDesktop}
                     objectPosition={t.objectPosition}
                     sizes={i === 0 ? "(min-width:1024px) 600px, (min-width:640px) 50vw, 100vw" : "(min-width:1024px) 300px, (min-width:640px) 50vw, 100vw"}
                     hideCaption

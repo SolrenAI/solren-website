@@ -31,6 +31,7 @@ export function LegalDoc({
   footer,
   toc = false,
   tightTop = false,
+  looseTitle = false,
   summary,
   afterToc,
   wide = false,
@@ -48,6 +49,9 @@ export function LegalDoc({
   toc?: boolean
   /* trim the gap between the hero and the contents, for this page only */
   tightTop?: boolean
+  /* open the hero title's line-height + headroom (PageHeader's looseTitle) so a
+     short single-line title isn't clipped by the gradient text-clip. */
+  looseTitle?: boolean
   /* small "at a glance" card shown above the body, instead of a full contents box */
   summary?: { title: string; items: string[] }
   /* optional custom content rendered between the contents box and the sections,
@@ -71,7 +75,7 @@ export function LegalDoc({
 
   return (
     <>
-      <PageHeader eyebrow={eyebrow} title={title} sub={sub} note={`${dateLabel}: ${lastUpdated}`} />
+      <PageHeader eyebrow={eyebrow} title={title} sub={sub} note={`${dateLabel}: ${lastUpdated}`} looseTitle={looseTitle} />
 
       <section className={`ps-doc ${tightTop ? "pb-12 pt-6 sm:pb-24 sm:pt-14" : "py-12 sm:py-24"}`}>
         {/* The contents box is a compact index — left-aligned on the same rail as

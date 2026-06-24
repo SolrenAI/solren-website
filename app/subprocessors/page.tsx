@@ -53,18 +53,20 @@ const providers: { provider: string; purpose: string; data: string }[] = [
 ]
 
 const headCell =
-  "text-[11px] font-semibold uppercase tracking-[0.2em] text-[var(--silver)]"
+  "text-[11px] font-semibold uppercase tracking-[0.18em] text-[var(--muted)]"
 const mobileLabel =
   "mb-1 block text-[11px] font-semibold uppercase tracking-[0.2em] text-[var(--faint)] sm:hidden"
-const cols = "sm:grid sm:grid-cols-[1.1fr_1.5fr_1.6fr] sm:gap-8"
-/* very faint vertical divider, desktop only — guides the eye between columns
-   without the heavy lines that would make the table read like a spreadsheet */
-const divCell = "sm:border-l sm:border-white/[0.05] sm:pl-8"
+/* Columns share one baseline and breathe via generous column gap (desktop only)
+   rather than vertical rules, so the table reads as a calm document, not a grid.
+   The sm: prefixes keep the stacked mobile layout untouched. */
+const cols = "sm:grid sm:grid-cols-[1.1fr_1.5fr_1.6fr] sm:items-baseline sm:gap-12"
 
 /* Why-this-page intro + the provider table, rendered between the contents box
    and the policy sections. */
 const afterToc = (
-  <>
+  /* Intro + table share one readable measure, left-aligned on the same rail as
+     the body prose, so the table never floats wider than the page content. */
+  <div className="max-w-[860px]">
     <Reveal>
       <h2 className="text-[19px] font-medium tracking-tight text-white">
         Why this page exists
@@ -78,32 +80,39 @@ const afterToc = (
     </Reveal>
 
     <Reveal>
-      <div className="mt-10 overflow-hidden rounded-2xl border border-[var(--hair)]">
+      {/* Calm document table: a soft outer hairline, no vertical rules and no
+          header fill, so it reads as part of the page rather than a database.
+          Mobile keeps its stacked, labelled cells unchanged (sm: prefixes). */}
+      <div className="mt-10 overflow-hidden rounded-2xl border border-[var(--hair)] sm:border-white/[0.06]">
         {/* header row — shown from sm up; on mobile each cell carries its own label */}
-        <div className={`hidden border-b border-[var(--hair)] bg-white/[0.02] px-7 py-4 ${cols}`}>
+        <div className={`hidden border-b border-white/[0.06] px-7 py-3.5 ${cols}`}>
           <span className={headCell}>Provider</span>
-          <span className={`${headCell} ${divCell}`}>Purpose</span>
-          <span className={`${headCell} ${divCell}`}>Data involved</span>
+          <span className={headCell}>Purpose</span>
+          <span className={headCell}>Data involved</span>
         </div>
 
         {providers.map((p, i) => (
           <div
             key={p.provider}
-            className={`px-7 py-7 ${cols} ${
-              i !== providers.length - 1 ? "border-b border-[var(--hair)]" : ""
+            className={`group px-7 py-7 transition-colors sm:hover:bg-white/[0.02] ${cols} ${
+              i !== providers.length - 1
+                ? "border-b border-[var(--hair)] sm:border-white/[0.06]"
+                : ""
             }`}
           >
             <div>
               <span className={mobileLabel}>Provider</span>
-              <p className="text-[15px] font-medium text-white">{p.provider}</p>
+              <p className="text-[15px] font-medium text-white transition-colors sm:group-hover:text-[#537FEA]">
+                {p.provider}
+              </p>
             </div>
-            <div className={`mt-3 sm:mt-0 ${divCell}`}>
+            <div className="mt-3 sm:mt-0">
               <span className={mobileLabel}>Purpose</span>
               <p className="text-[14.5px] leading-relaxed text-[var(--silver)]">
                 {p.purpose}
               </p>
             </div>
-            <div className={`mt-3 sm:mt-0 ${divCell}`}>
+            <div className="mt-3 sm:mt-0">
               <span className={mobileLabel}>Data involved</span>
               <p className="text-[14.5px] leading-relaxed text-[var(--silver)]">
                 {p.data}
@@ -113,7 +122,7 @@ const afterToc = (
         ))}
       </div>
     </Reveal>
-  </>
+  </div>
 )
 
 /* Sections support the table above rather than restating each provider: they
@@ -170,7 +179,7 @@ export default function SubprocessorsPage() {
       sub="A transparent list of the trusted providers that help Solren run, process payments, connect email accounts and support AI-assisted reply drafting."
       dateLabel="Last reviewed"
       lastUpdated="1 January 2026"
-      wide
+      looseTitle
       afterToc={afterToc}
       sections={sections}
       footer={

@@ -127,7 +127,7 @@ export const industries: Industry[] = [
     label: "Building · on site",
     icon: Hammer,
     image: "/images/trades/builder-01.jpg",
-    objectPosition: "50% 65%",
+    objectPosition: "50% 42%",
     heroTitle: "Keep building enquiries organised.",
     heroSub: "Solren tracks every enquiry while you manage sites, subbies and clients.",
     problems: [

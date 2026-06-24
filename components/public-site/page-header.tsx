@@ -13,6 +13,7 @@ export function PageHeader({
   nudgeLeft = false,
   containerClass = "max-w-[1240px]",
   bottomClass = "pb-12 sm:pb-16 lg:pb-20",
+  titleClass = "text-[clamp(2.05rem,8.5vw,4.4rem)]",
 }: {
   eyebrow: string
   title: React.ReactNode
@@ -37,6 +38,9 @@ export function PageHeader({
   containerClass?: string
   /* override the hero bottom padding (e.g. to tuck a grid closer beneath it) */
   bottomClass?: string
+  /* override the hero title size classes (e.g. a smaller, more compact title on
+     a utility page); defaults to the standard large hero clamp */
+  titleClass?: string
 }) {
   return (
     <>
@@ -57,7 +61,7 @@ export function PageHeader({
               `looseTitle` opens the line-height and padding further for headlines
               that wrap, so glyph tops and bottoms render cleanly. */}
           <h1
-            className={`mt-5 max-w-3xl overflow-visible text-[clamp(2.05rem,8.5vw,4.4rem)] font-medium tracking-[-0.03em] ps-silver sm:mt-7 ${
+            className={`mt-5 max-w-3xl overflow-visible ${titleClass} font-medium tracking-[-0.03em] ps-silver sm:mt-7 ${
               looseTitle ? "leading-[1.08] pb-[0.2em] pt-[0.04em]" : "leading-[1.02] pb-[0.14em] sm:leading-[0.98]"
             }`}
           >
