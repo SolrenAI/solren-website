@@ -67,7 +67,7 @@ export default function IndustriesPage() {
           panels (no card) split by a quiet fading divider; CTAs sit below. Kept
           before the mobile FinalCta so FinalCta stays the last child and the
           footer-gap rule still governs spacing. */}
-      <section className="hidden lg:block lg:pb-6 lg:pt-4">
+      <section className="hidden lg:block lg:pb-2 lg:pt-4">
         <div className="mx-auto max-w-[700px] px-6">
           <Reveal>
             <div className="grid grid-cols-2 items-start gap-x-12">
@@ -127,6 +127,13 @@ export default function IndustriesPage() {
           </Reveal>
         </div>
       </section>
+
+      {/* Desktop only: an extremely subtle dark-to-black fade that eases the eye
+          from the content into the footer — full width, no line, border or glow. */}
+      <div
+        aria-hidden="true"
+        className="hidden h-24 w-full bg-gradient-to-b from-transparent to-black lg:block"
+      />
 
       {/* Mobile/tablet keep the existing premium CTA card (last child for the
           footer-gap rule); the desktop version above replaces it from lg up. */}

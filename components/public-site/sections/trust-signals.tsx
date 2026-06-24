@@ -9,8 +9,8 @@ export function TrustSignals({ tightTop = false }: { tightTop?: boolean }) {
        of the section above rather than a floating section, and give the eyebrow a
        restrained Solren-blue accent. */
     <section
-      className={`relative pb-12 pt-12 sm:pb-20 sm:pt-24 lg:pb-24 ${
-        tightTop ? "lg:pt-10" : "lg:pt-32"
+      className={`relative pb-12 pt-12 sm:pb-20 sm:pt-24 ${
+        tightTop ? "lg:pt-10 lg:pb-12" : "lg:pt-32 lg:pb-24"
       }`}
     >
       <div className="mx-auto max-w-[1000px] px-5 text-center sm:px-6">
