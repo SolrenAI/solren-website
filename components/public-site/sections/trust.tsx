@@ -36,8 +36,6 @@ const items: Item[] = [
   { kind: "image", name: "Stripe", file: "stripe.svg", w: 65, h: 27 },
 ]
 
-const logoRows = [items.slice(0, 4), items.slice(4)]
-
 const NAME = "whitespace-nowrap text-[18px] font-semibold tracking-tight sm:text-[19px]"
 
 function LogoItem({ item }: { item: Item }) {
@@ -132,32 +130,17 @@ export function Trust() {
         className="mx-auto h-px w-full max-w-[1080px] bg-gradient-to-r from-transparent via-white/[0.10] to-transparent"
       />
       <div className="mx-auto max-w-[1240px] px-6 pt-6">
+        {/* Compact trust strip: a small label + one flowing row of marks. No
+            heading hierarchy, no standalone-section framing — a quiet trust signal
+            that wraps gracefully rather than reading as its own content block. */}
         <Reveal>
-          <div className="mx-auto max-w-2xl text-center">
-            <span className="ps-label">Infrastructure</span>
-            <h2 className="mt-3 text-[clamp(1.25rem,2.3vw,1.65rem)] font-medium leading-[1.15] tracking-[-0.02em] ps-silver">
-              Built on proven infrastructure.
-            </h2>
-            <p className="mx-auto mt-3 max-w-lg text-[14px] leading-relaxed text-[var(--muted)]">
-              Trusted technology behind Solren&apos;s automation, messaging and
-              payments.
-            </p>
-          </div>
-        </Reveal>
-
-        {/* two balanced centered rows (4 over 3) — a distinct trust layer, no marquee */}
-        <Reveal delay={90}>
-          <div className="mx-auto mt-4 flex max-w-[920px] flex-col items-center gap-y-6">
-            {logoRows.map((row, r) => (
-              <div
-                key={r}
-                className="flex flex-wrap items-center justify-center gap-x-[46px] gap-y-6 sm:gap-x-[62px]"
-              >
-                {row.map((item) => (
-                  <LogoItem key={item.name} item={item} />
-                ))}
-              </div>
-            ))}
+          <div className="flex flex-col items-center gap-5">
+            <span className="ps-label">Built on proven infrastructure</span>
+            <div className="flex max-w-[1040px] flex-wrap items-center justify-center gap-x-10 gap-y-5">
+              {items.map((item) => (
+                <LogoItem key={item.name} item={item} />
+              ))}
+            </div>
           </div>
         </Reveal>
       </div>
