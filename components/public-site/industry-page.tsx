@@ -72,18 +72,20 @@ export function IndustryPage({ slug }: { slug: string }) {
       />
 
       {/* short, soft divider aligned to the body content width, fading at the ends */}
-      <div className="mx-auto max-w-[820px] px-5 sm:px-6">
+      <div className="mx-auto max-w-[1240px] px-5 sm:px-6">
         <div
           aria-hidden="true"
           className="h-px w-full bg-gradient-to-r from-transparent via-white/[0.08] to-transparent"
         />
       </div>
 
-      <section className="py-12 sm:py-24">
-        <div className="mx-auto max-w-[820px] px-5 sm:px-6">
+      <section className="py-12 sm:py-24 lg:pt-14">
+        <div className="mx-auto max-w-[1240px] px-5 sm:px-6">
           {industry.image && (
             <Reveal>
-              <div className="mb-10 sm:mb-12">
+              {/* supporting visual, not the whole page: capped + left-aligned on the
+                  same rail as the content, with a tighter gap below on desktop */}
+              <div className="mb-10 max-w-[520px] sm:mb-12 lg:mb-8">
                 <ImageFrame
                   label={industry.label}
                   alt={industry.name}
@@ -93,13 +95,13 @@ export function IndustryPage({ slug }: { slug: string }) {
                   bare
                   hideCaption
                   clear
-                  sizes="(min-width: 820px) 820px, 100vw"
+                  sizes="(min-width: 1024px) 520px, 100vw"
                 />
               </div>
             </Reveal>
           )}
 
-          <div className="space-y-10 sm:space-y-12">
+          <div className="max-w-[800px] space-y-10 sm:space-y-12">
             <Block eyebrow={industry.name} title={`Common problems ${industry.audience} face`}>
               <Bullets items={industry.problems} />
             </Block>
