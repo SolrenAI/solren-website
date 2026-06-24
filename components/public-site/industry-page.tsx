@@ -79,13 +79,14 @@ export function IndustryPage({ slug }: { slug: string }) {
         />
       </div>
 
-      <section className="py-12 sm:py-24 lg:pt-14">
+      <section className="py-12 sm:py-24 lg:pt-10">
         <div className="mx-auto max-w-[1240px] px-5 sm:px-6">
           {industry.image && (
             <Reveal>
-              {/* supporting visual, not the whole page: capped + left-aligned on the
-                  same rail as the content, with a tighter gap below on desktop */}
-              <div className="mb-10 max-w-[520px] sm:mb-12 lg:mb-8">
+              {/* supporting visual on the one left rail — NOT centred independently.
+                  Left edge matches the hero and the body column; capped narrower
+                  than the text, with tight vertical spacing on desktop. */}
+              <div className="mb-10 max-w-[480px] sm:mb-12 lg:mb-6">
                 <ImageFrame
                   label={industry.label}
                   alt={industry.name}
@@ -95,7 +96,7 @@ export function IndustryPage({ slug }: { slug: string }) {
                   bare
                   hideCaption
                   clear
-                  sizes="(min-width: 1024px) 520px, 100vw"
+                  sizes="(min-width: 1024px) 480px, 100vw"
                 />
               </div>
             </Reveal>
