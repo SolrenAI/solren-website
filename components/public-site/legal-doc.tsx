@@ -66,17 +66,17 @@ export function LegalDoc({
      gutters, so the mobile layout is unchanged. */
   const containerW = "max-w-[1240px]"
   const read = "max-w-[800px]" // prose reading column, left-aligned
-  const box = "max-w-[800px]" // "On this page" / summary boxes — align to the writing column
+  const box = "max-w-[680px]" // "On this page" / summary — a compact index, left-aligned, kept narrower than the writing column
   const wideArea = wide ? "max-w-[1180px]" : "max-w-[1040px]" // tables / custom content
 
   return (
     <>
       <PageHeader eyebrow={eyebrow} title={title} sub={sub} note={`${dateLabel}: ${lastUpdated}`} />
 
-      <section className={tightTop ? "pb-12 pt-6 sm:pb-24 sm:pt-14" : "py-12 sm:py-24"}>
-        {/* When a contents box is shown, the box sits a touch wider than the
-            policy body so the index reads clearly while the legal text keeps a
-            comfortable reading measure. */}
+      <section className={`ps-doc ${tightTop ? "pb-12 pt-6 sm:pb-24 sm:pt-14" : "py-12 sm:py-24"}`}>
+        {/* The contents box is a compact index — left-aligned on the same rail as
+            the body and kept narrower than the writing column so it never stretches
+            past it. */}
         <div className={`mx-auto px-5 sm:px-6 ${containerW}`}>
           {intro && (
             <Reveal>
@@ -126,7 +126,7 @@ export function LegalDoc({
                     <li key={s.h}>
                       <a
                         href={`#${slugify(s.h)}`}
-                        className="group flex items-baseline gap-3 text-[14.5px] leading-snug text-[var(--silver)] transition-colors hover:text-white"
+                        className="group flex items-baseline gap-3 text-[14.5px] leading-snug text-[var(--silver)] transition-colors hover:text-[#537FEA]"
                       >
                         <span className="text-[12px] tabular-nums text-[var(--faint)]">
                           {String(i + 1).padStart(2, "0")}

@@ -442,3 +442,17 @@ html[data-theme="light"] .ps .if-frame {
     padding-bottom: 1.5rem;
   }
 }
+
+/* ============================================================
+   Legal/document pages: subtle Solren-blue link hover.
+   Scoped to the .ps-doc legal layout, targets anchors only (body text
+   stays its normal colour), and only affects the hover state — so it is
+   a desktop interaction cue and the mobile/default appearance is unchanged.
+   No glow; any underline already on the link is left as-is.
+   ============================================================ */
+.ps .ps-doc a {
+  transition: color 0.2s ease;
+}
+.ps .ps-doc a:hover {
+  color: #537fea;
+}
