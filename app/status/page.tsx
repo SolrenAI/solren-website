@@ -92,9 +92,10 @@ export default function StatusPage() {
       />
 
       <section className="py-16 sm:py-24">
-        <div className="mx-auto max-w-[820px] px-5 sm:px-6">
-          {/* Detailed rows — cleaner, un-boxed, subtle dividers */}
-          <div className="space-y-12">
+        <div className="mx-auto max-w-[1240px] px-5 sm:px-6">
+          {/* Detailed rows — cleaner, un-boxed, subtle dividers. Wider than the
+              prose blocks so the operational list extends right like a status table. */}
+          <div className="max-w-[1040px] space-y-12">
             {groups.map((group) => (
               <Reveal key={group.title}>
                 <div>
@@ -126,7 +127,7 @@ export default function StatusPage() {
 
           {/* Recent history — calm record, no fake timeline when there are none */}
           <Reveal>
-            <div className="mt-12 border-t border-[var(--hair)] pt-10 sm:mt-16 sm:pt-12">
+            <div className="mt-12 max-w-[800px] border-t border-[var(--hair)] pt-10 sm:mt-16 sm:pt-12">
               <h2 className="text-[19px] font-medium tracking-tight text-white">
                 Recent history
               </h2>
@@ -146,7 +147,7 @@ export default function StatusPage() {
 
           {/* Support */}
           <Reveal>
-            <div className="mt-12 border-t border-[var(--hair)] pt-10">
+            <div className="mt-12 max-w-[800px] border-t border-[var(--hair)] pt-10">
               <h2 className="text-[15px] font-medium tracking-tight text-white">
                 Need help?
               </h2>
