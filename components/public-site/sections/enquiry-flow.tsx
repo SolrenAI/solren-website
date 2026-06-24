@@ -176,7 +176,7 @@ export function EnquiryFlow() {
           <svg
             viewBox="0 0 1500 276"
             role="img"
-            aria-label="Every enquiry channel — Website, Google, Facebook, Instagram, SMS — merges into one system: new enquiry, Solren replies, Solren follows up, job booked."
+            aria-label="Enquiry channels Website, Google, Facebook, Instagram and SMS all merge into one system: new enquiry, Solren replies, Solren follows up, job booked."
             className="h-auto w-full"
             style={{ overflow: "visible", fontFamily: "inherit" }}
             textRendering="geometricPrecision"

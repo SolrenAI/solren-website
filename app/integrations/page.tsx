@@ -15,7 +15,7 @@ export const metadata: Metadata = {
 const services: { name: string; description: string }[] = [
   { name: "OpenAI", description: "Drafts fast, clear replies for your team to review." },
   { name: "Google Workspace", description: "Reads new enquiries and sends the replies you approve." },
-  { name: "Stripe", description: "Handles billing securely — card details stay with Stripe." },
+  { name: "Stripe", description: "Handles billing securely. Card details stay with Stripe." },
   { name: "Supabase", description: "Stores your business data reliably in one place." },
 ]
 

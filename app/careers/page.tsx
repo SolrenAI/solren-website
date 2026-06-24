@@ -13,7 +13,7 @@ const editorial = [
   {
     h: "How we work",
     body: [
-      "We build carefully and keep things simple — we would rather ship one dependable thing than a dozen half-finished ones, and we hold a high bar for everything that reaches a customer. Our work is useful AI automation for real service businesses. Security, reliability and careful handling of customer data are part of how we build.",
+      "We build carefully and keep things simple. We would rather ship one dependable thing than a dozen half-finished ones, and we hold a high bar for everything that reaches a customer. Our work is useful AI automation for real service businesses. Security, reliability and careful handling of customer data are part of how we build.",
     ],
   },
   {
@@ -123,21 +123,23 @@ export default function CareersPage() {
     <>
       <PageHeader
         eyebrow="Careers"
+        containerClass="max-w-[1080px]"
         title={<>Build useful AI systems.</>}
         sub="We are growing carefully. We expect one sales and growth role to open soon, and we are always interested in hearing from exceptional builders and engineers."
       />
 
       <section className="py-16 sm:py-24">
-        {/* editorial intro — narrow, readable */}
-        <div className="mx-auto max-w-[820px] px-6">
-          <div className="space-y-12">
+        <div className="mx-auto max-w-[1080px] px-5 sm:px-6">
+          {/* editorial — left-rail heading + a readable reading column (two columns
+              on desktop), separated by whitespace rather than rules */}
+          <div className="space-y-14 sm:space-y-16">
             {editorial.map((s, i) => (
               <Reveal key={s.h} delay={i * 30}>
-                <div className="border-t border-[var(--hair)] pt-10 first:border-t-0 first:pt-0">
+                <div className="lg:grid lg:grid-cols-[220px_1fr] lg:gap-14">
                   <h2 className="text-[19px] font-medium tracking-tight text-white">{s.h}</h2>
-                  <div className="mt-4 space-y-4">
+                  <div className="mt-4 max-w-[680px] space-y-4 lg:mt-0">
                     {s.body.map((p, j) => (
-                      <p key={j} className="text-[15.5px] leading-relaxed text-[var(--silver)]">
+                      <p key={j} className="text-[16px] leading-[1.7] text-[var(--silver)]">
                         {p}
                       </p>
                     ))}
@@ -146,28 +148,24 @@ export default function CareersPage() {
               </Reveal>
             ))}
           </div>
-        </div>
 
-        {/* future roles — intentional wider breakout so the cards breathe */}
-        <Reveal>
-          <div className="mx-auto mt-12 max-w-[1080px] px-6">
-            <div className="border-t border-[var(--hair)] pt-10">
+          {/* future roles — same rail; cards aligned to the content grid */}
+          <Reveal>
+            <div className="mt-16 border-t border-[var(--hair)] pt-12 sm:mt-20 sm:pt-14">
               <h2 className="text-[19px] font-medium tracking-tight text-white">Future roles</h2>
-              <div className="mt-7 grid items-stretch gap-6 sm:grid-cols-2 lg:grid-cols-3">
+              <div className="mt-8 grid items-stretch gap-6 sm:grid-cols-2 lg:grid-cols-3">
                 {roles.map((role) => (
                   <RoleCard key={role.title} role={role} />
                 ))}
               </div>
             </div>
-          </div>
-        </Reveal>
+          </Reveal>
 
-        {/* open roles + contact — back to narrow, readable */}
-        <div className="mx-auto max-w-[820px] px-6">
+          {/* open roles + contact — same two-column editorial rhythm */}
           <Reveal>
-            <div className="mt-12 border-t border-[var(--hair)] pt-10">
+            <div className="mt-16 border-t border-[var(--hair)] pt-12 sm:mt-20 sm:pt-14 lg:grid lg:grid-cols-[220px_1fr] lg:gap-14">
               <h2 className="text-[19px] font-medium tracking-tight text-white">Open roles</h2>
-              <div className="mt-4 space-y-4 text-[15.5px] leading-relaxed text-[var(--silver)]">
+              <div className="mt-4 max-w-[680px] space-y-4 text-[16px] leading-[1.7] text-[var(--silver)] lg:mt-0">
                 <p>
                   We are not hiring broadly right now, but we expect one sales and growth role to
                   open soon. We are also interested in hearing from exceptional builders, engineers

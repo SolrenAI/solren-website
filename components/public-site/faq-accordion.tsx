@@ -28,10 +28,10 @@ export function FaqAccordion() {
                 </span>
               </span>
               <Plus
-                className={`h-5 w-5 shrink-0 text-[#537FEA] transition-all duration-300 group-hover:opacity-100 ${
-                  isOpen ? "rotate-45 opacity-100" : "opacity-75"
+                className={`h-5 w-5 shrink-0 text-[#537FEA] transition-[transform,color] duration-300 group-hover:text-[#6A8FEE] ${
+                  isOpen ? "rotate-45" : ""
                 }`}
-                strokeWidth={1.5}
+                strokeWidth={2}
               />
             </button>
             <div

@@ -34,10 +34,10 @@ export function SecurityAccordion({
                 {r.title}
               </span>
               <Plus
-                className={`h-4 w-4 shrink-0 text-[#537FEA] transition-transform duration-300 group-hover:text-[#537FEA] md:text-[#537FEA] md:group-hover:text-[#6A8FEE] ${
+                className={`h-4 w-4 shrink-0 text-[#537FEA] transition-[transform,color] duration-300 group-hover:text-[#6A8FEE] ${
                   isOpen ? "rotate-45" : ""
                 }`}
-                strokeWidth={1.5}
+                strokeWidth={2}
               />
             </button>
             <div

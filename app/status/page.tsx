@@ -86,16 +86,37 @@ export default function StatusPage() {
     <>
       <PageHeader
         eyebrow="System Status"
+        looseTitle
         title={<>All systems operational.</>}
         sub="Current availability across Solren's website, dashboard, automation, messaging and billing systems."
-        note="Last checked: 22 June 2026"
       />
 
-      <section className="py-16 sm:py-24">
+      <section className="py-16 sm:pb-24 sm:pt-12">
         <div className="mx-auto max-w-[1240px] px-5 sm:px-6">
+          {/* Overall status summary — the at-a-glance operational banner that makes
+              this read as a real public status page, not an internal table. */}
+          <Reveal>
+            <div className="flex max-w-[1040px] flex-col gap-4 rounded-2xl border border-white/[0.08] bg-white/[0.02] px-5 py-4 sm:flex-row sm:items-center sm:justify-between sm:px-6 sm:py-5">
+              <div className="flex items-center gap-3">
+                <span className="ps-live-dot h-2 w-2 shrink-0 rounded-full bg-[#537FEA]" />
+                <div>
+                  <div className="text-[15px] font-medium tracking-tight text-white">
+                    All systems operational
+                  </div>
+                  <p className="mt-0.5 text-[13px] leading-snug text-[var(--muted)]">
+                    All Solren services are running normally.
+                  </p>
+                </div>
+              </div>
+              <span className="inline-flex shrink-0 items-center self-start rounded-full border border-[var(--hair-strong)] bg-white/[0.02] px-3.5 py-1.5 text-[12.5px] font-medium text-[var(--silver)] sm:self-auto">
+                Last checked: 22 June 2026
+              </span>
+            </div>
+          </Reveal>
+
           {/* Detailed rows — cleaner, un-boxed, subtle dividers. Wider than the
               prose blocks so the operational list extends right like a status table. */}
-          <div className="max-w-[1040px] space-y-12">
+          <div className="mt-10 max-w-[1040px] space-y-10 sm:mt-12">
             {groups.map((group) => (
               <Reveal key={group.title}>
                 <div>

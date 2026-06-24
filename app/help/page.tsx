@@ -17,6 +17,8 @@ export default function HelpPage() {
     <>
       <PageHeader
         eyebrow="Help Centre"
+        looseTitle
+        containerClass="max-w-[1080px]"
         title={<>How can we help?</>}
         sub="Find answers about setup, billing, integrations and support."
       />

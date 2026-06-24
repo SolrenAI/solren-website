@@ -79,7 +79,7 @@ export default function WhySolrenPage() {
               <h2 className={headingClass}>The problem is not always more leads.</h2>
               <p className={proseClass}>
                 Most service businesses already get enquiries. The leak happens after
-                the enquiry arrives — missed calls, slow replies, forgotten quotes and
+                the enquiry arrives: missed calls, slow replies, forgotten quotes and
                 follow-ups that rely on memory.
               </p>
               <div className="mt-9 grid grid-cols-1 gap-4 sm:grid-cols-3 sm:gap-5">
@@ -106,11 +106,12 @@ export default function WhySolrenPage() {
           {/* 2. Value — the main statement, a subtle dark editorial card on the rail */}
           <Reveal>
             <div className="mt-16 rounded-2xl border border-white/[0.08] bg-white/[0.02] p-8 sm:mt-20 sm:p-12">
-              <h2 className={headingClass}>One saved lead can change the month.</h2>
+              <h2 className={headingClass}>
+                One <span className="text-[#537FEA]">good job</span> can change the month.
+              </h2>
               <p className={proseClass}>
                 A good enquiry can become a callout, quote, booking or repeat customer.
-                Solren is built to protect those moments so valuable leads do not go
-                quiet while you are busy.
+                Solren helps keep those moments moving before they go quiet.
               </p>
             </div>
           </Reveal>
