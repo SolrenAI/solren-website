@@ -34,10 +34,10 @@ export default function IndustriesPage() {
       </div>
 
       <section className="pt-20 pb-10 sm:pt-24 sm:pb-12">
-        <div className="mx-auto max-w-[1240px] px-6">
-          <div className="grid grid-cols-2 gap-3 sm:grid-cols-2 sm:gap-5 lg:grid-cols-3 lg:gap-6">
+        <div className="mx-auto max-w-[1480px] px-6">
+          <div className="grid grid-cols-2 gap-3 sm:grid-cols-2 sm:gap-5 lg:grid-cols-4 lg:gap-6">
             {industries.map((it, i) => (
-              <Reveal key={it.slug} delay={(i % 3) * 70}>
+              <Reveal key={it.slug} delay={(i % 4) * 70}>
                 <Link href={`/${it.slug}`} className="group block">
                   <ImageFrame
                     label={it.label}
@@ -47,7 +47,7 @@ export default function IndustriesPage() {
                     hideCaption
                     bare
                     aspectClass="aspect-[3/2] sm:aspect-[4/3]"
-                    sizes="(min-width: 1024px) 380px, 50vw"
+                    sizes="(min-width: 1024px) 360px, 50vw"
                   />
                   <div className="mt-2 flex items-center justify-between sm:mt-3">
                     <span className="text-[13.5px] font-medium text-white sm:text-[15px]">{it.name}</span>
