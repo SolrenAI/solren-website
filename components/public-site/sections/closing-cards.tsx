@@ -26,20 +26,20 @@ function CardChecklist({ items }: { items: string[] }) {
 export function ClosingCards() {
   return (
     <section className="hidden lg:block lg:pb-2 lg:pt-4">
-      <div className="mx-auto max-w-[900px] px-6">
+      <div className="mx-auto max-w-[960px] px-6">
         <Reveal>
           <div className="grid grid-cols-2 items-stretch gap-5">
             {/* Business results — outcomes; primary CTA */}
-            <div className="flex flex-col rounded-2xl border border-white/[0.08] bg-white/[0.02] p-8">
+            <div className="flex flex-col rounded-2xl border border-white/[0.08] bg-white/[0.02] p-10">
               <h3 className="text-[19px] font-medium tracking-tight text-white">Business results</h3>
               <p className="mt-3 text-[14.5px] leading-relaxed text-[var(--muted)]">
                 Turn more enquiries into booked work with faster replies and consistent follow-up.
               </p>
               <CardChecklist items={RESULTS} />
-              <div className="mt-auto pt-8">
+              <div className="mt-auto pt-10">
                 <Link
                   href="/contact"
-                  className="group flex min-h-12 w-full items-center justify-center gap-2 rounded-full bg-[#537FEA] px-7 py-3.5 text-[15px] font-medium text-black transition-colors hover:bg-[#6A8FEE]"
+                  className="group flex min-h-12 w-full items-center justify-center gap-2 rounded-full bg-[#537FEA] px-7 py-4 text-[15px] font-medium text-black transition-colors hover:bg-[#6A8FEE]"
                 >
                   Get started
                   <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
@@ -48,16 +48,16 @@ export function ClosingCards() {
             </div>
 
             {/* Less admin — relief; secondary outline CTA */}
-            <div className="flex flex-col rounded-2xl border border-white/[0.08] bg-white/[0.02] p-8">
+            <div className="flex flex-col rounded-2xl border border-white/[0.08] bg-white/[0.02] p-10">
               <h3 className="text-[19px] font-medium tracking-tight text-white">Less admin</h3>
               <p className="mt-3 text-[14.5px] leading-relaxed text-[var(--muted)]">
                 Solren keeps follow-up moving quietly in the background while you stay focused on the work.
               </p>
               <CardChecklist items={ADMIN} />
-              <div className="mt-auto pt-8">
+              <div className="mt-auto pt-10">
                 <Link
                   href="/pricing"
-                  className="flex min-h-12 w-full items-center justify-center gap-2 rounded-full border border-[var(--hair-strong)] px-7 py-3.5 text-[15px] font-medium text-white transition-colors hover:bg-white/[0.03]"
+                  className="flex min-h-12 w-full items-center justify-center gap-2 rounded-full border border-[var(--hair-strong)] px-7 py-4 text-[15px] font-medium text-white transition-colors hover:bg-white/[0.03]"
                 >
                   See pricing
                 </Link>

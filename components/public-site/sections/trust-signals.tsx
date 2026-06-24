@@ -15,11 +15,7 @@ export function TrustSignals({ tightTop = false }: { tightTop?: boolean }) {
     >
       <div className="mx-auto max-w-[1000px] px-5 text-center sm:px-6">
         <Reveal>
-          <span
-            className={`ps-label !text-[12px] !tracking-[0.3em] !text-[var(--silver)] ${
-              tightTop ? "lg:!text-[#537FEA]/90" : ""
-            }`}
-          >
+          <span className="ps-label !text-[12px] !tracking-[0.3em] !text-[var(--silver)] lg:!text-[#537FEA]">
             The difference
           </span>
           <h2 className="mx-auto mt-5 max-w-[15ch] text-[clamp(1.85rem,8vw,3.7rem)] font-medium leading-[1.08] tracking-[-0.02em] sm:mt-6 sm:leading-[1.04]">
