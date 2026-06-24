@@ -67,10 +67,10 @@ export default function IndustriesPage() {
           panels (no card) split by a quiet fading divider; CTAs sit below. Kept
           before the mobile FinalCta so FinalCta stays the last child and the
           footer-gap rule still governs spacing. */}
-      <section className="hidden lg:block lg:pb-6 lg:pt-8">
-        <div className="mx-auto max-w-[840px] px-6">
+      <section className="hidden lg:block lg:pb-6 lg:pt-4">
+        <div className="mx-auto max-w-[700px] px-6">
           <Reveal>
-            <div className="grid grid-cols-2 items-start gap-x-20">
+            <div className="grid grid-cols-2 items-start gap-x-12">
               <div>
                 <div className="flex items-center gap-2.5">
                   <span aria-hidden="true" className="h-1.5 w-1.5 rounded-full bg-[#537FEA]" />
