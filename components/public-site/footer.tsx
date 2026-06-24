@@ -141,11 +141,12 @@ function FooterBlock({ block }: { block: Block }) {
 
 export function PublicFooter() {
   return (
-    /* md+ only: push the whole footer (divider included) well down the page so the
-       divider line starts around the old "Privacy" link height, leaving generous
-       black breathing room after the CTA card. Pure outer margin — the footer's own
-       compact height is unchanged. Mobile (below md) is untouched. */
-    <footer className="relative bg-[#050608] md:mt-[320px]">
+    /* md+ only: a modest band of black breathing room above the footer (96px).
+       Combined with the page's trimmed final-section padding (~24px, see
+       public-site.css) this reads as ~120px between content and footer — in the
+       96-140px target. Pure outer margin: the footer's own height, columns,
+       divider and bottom row are unchanged. Mobile (below md) is untouched. */
+    <footer className="relative bg-[#050608] md:mt-24">
       {/* soft, edge-fading divider above the footer (replaces the hard border line) */}
       <div
         aria-hidden="true"
