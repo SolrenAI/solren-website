@@ -127,16 +127,16 @@ export function Trust() {
       {/* subtle, low-opacity divider that fades at both edges — no heavy panel */}
       <div
         aria-hidden="true"
-        className="mx-auto h-px w-full max-w-[1080px] bg-gradient-to-r from-transparent via-white/[0.10] to-transparent"
+        className="mx-auto h-px w-full max-w-[1240px] bg-gradient-to-r from-transparent via-white/[0.10] to-transparent"
       />
       <div className="mx-auto max-w-[1240px] px-6 pt-6">
         {/* Compact trust strip: a small label + one flowing row of marks. No
             heading hierarchy, no standalone-section framing — a quiet trust signal
             that wraps gracefully rather than reading as its own content block. */}
         <Reveal>
-          <div className="flex flex-col items-center gap-5">
+          <div className="flex flex-col items-start gap-5">
             <span className="ps-label">Built on proven infrastructure</span>
-            <div className="flex max-w-[1040px] flex-wrap items-center justify-center gap-x-10 gap-y-5">
+            <div className="flex max-w-[1040px] flex-wrap items-center justify-start gap-x-10 gap-y-5">
               {items.map((item) => (
                 <LogoItem key={item.name} item={item} />
               ))}

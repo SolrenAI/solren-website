@@ -9,7 +9,7 @@ import { Check } from "lucide-react"
 export function HowItWorks() {
   return (
     <section id="how" className="relative pt-16 pb-16 sm:pt-24 sm:pb-24 lg:pt-32 lg:pb-32">
-      <div className="mx-auto max-w-[1180px] px-6">
+      <div className="mx-auto max-w-[1240px] px-6">
         {/* the four-beat story — the single process system, with one soft flow spine
             + slow pulse carrying the eye from first lead to booked job */}
         <Reveal>
@@ -90,9 +90,9 @@ export function WorkSplit() {
       {/* contained, center-weighted hairline — intentional but soft, fades at the edges */}
       <div
         aria-hidden="true"
-        className="mx-auto h-px w-full max-w-[1080px] bg-gradient-to-r from-transparent via-[var(--hair-strong)] to-transparent"
+        className="mx-auto h-px w-full max-w-[1240px] bg-gradient-to-r from-transparent via-[var(--hair-strong)] to-transparent"
       />
-      <div className="mx-auto max-w-[1080px] px-6 pt-12 sm:pt-16 lg:pt-24">
+      <div className="mx-auto max-w-[1240px] px-6 pt-12 sm:pt-16 lg:pt-24">
         <Reveal>
           <h2 className="max-w-2xl text-[clamp(1.5rem,3vw,2.25rem)] font-medium leading-[1.1] tracking-[-0.02em] ps-silver">
             You work. Solren follows up.
@@ -132,14 +132,14 @@ export function InstalledAround() {
       {/* contained, center-weighted hairline — matches the WorkSplit divider */}
       <div
         aria-hidden="true"
-        className="mx-auto h-px w-full max-w-[1080px] bg-gradient-to-r from-transparent via-[var(--hair-strong)] to-transparent"
+        className="mx-auto h-px w-full max-w-[1240px] bg-gradient-to-r from-transparent via-[var(--hair-strong)] to-transparent"
       />
-      <div className="mx-auto max-w-[840px] px-6 pt-12 text-center sm:pt-14">
+      <div className="mx-auto max-w-[1240px] px-6 pt-12 text-center sm:pt-14 md:text-left">
         <Reveal>
           <h2 className="text-[clamp(1.25rem,2.2vw,1.65rem)] font-medium leading-[1.15] tracking-[-0.02em] ps-silver">
             Custom-built around your business.
           </h2>
-          <p className="mx-auto mt-5 max-w-xl text-[15px] leading-relaxed text-[var(--muted)]">
+          <p className="mx-auto mt-5 max-w-xl text-[15px] leading-relaxed text-[var(--muted)] md:mx-0">
             We connect the channels you already use, configure the replies and follow-up logic, and
             tailor the system around how your business handles enquiries.
           </p>
@@ -147,7 +147,7 @@ export function InstalledAround() {
 
         <Reveal delay={90}>
           {/* one grouped capsule — the channels and logic read as a single system layer */}
-          <div className="mt-8 flex justify-center">
+          <div className="mt-8 flex justify-center md:justify-start">
             <ul className="flex w-full max-w-[340px] flex-col items-start gap-y-2.5 rounded-[24px] border border-[var(--hair)] bg-white/[0.02] px-4 py-4 text-left md:hidden">
               {MOBILE_CHANNELS.map((channel) => (
                 <li key={channel} className="flex w-full items-center gap-x-3">
