@@ -70,7 +70,7 @@ export default function IndustriesPage() {
       <section className="hidden lg:block lg:pb-6 lg:pt-8">
         <div className="mx-auto max-w-[840px] px-6">
           <Reveal>
-            <div className="grid grid-cols-[1fr_auto_1fr] items-stretch gap-x-16">
+            <div className="grid grid-cols-2 items-start gap-x-20">
               <div>
                 <div className="flex items-center gap-2.5">
                   <span aria-hidden="true" className="h-1.5 w-1.5 rounded-full bg-[#537FEA]" />
@@ -87,12 +87,6 @@ export default function IndustriesPage() {
                   ))}
                 </ul>
               </div>
-
-              {/* quiet vertical divider, fading at both ends — not a card edge */}
-              <div
-                aria-hidden="true"
-                className="w-px self-stretch bg-gradient-to-b from-transparent via-white/[0.12] to-transparent"
-              />
 
               <div>
                 <div className="flex items-center gap-2.5">
@@ -112,8 +106,8 @@ export default function IndustriesPage() {
               </div>
             </div>
 
-            {/* CTAs sit below the panels, not inside them */}
-            <div className="mt-12 flex items-center justify-center gap-3">
+            {/* CTAs sit just below the panels — part of the same section */}
+            <div className="mt-8 flex items-center justify-center gap-3">
               <Link
                 href="/contact"
                 className="group inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-[#537FEA] px-7 py-3.5 text-[15px] font-medium text-black transition-colors hover:bg-[#6A8FEE]"
