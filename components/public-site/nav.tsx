@@ -23,6 +23,7 @@ const industries: SubLink[] = [
 const company: SubLink[] = [
   { label: "Why Solren", href: "/why-solren" },
   { label: "Our Story", href: "/about" },
+  { label: "Careers", href: "/careers" },
   { label: "Contact", href: "/contact" },
   { label: "Trust", href: "/trust" },
   { label: "Privacy Policy", href: "/privacy" },
