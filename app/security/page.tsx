@@ -91,7 +91,7 @@ export default function SecurityPage() {
 
       {/* Principles — the quick, reassuring takeaways under the hero */}
       <section className="pt-14 sm:pt-16">
-        <div className="mx-auto max-w-[1080px] px-6">
+        <div className="mx-auto max-w-[1240px] px-6">
           <Reveal>
             <span className="ps-label ps-label-legible">Trust principles</span>
           </Reveal>
@@ -112,16 +112,13 @@ export default function SecurityPage() {
         </div>
       </section>
 
-      {/* In depth — intro on the left, accordion rows on the right.
-         This section wraps ONLY the two-column grid. The sticky <aside> is a
-         direct grid child (no Reveal/transform/overflow ancestor between it and
-         the grid), so its containing block is the grid and it releases exactly
-         where this section ends — it cannot follow into "Report a vulnerability"
-         below, which is a separate section. */}
+      {/* In depth — intro on the left, accordion rows on the right. The left
+         column is not sticky: it sits at the top of its grid cell (lg:self-start)
+         and scrolls naturally with the accordion, no scroll-following. */}
       <section className="pt-16 sm:pt-20">
-        <div className="mx-auto max-w-[1080px] px-6">
+        <div className="mx-auto max-w-[1240px] px-6">
           <div className="grid grid-cols-1 gap-10 lg:grid-cols-[330px_1fr] lg:gap-16">
-            <aside className="lg:sticky lg:top-28 lg:self-start">
+            <aside className="lg:self-start">
               <Reveal>
                 <span className="ps-label ps-label-legible">In depth</span>
                 <h2 className="mt-5 text-[clamp(1.6rem,3vw,2.1rem)] font-medium leading-[1.1] tracking-[-0.02em] ps-silver">
@@ -144,7 +141,7 @@ export default function SecurityPage() {
       {/* Report a vulnerability — its own section, outside the sticky wrapper.
          Sits below the grid; the sticky column has already released by here. */}
       <section className="pb-24 sm:pb-28">
-        <div className="mx-auto max-w-[1080px] px-6">
+        <div className="mx-auto max-w-[1240px] px-6">
           <Reveal>
             <div className="mt-12 border-t border-white/[0.05] pt-10 text-center sm:mt-20 sm:pt-16">
               <h2 className="text-[clamp(1.6rem,3vw,2.1rem)] font-medium leading-[1.1] tracking-[-0.02em] ps-silver">
