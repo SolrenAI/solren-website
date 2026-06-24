@@ -76,8 +76,8 @@ export default function AboutPage() {
       </div>
 
       <section className="py-16 sm:py-24">
-        <div className="mx-auto max-w-[760px] px-6">
-          <div className="space-y-16">
+        <div className="mx-auto max-w-[1240px] px-6">
+          <div className="max-w-[800px] space-y-16">
             {sections.map((s, i) => (
               <Reveal key={s.h} delay={i * 30}>
                 <div className="border-t border-[var(--hair)] pt-10 first:border-t-0 first:pt-0">
@@ -97,7 +97,7 @@ export default function AboutPage() {
           </div>
 
           <Reveal>
-            <div className="mt-12 border-t border-[var(--hair)] pt-8 sm:mt-16 sm:pt-10">
+            <div className="mt-12 max-w-[800px] border-t border-[var(--hair)] pt-8 sm:mt-16 sm:pt-10">
               <p className="text-[16px] leading-[1.7] text-[var(--silver)]">
                 Want to see how Solren would work for your business?
               </p>
