@@ -14,13 +14,13 @@ export function Hero() {
           </span>
         </div>
 
-        <h1 className="mx-auto mt-6 max-w-[680px] text-[clamp(2.15rem,9.5vw,3.25rem)] font-medium leading-[1] tracking-[-0.025em] text-white sm:mt-8 sm:leading-[0.95]">
+        <h1 className="mx-auto mt-6 max-w-[680px] text-[clamp(2.15rem,9.5vw,3.25rem)] font-medium leading-[1] tracking-[-0.025em] text-white sm:mt-9 sm:leading-[0.95]">
           Every new enquiry
           <br />
           gets answered.
         </h1>
 
-        <p className="mx-auto mt-6 text-[clamp(1rem,4.5vw,1.25rem)] font-medium tracking-[-0.01em] sm:mt-7">
+        <p className="mx-auto mt-6 text-[clamp(1rem,4.5vw,1.25rem)] font-medium tracking-[-0.01em] sm:mt-8">
           <RotatingHighlight />
         </p>
         <p className="mx-auto mt-3 max-w-[32rem] text-[15px] leading-[1.6] text-[var(--muted)]">

@@ -55,7 +55,7 @@ const trades: Trade[] = [
 
 export function IndustriesPreview() {
   return (
-    <section className="relative py-16 sm:py-24 lg:py-28">
+    <section className="relative py-16 sm:py-24 lg:pb-28 lg:pt-20">
       <div className="mx-auto max-w-[1240px] px-5 sm:px-6">
         <Reveal>
           <div className="mb-7 sm:mb-8">

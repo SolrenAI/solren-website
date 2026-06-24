@@ -16,8 +16,8 @@ const BLUE = "#537FEA"
 /* x geometry on a wide 1500-unit canvas that fills the navbar container: the
    source list sits at the far left, the four stages spread evenly across the
    width to the right edge, and the ambient field glows behind the signal path */
-const MERGE_X = 470
-const RAIL_END_X = 1430
+const MERGE_X = 255
+const RAIL_END_X = 1245
 
 const channels = [
   { y: 60, label: "Website" },
@@ -44,9 +44,9 @@ const stages: {
   subFill: string
 }[] = [
   { x: MERGE_X, kind: "message", iconStroke: "var(--ef-icon-stage)", node: "hollow", tick: 0.08, halo: 0.05, haloR: 42, title: "New enquiry", titleFill: "var(--ef-strong)", titleWeight: 500, sub: "From any channel", subFill: "var(--ef-muted)" },
-  { x: 790, kind: "send", iconStroke: "var(--ef-icon-stage)", node: "fill", tick: 0.18, halo: 0.14, haloR: 42, title: "Solren replies", titleFill: "var(--ef-strong)", titleWeight: 500, sub: "In seconds", subFill: "var(--ef-muted)" },
-  { x: 1110, kind: "refresh", iconStroke: "var(--ef-icon-stage)", node: "fill", tick: 0.18, halo: 0.14, haloR: 42, title: "Solren follows up", titleFill: "var(--ef-strong)", titleWeight: 500, sub: "Automatically", subFill: "var(--ef-muted)" },
-  { x: RAIL_END_X, kind: "check", iconStroke: "var(--ef-icon-stage)", node: "fillLg", tick: 0.24, halo: 0.22, haloR: 50, title: "Job booked", titleFill: "var(--ef-accent)", titleWeight: 600, sub: "Customer confirmed", subFill: "var(--ef-muted)" },
+  { x: 585, kind: "send", iconStroke: "var(--ef-icon-stage)", node: "fill", tick: 0.18, halo: 0.14, haloR: 42, title: "Solren replies", titleFill: "var(--ef-strong)", titleWeight: 500, sub: "In seconds", subFill: "var(--ef-muted)" },
+  { x: 915, kind: "refresh", iconStroke: "var(--ef-icon-stage)", node: "fill", tick: 0.18, halo: 0.14, haloR: 42, title: "Solren follows up", titleFill: "var(--ef-strong)", titleWeight: 500, sub: "Automatically", subFill: "var(--ef-muted)" },
+  { x: RAIL_END_X, kind: "check", iconStroke: "var(--ef-icon-stage)", node: "fillLg", tick: 0.24, halo: 0.22, haloR: 50, title: "Job booked", titleFill: "var(--ef-accent)", titleWeight: 500, sub: "Customer confirmed", subFill: "var(--ef-muted)" },
 ]
 
 /* channel source icons — original 16-unit artwork scaled to 20px (×1.25) */
@@ -120,7 +120,7 @@ const mobileStageIcons = [MessageSquare, Send, RefreshCw, Check] as const
 
 export function EnquiryFlow() {
   return (
-    <section className="relative overflow-hidden pb-14 pt-2 sm:pb-16 sm:pt-4 lg:-mt-28 lg:pb-16 lg:pt-24">
+    <section className="relative overflow-hidden pb-14 pt-2 sm:pb-16 sm:pt-4 lg:-mt-24 lg:pb-16 lg:pt-24">
       <div className="relative mx-auto max-w-[1440px] px-5 sm:px-6 lg:px-8">
         <Reveal>
           {/* Compact responsive flow for phones and tablets. It keeps the same
@@ -212,7 +212,7 @@ export function EnquiryFlow() {
             </defs>
 
             {/* ambient field behind the signal path */}
-            <ellipse className="ef-glow" cx={950} cy={150} rx={560} ry={170} fill="url(#ef-field)" />
+            <ellipse className="ef-glow" cx={750} cy={150} rx={560} ry={170} fill="url(#ef-field)" />
 
             {/* eyebrow */}
             <text x={6} y={8} dominantBaseline="hanging" fontSize={13} fontWeight={600} style={{ fill: "var(--ef-eyebrow)", letterSpacing: "0.16em" }}>
@@ -221,11 +221,11 @@ export function EnquiryFlow() {
 
             {/* converging connector curves — static base */}
             {channels.map((c) => (
-              <path key={`s${c.y}`} d={`M240 ${c.y} C 330 ${c.y}, 400 178, ${MERGE_X} 178`} fill="none" strokeWidth={1} style={{ stroke: "var(--ef-line-soft)" }} />
+              <path key={`s${c.y}`} d={`M170 ${c.y} C 205 ${c.y}, 230 178, ${MERGE_X} 178`} fill="none" strokeWidth={1} style={{ stroke: "var(--ef-line-soft)" }} />
             ))}
             {/* converging connector curves — animated blue signal flow */}
             {channels.map((c) => (
-              <path className="ef-motion" key={`b${c.y}`} d={`M240 ${c.y} C 330 ${c.y}, 400 178, ${MERGE_X} 178`} fill="none" stroke={BLUE} strokeOpacity={0.56} strokeWidth={1} strokeDasharray="2 12">
+              <path className="ef-motion" key={`b${c.y}`} d={`M170 ${c.y} C 205 ${c.y}, 230 178, ${MERGE_X} 178`} fill="none" stroke={BLUE} strokeOpacity={0.56} strokeWidth={1} strokeDasharray="2 12">
                 <animate attributeName="stroke-dashoffset" values="0;-140" dur="2.4s" repeatCount="indefinite" />
               </path>
             ))}
@@ -237,7 +237,7 @@ export function EnquiryFlow() {
                 <text x={40} y={c.y} dominantBaseline="central" fontSize={20} fontWeight={500} style={{ fill: "var(--ef-text)", letterSpacing: "-0.01em" }}>
                   {c.label}
                 </text>
-                <circle cx={240} cy={c.y} r={3} style={{ fill: "var(--ef-dot)" }} />
+                <circle cx={170} cy={c.y} r={3} style={{ fill: "var(--ef-dot)" }} />
               </g>
             ))}
 

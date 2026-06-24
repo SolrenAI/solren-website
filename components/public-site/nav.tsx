@@ -56,7 +56,7 @@ function isActive(pathname: string, item: NavItem): boolean {
 /* Nav link: 14px / medium / muted grey. Active or hovered → white. Active is the
    subtle, premium signal (brighter text), never an orange block. */
 function navLinkClass(active: boolean): string {
-  return `inline-flex items-center leading-none text-[14px] font-medium transition-colors ${
+  return `inline-flex h-9 items-center leading-none text-[14px] font-medium transition-colors ${
     active ? "text-white" : "text-[#8f8f8f] hover:text-white"
   }`
 }
@@ -71,7 +71,7 @@ function NavDropdown({ item, active, className = "" }: { item: NavItem; active: 
 
   return (
     <div
-      className={`relative ${className}`}
+      className={`relative flex items-center ${className}`}
       onMouseEnter={() => setOpen(true)}
       onMouseLeave={() => setOpen(false)}
       onFocus={() => {
@@ -98,7 +98,7 @@ function NavDropdown({ item, active, className = "" }: { item: NavItem; active: 
         aria-haspopup="true"
         aria-expanded={open}
         aria-current={active ? "page" : undefined}
-        className={`inline-flex items-center gap-1 ${navLinkClass(active)}`}
+        className={`inline-flex items-center gap-1.5 ${navLinkClass(active)}`}
       >
         {item.label}
         <ChevronDown
@@ -177,8 +177,8 @@ export function PublicNav() {
             />
           </Link>
 
-          {/* nav: even 12px gap between links */}
-          <nav className="hidden items-center gap-3 lg:ml-16 lg:flex">
+          {/* nav: even 28px gap between links (xAI-style spacing) */}
+          <nav className="hidden items-center gap-7 lg:ml-16 lg:flex">
             {links.map((l) => {
               const active = isActive(pathname, l)
               return l.children ? (

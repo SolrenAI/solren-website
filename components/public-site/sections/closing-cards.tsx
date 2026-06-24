@@ -26,9 +26,9 @@ function CardChecklist({ items }: { items: string[] }) {
 export function ClosingCards() {
   return (
     <section className="hidden lg:block lg:pb-2 lg:pt-4">
-      <div className="mx-auto max-w-[1080px] px-6">
+      <div className="mx-auto max-w-[1272px] px-6">
         <Reveal>
-          <div className="grid grid-cols-2 items-stretch gap-6">
+          <div className="grid grid-cols-2 items-stretch gap-24">
             {/* Business results — outcomes; primary CTA */}
             <div className="flex min-h-[460px] flex-col rounded-2xl border border-white/[0.08] bg-white/[0.02] p-12">
               <h3 className="text-[19px] font-medium tracking-tight text-white">Business results</h3>

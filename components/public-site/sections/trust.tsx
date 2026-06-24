@@ -118,7 +118,7 @@ export function Trust() {
        divider above and the footer's divider below. No panel, no pill, no heading
        hierarchy. The small inline paddingBottom keeps the gap before the footer
        modest (overriding the global #main last-child cap). */
-    <section className="relative hidden md:mt-4 md:block" style={{ paddingBottom: "0.5rem" }}>
+    <section className="relative hidden md:-mb-10 md:mt-14 md:block" style={{ paddingBottom: "0.5rem" }}>
       {/* subtle, low-opacity divider that fades at both edges — no heavy panel */}
       <div
         aria-hidden="true"
