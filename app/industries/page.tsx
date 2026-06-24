@@ -60,7 +60,7 @@ export default function IndustriesPage() {
         </div>
       </section>
 
-      <TrustSignals />
+      <TrustSignals tightTop />
 
       <FinalCta premium />
     </>
