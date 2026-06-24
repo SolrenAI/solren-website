@@ -62,7 +62,7 @@ export default function IndustriesPage() {
 
       <TrustSignals />
 
-      <FinalCta />
+      <FinalCta premium />
     </>
   )
 }
