@@ -1,15 +1,22 @@
 "use client"
 
-import { useState } from "react"
+import { useState, type ReactNode } from "react"
 import { Plus } from "lucide-react"
 import { faqs } from "./faq-data"
 
-export function FaqAccordion() {
+/* Answers default to the shared `faqs` (plain strings). A page can pass its own
+   `items` — and an answer can be a ReactNode, so page-specific FAQs can include
+   real inline links (e.g. to Security/Trust) without changing the shared data. */
+export function FaqAccordion({
+  items = faqs,
+}: {
+  items?: { q: string; a: ReactNode }[]
+}) {
   const [open, setOpen] = useState<number | null>(0)
 
   return (
     <div className="divide-y divide-[var(--hair)] border-y border-[var(--hair)]">
-      {faqs.map((f, i) => {
+      {items.map((f, i) => {
         const isOpen = open === i
         return (
           <div key={f.q}>
