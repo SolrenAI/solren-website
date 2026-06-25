@@ -7,6 +7,7 @@ import { PageHeader } from "./page-header"
 import { Reveal } from "./reveal"
 import { FaqAccordion } from "./faq-accordion"
 import { CostCalculatorCard } from "./pricing-cost-calculator"
+import { MobileSupportTabs } from "./pricing-mobile-tabs"
 
 /* ============================================================================
    Pricing page content. One mobile-first responsive tree (no breakpoint split):
@@ -134,34 +135,40 @@ function CostBlock() {
 
 /* ---------- section 3: guarantee -------------------------------------------- */
 
+function GuaranteeCard() {
+  return (
+    <div className="ps-card ps-card-warm relative overflow-hidden rounded-[22px] px-6 py-10 ring-1 ring-[#537FEA]/25 sm:rounded-[28px] sm:px-10 sm:py-12 lg:px-16 lg:py-14">
+      <div
+        aria-hidden="true"
+        className="absolute -right-20 -top-20 h-72 w-72 rounded-full bg-[#537FEA]/[0.06] blur-3xl"
+      />
+      <div className="relative flex items-start gap-4 sm:gap-5">
+        <ShieldCheck className="h-8 w-8 shrink-0 text-[#86A2F0] sm:h-9 sm:w-9" strokeWidth={1.5} />
+        <div className="max-w-2xl">
+          <span className="ps-label">Our guarantee</span>
+          <h2 className="mt-3 text-[clamp(1.7rem,6vw,2.6rem)] font-medium leading-[1.1] tracking-[-0.02em] ps-silver">
+            You don&apos;t carry the risk. We do.
+          </h2>
+          <div className="mt-5 text-[15.5px] leading-relaxed text-[var(--silver)] sm:mt-6 sm:text-[16px]">
+            {GUARANTEE_TERMS ?? (
+              <FillInBlock
+                token="GUARANTEE_TERMS"
+                hint="The real risk-reversal you can stand behind, e.g. 'If Solren doesn't win you work in 60 days, you don't pay,' or 'Cancel any time and keep everything we've built.'"
+              />
+            )}
+          </div>
+        </div>
+      </div>
+    </div>
+  )
+}
+
 function GuaranteeBand() {
   return (
     <section className="py-14 sm:py-20">
       <div className="mx-auto max-w-[1240px] px-5 sm:px-6">
         <Reveal>
-          <div className="ps-card ps-card-warm relative overflow-hidden rounded-[22px] px-6 py-10 ring-1 ring-[#537FEA]/25 sm:rounded-[28px] sm:px-10 sm:py-12 lg:px-16 lg:py-14">
-            <div
-              aria-hidden="true"
-              className="absolute -right-20 -top-20 h-72 w-72 rounded-full bg-[#537FEA]/[0.06] blur-3xl"
-            />
-            <div className="relative flex items-start gap-4 sm:gap-5">
-              <ShieldCheck className="h-8 w-8 shrink-0 text-[#86A2F0] sm:h-9 sm:w-9" strokeWidth={1.5} />
-              <div className="max-w-2xl">
-                <span className="ps-label">Our guarantee</span>
-                <h2 className="mt-3 text-[clamp(1.7rem,6vw,2.6rem)] font-medium leading-[1.1] tracking-[-0.02em] ps-silver">
-                  You don&apos;t carry the risk. We do.
-                </h2>
-                <div className="mt-5 text-[15.5px] leading-relaxed text-[var(--silver)] sm:mt-6 sm:text-[16px]">
-                  {GUARANTEE_TERMS ?? (
-                    <FillInBlock
-                      token="GUARANTEE_TERMS"
-                      hint="The real risk-reversal you can stand behind, e.g. 'If Solren doesn't win you work in 60 days, you don't pay,' or 'Cancel any time and keep everything we've built.'"
-                    />
-                  )}
-                </div>
-              </div>
-            </div>
-          </div>
+          <GuaranteeCard />
         </Reveal>
       </div>
     </section>
@@ -231,6 +238,67 @@ function ScreenshotSlot() {
   )
 }
 
+/* Install-card pieces, shared so the desktop card and the mobile essentials/tab
+   render the exact same copy from one source. */
+function InstallHeading() {
+  return (
+    <>
+      <div className="flex flex-wrap items-center gap-3">
+        <h3 className="text-[21px] font-medium tracking-tight text-white sm:text-[24px]">
+          Your Solren install
+        </h3>
+        <RecommendedPill />
+      </div>
+      <p className="mt-2 text-[14.5px] text-[var(--silver)] sm:text-[15px]">
+        Done for you. Run for you. Built around how you already work.
+      </p>
+    </>
+  )
+}
+
+function PriceBox() {
+  return (
+    <div className="mt-5 rounded-2xl border border-[var(--hair)] bg-white/[0.02] px-5 py-5">
+      <span className="inline-flex rounded-full border border-[#537FEA]/40 bg-[#537FEA]/[0.08] px-2.5 py-1 text-[10px] font-medium uppercase tracking-[0.18em] text-[#86A2F0]">
+        Foundation
+      </span>
+      <div className="mt-3 flex flex-wrap items-baseline gap-x-2">
+        <span className="text-[34px] font-medium leading-none tracking-tight text-white tabular-nums sm:text-[38px]">
+          A$497
+        </span>
+        <span className="text-[16px] text-[var(--muted)]">/ month</span>
+      </div>
+      <p className="mt-3 text-[14.5px] leading-relaxed text-[var(--silver)] sm:text-[15px]">
+        Locked for as long as you stay. Cancel any time.
+      </p>
+    </div>
+  )
+}
+
+function DeliverablesList({ className = "" }: { className?: string }) {
+  return (
+    <ul className={`space-y-3.5 ${className}`}>
+      {deliverables.map((item) => (
+        <li key={item} className="flex items-start gap-3 text-[14.5px] leading-snug text-[var(--silver)] sm:text-[15px]">
+          <Check className="mt-[3px] h-4 w-4 shrink-0 text-[#6A8FEE]" strokeWidth={2.4} />
+          <span>{item}</span>
+        </li>
+      ))}
+    </ul>
+  )
+}
+
+function InstallCta({ className = "" }: { className?: string }) {
+  return (
+    <div className={className}>
+      <PrimaryCta />
+      <p className="mt-3 text-[13px] leading-relaxed text-[var(--silver)]">
+        Live in 7 to 14 days, fully built around your business.
+      </p>
+    </div>
+  )
+}
+
 function WhatYouGet() {
   return (
     <section className="py-14 sm:py-20">
@@ -246,43 +314,10 @@ function WhatYouGet() {
           <div className="ps-card ps-card-warm mt-8 rounded-[22px] p-6 ring-1 ring-white/15 sm:mt-10 sm:rounded-[28px] sm:p-8 lg:p-12">
             <div className="grid gap-8 lg:grid-cols-[1.05fr_0.95fr] lg:items-start lg:gap-14">
               <div>
-                <div className="flex flex-wrap items-center gap-3">
-                  <h3 className="text-[21px] font-medium tracking-tight text-white sm:text-[24px]">
-                    Your Solren install
-                  </h3>
-                  <RecommendedPill />
-                </div>
-                <p className="mt-2 text-[14.5px] text-[var(--silver)] sm:text-[15px]">
-                  Done for you. Run for you. Built around how you already work.
-                </p>
-                <div className="mt-5 rounded-2xl border border-[var(--hair)] bg-white/[0.02] px-5 py-5">
-                  <span className="inline-flex rounded-full border border-[#537FEA]/40 bg-[#537FEA]/[0.08] px-2.5 py-1 text-[10px] font-medium uppercase tracking-[0.18em] text-[#86A2F0]">
-                    Foundation
-                  </span>
-                  <div className="mt-3 flex flex-wrap items-baseline gap-x-2">
-                    <span className="text-[34px] font-medium leading-none tracking-tight text-white tabular-nums sm:text-[38px]">
-                      A$497
-                    </span>
-                    <span className="text-[16px] text-[var(--muted)]">/ month</span>
-                  </div>
-                  <p className="mt-3 text-[14.5px] leading-relaxed text-[var(--silver)] sm:text-[15px]">
-                    Locked for as long as you stay. Cancel any time.
-                  </p>
-                </div>
-                <ul className="mt-6 space-y-3.5 sm:mt-7">
-                  {deliverables.map((item) => (
-                    <li key={item} className="flex items-start gap-3 text-[14.5px] leading-snug text-[var(--silver)] sm:text-[15px]">
-                      <Check className="mt-[3px] h-4 w-4 shrink-0 text-[#6A8FEE]" strokeWidth={2.4} />
-                      <span>{item}</span>
-                    </li>
-                  ))}
-                </ul>
-                <div className="mt-8 sm:mt-9">
-                  <PrimaryCta />
-                  <p className="mt-3 text-[13px] leading-relaxed text-[var(--silver)]">
-                    Live in 7 to 14 days, fully built around your business.
-                  </p>
-                </div>
+                <InstallHeading />
+                <PriceBox />
+                <DeliverablesList className="mt-6 sm:mt-7" />
+                <InstallCta className="mt-8 sm:mt-9" />
               </div>
               <ScreenshotSlot />
             </div>
@@ -321,6 +356,23 @@ const quoteSteps = [
   { t: "We scope your setup", b: "We map your channels and what a good reply looks like." },
   { t: "You get a fixed quote", b: "One clear price, no surprises later." },
 ]
+
+/* Price fine print. Shared so the desktop pricing section and the mobile
+   foundation box show the same disclaimer from one source. */
+function PricingFootnote() {
+  return (
+    <>
+      <p className="mt-6 text-[14px] leading-relaxed text-[var(--silver)]">
+        Standard rate A$997/month. One-time setup A$490, non-refundable.
+        Fair-use allowance included, high-volume billed at cost. Only 5 foundation
+        spots, <span className="font-semibold text-white">closing 31 July 2026</span>.
+      </p>
+      <p className="mt-2.5 text-[12px] leading-relaxed text-[var(--muted)]">
+        Prices in AUD. GST excluded.
+      </p>
+    </>
+  )
+}
 
 function PricingTreatment() {
   return (
@@ -365,14 +417,7 @@ function PricingTreatment() {
             </>
           )}
 
-          <p className="mt-6 text-[14px] leading-relaxed text-[var(--silver)]">
-            Standard rate A$997/month. One-time setup A$490, non-refundable.
-            Fair-use allowance included, high-volume billed at cost. Only 5 foundation
-            spots, <span className="font-semibold text-white">closing 31 July 2026</span>.
-          </p>
-          <p className="mt-2.5 text-[12px] leading-relaxed text-[var(--muted)]">
-            Prices in AUD. GST excluded.
-          </p>
+          <PricingFootnote />
         </Reveal>
       </div>
     </section>
@@ -493,7 +538,7 @@ function PricingFaq() {
           </div>
           {/* right: the accordion */}
           <div>
-            <FaqAccordion items={pricingFaqs} />
+            <FaqAccordion items={pricingFaqs} defaultOpenIndex={null} />
           </div>
         </div>
       </div>
@@ -581,18 +626,124 @@ function HeroPreview() {
   )
 }
 
-/* The same preview card, reflowed in-flow below the hero text on mobile/tablet
-   so the page matches the wide-desktop hero. Hidden from xl up, where the
-   absolute HeroPreview shows it beside the headline instead. */
+/* The same preview card, reflowed in-flow below the hero text in the lg-to-xl
+   range (where the headline leaves no room beside it and the absolute decoration
+   is hidden). Hidden below lg, where the mobile layout drops it for space, and
+   from xl up, where the absolute HeroPreview shows it beside the headline. */
 function HeroPreviewInline() {
   return (
-    <div className="mx-auto max-w-[1240px] px-5 pb-12 sm:px-6 sm:pb-16 xl:hidden">
+    <div className="mx-auto hidden max-w-[1240px] px-5 pb-12 sm:px-6 sm:pb-16 lg:block xl:hidden">
       <Reveal>
         <div className="max-w-[420px]">
           <ReplyPreviewCard />
         </div>
       </Reveal>
     </div>
+  )
+}
+
+/* ---------- mobile-only layout --------------------------------------------- */
+
+/* Compact, stacked version of the setup steps for the mobile "How it works" tab.
+   Reuses the same `steps` copy as the desktop grid. */
+function StepsList() {
+  return (
+    <ol className="space-y-6">
+      {steps.map(({ t, b }, i) => (
+        <li key={t} className="border-t border-[var(--hair)] pt-4">
+          <span className="ps-label !text-[11px] text-[var(--faint)]">
+            {String(i + 1).padStart(2, "0")}
+          </span>
+          <h3 className="mt-2 text-[16px] font-medium tracking-tight text-white">{t}</h3>
+          <p className="mt-1.5 text-[13.5px] leading-relaxed text-[var(--silver)]">{b}</p>
+        </li>
+      ))}
+    </ol>
+  )
+}
+
+/* The "you get a fixed quote" steps, reusing the same `quoteSteps` copy as the
+   desktop pricing section. */
+function QuoteStepsList() {
+  return (
+    <ol className="space-y-3">
+      {quoteSteps.map((step, i) => (
+        <li key={step.t} className="rounded-2xl border border-[var(--hair)] bg-white/[0.02] p-5">
+          <span className="ps-label !text-[11px] text-[var(--faint)]">
+            {String(i + 1).padStart(2, "0")}
+          </span>
+          <p className="mt-3 text-[16px] font-medium leading-snug text-white">{step.t}</p>
+          <p className="mt-2 text-[13.5px] leading-relaxed text-[var(--silver)]">{step.b}</p>
+        </li>
+      ))}
+    </ol>
+  )
+}
+
+/* Mobile-only: the conversion essentials stacked and always visible. The cost of
+   the problem, the A$497 foundation price (with its fine print), the example
+   preview, the guarantee and the main CTA. The "cost of fixing it" card and the
+   "need something bigger" card are intentionally dropped here. */
+function MobileSupportStack() {
+  return (
+    <section className="py-10">
+      <div className="mx-auto max-w-[1240px] space-y-8 px-5 sm:px-6">
+        <Reveal>
+          <CostCalculatorCard />
+        </Reveal>
+        <Reveal>
+          <div className="ps-card ps-card-warm rounded-[22px] p-6 ring-1 ring-white/15 sm:rounded-[28px] sm:p-8">
+            <InstallHeading />
+            <PriceBox />
+            <PricingFootnote />
+          </div>
+        </Reveal>
+        <Reveal>
+          <ScreenshotSlot />
+        </Reveal>
+        <Reveal>
+          <GuaranteeCard />
+        </Reveal>
+        <Reveal>
+          <InstallCta />
+        </Reveal>
+      </div>
+    </section>
+  )
+}
+
+/* Mobile-only: the supporting detail (bullets, setup/pricing steps, FAQ) tucked
+   into a segmented-control tab strip. No price, guarantee or main CTA lives in
+   here. Reuses the same components/data as the desktop sections. */
+function MobileSupportTabsSection() {
+  return (
+    <section className="py-10">
+      <div className="mx-auto max-w-[1240px] px-5 sm:px-6">
+        <Reveal>
+          <MobileSupportTabs
+            tabs={[
+              { id: "what", label: "What you get", panel: <DeliverablesList /> },
+              {
+                id: "how",
+                label: "How it works",
+                panel: (
+                  <div className="space-y-8">
+                    <StepsList />
+                    <div aria-hidden="true" className="h-px bg-[var(--hair)]" />
+                    <QuoteStepsList />
+                  </div>
+                ),
+              },
+              {
+                id: "faq",
+                label: "FAQ",
+                panel: <FaqAccordion items={pricingFaqs} defaultOpenIndex={null} />,
+              },
+            ]}
+          />
+        </Reveal>
+      </div>
+    </section>
   )
 }
 
@@ -623,17 +774,32 @@ export function PricingContent() {
       <HeroPreviewInline />
       <SectionRule />
 
-      <CostBlock />
-      <SectionRule />
-      <GuaranteeBand />
-      <SectionRule />
-      <WhatYouGet />
-      <SectionRule />
-      <PricingTreatment />
-      <SectionRule />
-      <HowItWorks />
-      <SectionRule />
-      <PricingFaq />
+      {/* Desktop: the full linear sequence, unchanged. `hidden lg:contents` drops
+          this wrapper from the box tree at lg+, so the desktop layout is exactly
+          as before; below lg the whole block is hidden.
+          Order tells the story: cost of the problem, then price, then guarantee. */}
+      <div className="hidden lg:contents">
+        <CostBlock />
+        <SectionRule />
+        <WhatYouGet />
+        <SectionRule />
+        <GuaranteeBand />
+        <SectionRule />
+        <PricingTreatment />
+        <SectionRule />
+        <HowItWorks />
+        <SectionRule />
+        <PricingFaq />
+      </div>
+
+      {/* Mobile: essentials stacked and always visible, then the supporting
+          detail behind a 3-tab control. Hidden from lg up. */}
+      <div className="lg:hidden">
+        <MobileSupportStack />
+        <SectionRule />
+        <MobileSupportTabsSection />
+      </div>
+
       <FinalCta />
     </>
   )

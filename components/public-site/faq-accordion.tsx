@@ -9,10 +9,13 @@ import { faqs } from "./faq-data"
    real inline links (e.g. to Security/Trust) without changing the shared data. */
 export function FaqAccordion({
   items = faqs,
+  defaultOpenIndex = 0,
 }: {
   items?: { q: string; a: ReactNode }[]
+  /* Which item starts expanded; pass null to start with all collapsed. */
+  defaultOpenIndex?: number | null
 }) {
-  const [open, setOpen] = useState<number | null>(0)
+  const [open, setOpen] = useState<number | null>(defaultOpenIndex)
 
   return (
     <div className="divide-y divide-[var(--hair)] border-y border-[var(--hair)]">

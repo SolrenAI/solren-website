@@ -199,18 +199,18 @@ function SuccessPanel() {
         <span className="ps-label !text-[10px] text-white">Request received</span>
       </div>
       <h2 className="mt-5 text-[21px] font-medium leading-tight tracking-tight text-white lg:text-[24px]">
-        Thank you. Your details are on their way.
+        Thank you. We&apos;ve received your details.
       </h2>
       <p className="mt-3 text-[15px] leading-relaxed text-[var(--silver)]">
-        Your email app should have opened with your request ready to send. If it
-        didn&apos;t, email us at{" "}
+        Your enquiry is with our team and we&apos;ll reply with the best next step.
+        Prefer to write us directly? Email{" "}
         <a
           href="mailto:contact@solren.ai"
           className="text-white underline-offset-2 hover:underline"
         >
           contact@solren.ai
-        </a>{" "}
-        and we&apos;ll pick it up from there.
+        </a>
+        .
       </p>
 
       <div className="mt-7 border-t border-[var(--hair)] pt-6">
@@ -257,7 +257,11 @@ export function BookDemo() {
   const [selProblems, setSelProblems] = useState<string[]>([])
   const [bestTime, setBestTime] = useState("")
   const [urgency, setUrgency] = useState("")
-  const [submitted, setSubmitted] = useState(false)
+  const [hp, setHp] = useState("") // honeypot
+  const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle")
+  const [errorMsg, setErrorMsg] = useState("")
+
+  const submitted = status === "success"
 
   function set(key: keyof typeof fields) {
     return (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) =>
@@ -268,43 +272,42 @@ export function BookDemo() {
     setList(list.includes(value) ? list.filter((v) => v !== value) : [...list, value])
   }
 
-  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault()
+    if (status === "submitting") return
 
-    const subject = `Get started: ${fields.business || fields.name || "Solren"}`
-    const lines = [
-      `Name: ${fields.name}`,
-      `Business: ${fields.business}`,
-      `Email: ${fields.email}`,
-      `Phone: ${fields.phone}`,
-      `Trade: ${fields.trade}`,
-      `Website: ${fields.website || "-"}`,
-      `Package interest: ${pkg || "-"}`,
-      "",
-      "Fix first:",
-      message || "-",
-    ]
-    if (
-      selChannels.length ||
-      selTools.length ||
-      selProblems.length ||
-      bestTime ||
-      urgency
-    ) {
-      lines.push(
-        "",
-        `Lead channels: ${selChannels.join(", ") || "-"}`,
-        `Current tools: ${selTools.join(", ") || "-"}`,
-        `Leads slipping: ${selProblems.join(", ") || "-"}`,
-        `Best time to contact: ${bestTime || "-"}`,
-        `Timeline: ${urgency || "-"}`
+    setStatus("submitting")
+    setErrorMsg("")
+
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          ...fields,
+          message,
+          pkg,
+          channels: selChannels,
+          tools: selTools,
+          problems: selProblems,
+          bestTime,
+          urgency,
+          hp,
+        }),
+      })
+
+      if (!res.ok) {
+        const data = (await res.json().catch(() => null)) as { error?: string } | null
+        throw new Error(data?.error || "Something went wrong. Please try again.")
+      }
+
+      setStatus("success")
+    } catch (err) {
+      setStatus("error")
+      setErrorMsg(
+        err instanceof Error ? err.message : "Something went wrong. Please try again."
       )
     }
-
-    setSubmitted(true)
-    window.location.href = `mailto:contact@solren.ai?subject=${encodeURIComponent(
-      subject
-    )}&body=${encodeURIComponent(lines.join("\n"))}`
   }
 
   return (
@@ -339,6 +342,17 @@ export function BookDemo() {
           <SuccessPanel />
         ) : (
           <form onSubmit={handleSubmit}>
+            {/* honeypot: hidden from users, catches bots that fill every field */}
+            <input
+              type="text"
+              name="company_url"
+              tabIndex={-1}
+              autoComplete="off"
+              aria-hidden="true"
+              value={hp}
+              onChange={(e) => setHp(e.target.value)}
+              className="absolute left-[-9999px] h-0 w-0 opacity-0"
+            />
             <h2 className="text-[18px] font-medium tracking-tight text-white">
               Tell us about your business.
             </h2>
@@ -490,11 +504,26 @@ export function BookDemo() {
             <div className="mt-7 border-t border-[var(--hair)] pt-6">
               <button
                 type="submit"
-                className="group inline-flex w-full items-center justify-center gap-2 rounded-full bg-[#537FEA] px-6 py-3.5 text-[15px] font-medium text-black transition-colors hover:bg-[#6A8FEE] sm:w-auto"
+                disabled={status === "submitting"}
+                className="group inline-flex w-full items-center justify-center gap-2 rounded-full bg-[#537FEA] px-6 py-3.5 text-[15px] font-medium text-black transition-colors hover:bg-[#6A8FEE] disabled:cursor-not-allowed disabled:opacity-60 sm:w-auto"
               >
-                Talk to us
-                <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                {status === "submitting" ? "Sending…" : "Talk to us"}
+                {status !== "submitting" && (
+                  <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                )}
               </button>
+              {status === "error" && (
+                <p role="alert" className="mt-4 text-[13px] leading-relaxed text-[#f7a8a8]">
+                  {errorMsg} You can also email us at{" "}
+                  <a
+                    href="mailto:contact@solren.ai"
+                    className="text-white underline-offset-2 hover:underline"
+                  >
+                    contact@solren.ai
+                  </a>
+                  .
+                </p>
+              )}
               <p className="mt-4 text-[13px] leading-relaxed text-[var(--silver)]">
                 We&apos;ll review your details and reply with the best next step.
               </p>
