@@ -15,11 +15,11 @@ type Group = { title: string; systems: System[] }
 
 const groups: Group[] = [
   {
-    title: "Core platform",
+    title: "Core services",
     systems: [
       { name: "Website", desc: "Public marketing site and pages." },
       { name: "Dashboard", desc: "Client command centre and views." },
-      { name: "Automation engine", desc: "The system that runs your workflows." },
+      { name: "Reply engine", desc: "Runs your replies and follow-ups." },
     ],
   },
   {
@@ -27,7 +27,7 @@ const groups: Group[] = [
     systems: [
       { name: "Gmail connection", desc: "Reading enquiries from connected inboxes." },
       { name: "Reply drafting", desc: "Drafting fast first replies for review." },
-      { name: "Follow-up workflows", desc: "Timely follow-ups until a lead is resolved." },
+      { name: "Follow-ups", desc: "Timely follow-ups until a lead is resolved." },
     ],
   },
   {
@@ -89,15 +89,17 @@ export default function StatusPage() {
         looseTitle
         titleClass="text-[clamp(2.05rem,8.5vw,4.4rem)] lg:text-[2.6rem]"
         title={<>All systems operational.</>}
-        sub="Current availability across Solren's website, dashboard, automation, messaging and billing systems."
+        sub="Check whether Solren services are running normally."
+        divider={false}
+        bottomClass="pb-5 sm:pb-12 lg:pb-7"
       />
 
-      <section className="py-16 sm:pb-20 sm:pt-10">
+      <section className="pt-4 pb-2 sm:pb-20 sm:pt-8 lg:pt-2">
         <div className="mx-auto max-w-[1240px] px-5 sm:px-6">
           {/* Overall status summary — the at-a-glance operational banner that makes
               this read as a real public status page, not an internal table. */}
           <Reveal>
-            <div className="flex max-w-[1040px] flex-col gap-3 rounded-2xl border border-white/[0.08] bg-white/[0.02] px-5 py-4 sm:flex-row sm:items-center sm:justify-between sm:px-6 sm:py-4">
+            <div className="flex max-w-[1040px] flex-col gap-2.5 rounded-2xl border border-white/[0.08] bg-white/[0.02] px-5 py-3.5 sm:flex-row sm:items-center sm:justify-between sm:gap-3 sm:px-6 sm:py-4">
               <div className="flex items-center gap-3">
                 <span className="ps-live-dot h-2 w-2 shrink-0 rounded-full bg-[#537FEA]" />
                 <div>
@@ -117,18 +119,18 @@ export default function StatusPage() {
 
           {/* Detailed rows — cleaner, un-boxed, subtle dividers. Wider than the
               prose blocks so the operational list extends right like a status table. */}
-          <div className="mt-8 max-w-[1040px] space-y-8">
+          <div className="mt-6 max-w-[1040px] space-y-6 sm:mt-8">
             {groups.map((group) => (
               <Reveal key={group.title}>
                 <div>
                   <h2 className="text-[12px] font-medium uppercase tracking-[0.2em] text-white/45">
                     {group.title}
                   </h2>
-                  <div className="mt-3 divide-y divide-white/[0.06]">
+                  <div className="mt-3 divide-y divide-white/[0.04]">
                     {group.systems.map((s) => (
                       <div
                         key={s.name}
-                        className="flex items-start justify-between gap-4 py-3.5"
+                        className="flex items-start justify-between gap-4 py-3 sm:py-4"
                       >
                         <div>
                           <div className="text-[15px] font-medium tracking-tight text-white">
@@ -149,11 +151,11 @@ export default function StatusPage() {
 
           {/* Recent history — calm record, no fake timeline when there are none */}
           <Reveal>
-            <div className="mt-10 max-w-[800px] border-t border-[var(--hair)] pt-8 sm:mt-12 sm:pt-10">
+            <div className="mt-5 max-w-[800px] sm:mt-10">
               <h2 className="text-[19px] font-medium tracking-tight text-white">
                 Recent history
               </h2>
-              <div className="mt-5 rounded-2xl border border-white/[0.08] bg-white/[0.015] p-5">
+              <div className="mt-3 rounded-2xl border border-white/[0.08] bg-white/[0.015] p-5 sm:mt-5">
                 <div className="text-[15px] font-medium tracking-tight text-white">
                   No incidents reported.
                 </div>
@@ -166,7 +168,7 @@ export default function StatusPage() {
 
           {/* Support */}
           <Reveal>
-            <div className="mt-10 max-w-[800px] border-t border-[var(--hair)] pt-8">
+            <div className="mt-5 max-w-[800px] sm:mt-10">
               <h2 className="text-[15px] font-medium tracking-tight text-white">
                 Need help?
               </h2>

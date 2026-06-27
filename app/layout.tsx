@@ -28,9 +28,9 @@ const geistMono = Geist_Mono({
 })
 
 const SITE_DESCRIPTION =
-  "Never lose another lead. Solren catches enquiries, replies fast, and follows up until the job is booked."
+  "Solren catches every enquiry, drafts the reply and the follow-ups, and you approve what goes out. We set it up and run it for you."
 const SOCIAL_IMAGE = "/og-image.png"
-const SOCIAL_IMAGE_ALT = "Solren - Never lose another lead"
+const SOCIAL_IMAGE_ALT = "Solren - Done-for-you lead follow-up for trades"
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://solren.ai"),

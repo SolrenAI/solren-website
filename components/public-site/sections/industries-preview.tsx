@@ -54,22 +54,22 @@ const trades: Trade[] = [
 
 export function IndustriesPreview() {
   return (
-    <section className="relative py-16 sm:py-24 lg:pb-28 lg:pt-20">
+    <section className="relative pt-6 pb-2 sm:pt-8 sm:pb-6 lg:pt-7 lg:pb-6">
       <div className="mx-auto max-w-[1240px] px-5 sm:px-6">
         <Reveal>
-          <div className="mb-7 sm:mb-8">
-            <span className="ps-label">Who it&apos;s for</span>
-            <h2 className="mt-5 max-w-xl text-[clamp(1.7rem,7.5vw,3rem)] font-medium leading-[1.08] tracking-[-0.02em] sm:mt-6 sm:leading-[1.05]">
-              <span className="ps-silver">Built for teams customers call</span>{" "}
-              <span className="text-[var(--muted)]">when something needs fixing.</span>
+          <div className="mb-6 sm:mb-8">
+            <span className="ps-label block">Who it&apos;s for</span>
+            <h2 className="mt-3 max-w-xl text-[clamp(1.7rem,7.5vw,3rem)] font-medium leading-[1.08] tracking-[-0.02em] sm:leading-[1.05]">
+              <span className="ps-silver">Built for trades</span>{" "}
+              <span className="text-[var(--muted)]">where fast replies win jobs.</span>
             </h2>
-            <p className="mt-5 max-w-lg text-[15px] leading-relaxed text-[var(--silver)]">
-              For electricians, plumbers, roofers, HVAC and service businesses
-              that need every enquiry answered, followed up and moved forward.
+            <p className="mt-3 max-w-lg text-[15px] leading-relaxed text-[var(--silver)] sm:mt-4">
+              For electricians, plumbers, roofers, HVAC and service businesses.
+              No enquiry missed. No follow-up forgotten.
             </p>
             <Link
               href="/industries"
-              className="group mt-7 inline-flex items-center gap-2 text-[14px] font-medium text-white"
+              className="group mt-6 inline-flex items-center gap-2 text-[14px] font-medium text-white sm:mt-7"
             >
               See industries
               <ArrowUpRight className="h-4 w-4 text-[#537FEA] transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />

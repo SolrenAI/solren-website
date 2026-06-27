@@ -44,7 +44,7 @@ export function HelpIndex({
         />
       </div>
 
-      <div className="mt-10 space-y-12 lg:mt-12 lg:space-y-12">
+      <div className="mt-3 space-y-8 sm:mt-7 sm:space-y-7">
         {categories.map((cat) => {
           const items = filtered.filter((a) => a.category === cat.id)
           if (items.length === 0) return null
@@ -54,7 +54,7 @@ export function HelpIndex({
                 <h2 className="text-[12px] font-medium uppercase tracking-[0.2em] text-white/55">
                   {cat.label}
                 </h2>
-                <div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+                <div className="mt-4 grid grid-cols-1 gap-[13px] sm:mt-4 sm:grid-cols-2 sm:gap-4 lg:grid-cols-3">
                   {items.map((a) => (
                     <HelpCard
                       key={a.slug}

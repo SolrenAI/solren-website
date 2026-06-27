@@ -6,9 +6,8 @@ import { usePathname } from "next/navigation"
 import { useEffect, useRef, useState } from "react"
 import { ArrowUpRight, ChevronDown, Menu, X } from "lucide-react"
 
-type Match = "exact" | "startsWith"
 type SubLink = { label: string; href: string; all?: boolean }
-type NavItem = { label: string; href: string; match: Match; children?: SubLink[] }
+type NavItem = { label: string; href: string; children?: SubLink[] }
 
 const industries: SubLink[] = [
   { label: "Electricians", href: "/electricians" },
@@ -34,61 +33,92 @@ const company: SubLink[] = [
    position or nav order unless explicitly requested. Only the nav items change
    on request. */
 
-/* Active rules:
-   - Pricing: exact pathname match
-   - Platform: how-it-works route (exact), direct link — no dropdown
-   - Company: our story route, /about (exact)
-   - Industries / Integrations: pathname starts with the href
-   - On "/", nothing matches, so no item is active. */
+/* Active rules — an item highlights on its own page or any page inside its
+   dropdown; Industries also owns the top-level industry detail routes; the
+   homepage "/" highlights nothing.
+   - Platform → /how-it-works
+   - Industries → /industries + every industry detail route
+   - Pricing → /pricing
+   - Company → /about, /careers, /contact, /why-solren, /trust, /privacy, /terms */
 const links: NavItem[] = [
-  { label: "Platform", href: "/how-it-works", match: "exact" },
-  { label: "Industries", href: "/industries", match: "startsWith", children: industries },
-  { label: "Integrations", href: "/integrations", match: "startsWith" },
-  { label: "Pricing", href: "/pricing", match: "exact" },
-  { label: "Company", href: "/about", match: "exact", children: company },
+  { label: "Platform", href: "/how-it-works" },
+  { label: "Industries", href: "/industries", children: industries },
+  { label: "Pricing", href: "/pricing" },
+  { label: "Company", href: "/about", children: company },
 ]
 
+/* Top-level industry detail routes, so the Industries tab stays active on the
+   individual pages (not just the listing). Keep in sync with the industry pages. */
+const industryRoutes = new Set([
+  "/electricians", "/plumbers", "/roofers", "/hvac", "/builders", "/landscapers",
+  "/cleaners", "/pest-control", "/painters", "/concreters", "/pool-services", "/handyman",
+])
+
 function isActive(pathname: string, item: NavItem): boolean {
-  return item.match === "startsWith"
-    ? pathname.startsWith(item.href)
-    : pathname === item.href
+  if (pathname === "/") return false
+  if (pathname === item.href) return true
+  if (item.children?.some((c) => pathname === c.href)) return true
+  if (item.href === "/industries" && industryRoutes.has(pathname)) return true
+  return false
 }
 
 /* Nav link: 14px / medium / muted grey. Active or hovered → white. Active is the
    subtle, premium signal (brighter text), never an orange block. */
 function navLinkClass(active: boolean): string {
-  return `inline-flex h-9 items-center leading-none text-[14px] font-medium transition-colors ${
+  return `inline-flex h-9 items-center leading-none text-[13px] font-medium transition-colors ${
     active ? "text-white" : "text-[#8f8f8f] hover:text-white"
   }`
 }
 
-/* Desktop dropdown: opens on hover and on keyboard focus, closes on mouse-out,
-   on focus leaving the group, and on Escape (which returns focus to the trigger
-   without re-opening). No heavy animation — a 150ms opacity fade only. */
+/* Desktop dropdown: opens on intentional hover only, closes on mouse-out, on
+   focus leaving the group, on Escape (which returns focus to the trigger), on
+   outside click, on route change, and whenever the window loses focus or the tab
+   is hidden. It deliberately does NOT open on focus alone, so returning to the
+   browser tab (which restores focus to the trigger) never re-opens the menu. No
+   heavy animation — a 150ms opacity fade only. */
 function NavDropdown({ item, active, className = "" }: { item: NavItem; active: boolean; className?: string }) {
+  const pathname = usePathname()
   const [open, setOpen] = useState(false)
   const triggerRef = useRef<HTMLAnchorElement>(null)
-  const closedByEsc = useRef(false)
+  const rootRef = useRef<HTMLDivElement>(null)
+
+  /* Always close when the route changes so navigating never leaves a menu open. */
+  useEffect(() => {
+    setOpen(false)
+  }, [pathname])
+
+  /* Force-close on window blur, tab-hidden and outside click. Returning to the
+     tab keeps the menu closed until the user hovers again. */
+  useEffect(() => {
+    const close = () => setOpen(false)
+    const onVisibility = () => {
+      if (document.hidden) setOpen(false)
+    }
+    const onPointerDown = (e: PointerEvent) => {
+      if (rootRef.current && !rootRef.current.contains(e.target as Node)) setOpen(false)
+    }
+    window.addEventListener("blur", close)
+    document.addEventListener("visibilitychange", onVisibility)
+    document.addEventListener("pointerdown", onPointerDown)
+    return () => {
+      window.removeEventListener("blur", close)
+      document.removeEventListener("visibilitychange", onVisibility)
+      document.removeEventListener("pointerdown", onPointerDown)
+    }
+  }, [])
 
   return (
     <div
+      ref={rootRef}
       className={`relative flex items-center ${className}`}
       onMouseEnter={() => setOpen(true)}
       onMouseLeave={() => setOpen(false)}
-      onFocus={() => {
-        if (closedByEsc.current) {
-          closedByEsc.current = false
-          return
-        }
-        setOpen(true)
-      }}
       onBlur={(e) => {
         if (!e.currentTarget.contains(e.relatedTarget as Node)) setOpen(false)
       }}
       onKeyDown={(e) => {
         if (e.key === "Escape" && open) {
           setOpen(false)
-          closedByEsc.current = true
           triggerRef.current?.focus()
         }
       }}
@@ -159,52 +189,52 @@ export function PublicNav() {
   return (
     <header className="fixed inset-x-0 top-0 z-40 border-b border-white/[0.05] bg-[#08090C]">
       {/* One compact bar: logo + nav grouped left, CTA far right. */}
-      <div className="mx-auto flex h-[58px] max-w-[1440px] items-center justify-between px-5 sm:px-6 lg:h-[60px] lg:px-8">
-        {/* left: logo + nav as one compact group, tight even spacing */}
-        <div className="flex items-center gap-3">
+      <div className="mx-auto flex h-[50px] max-w-[1240px] items-center px-5 sm:px-6 lg:h-[56px]">
+        {/* left zone: logo anchors the left of the header container */}
+        <div className="flex flex-1 items-center justify-start">
           <Link
             href="/"
             aria-label="Solren home"
-            className="-my-1 ml-1 inline-flex items-center py-1 sm:ml-2"
+            className="-my-1 inline-flex items-center py-1"
           >
             <Image
-              src="/logos/solren-wordmark-clean.png"
+              src="/logos/solren-wordmark-blue-s.png"
               alt="Solren"
               width={1305}
               height={183}
               priority
               sizes="210px"
-              className="h-[26px] w-auto sm:h-[29px]"
+              className="h-[28px] w-auto sm:h-[29px]"
             />
           </Link>
-
-          {/* nav: even 28px gap between links (xAI-style spacing) */}
-          <nav className="hidden items-center gap-7 lg:ml-16 lg:flex">
-            {links.map((l) => {
-              const active = isActive(pathname, l)
-              return l.children ? (
-                <NavDropdown key={l.label} item={l} active={active} />
-              ) : (
-                <Link
-                  key={l.label}
-                  href={l.href}
-                  aria-current={active ? "page" : undefined}
-                  className={navLinkClass(active)}
-                >
-                  {l.label}
-                </Link>
-              )
-            })}
-          </nav>
         </div>
 
-        {/* right: CTA (desktop) / menu toggle (mobile) */}
-        <div className="flex items-center">
+        {/* centre zone: the four nav links, dead-centred via equal flex-1 sides */}
+        <nav className="hidden items-center gap-10 lg:flex">
+          {links.map((l) => {
+            const active = isActive(pathname, l)
+            return l.children ? (
+              <NavDropdown key={l.label} item={l} active={active} />
+            ) : (
+              <Link
+                key={l.label}
+                href={l.href}
+                aria-current={active ? "page" : undefined}
+                className={navLinkClass(active)}
+              >
+                {l.label}
+              </Link>
+            )
+          })}
+        </nav>
+
+        {/* right zone: CTA (desktop) / menu toggle (mobile), anchors the right */}
+        <div className="flex flex-1 items-center justify-end">
           <Link
             href="/contact"
             className="group hidden h-9 items-center gap-1.5 rounded-full border border-[var(--hair-strong)] bg-white/[0.02] px-[18px] text-[13.5px] font-medium text-white transition-colors hover:border-[#537FEA]/50 hover:bg-[#537FEA]/[0.06] lg:inline-flex"
           >
-            Get started
+            Book a call
             <ArrowUpRight className="h-3.5 w-3.5 text-[#537FEA] transition-transform group-hover:translate-x-px group-hover:-translate-y-px" />
           </Link>
 
@@ -223,9 +253,9 @@ export function PublicNav() {
       {open && (
         <div
           id="mobile-menu"
-          className="max-h-[calc(100dvh-58px)] overflow-y-auto border-t border-[var(--hair)] bg-[#08090C] px-5 pb-5 pt-3 sm:px-6 lg:hidden"
+          className="max-h-[calc(100dvh-50px)] overflow-y-auto border-t border-[var(--hair)] bg-[#08090C] px-5 pb-5 pt-3 sm:px-6 lg:hidden"
         >
-          <div className="mx-auto flex max-w-xl flex-col">
+          <div className="flex flex-col">
             {links.map((l) => {
               const active = isActive(pathname, l)
               return l.children ? (
@@ -271,7 +301,7 @@ export function PublicNav() {
               onClick={() => setOpen(false)}
               className="mt-4 inline-flex h-12 items-center justify-center gap-1.5 rounded-full bg-[#537FEA] px-[18px] text-[15px] font-medium text-black"
             >
-              Get started
+              Book a call
               <ArrowUpRight className="h-4 w-4 text-black" />
             </Link>
           </div>

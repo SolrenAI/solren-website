@@ -68,9 +68,13 @@ export default function SecurityPage() {
     <>
       <PageHeader
         eyebrow="Data protection"
-        title={<>Security.</>}
-        sub="How Solren protects your information, customer enquiries and connected workflows."
+        looseTitle
+        title={<>Security built into the way Solren works.</>}
+        sub="Solren limits access, protects customer data and keeps important actions reviewed."
         note="Last reviewed: 1 January 2026"
+        divider={false}
+        compact
+        bottomClass="pb-3 sm:pb-7 lg:pb-7"
         actions={
           <>
             <Link
@@ -90,12 +94,12 @@ export default function SecurityPage() {
       />
 
       {/* Principles — the quick, reassuring takeaways under the hero */}
-      <section className="pt-14 sm:pt-16">
+      <section className="pt-4 sm:pt-5 lg:pt-2">
         <div className="mx-auto max-w-[1240px] px-6">
           <Reveal>
-            <span className="ps-label ps-label-legible">Trust principles</span>
+            <span className="ps-label ps-label-legible block">Trust principles</span>
           </Reveal>
-          <div className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-3">
+          <div className="mt-2.5 grid grid-cols-1 gap-4 sm:grid-cols-3">
             {principles.map((p, i) => (
               <Reveal key={p.title} delay={i * 60}>
                 <div className="h-full rounded-2xl border border-white/[0.08] bg-white/[0.015] p-6">
@@ -115,16 +119,16 @@ export default function SecurityPage() {
       {/* In depth — intro on the left, accordion rows on the right. The left
          column is not sticky: it sits at the top of its grid cell (lg:self-start)
          and scrolls naturally with the accordion, no scroll-following. */}
-      <section className="pt-16 sm:pt-20">
+      <section className="pt-5 sm:pt-11 lg:pt-9">
         <div className="mx-auto max-w-[1240px] px-6">
-          <div className="grid grid-cols-1 gap-10 lg:grid-cols-[330px_1fr] lg:gap-16">
+          <div className="grid grid-cols-1 gap-[30px] sm:gap-10 lg:grid-cols-[330px_1fr] lg:gap-10">
             <aside className="lg:self-start">
               <Reveal>
-                <span className="ps-label ps-label-legible">In depth</span>
-                <h2 className="mt-5 text-[clamp(1.6rem,3vw,2.1rem)] font-medium leading-[1.1] tracking-[-0.02em] ps-silver">
+                <span className="ps-label ps-label-legible block">In depth</span>
+                <h2 className="mt-3 text-[clamp(1.6rem,3vw,2.1rem)] font-medium leading-[1.1] tracking-[-0.02em] ps-silver">
                   Security practices
                 </h2>
-                <p className="mt-5 max-w-sm text-[15.5px] leading-relaxed text-[var(--silver)]">
+                <p className="mt-3 max-w-sm text-[15.5px] leading-relaxed text-[var(--silver)] sm:mt-4">
                   A clear overview of how Solren handles data, providers, access
                   and reporting.
                 </p>
@@ -132,7 +136,8 @@ export default function SecurityPage() {
             </aside>
 
             <Reveal delay={80}>
-              <SecurityAccordion rows={rows} />
+              {/* All rows closed on load (mobile + desktop); users tap to open */}
+              <SecurityAccordion rows={rows} defaultOpen={null} />
             </Reveal>
           </div>
         </div>
@@ -140,14 +145,14 @@ export default function SecurityPage() {
 
       {/* Report a vulnerability — its own section, outside the sticky wrapper.
          Sits below the grid; the sticky column has already released by here. */}
-      <section className="pb-24 sm:pb-28">
+      <section className="pb-5 sm:pb-20">
         <div className="mx-auto max-w-[1240px] px-6">
           <Reveal>
-            <div className="mt-12 border-t border-white/[0.05] pt-10 text-center sm:mt-20 sm:pt-16">
+            <div className="mt-9 text-center sm:mt-20 lg:mt-16">
               <h2 className="text-[clamp(1.6rem,3vw,2.1rem)] font-medium leading-[1.1] tracking-[-0.02em] ps-silver">
                 Report a vulnerability.
               </h2>
-              <p className="mx-auto mt-5 max-w-md text-[15.5px] leading-relaxed text-[var(--silver)]">
+              <p className="mx-auto mt-4 max-w-md text-[15.5px] leading-relaxed text-[var(--silver)] sm:mt-5">
                 If you believe you have found a security vulnerability in Solren, email{" "}
                 <a
                   href="mailto:contact@solren.ai"
@@ -159,7 +164,7 @@ export default function SecurityPage() {
               </p>
               <a
                 href="mailto:contact@solren.ai"
-                className="group mt-8 inline-flex items-center gap-2 rounded-full border border-[var(--hair-strong)] px-7 py-3.5 text-[15px] font-medium text-white transition-colors hover:bg-white/[0.03]"
+                className="group mt-5 inline-flex items-center gap-2 rounded-full border border-[var(--hair-strong)] px-7 py-3.5 text-[15px] font-medium text-white transition-colors hover:bg-white/[0.03] sm:mt-8"
               >
                 Contact Solren
                 <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
@@ -169,7 +174,7 @@ export default function SecurityPage() {
 
           {/* Final note — quiet */}
           <Reveal>
-            <p className="mx-auto mt-12 max-w-md text-center text-[14px] leading-relaxed text-[var(--muted)]">
+            <p className="mx-auto mt-6 max-w-md text-center text-[14px] leading-relaxed text-[var(--muted)] sm:mt-8">
               For what we collect and how it is used, see our{" "}
               <Link
                 href="/privacy"

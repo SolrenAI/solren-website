@@ -14,20 +14,15 @@ export default function ContactPage() {
   return (
     <>
       <PageHeader
-        eyebrow="Get started"
-        title={<>Start your Solren install.</>}
-        sub="Tell us where work comes in and what you want fixed first. We'll map the right install and send the next step."
+        eyebrow="Contact"
+        title={<>Talk to Solren.</>}
+        sub="Tell us where your enquiries come from. We will show you what Solren could handle."
         divider={false}
+        bottomClass="pb-6 sm:pb-9 lg:pb-7"
+        subClass="mt-[18px] sm:mt-7"
       />
 
-      {/* quiet section break, aligned to the content grid and fading at the ends */}
-      <div className="mx-auto max-w-[1240px] px-6">
-        <div
-          aria-hidden="true"
-          className="h-px w-full bg-gradient-to-r from-transparent via-white/[0.08] to-transparent"
-        />
-      </div>
-
+      {/* No divider — controlled whitespace carries the hero into the form. */}
       <BookDemo />
     </>
   )

@@ -19,38 +19,17 @@ type Section = {
 
 const sections: Section[] = [
   {
-    h: "The problem",
+    h: "The problem was personal.",
     body: [
-      "Too many businesses lose good enquiries simply because they are busy doing the work. A call is missed, a message sits unanswered, and the customer moves on to whoever replies first.",
-      "Solren exists to help service businesses stay responsive without adding more admin. It captures enquiries, drafts fast replies and keeps follow-up consistent, so the work of staying in touch happens quietly in the background.",
+      "Before Solren was a product, it was a problem we kept seeing up close. Family members lost good jobs because they were on the tools, missed the call, replied too late, or forgot to follow up while the day kept moving.",
+      "It happened to us too. The painful part was how simple the reason was: the customer had already reached out, the opportunity was real, but by the time someone replied, they had booked another business.",
+      "Solren was built for that moment. It catches the enquiry, replies quickly, follows up properly, and helps make sure the job goes to you, not just to whoever answered first.",
     ],
   },
   {
-    h: "Built for real businesses",
+    h: "What Solren does",
     body: [
-      "Solren is built for the businesses that keep things running. The people on the tools, on site and on the road, who cannot always stop to answer.",
-      "From electricians and plumbers to builders, landscapers, HVAC teams and cleaners, the goal is the same: stay responsive without spending the day chasing enquiries.",
-    ],
-  },
-  {
-    h: "Simple by design",
-    body: [
-      "Software should remove complexity, not create it. We are not interested in dashboards no one opens or features that get in the way.",
       "Solren focuses on doing a few things well: capturing enquiries, replying quickly and maintaining consistent follow-up. It should feel less like software to manage and more like a system that just works.",
-    ],
-  },
-  {
-    h: "Built on trusted technology",
-    body: [
-      "Solren runs on dependable technology, chosen because it is proven, secure and reliable.",
-      "The tools matter less than the result: enquiries are captured, replies are prepared, and follow-up keeps moving in the background.",
-    ],
-  },
-  {
-    h: "Built to last",
-    body: [
-      "Solren is focused on dependable software that helps service businesses spend less time chasing enquiries and more time doing the work that matters.",
-      "Installed for you, managed for you, and built to keep working quietly in the background.",
     ],
   },
 ]
@@ -58,33 +37,28 @@ const sections: Section[] = [
 export default function AboutPage() {
   return (
     <>
-      {/* a touch more breathing room above the hero headline, this page only */}
-      <div aria-hidden="true" className="h-5" />
       <PageHeader
         eyebrow="Our Story"
-        title={<>Why Solren exists.</>}
-        sub="Solren was created to help busy service businesses respond faster, follow up automatically and turn more enquiries into booked work."
+        looseTitle
+        title={<>Built for businesses that lose work while they’re busy doing the work.</>}
+        sub="Solren was built around a simple problem. Good businesses miss enquiries because they are busy doing the work."
         divider={false}
+        compact
+        subGapClass="mt-4 sm:mt-5"
+        bottomClass="pb-6 sm:pb-9 lg:pb-9"
       />
 
-      {/* short, soft divider aligned to the body content width, fading at the ends */}
-      <div className="mx-auto max-w-[760px] px-6">
-        <div
-          aria-hidden="true"
-          className="h-px w-full bg-gradient-to-r from-transparent via-white/[0.08] to-transparent"
-        />
-      </div>
-
-      <section className="py-16 sm:py-24">
+      {/* No divider — whitespace carries the hero into the story. */}
+      <section className="pt-3 pb-8 sm:pt-5 sm:pb-12 md:pb-8 lg:pt-4">
         <div className="mx-auto max-w-[1240px] px-6">
-          <div className="max-w-[800px] space-y-16">
+          <div className="max-w-[680px] space-y-7 sm:space-y-9">
             {sections.map((s, i) => (
               <Reveal key={s.h} delay={i * 30}>
-                <div className="border-t border-[var(--hair)] pt-10 first:border-t-0 first:pt-0">
-                  <h2 className="text-[20px] font-medium tracking-tight text-white">
+                <div>
+                  <h2 className="text-[20px] font-semibold tracking-tight text-white">
                     {s.h}
                   </h2>
-                  <div className="mt-5 space-y-5">
+                  <div className="mt-4 space-y-5 sm:mt-5">
                     {s.body.map((p, j) => (
                       <p key={j} className="text-[16px] leading-[1.7] text-[var(--silver)]">
                         {p}
@@ -96,16 +70,16 @@ export default function AboutPage() {
             ))}
           </div>
 
+          {/* The single action is the full stop of the story: left-aligned on the
+              same rail as the copy and pulled up tight to the final paragraph — no
+              question, no separate centred CTA block. */}
           <Reveal>
-            <div className="mt-12 max-w-[800px] border-t border-[var(--hair)] pt-8 sm:mt-16 sm:pt-10">
-              <p className="text-[16px] leading-[1.7] text-[var(--silver)]">
-                Want to see how Solren would work for your business?
-              </p>
+            <div className="mt-5 sm:mt-6">
               <Link
                 href="/contact"
-                className="group mt-6 inline-flex items-center gap-2 rounded-full bg-[#537FEA] px-7 py-3.5 text-[15px] font-medium text-black transition-colors hover:bg-[#6A8FEE]"
+                className="group inline-flex items-center gap-2 rounded-full bg-[#537FEA] px-7 py-3.5 text-[15px] font-medium text-black transition-colors hover:bg-[#6A8FEE]"
               >
-                Get started
+                Book a call
                 <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
               </Link>
             </div>

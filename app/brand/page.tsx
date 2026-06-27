@@ -84,8 +84,9 @@ export default function BrandPage() {
     <LegalDoc
       eyebrow="Brand"
       title={<>Solren brand.</>}
-      sub="Guidelines for using the Solren name, logo and visual identity."
+      sub="Logos, colours and brand assets for approved use."
       lastUpdated="22 June 2026"
+      editorial
       sections={sections}
       footer={
         <>

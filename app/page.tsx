@@ -2,6 +2,7 @@ import type { Metadata } from "next"
 import { Hero } from "@/components/public-site/sections/hero"
 import { EnquiryFlow } from "@/components/public-site/sections/enquiry-flow"
 import { IndustriesPreview } from "@/components/public-site/sections/industries-preview"
+import { ProductProof } from "@/components/public-site/sections/product-proof"
 import { ProcessPreview } from "@/components/public-site/sections/process-preview"
 import { TrustSignals } from "@/components/public-site/sections/trust-signals"
 import { FinalCta } from "@/components/public-site/sections/final-cta"
@@ -11,31 +12,28 @@ export const metadata: Metadata = {
   alternates: { canonical: "/" },
 }
 
-/* Contained, centred hairline between major lower sections — matches the content
-   width and fades at both ends, so it reads as a quiet rule rather than a
-   full-width border cutting across the page. */
-function SectionRule() {
-  return (
-    <div aria-hidden="true" className="px-5 sm:px-6">
-      <div className="mx-auto h-px max-w-[1200px] bg-gradient-to-r from-transparent via-[var(--hair-strong)] to-transparent" />
-    </div>
-  )
-}
-
 export default function PublicSiteHome() {
   return (
     <>
       <Hero />
       <EnquiryFlow />
+      {/* No rules between the lower sections: controlled whitespace and the dark
+          ground carry the eye from one chapter to the next. */}
       <IndustriesPreview />
-      <SectionRule />
+      {/* Quiet product proof — the real Solren command centre — before How It Works. */}
+      <ProductProof />
       <ProcessPreview />
-      <SectionRule />
       <TrustSignals />
       {/* Desktop: the stronger two-card closing area. Mobile/tablet keep the
           FinalCta card (last child, for the footer-gap rule). */}
       <ClosingCards />
-      <FinalCta mobileOnly />
+      {/* Mobile: pull the footer up under the closing card so it reads as the
+          conclusion of the page, not a new section. Wrapper keeps this homepage-
+          scoped (FinalCta is shared) and lg:hidden leaves desktop/ClosingCards
+          and the footer itself untouched. */}
+      <div className="-mb-14 lg:hidden">
+        <FinalCta mobileOnly />
+      </div>
     </>
   )
 }

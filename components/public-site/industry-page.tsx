@@ -29,15 +29,10 @@ function Block({
 }) {
   return (
     <Reveal>
-      <div className="border-t border-[var(--hair)] pt-10 first:border-t-0 first:pt-0">
-        {eyebrow && (
-          <div className="mb-4 flex items-center gap-3">
-            <span className="h-1.5 w-1.5 rounded-full bg-[#537FEA]" aria-hidden="true" />
-            <span className="ps-label">{eyebrow}</span>
-          </div>
-        )}
+      <div>
+        {eyebrow && <span className="ps-label mb-3 block">{eyebrow}</span>}
         <h2 className="text-[19px] font-medium tracking-tight text-white">{title}</h2>
-        <div className="mt-5">{children}</div>
+        <div className="mt-3 sm:mt-4">{children}</div>
       </div>
     </Reveal>
   )
@@ -70,24 +65,22 @@ export function IndustryPage({ slug }: { slug: string }) {
         looseTitle={industry.heroLoose}
         nudgeLeft={industry.slug === "cleaners"}
         divider={false}
+        compact
+        bottomClass="pb-4 sm:pb-12 lg:pb-8"
       />
 
-      {/* short, soft divider aligned to the body content width, fading at the ends */}
-      <div className="mx-auto max-w-[1240px] px-5 sm:px-6">
-        <div
-          aria-hidden="true"
-          className="h-px w-full bg-gradient-to-r from-transparent via-white/[0.08] to-transparent"
-        />
-      </div>
-
-      <section className="py-12 sm:py-24 lg:pt-10">
+      {/* No divider — whitespace carries the hero into the image and first block.
+          Mobile pt/pb are tightened explicitly (pt-3 → 44px from hero sub to image;
+          pb-6 → 48px from the last block to the closing card); sm+/lg keep the
+          original desktop padding. */}
+      <section className="pb-6 pt-3 sm:pb-24 sm:pt-8 lg:pt-1 lg:pb-5">
         <div className="mx-auto max-w-[1240px] px-5 sm:px-6">
           {industry.image && (
             <Reveal>
               {/* supporting visual on the one left rail — NOT centred independently.
                   Left edge matches the hero and the body column; capped narrower
                   than the text, with tight vertical spacing on desktop. */}
-              <div className="mb-10 max-w-[480px] sm:mb-12 lg:mb-6">
+              <div className="mb-5 max-w-[480px] sm:mb-12 lg:mb-2.5">
                 <ImageFrame
                   label={industry.label}
                   alt={industry.name}
@@ -99,13 +92,18 @@ export function IndustryPage({ slug }: { slug: string }) {
                   bare
                   hideCaption
                   clear
-                  sizes="(min-width: 1024px) 480px, 100vw"
+                  /* The single hero image on the page — the LCP candidate. Load it
+                     eagerly instead of lazily so it is not delayed below the fold. */
+                  priority
+                  /* The frame is capped at max-w-[480px] from 640px up, so request
+                     a 480px variant there rather than a full-width tablet image. */
+                  sizes="(min-width: 640px) 480px, 100vw"
                 />
               </div>
             </Reveal>
           )}
 
-          <div className="max-w-[800px] space-y-10 sm:space-y-12">
+          <div className="max-w-[800px] space-y-10">
             <Block eyebrow={industry.name} title={`Common problems ${industry.audience} face`}>
               <Bullets items={industry.problems} />
             </Block>
@@ -155,9 +153,14 @@ export function IndustryPage({ slug }: { slug: string }) {
       </section>
 
       {/* Desktop: the two-card Get Started / See Pricing close. Mobile keeps the
-          existing FinalCta card (last child, for the footer-gap rule). */}
+          existing FinalCta card. The mobile wrapper pulls the footer up (same
+          pattern as the homepage) so the closing card sits ~32px from the footer
+          divider instead of floating above a large gap. lg:hidden so desktop is
+          untouched (IndustryCta closes the desktop layout). */}
       <IndustryCta />
-      <FinalCta mobileOnly />
+      <div className="-mb-12 lg:hidden">
+        <FinalCta mobileOnly />
+      </div>
     </>
   )
 }

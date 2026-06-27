@@ -3,11 +3,17 @@
 import { useEffect, useState } from "react"
 
 /* A small, premium rotating line for the hero: the words stay fixed in place
-   ("Quotes. Leads. Messages.") so there is zero layout shift, while a soft blue
-   highlight + underline crossfades from one word to the next every 2.5s. */
+   ("Calls. Forms. Messages.") so there is zero layout shift. All three sit in
+   the brand blue used on the CTAs; a brighter light-up + underline crossfades
+   from one word to the next every 2.5s. */
 
-const WORDS = ["Quotes", "Leads", "Messages"] as const
+const WORDS = ["Calls", "Forms", "Messages"] as const
 const INTERVAL_MS = 2500
+
+/* Brand blue (the CTA accent). BASE keeps all three words clearly blue; ACTIVE
+   is the brighter light-up that travels across them. */
+const BASE = "#5F7BE6"
+const ACTIVE = "#9DB8FA"
 
 export function RotatingHighlight() {
   const [index, setIndex] = useState(0)
@@ -27,8 +33,8 @@ export function RotatingHighlight() {
         return (
           <span key={word}>
             <span
-              className="relative inline-block transition-colors duration-700 ease-out motion-reduce:transition-none"
-              style={{ color: isActive ? "var(--rh-active)" : "var(--rh-muted)" }}
+              className="rh-word relative inline-block transition-colors duration-700 ease-out motion-reduce:transition-none"
+              style={{ color: isActive ? ACTIVE : BASE, animationDelay: `${i * 150}ms` }}
             >
               {word}
               <span
@@ -37,7 +43,7 @@ export function RotatingHighlight() {
                 style={{ opacity: isActive ? 1 : 0 }}
               />
             </span>
-            <span style={{ color: "var(--rh-muted)" }}>{isLast ? "." : ". "}</span>
+            <span style={{ color: BASE }}>{isLast ? "." : ". "}</span>
           </span>
         )
       })}

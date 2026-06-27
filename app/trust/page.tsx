@@ -1,6 +1,4 @@
 import type { Metadata } from "next"
-import Link from "next/link"
-import { ArrowUpRight } from "lucide-react"
 
 import { PageHeader } from "@/components/public-site/page-header"
 import { Reveal } from "@/components/public-site/reveal"
@@ -65,14 +63,16 @@ export default function TrustPage() {
     <>
       <PageHeader
         eyebrow="Trust Centre"
-        title={<>Built to be trusted.</>}
-        sub="Security, privacy, AI transparency and system health, brought together in one place."
+        title={<>Built to earn trust.</>}
+        sub="Security, privacy and legal information in one place."
         note="Last reviewed: 22 November 2025"
+        divider={false}
+        bottomClass="pb-4 sm:pb-6 lg:pb-6"
       />
 
-      <section className="pt-14 pb-20 sm:pt-16 sm:pb-24">
+      <section className="pt-1 pb-6 sm:pt-3 sm:pb-10 md:pb-6 lg:pt-2">
         <div className="mx-auto max-w-[1240px] px-6">
-          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="grid grid-cols-1 gap-4 sm:auto-rows-fr sm:grid-cols-2 lg:grid-cols-3">
             {cards.map((c, i) => (
               <Reveal key={c.title} delay={(i % 3) * 70}>
                 <HelpCard title={c.title} summary={c.summary} href={c.href} blue />
@@ -82,64 +82,33 @@ export default function TrustPage() {
 
           {/* Built for reliability: customer-friendly, calm, plain English */}
           <Reveal>
-            <div className="mt-12 border-t border-[var(--hair)] pt-10 sm:mt-16 sm:pt-14">
-              <span className="ps-label ps-label-legible">Reliability</span>
-              <h2 className="mt-5 max-w-xl text-[clamp(1.6rem,3.2vw,2.2rem)] font-medium leading-[1.1] tracking-[-0.02em] ps-silver">
+            <div className="mt-8 sm:mt-14">
+              <span className="ps-label ps-label-legible block">Reliability</span>
+              <h2 className="mt-2 max-w-xl text-[clamp(1.6rem,3.2vw,2.2rem)] font-medium leading-[1.1] tracking-[-0.02em] ps-silver sm:mt-3">
                 Designed to keep work moving.
               </h2>
-              <p className="mt-5 max-w-[800px] text-[15.5px] leading-relaxed text-[var(--silver)]">
+              <p className="mt-2 max-w-[800px] text-[15.5px] leading-relaxed text-[var(--silver)] sm:mt-4">
                 Solren is designed to keep enquiries moving, keep an eye on how
                 things run, and keep your team in control, so work does not slip
                 when you are busy.
               </p>
-              <div className="mt-10 grid grid-cols-1 gap-x-10 gap-y-8 sm:grid-cols-3">
+              {/* No divider rules: on mobile the blocks read as one continuous
+                  story, with generous vertical breathing room between each pair
+                  (heading + text) carrying the hierarchy. From sm up they sit
+                  side-by-side and the row gap tightens. */}
+              <div className="mt-8 grid grid-cols-1 gap-x-8 gap-y-4 sm:grid-cols-3 sm:gap-y-8">
                 {reliability.map((r) => (
-                  /* On mobile the stacked columns keep a top rule as a separator;
-                     from sm up they sit side-by-side, where three short rules read
-                     as wireframe — so the rule is dropped in favour of whitespace. */
-                  <div key={r.title} className="border-t border-[var(--hair)] pt-5 sm:border-t-0 sm:pt-0">
+                  <div key={r.title}>
                     <h3 className="text-[15.5px] font-medium tracking-tight text-white">
                       {r.title}
                     </h3>
-                    <p className="mt-2.5 text-[14px] leading-relaxed text-[var(--silver)]">
+                    <p className="mt-2 text-[14px] leading-relaxed text-[var(--silver)] sm:mt-2.5">
                       {r.body}
                     </p>
                   </div>
                 ))}
               </div>
             </div>
-          </Reveal>
-
-          {/* quiet closing CTA — single line, one action, no sales section */}
-          <Reveal>
-            <div className="mt-12 border-t border-[var(--hair)] pt-10 sm:mt-8 sm:pb-6 sm:pt-8 sm:text-center">
-              <p className="text-[16px] leading-relaxed text-[var(--silver)]">
-                Ready to see how Solren handles your enquiries?
-              </p>
-              <Link
-                href="/contact"
-                className="group mt-6 inline-flex items-center gap-2 rounded-full bg-[#537FEA] px-7 py-3.5 text-[15px] font-medium text-black transition-colors hover:bg-[#6A8FEE]"
-              >
-                Get started
-                <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-              </Link>
-            </div>
-          </Reveal>
-
-          <Reveal>
-            {/* Mobile keeps this small print; on desktop it is hidden so the Get
-                started button is the final element before the footer. */}
-            <p className="mt-12 border-t border-[var(--hair)] pt-10 text-[14px] leading-relaxed text-[var(--muted)] sm:hidden">
-              You can also read our{" "}
-              <a href="/terms" className="text-[var(--silver)] underline-offset-2 hover:underline">
-                Terms of Service
-              </a>{" "}
-              and review recent updates in the{" "}
-              <a href="/changelog" className="text-[var(--silver)] underline-offset-2 hover:underline">
-                Changelog
-              </a>
-              .
-            </p>
           </Reveal>
         </div>
       </section>

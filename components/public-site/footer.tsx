@@ -68,16 +68,33 @@ const footerColumns: { top: Block; bottom: Block; tight?: boolean }[] = [
   { top: support, bottom: social, tight: true },
 ]
 
-const mobileLinks: FooterLink[] = [
-  { label: "Platform", href: "/how-it-works" },
-  { label: "Pricing", href: "/pricing" },
-  { label: "Industries", href: "/industries" },
-  { label: "Trust Centre", href: "/trust" },
-  { label: "Security", href: "/security" },
-  { label: "Privacy", href: "/privacy" },
-  { label: "Contact", href: "/contact" },
-  { label: "Help Centre", href: "/help" },
-  { label: "Status", href: "/status" },
+/* Mobile nav: the same key links as before, organised into three balanced groups
+   of three so the footer reads as intentional sections rather than a flat list. */
+const mobileGroups: { title: string; links: FooterLink[] }[] = [
+  {
+    title: "Platform",
+    links: [
+      { label: "Platform", href: "/how-it-works" },
+      { label: "Pricing", href: "/pricing" },
+      { label: "Industries", href: "/industries" },
+    ],
+  },
+  {
+    title: "Trust",
+    links: [
+      { label: "Trust Centre", href: "/trust" },
+      { label: "Security", href: "/security" },
+      { label: "Privacy", href: "/privacy" },
+    ],
+  },
+  {
+    title: "Support",
+    links: [
+      { label: "Help Centre", href: "/help" },
+      { label: "Contact", href: "/contact" },
+      { label: "Status", href: "/status" },
+    ],
+  },
 ]
 
 /* Monochrome social glyphs (currentColor). Non-navigating until real profile
@@ -128,7 +145,7 @@ function FooterBlock({ block }: { block: Block }) {
           ))}
         </div>
       ) : (
-        <ul className="mt-3 space-y-0 lg:mt-4 lg:space-y-2">
+        <ul className="mt-3 space-y-0 lg:mt-3 lg:space-y-1.5">
           {block.links!.map((l) => (
             <li key={l.label}>
               <FooterLinkItem link={l} />
@@ -147,67 +164,82 @@ export function PublicFooter() {
        public-site.css) this reads as ~120px between content and footer — in the
        96-140px target. Pure outer margin: the footer's own height, columns,
        divider and bottom row are unchanged. Mobile (below md) is untouched. */
-    <footer className="relative bg-[#050608] md:mt-24">
-      {/* soft, edge-fading divider above the footer (replaces the hard border line) */}
+    <footer className="relative bg-[#050608] md:mt-6">
+      {/* soft, edge-fading divider above the footer (desktop only — on mobile the
+          page flows into the footer on whitespace, no line) */}
       <div
         aria-hidden="true"
-        className="mx-auto h-px w-full max-w-[1340px] bg-gradient-to-r from-transparent via-white/[0.12] to-transparent"
+        className="mx-auto hidden h-px w-full max-w-[1340px] bg-gradient-to-r from-transparent via-white/[0.07] to-transparent md:block"
       />
-      <div className="mx-auto px-5 py-10 sm:px-6 md:hidden">
-        <p className="max-w-[18rem] text-[13.5px] leading-[1.6] text-[var(--silver)]">
-          Intelligent response infrastructure for service businesses.
-        </p>
+      <div className="px-5 pb-6 pt-2 sm:px-6 md:hidden">
+        {/* subtle top separator — the same thin, low-contrast hairline used above
+            the desktop footer; a quiet anchor so the mobile footer reads as
+            attached to the page rather than floating under an empty gap */}
+        <div
+          aria-hidden="true"
+          className="h-px w-full bg-gradient-to-r from-transparent via-white/[0.12] to-transparent"
+        />
+        {/* navigation — balanced 2×2: Platform / Trust, then Support / Social.
+            Sits directly under the divider (the tagline above it was removed). */}
+        <nav aria-label="Footer" className="mt-5 grid grid-cols-2 gap-x-8 gap-y-6">
+          {mobileGroups.map((group) => (
+            <div key={group.title}>
+              <h3 className="text-[10.5px] font-semibold uppercase tracking-[0.2em] text-[var(--silver)]">
+                {group.title}
+              </h3>
+              <ul className="mt-3">
+                {group.links.map((l) => (
+                  <li key={l.label}>
+                    <FooterLinkItem link={l} />
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
 
-        <nav aria-label="Footer" className="mt-7">
-          <ul className="grid grid-cols-2 gap-x-8">
-            {mobileLinks.map((link) => (
-              <li key={link.label}>
-                <FooterLinkItem link={link} />
-              </li>
-            ))}
-          </ul>
+          {/* Social — full-width row below the 2×2 so the icons sit on one clean
+              line instead of wrapping raggedly in a half-column */}
+          <div className="col-span-2">
+            <h3 className="text-[10.5px] font-semibold uppercase tracking-[0.2em] text-[var(--silver)]">
+              Social
+            </h3>
+            <div className="mt-4 flex flex-wrap items-center gap-x-3 gap-y-2.5">
+              {socials.map((item) => (
+                <span
+                  key={item.label}
+                  title={`${item.label} profile coming soon`}
+                  className="text-white/45"
+                >
+                  <svg
+                    viewBox="0 0 24 24"
+                    className="h-[18px] w-[18px]"
+                    fill="currentColor"
+                    fillRule="evenodd"
+                    aria-hidden="true"
+                  >
+                    <path d={item.path} />
+                  </svg>
+                </span>
+              ))}
+            </div>
+          </div>
         </nav>
 
-        <div className="mt-7 flex flex-wrap items-center gap-x-4 gap-y-3.5">
-          {socials.map((item) => (
-            <span
-              key={item.label}
-              title={`${item.label} profile coming soon`}
-              className="text-white/45"
-            >
-              <svg
-                viewBox="0 0 24 24"
-                className="h-[18px] w-[18px]"
-                fill="currentColor"
-                fillRule="evenodd"
-                aria-hidden="true"
-              >
-                <path d={item.path} />
-              </svg>
-            </span>
-          ))}
-        </div>
+        {/* payment logos — full width below the groups */}
+        <PaymentLogos className="mt-7" />
 
-        <div className="mt-8 h-px w-full bg-gradient-to-r from-transparent via-white/[0.14] to-transparent" />
-
-        <PaymentLogos className="mt-6" />
-
-        <p className="mt-5 text-[12.5px] text-[var(--muted)]">
+        {/* copyright last */}
+        <p className="mt-2.5 text-[12.5px] text-[var(--muted)]">
           © {new Date().getFullYear()} Solren. All rights reserved.
         </p>
       </div>
 
-      <div className="mx-auto hidden max-w-[1340px] px-5 py-14 sm:px-6 sm:py-[84px] md:block md:py-10 lg:py-[40px]">
+      <div className="mx-auto hidden max-w-[1340px] px-5 sm:px-6 md:block md:pb-4 md:pt-8">
         {/* Top: brand area (left) · vertical divider · three column-pairs (right) */}
         <div className="flex flex-col gap-y-12 sm:gap-y-14 lg:flex-row lg:gap-x-16">
           {/* Brand area — the anchor of the footer, given more presence than the nav */}
           <div className="lg:w-[300px] lg:shrink-0">
-            <div className="max-w-[18rem] space-y-2.5 text-[13.5px] leading-[1.6] sm:space-y-3">
-              <p className="text-[var(--silver)]">
-                Intelligent response infrastructure
-                <br />
-                for service businesses.
-              </p>
+            <div className="max-w-[18rem] space-y-2.5 text-[13.5px] leading-[1.6] sm:space-y-2">
               <p className="text-white/75">Installed and managed for you.</p>
               <p className="text-white/75">
                 Built to work quietly
@@ -224,7 +256,7 @@ export function PublicFooter() {
           />
 
           {/* Three column-pairs — read across each row */}
-          <div className="grid flex-1 grid-cols-2 gap-x-7 gap-y-12 sm:grid-cols-3 sm:gap-x-8 sm:gap-y-14 lg:gap-x-8">
+          <div className="grid flex-1 grid-cols-2 gap-x-7 gap-y-12 sm:grid-cols-3 sm:gap-x-6 sm:gap-y-14 lg:grid-cols-[1.35fr_1fr_1fr] lg:gap-x-14">
             {footerColumns.map((col, index) => (
               <div
                 key={col.top.title}
@@ -233,7 +265,7 @@ export function PublicFooter() {
                 <FooterBlock block={col.top} />
                 {/* wider gap for Product→Company & Trust→Legal; tighter for
                     Support→Social so the pair reads as related */}
-                <div className={index === 2 ? "mt-0 sm:mt-6" : col.tight ? "mt-6" : "mt-7 sm:mt-8"}>
+                <div className={index === 2 ? "mt-0 sm:mt-3" : col.tight ? "mt-4 sm:mt-3.5" : "mt-7 sm:mt-4"}>
                   <FooterBlock block={col.bottom} />
                 </div>
               </div>
@@ -242,14 +274,14 @@ export function PublicFooter() {
         </div>
 
         {/* Contained, edge-fading divider above the bottom bar — no harsh full-width line */}
-        <div className="mx-auto mt-6 h-px w-full max-w-[1100px] bg-gradient-to-r from-transparent via-white/[0.14] to-transparent sm:mt-7" />
+        <div className="mx-auto mt-6 h-px w-full max-w-[1100px] bg-gradient-to-r from-transparent via-white/[0.14] to-transparent sm:mt-3" />
 
         {/* Bottom bar: copyright far left, payment marks far right — balanced row */}
-        <div className="mt-5 flex items-center justify-between gap-6 sm:mt-6">
+        <div className="mt-5 flex items-center justify-between gap-6 sm:mt-3">
           <p className="text-[12.5px] text-[var(--muted)]">
             © {new Date().getFullYear()} Solren. All rights reserved.
           </p>
-          <PaymentLogos />
+          <PaymentLogos className="opacity-70" />
         </div>
       </div>
     </footer>

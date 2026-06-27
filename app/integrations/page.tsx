@@ -31,29 +31,25 @@ export default function IntegrationsPage() {
     <>
       <PageHeader
         eyebrow="Integrations"
-        title="Built on proven technology."
-        sub="Solren runs on a few trusted services so your enquiries move from first message to booked work."
+        title="Built on trusted services."
+        sub="Solren runs on a few trusted services. Your enquiries move from first message to booked job."
         divider={false}
+        compact
+        topClass="pt-20 sm:pt-30 lg:pt-30"
+        bottomClass="pb-3 sm:pb-8 lg:pb-7"
       />
 
-      {/* section divider aligned to the card grid width (not full page):
-          left edge of the OpenAI card to the right edge of Google Workspace */}
-      <div className="mx-auto max-w-[1240px] px-6">
-        <div
-          aria-hidden="true"
-          className="h-px w-full bg-gradient-to-r from-transparent via-white/[0.08] to-transparent"
-        />
-      </div>
-
-      <section className="py-16 sm:py-24">
+      {/* No divider — controlled whitespace carries the eye from the hero into the
+          cards; the grid sits close beneath the hero as one continuous story. */}
+      <section className="pt-3 pb-6 sm:pt-4 sm:pb-12 md:pb-8 lg:pt-2">
         <div className="mx-auto max-w-[1240px] px-6">
           {/* the trusted services */}
           <Reveal>
-            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:gap-5">
+            <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 sm:gap-4 lg:gap-5">
               {services.map((s) => (
                 <div
                   key={s.name}
-                  className="rounded-2xl border border-white/[0.08] bg-white/[0.015] p-7"
+                  className="rounded-2xl border border-white/[0.08] bg-white/[0.015] p-6 sm:p-7"
                 >
                   <h2 className="text-[18px] font-medium tracking-tight text-white">{s.name}</h2>
                   <p className="mt-2.5 text-[14.5px] leading-relaxed text-[var(--silver)]">
@@ -66,11 +62,11 @@ export default function IntegrationsPage() {
 
           {/* one calm reassurance */}
           <Reveal>
-            <div className="mt-16">
+            <div className="mt-6 sm:mt-8 lg:mt-6">
               <h2 className="text-[19px] font-medium tracking-tight text-white">
                 Installed and managed for you
               </h2>
-              <ul className="mt-8 grid grid-cols-1 gap-x-10 gap-y-4 sm:grid-cols-2">
+              <ul className="mt-4 grid grid-cols-1 gap-x-10 gap-y-3 sm:mt-5 sm:grid-cols-2">
                 {managed.map((m) => (
                   <li
                     key={m}

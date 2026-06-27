@@ -22,13 +22,14 @@ const sections: LegalSection[] = [
     h: "Subscriptions",
     body: [
       "Solren is provided on a subscription basis unless otherwise agreed in writing.",
+      "Separately, and as a specific exception to the general non-refund terms set out below, eligible clients are offered a 30-day satisfaction guarantee starting from go-live, as described on the Pricing page. If, within 30 days of going live, the service is not catching and replying to enquiries as described, you may request a refund of that month's subscription fee and cancel, with no lock-in. Other fees remain payable as set out in your agreement or as agreed in writing.",
       "You may cancel future recurring billing by emailing contact@solren.ai, unless another cancellation process has been agreed in writing. Cancellation stops future charges from the end of the current paid billing period, but it does not automatically refund fees already paid or time already billed.",
     ],
   },
   {
     h: "Setup, installation and configuration",
     body: [
-      "Some Solren packages include setup, installation, onboarding or configuration work.",
+      "Some Solren plans include setup, installation, onboarding or configuration work.",
       "This work may include account review, workflow planning, connecting services, configuring automations, testing, preparing reply flows and setting up the system for your business.",
       "Because this work is customised and begins once Solren starts your install, setup, installation and configuration fees are generally non-refundable once work has started, unless required by law or otherwise agreed in writing.",
     ],
@@ -85,6 +86,7 @@ export default function RefundPage() {
       summary={{
         title: "Refund summary",
         items: [
+          "Eligible clients are offered a 30-day satisfaction guarantee from go-live, as described on the Pricing page: if the service is not catching and replying to enquiries as described, you may request a refund of that month's subscription fee and cancel, with no lock-in. This is a specific exception to the general non-refund terms below.",
           "Setup and configuration work is generally non-refundable once started.",
           "Cancelling stops future recurring billing, but does not automatically refund time already billed.",
           "Billing errors will be reviewed and corrected where appropriate.",
@@ -108,7 +110,8 @@ export default function RefundPage() {
             Terms of Service
           </Link>
           . This page is provided for transparency and does not constitute legal
-          advice.
+          advice. The refund and 30-day guarantee wording on this page is pending
+          legal review.
         </>
       }
     />

@@ -95,16 +95,18 @@ export default function SiteMapPage() {
         eyebrow="Site map"
         title={<>Site map.</>}
         sub="Every public page on the Solren website, grouped by section."
+        divider={false}
+        bottomClass="pb-6 sm:pb-9 lg:pb-5"
       />
 
-      <section className="py-16 sm:py-24">
-        <div className="mx-auto max-w-[1080px] px-6">
+      <section className="pt-6 pb-10 sm:pt-5 sm:pb-14 md:pb-10 lg:pt-2">
+        <div className="mx-auto max-w-[1130px] px-6">
           {/* Multi-column masonry: groups vary a lot in length (Industries has
               13 links, Integrations has 1), so cards pack and fill the space
               instead of leaving ragged gaps or a stretched empty card. */}
-          <div className="gap-6 columns-1 sm:columns-2 lg:columns-3">
+          <div className="gap-4 columns-1 sm:columns-2 lg:columns-3">
             {groups.map((g, i) => (
-              <Reveal key={g.title} delay={i * 30} className="mb-6 break-inside-avoid">
+              <Reveal key={g.title} delay={i * 30} className="mb-4 break-inside-avoid">
                 <div className="rounded-2xl border border-white/[0.08] bg-white/[0.015] p-6 transition-colors hover:border-white/[0.14]">
                   <h2 className="text-[10.5px] font-semibold uppercase tracking-[0.2em] text-[var(--silver)]">
                     {g.title}

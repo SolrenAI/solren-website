@@ -329,7 +329,7 @@ export const helpArticles: HelpArticle[] = [
         ],
       },
     ],
-    cta: { label: "Get started", href: "/contact" },
+    cta: { label: "Book a call", href: "/contact" },
     related: ["contact", "faqs"],
   },
   {

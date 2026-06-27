@@ -35,7 +35,7 @@ const proseClass = "mt-4 max-w-[680px] text-[16px] leading-[1.7] text-[var(--sil
 
 /* Real trust line shown under both primary CTAs. */
 const trustLine =
-  "Founder install. $490 one-time setup, then $497/month. Live in 7-14 days. No setup fee if Solren isn't catching your enquiries in 30 days."
+  "Solren Foundation. $490 one-time setup, then $497/month. Live in 7-14 days. No setup fee if Solren isn't catching your enquiries in 30 days."
 
 const trustLineClass = "text-[13px] leading-relaxed text-[var(--muted)]"
 

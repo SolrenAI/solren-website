@@ -19,7 +19,15 @@ export const faqs: Faq[] = [
   },
   {
     q: "What does it cost?",
-    a: "It depends on the package you choose. Each package has a one-off setup and install fee, then a monthly fee covering monitoring, support and improvements. Anything larger is quoted up front, no surprises.",
+    a: "A$497 a month, our foundation rate for the first 5 clients, then A$997 a month after that. There's a one-time A$490 setup fee to get you live. See the pricing page for the full breakdown.",
+  },
+  {
+    q: "Does the foundation price go up later?",
+    a: "No. The A$497 foundation rate is locked for as long as you stay. It's only for the first 5 clients and closes on 31 July 2026.",
+  },
+  {
+    q: "What about text and SMS costs?",
+    a: "A fair-use allowance is included. If you ever go high-volume, the extra is billed at cost, so there are no surprises.",
   },
   {
     q: "Who is it for?",
@@ -30,7 +38,7 @@ export const faqs: Faq[] = [
     a: "Solren keeps following up so you don't have to remember. Most jobs are won on the second or third touch.",
   },
   {
-    q: "What happens after I sign up?",
+    q: "What happens once I come on board?",
     a: "We review your business, map where leads come from, connect the right tools and prepare your Solren install around your workflow.",
   },
   {
@@ -42,7 +50,11 @@ export const faqs: Faq[] = [
     a: "Solren can work with tools such as Gmail, Google Workspace, website forms and other lead sources depending on your setup.",
   },
   {
-    q: "Can I cancel if it is not right for me?",
+    q: "What if it's not right for me?",
+    a: "You're covered by a 30-day money-back guarantee from the day you go live. There's no lock-in and you can cancel any time.",
+  },
+  {
+    q: "Can I cancel any time?",
     a: "Yes. You can cancel future recurring billing. Setup, installation and configuration work may not be refundable once started, unless required by law or agreed in writing.",
   },
 ]

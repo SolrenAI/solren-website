@@ -228,8 +228,8 @@ export default function PrivacyPage() {
   return (
     <LegalDoc
       eyebrow="Privacy Policy"
-      title={<>Privacy Policy.</>}
-      sub="How we handle your information and your customers' enquiry data."
+      title={<>Privacy, explained clearly.</>}
+      sub="This page explains what information we collect, why we collect it and how we protect it."
       lastUpdated="22 March 2026"
       dateLabel="Last reviewed"
       toc

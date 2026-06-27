@@ -4,6 +4,7 @@ import { ArrowUpRight } from "lucide-react"
 
 import { PageHeader } from "@/components/public-site/page-header"
 import { Reveal } from "@/components/public-site/reveal"
+import { ScrollToTop } from "@/components/public-site/scroll-to-top"
 
 export const metadata: Metadata = {
   title: "Request received",
@@ -19,6 +20,7 @@ const steps = [
 export default function ThankYouPage() {
   return (
     <>
+      <ScrollToTop />
       <PageHeader
         eyebrow="Request received"
         title={<>Your request has been received.</>}

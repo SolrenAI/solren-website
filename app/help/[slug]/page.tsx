@@ -47,10 +47,14 @@ export default async function HelpArticlePage({
         title={<>{article.title}</>}
         sub={article.summary}
         note={`Last updated: ${LAST_UPDATED}`}
+        divider={false}
+        compact
+        noteClass="mt-3.5 sm:mt-7"
+        bottomClass="pb-3 sm:pb-4 lg:pb-4"
       />
 
-      <section className="py-12 sm:py-24">
-        <div className="mx-auto max-w-[760px] px-5 sm:px-6">
+      <section className="pt-4 pb-5 sm:pt-3 sm:pb-7 md:pb-5">
+        <div className="mx-auto max-w-[800px] px-5 sm:px-6">
           <Link
             href="/help"
             className="group inline-flex items-center gap-2 text-[13.5px] text-[var(--muted)] transition-colors hover:text-white"
@@ -59,7 +63,7 @@ export default async function HelpArticlePage({
             All help articles
           </Link>
 
-          <div className="mt-10 space-y-10">
+          <div className="mt-4 space-y-7 sm:mt-4 sm:space-y-10">
             {article.body.map((s, i) => (
               <Reveal key={i} delay={i * 30}>
                 <div>
@@ -68,14 +72,14 @@ export default async function HelpArticlePage({
                       {s.h}
                     </h2>
                   )}
-                  <div className={s.h ? "mt-4 space-y-4" : "space-y-4"}>
+                  <div className={s.h ? "mt-3 space-y-4 sm:mt-4" : "space-y-4"}>
                     {s.p?.map((p, j) => (
                       <p key={j} className="text-[15.5px] leading-relaxed text-[var(--silver)]">
                         {p}
                       </p>
                     ))}
                     {s.bullets && (
-                      <ul className="space-y-2.5 pl-1">
+                      <ul className="space-y-2 pl-1 sm:space-y-2.5">
                         {s.bullets.map((b, j) => (
                           <li
                             key={j}
@@ -109,7 +113,7 @@ export default async function HelpArticlePage({
           {(prev || next) && (
             <nav
               aria-label="Help article navigation"
-              className="mt-10 flex items-center justify-center gap-16 border-t border-[var(--hair)] pt-8 md:mt-16 md:gap-20 md:pt-10"
+              className="mt-8 flex items-center justify-center gap-16 md:mt-6 md:gap-20"
             >
               {prev ? (
                 <Link
@@ -144,7 +148,7 @@ export default async function HelpArticlePage({
 
           {/* still need help — quiet support close */}
           <Reveal>
-            <div className="mt-12 border-t border-[var(--hair)] pt-10 text-center sm:mt-16 sm:pt-12">
+            <div className="mt-10 text-center sm:mt-7">
               <h2 className="text-[clamp(1.4rem,2.6vw,1.8rem)] font-medium leading-[1.1] tracking-[-0.02em] ps-silver">
                 Still need help?
               </h2>
@@ -160,7 +164,7 @@ export default async function HelpArticlePage({
               </p>
               <a
                 href="mailto:contact@solren.ai"
-                className="group mt-7 inline-flex items-center gap-2 rounded-full border border-[var(--hair-strong)] px-7 py-3.5 text-[15px] font-medium text-white transition-colors hover:bg-white/[0.03]"
+                className="group mt-6 inline-flex items-center gap-2 rounded-full border border-[var(--hair-strong)] px-7 py-3.5 text-[15px] font-medium text-white transition-colors hover:bg-white/[0.03]"
               >
                 Contact support
                 <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />

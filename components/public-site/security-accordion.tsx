@@ -26,7 +26,7 @@ export function SecurityAccordion({
             <button
               type="button"
               onClick={() => setOpen(isOpen ? null : i)}
-              className="group flex w-full items-center justify-between gap-4 py-5 text-left lg:gap-6"
+              className="group flex w-full items-center justify-between gap-4 py-4 text-left sm:py-5 lg:gap-6"
               aria-expanded={isOpen}
               aria-controls={`sec-panel-${i}`}
             >
@@ -48,7 +48,7 @@ export function SecurityAccordion({
               }`}
             >
               <div className="overflow-hidden">
-                <p className="max-w-xl pb-6 text-[15px] leading-relaxed text-[var(--silver)]">
+                <p className="max-w-xl pb-3 text-[15px] leading-relaxed text-[var(--silver)] sm:pb-6">
                   {r.body}
                 </p>
               </div>

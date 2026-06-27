@@ -86,9 +86,9 @@ const roles: Role[] = [
   },
 ]
 
-function RoleCard({ role }: { role: Role }) {
+function RoleCard({ role, display = "flex" }: { role: Role; display?: string }) {
   return (
-    <div className="flex h-full flex-col rounded-[20px] border border-[var(--hair)] bg-white/[0.015] p-6 sm:p-7">
+    <div className={`${display} h-full flex-col rounded-[20px] border border-[var(--hair)] bg-white/[0.015] px-6 py-5 sm:px-7 sm:py-6`}>
       <span
         className={`ps-label flex items-center gap-1.5 !text-[11px] !tracking-[0.14em] ${
           role.eyebrowAccent ? "!text-[#86A2F0]" : "!text-[#b4bac4]"
@@ -123,19 +123,22 @@ export default function CareersPage() {
     <>
       <PageHeader
         eyebrow="Careers"
+        looseTitle
         containerClass="max-w-[1080px]"
-        title={<>Build useful AI systems.</>}
-        sub="We are growing carefully. We expect one sales and growth role to open soon, and we are always interested in hearing from exceptional builders and engineers."
+        title={<>Build the product that helps businesses win back work.</>}
+        sub="We are building quietly, carefully and with high standards."
+        divider={false}
+        bottomClass="pb-5 sm:pb-8 lg:pb-8"
       />
 
-      <section className="py-16 sm:py-24">
+      <section className="pt-2 pb-3 sm:pt-4 sm:pb-24 lg:pt-3">
         <div className="mx-auto max-w-[1080px] px-5 sm:px-6">
           {/* editorial — left-rail heading + a readable reading column (two columns
               on desktop), separated by whitespace rather than rules */}
-          <div className="space-y-14 sm:space-y-16">
+          <div className="space-y-7 sm:space-y-9">
             {editorial.map((s, i) => (
               <Reveal key={s.h} delay={i * 30}>
-                <div className="lg:grid lg:grid-cols-[220px_1fr] lg:gap-14">
+                <div className="lg:grid lg:grid-cols-[220px_1fr] lg:gap-10">
                   <h2 className="text-[19px] font-medium tracking-tight text-white">{s.h}</h2>
                   <div className="mt-4 max-w-[680px] space-y-4 lg:mt-0">
                     {s.body.map((p, j) => (
@@ -151,11 +154,18 @@ export default function CareersPage() {
 
           {/* future roles — same rail; cards aligned to the content grid */}
           <Reveal>
-            <div className="mt-16 border-t border-[var(--hair)] pt-12 sm:mt-20 sm:pt-14">
+            <div className="mt-7 sm:mt-11">
               <h2 className="text-[19px] font-medium tracking-tight text-white">Future roles</h2>
-              <div className="mt-8 grid items-stretch gap-6 sm:grid-cols-2 lg:grid-cols-3">
+              <div className="mt-4 grid items-stretch gap-6 sm:mt-6 sm:grid-cols-2 lg:grid-cols-3">
                 {roles.map((role) => (
-                  <RoleCard key={role.title} role={role} />
+                  /* Mobile focuses on the one role likely to open soon: the two
+                     future roles are hidden below sm (kept in the code/DOM) and
+                     reappear from sm up, so desktop is unchanged. */
+                  <RoleCard
+                    key={role.title}
+                    role={role}
+                    display={role.title === "Sales / Growth" ? "flex" : "hidden sm:flex"}
+                  />
                 ))}
               </div>
             </div>
@@ -163,9 +173,9 @@ export default function CareersPage() {
 
           {/* open roles + contact — same two-column editorial rhythm */}
           <Reveal>
-            <div className="mt-16 border-t border-[var(--hair)] pt-12 sm:mt-20 sm:pt-14 lg:grid lg:grid-cols-[220px_1fr] lg:gap-14">
+            <div className="mt-8 sm:mt-16 lg:grid lg:grid-cols-[220px_1fr] lg:gap-10">
               <h2 className="text-[19px] font-medium tracking-tight text-white">Open roles</h2>
-              <div className="mt-4 max-w-[680px] space-y-4 text-[16px] leading-[1.7] text-[var(--silver)] lg:mt-0">
+              <div className="mt-4 max-w-[680px] space-y-3.5 text-[16px] leading-[1.7] text-[var(--silver)] lg:mt-0">
                 <p>
                   We are not hiring broadly right now, but we expect one sales and growth role to
                   open soon. We are also interested in hearing from exceptional builders, engineers

@@ -16,12 +16,14 @@ type Payload = {
   trade?: string
   website?: string
   message?: string
-  pkg?: string
   channels?: string[]
   tools?: string[]
   problems?: string[]
   bestTime?: string
   urgency?: string
+  preferredCallDate?: string
+  preferredCallTime?: string
+  timezone?: string
   hp?: string // honeypot — real users never fill this
 }
 
@@ -60,12 +62,13 @@ export async function POST(req: Request) {
   const trade = str(body.trade, 80)
   const website = str(body.website, 200)
   const message = str(body.message, 4000)
-  const pkg = str(body.pkg, 40)
   const channels = list(body.channels)
   const tools = list(body.tools)
   const problems = list(body.problems)
-  const bestTime = str(body.bestTime, 40)
   const urgency = str(body.urgency, 60)
+  const preferredCallDate = str(body.preferredCallDate, 40)
+  const preferredCallTime = str(body.preferredCallTime, 40)
+  const timezone = str(body.timezone, 80)
 
   const fieldErrors: Record<string, string> = {}
   if (!name) fieldErrors.name = "Your name is required."
@@ -97,11 +100,12 @@ export async function POST(req: Request) {
     ["Phone", phone],
     ["Trade", trade],
     ["Website", website || "-"],
-    ["Package interest", pkg || "-"],
+    ["Preferred date", preferredCallDate || "-"],
+    ["Preferred time", preferredCallTime || "-"],
+    ["Timezone", timezone || "-"],
     ["Lead channels", channels.join(", ") || "-"],
     ["Current tools", tools.join(", ") || "-"],
     ["Leads slipping", problems.join(", ") || "-"],
-    ["Best time to contact", bestTime || "-"],
     ["Timeline", urgency || "-"],
   ]
 

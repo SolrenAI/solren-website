@@ -13,7 +13,7 @@ const sections: LegalSection[] = [
     h: "Agreement to terms",
     body: [
       "These Terms of Service (the “Terms”) govern your access to and use of Solren, including our website, the Solren service, and any related setup, onboarding and support.",
-      "By using Solren, accessing the service, submitting onboarding details, connecting an account, approving work, or paying for a package, you agree to these Terms. If you do not agree, do not use the service.",
+      "By using Solren, accessing the service, submitting onboarding details, connecting an account, approving work, or paying for a plan, you agree to these Terms. If you do not agree, do not use the service.",
       "If you are using Solren on behalf of a business, you accept these Terms on that business’s behalf.",
     ],
   },
@@ -28,7 +28,7 @@ const sections: LegalSection[] = [
     h: "What Solren does",
     body: [
       "Solren is an AI lead and reply automation and follow-up system for service businesses. It can help capture enquiries, draft replies, send approved messages, organise leads and support booking and follow-up workflows.",
-      "The exact features provided depend on the package purchased, your configuration and the services you connect.",
+      "The exact features provided depend on the plan you purchased, your configuration and the services you connect.",
     ],
   },
   {
@@ -117,7 +117,7 @@ const sections: LegalSection[] = [
   {
     h: "Subscriptions and payment",
     body: [
-      "Fees and inclusions for each package are described at the time of purchase. Unless otherwise agreed in writing:",
+      "Fees and inclusions for your plan are described at the time of purchase. Unless otherwise agreed in writing:",
     ],
     bullets: [
       "Fees are payable in advance.",
@@ -143,6 +143,7 @@ const sections: LegalSection[] = [
   {
     h: "Refunds",
     body: [
+      "As a specific exception to the general non-refund terms in this section, eligible clients are offered a 30-day satisfaction guarantee starting from go-live, as described on the Pricing page. If, within 30 days of going live, the service is not catching and replying to enquiries as described, you may request a refund of that month's subscription fee and cancel, with no lock-in. Other fees remain payable as agreed in writing or at the time of purchase.",
       "Unless required by law or otherwise agreed in writing, fees already paid are non-refundable, including setup, installation, configuration and custom workflow work. If you believe there has been a billing error, contact us and we will review it.",
       "Nothing in these Terms limits rights that cannot be excluded under applicable law, including the Australian Consumer Law.",
     ],
@@ -276,14 +277,15 @@ export default function TermsPage() {
     <LegalDoc
       eyebrow="Legal terms"
       title={<>Terms of Service.</>}
-      sub="The terms that apply when you use Solren, our AI follow-up and automation service for service businesses."
+      sub="These terms explain how Solren is provided, what we are responsible for and what you agree to when using Solren."
       lastUpdated="22 June 2026"
       toc
       sections={sections}
       footer={
         <>
           These Terms are provided for transparency and do not constitute legal
-          advice. For questions, email contact@solren.ai.
+          advice. For questions, email contact@solren.ai. The refund and 30-day
+          guarantee wording on this page is pending legal review.
         </>
       }
     />

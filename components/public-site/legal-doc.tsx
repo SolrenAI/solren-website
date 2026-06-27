@@ -35,6 +35,7 @@ export function LegalDoc({
   summary,
   afterToc,
   wide = false,
+  editorial = false,
 }: {
   eyebrow: string
   title: ReactNode
@@ -61,6 +62,10 @@ export function LegalDoc({
   /* opt into a slightly wider, single-measure column (no narrow inner cap) for
      pages whose content benefits from more room, e.g. a provider table. */
   wide?: boolean
+  /* opt into a tighter, more editorial reading rhythm — narrower column, tighter
+     paragraph spacing, slightly more section separation and weightier headings —
+     for a policy page that should read like an Apple/OpenAI policy doc. */
+  editorial?: boolean
 }) {
   /* Desktop documentation layout: the content shares the hero's 1240px container
      (so its left edge sits directly under the title) and inner blocks are
@@ -69,15 +74,20 @@ export function LegalDoc({
      On mobile every block is full-width (narrower than these caps) with px-5
      gutters, so the mobile layout is unchanged. */
   const containerW = "max-w-[1240px]"
-  const read = "max-w-[800px]" // prose reading column, left-aligned
+  const read = editorial ? "max-w-[700px]" : "max-w-[800px]" // prose reading column, left-aligned
   const box = "max-w-[680px]" // "On this page" / summary — a compact index, left-aligned, kept narrower than the writing column
   const wideArea = wide ? "max-w-[1180px]" : "max-w-[1040px]" // tables / custom content
+  /* editorial rhythm overrides (opt-in): tighter paragraphs, slightly more section
+     separation, weightier headings, and a tightened headline→sub gap */
+  const sectionGap = editorial ? "space-y-9 sm:space-y-11" : "space-y-8 sm:space-y-10"
+  const bodyGap = editorial ? "space-y-4 sm:space-y-3.5" : "space-y-5 sm:space-y-4"
+  const headingWeight = editorial ? "font-semibold" : "font-medium"
 
   return (
     <>
-      <PageHeader eyebrow={eyebrow} title={title} sub={sub} note={`${dateLabel}: ${lastUpdated}`} looseTitle={looseTitle} />
+      <PageHeader eyebrow={eyebrow} title={title} sub={sub} note={`${dateLabel}: ${lastUpdated}`} looseTitle={looseTitle} divider={false} compact topClass="pt-20 sm:pt-26 lg:pt-30" bottomClass="pb-6 sm:pb-9 lg:pb-6" subGapClass={editorial ? "mt-2.5 sm:mt-3" : undefined} />
 
-      <section className={`ps-doc ${tightTop ? "pb-12 pt-6 sm:pb-24 sm:pt-14" : "py-12 sm:py-24"}`}>
+      <section className={`ps-doc ${tightTop ? "pb-12 pt-4 sm:pb-16 sm:pt-7 lg:pt-3" : "pb-12 pt-0 -mt-2 sm:mt-0 sm:pb-16 sm:pt-6 lg:pt-2"}`}>
         {/* The contents box is a compact index — left-aligned on the same rail as
             the body and kept narrower than the writing column so it never stretches
             past it. */}
@@ -94,9 +104,9 @@ export function LegalDoc({
 
           {summary && (
             <Reveal>
-              <div className={`mb-10 rounded-2xl bg-white/[0.02] p-6 sm:p-8 lg:mb-14 ${box}`}>
+              <div className={`mb-8 rounded-2xl bg-white/[0.02] px-6 py-5 sm:px-8 sm:py-6 lg:mb-7 ${box}`}>
                 <h2 className="ps-label ps-label-legible">{summary.title}</h2>
-                <ul className="mt-5 space-y-3">
+                <ul className="mt-4 space-y-2.5">
                   {summary.items.map((item, i) => (
                     <li
                       key={i}
@@ -115,11 +125,11 @@ export function LegalDoc({
             <Reveal className="hidden md:block">
               <nav
                 aria-label="On this page"
-                className={`mb-16 rounded-2xl bg-white/[0.02] p-6 sm:p-8 ${box}`}
+                className={`mb-10 lg:mb-7 rounded-2xl bg-white/[0.02] px-6 py-5 sm:px-8 sm:py-6 ${box}`}
               >
                 <h2 className="ps-label ps-label-legible">On this page</h2>
                 <ol
-                  className="mt-5 grid grid-cols-1 gap-x-12 gap-y-2.5 sm:grid-flow-col sm:grid-cols-2"
+                  className="mt-4 grid grid-cols-1 gap-x-10 gap-y-2 sm:grid-flow-col sm:grid-cols-2"
                   style={{
                     gridTemplateRows: `repeat(${Math.ceil(
                       sections.length / 2,
@@ -146,26 +156,26 @@ export function LegalDoc({
             </Reveal>
           )}
 
-          {afterToc && <div className={`mb-16 ${wideArea}`}>{afterToc}</div>}
+          {afterToc && <div className={`mb-12 ${wideArea}`}>{afterToc}</div>}
 
-          <div className={`space-y-12 ${read}`}>
+          <div className={`${sectionGap} ${read}`}>
             {sections.map((s, i) => (
               <Reveal key={s.h} delay={i * 30}>
                 <div
                   id={slugify(s.h)}
-                  className="scroll-mt-28 border-t border-[var(--hair)] pt-8 first:border-t-0 first:pt-0 sm:pt-10"
+                  className="scroll-mt-28"
                 >
-                  <h2 className="text-[19px] font-medium tracking-tight text-white">
+                  <h2 className={`text-[19px] ${headingWeight} tracking-tight text-white`}>
                     {s.h}
                   </h2>
-                  <div className="mt-4 space-y-4">
+                  <div className={`mt-3 ${bodyGap} sm:mt-4`}>
                     {s.body?.map((p, j) => (
                       <p key={j} className="text-[15.5px] leading-relaxed text-[var(--silver)]">
                         {p}
                       </p>
                     ))}
                     {s.bullets && (
-                      <ul className="space-y-2.5 pl-1">
+                      <ul className="space-y-3 pl-1 sm:space-y-2.5">
                         {s.bullets.map((b, j) => (
                           <li
                             key={j}
@@ -186,7 +196,7 @@ export function LegalDoc({
           {footer && (
             <Reveal>
               <p
-                className={`mt-14 border-t border-[var(--hair)] pt-10 text-[14px] leading-relaxed text-[var(--muted)] ${read}`}
+                className={`mt-8 text-[14px] leading-relaxed text-[var(--muted)] sm:mt-10 ${read}`}
               >
                 {footer}
               </p>

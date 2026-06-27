@@ -21,7 +21,7 @@ const sections: LegalSection[] = [
     h: "Prices and currency",
     body: [
       "Prices are shown in Australian dollars unless stated otherwise.",
-      "Package prices, setup fees and monthly fees are shown at the time of purchase or agreement. Custom work, additional integrations, SMS usage, Meta lead routing or other third-party costs may be quoted separately where applicable.",
+      "Plan prices, setup fees and monthly fees are shown at the time of purchase or agreement. Custom work, additional integrations, SMS usage, Meta lead routing or other third-party costs may be quoted separately where applicable.",
     ],
   },
   {
@@ -35,7 +35,7 @@ const sections: LegalSection[] = [
   {
     h: "Setup and install fees",
     body: [
-      "Some Solren packages include a setup, install or configuration fee.",
+      "Some Solren plans include a setup, install or configuration fee.",
       "Setup fees cover work such as onboarding, account review, workflow planning, connecting services, configuring automations, testing and preparing the system for use.",
       "Setup and install fees may be payable before work begins.",
       "Because setup and configuration work is customised and begins once Solren starts working on the install, setup fees are generally non-refundable once work has started, unless required by law or otherwise agreed in writing.",
@@ -44,7 +44,7 @@ const sections: LegalSection[] = [
   {
     h: "Monthly subscriptions",
     body: [
-      "Monthly fees cover ongoing access, automation operation, monitoring, support and improvements included in the selected package.",
+      "Monthly fees cover ongoing access, automation operation, monitoring, support and improvements included in your plan.",
       "Monthly subscriptions are billed in advance on a recurring basis unless otherwise agreed in writing.",
       "Subscriptions continue until cancelled.",
     ],
@@ -52,8 +52,8 @@ const sections: LegalSection[] = [
   {
     h: "What is included",
     body: [
-      "Each package includes the features described at the time of purchase or agreement.",
-      "Solren may improve, update or adjust features over time. If a requested feature or workflow is outside the selected package, Solren may quote it separately.",
+      "Your plan includes the features described at the time of purchase or agreement.",
+      "Solren may improve, update or adjust features over time. If a requested feature or workflow is outside your plan, Solren may quote it separately.",
     ],
   },
   {
@@ -82,7 +82,7 @@ const sections: LegalSection[] = [
     body: [
       "Payments are processed through Stripe or another approved payment provider.",
       "Card details are handled by Stripe, not stored directly by Solren.",
-      "By providing payment details, you authorise Solren or its payment processor to charge fees due for your selected package, setup work, subscription or agreed services.",
+      "By providing payment details, you authorise Solren or its payment processor to charge fees due for your plan, setup work, subscription or agreed services.",
     ],
   },
   {
@@ -112,6 +112,7 @@ const sections: LegalSection[] = [
   {
     h: "Refunds",
     body: [
+      "As a specific exception to the general non-refund terms below, eligible clients are offered a 30-day satisfaction guarantee starting from go-live, as described on the Pricing page. If, within 30 days of going live, the service is not catching and replying to enquiries as described, you may request a refund of that month's subscription fee and cancel, with no lock-in. Other fees remain payable as agreed in writing or at the time of purchase.",
       "Unless required by law or otherwise agreed in writing, fees already paid are non-refundable, including setup, installation, configuration and custom workflow work.",
       "If you believe there has been a billing error, contact us and we will review it.",
       "Nothing on this page limits rights that cannot be excluded under applicable law, including the Australian Consumer Law.",
@@ -152,7 +153,7 @@ export default function BillingPage() {
     <LegalDoc
       eyebrow="Billing"
       title={<>Billing.</>}
-      sub="How payments, subscriptions, invoices, cancellations and refunds work."
+      sub="Simple information about payments, invoices, refunds and plan changes."
       lastUpdated="22 June 2026"
       toc
       tightTop
@@ -168,7 +169,8 @@ export default function BillingPage() {
           >
             pricing
           </Link>
-          .
+          . The refund and 30-day guarantee wording on this page is pending legal
+          review.
         </>
       }
     />

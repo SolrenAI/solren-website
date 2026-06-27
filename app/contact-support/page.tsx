@@ -54,9 +54,10 @@ export default function ContactSupportPage() {
       <PageHeader
         eyebrow="Support"
         title={<>Contact support.</>}
-        sub="For billing, setup, account access or workflow questions, contact Solren support."
+        sub="Need help with Solren? Send us the issue and we will get back to you."
         titleClass="text-[clamp(2.05rem,8.5vw,4.4rem)] lg:text-[3rem]"
-        bottomClass="pb-12 sm:pb-16 lg:pb-10"
+        bottomClass="pb-7 sm:pb-9 lg:pb-6"
+        divider={false}
         actions={
           <a
             href="mailto:contact@solren.ai"
@@ -67,18 +68,17 @@ export default function ContactSupportPage() {
         }
       />
 
-      <section className="py-16 sm:pb-24 sm:pt-10 lg:pt-8">
+      <section className="pt-6 pb-12 sm:pb-16 sm:pt-5 md:pb-12 lg:pt-3">
         <div className="mx-auto max-w-[1240px] px-6">
           {/* One left-aligned content system: support content, then Useful links
-              inline near the bottom. On desktop a single subtle rule sits above the
-              detail group and spacing carries the rest (fewer lines); below lg the
-              original dividers/spacing are kept, so mobile is unchanged. */}
+              inline near the bottom. Sections are separated by whitespace only —
+              no decorative rules on any breakpoint. */}
           {/* What to include — quick, scannable guidance */}
           <Reveal>
             <h2 className="text-[19px] font-medium tracking-tight text-white">
               What to include
             </h2>
-            <div className="mt-6 grid max-w-[1040px] grid-cols-1 gap-4 sm:grid-cols-3 lg:mt-5">
+            <div className="mt-4 grid max-w-[1040px] grid-cols-1 gap-4 sm:grid-cols-3 lg:mt-4">
               {include.map((c) => (
                 <div
                   key={c.title}
@@ -95,12 +95,11 @@ export default function ContactSupportPage() {
             </div>
           </Reveal>
 
-          {/* detail sections — on desktop a single rule above the group, then
-              spacing + headings carry the structure (fewer divider lines) */}
-          <div className="mt-14 max-w-[800px] space-y-12 sm:mt-12 lg:mt-10 lg:space-y-8 lg:border-t lg:border-[var(--hair)] lg:pt-10">
+          {/* detail sections — spacing + headings carry the structure, no rules */}
+          <div className="mt-10 max-w-[800px] space-y-8 sm:mt-10 lg:mt-8 lg:space-y-6">
             {sections.map((s, i) => (
               <Reveal key={s.h} delay={i * 30}>
-                <div className="border-t border-[var(--hair)] pt-10 lg:border-t-0 lg:pt-0">
+                <div>
                   <h2 className="text-[19px] font-medium tracking-tight text-white">
                     {s.h}
                   </h2>
@@ -114,7 +113,7 @@ export default function ContactSupportPage() {
 
           {/* Useful links — inline, same left rail, compact two-column row */}
           <Reveal>
-            <div className="mt-12 max-w-[800px] border-t border-[var(--hair)] pt-10 lg:mt-10 lg:border-t-0 lg:pt-0">
+            <div className="mt-8 max-w-[800px] lg:mt-6">
               <h2 className="text-[19px] font-medium tracking-tight text-white">
                 Useful links
               </h2>
@@ -138,7 +137,7 @@ export default function ContactSupportPage() {
 
           {/* contact note */}
           <Reveal>
-            <p className="mt-12 max-w-[800px] border-t border-[var(--hair)] pt-10 text-[14px] leading-relaxed text-[var(--muted)] lg:mt-8 lg:border-t-0 lg:pt-0">
+            <p className="mt-8 max-w-[800px] text-[14px] leading-relaxed text-[var(--muted)] lg:mt-6">
               We&apos;ll review your request and reply with the next step. For
               anything else, email{" "}
               <a

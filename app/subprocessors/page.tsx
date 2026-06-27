@@ -83,7 +83,7 @@ const afterToc = (
       {/* Calm document table: a soft outer hairline, no vertical rules and no
           header fill, so it reads as part of the page rather than a database.
           Mobile keeps its stacked, labelled cells unchanged (sm: prefixes). */}
-      <div className="mt-10 overflow-hidden rounded-2xl border border-[var(--hair)] sm:border-white/[0.06]">
+      <div className="mt-8 lg:mt-6 overflow-hidden rounded-2xl border border-[var(--hair)] sm:border-white/[0.06]">
         {/* header row — shown from sm up; on mobile each cell carries its own label */}
         <div className={`hidden border-b border-white/[0.06] px-7 py-3.5 ${cols}`}>
           <span className={headCell}>Provider</span>
@@ -176,7 +176,7 @@ export default function SubprocessorsPage() {
     <LegalDoc
       eyebrow="Trust"
       title={<>Subprocessors.</>}
-      sub="A transparent list of the trusted providers that help Solren run, process payments, connect email accounts and support AI-assisted reply drafting."
+      sub="These are the trusted services Solren may use to provide, secure and support the product."
       dateLabel="Last reviewed"
       lastUpdated="1 January 2026"
       looseTitle

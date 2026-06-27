@@ -4,8 +4,8 @@ import { Reveal } from "../reveal"
 /* Faithful evolution of the original "Solren Service Enquiry Animation" asset,
    rebalanced into one engineered composition: every lead source on the left
    funnels through converging signal paths into a single merge node, then flows
-   through four stages — New enquiry → Solren replies → Solren follows up → Job
-   booked — with a blue pulse travelling the rail and Job booked as the glowing
+   through four stages — Enquiry → Reply → Follow-up → Booked — with a blue pulse
+   travelling the rail and Booked as the glowing
    finale. Built on a fixed 1240-unit canvas (via SVG viewBox), whose window is
    nudged left so the whole object sits centred on the page; positioning, spacing,
    hierarchy and animation flow stay exact. Only the accent (our #537FEA) and
@@ -17,7 +17,7 @@ const BLUE = "#537FEA"
    source list sits at the far left, the four stages spread evenly across the
    width to the right edge, and the ambient field glows behind the signal path */
 const MERGE_X = 255
-const RAIL_END_X = 1245
+const RAIL_END_X = 1485
 
 const channels = [
   { y: 60, label: "Website" },
@@ -43,11 +43,42 @@ const stages: {
   sub: string
   subFill: string
 }[] = [
-  { x: MERGE_X, kind: "message", iconStroke: "var(--ef-icon-stage)", node: "hollow", tick: 0.08, halo: 0.05, haloR: 42, title: "New enquiry", titleFill: "var(--ef-strong)", titleWeight: 500, sub: "From any channel", subFill: "var(--ef-muted)" },
-  { x: 585, kind: "send", iconStroke: "var(--ef-icon-stage)", node: "fill", tick: 0.18, halo: 0.14, haloR: 42, title: "Solren replies", titleFill: "var(--ef-strong)", titleWeight: 500, sub: "In seconds", subFill: "var(--ef-muted)" },
-  { x: 915, kind: "refresh", iconStroke: "var(--ef-icon-stage)", node: "fill", tick: 0.18, halo: 0.14, haloR: 42, title: "Solren follows up", titleFill: "var(--ef-strong)", titleWeight: 500, sub: "Automatically", subFill: "var(--ef-muted)" },
-  { x: RAIL_END_X, kind: "check", iconStroke: "var(--ef-icon-stage)", node: "fillLg", tick: 0.24, halo: 0.22, haloR: 50, title: "Job booked", titleFill: "var(--ef-accent)", titleWeight: 500, sub: "Customer confirmed", subFill: "var(--ef-muted)" },
+  { x: MERGE_X, kind: "message", iconStroke: "var(--ef-icon-stage)", node: "hollow", tick: 0.08, halo: 0.05, haloR: 42, title: "Enquiry", titleFill: "var(--ef-strong)", titleWeight: 500, sub: "Any channel", subFill: "var(--ef-muted)" },
+  { x: 650, kind: "send", iconStroke: "var(--ef-icon-stage)", node: "fill", tick: 0.18, halo: 0.14, haloR: 42, title: "Reply", titleFill: "var(--ef-strong)", titleWeight: 500, sub: "In seconds", subFill: "var(--ef-muted)" },
+  { x: 1045, kind: "refresh", iconStroke: "var(--ef-icon-stage)", node: "fill", tick: 0.18, halo: 0.14, haloR: 42, title: "Follow-up", titleFill: "var(--ef-strong)", titleWeight: 500, sub: "Until answered", subFill: "var(--ef-muted)" },
+  { x: RAIL_END_X, kind: "check", iconStroke: "var(--ef-icon-stage)", node: "fillLg", tick: 0.24, halo: 0.22, haloR: 50, title: "Booked", titleFill: "var(--ef-accent)", titleWeight: 500, sub: "Customer confirmed", subFill: "var(--ef-muted)" },
 ]
+
+/* ----- looping signal timeline (desktop SVG) -------------------------------
+   One calm 6s loop: the pulse eases out of "New enquiry", travels the rail and
+   settles on "Job booked", then holds briefly before repeating. TRAVEL_KT/KS
+   give a single eased (not linear) traverse over keyTimes 0.06 -> 0.80. NODE_AT
+   are the keyTimes the eased pulse passes each node (smoothstep fractions of the
+   journey), so each icon lights up exactly as the pulse reaches it. All motion
+   carries the ef-motion class, which is display:none under prefers-reduced-motion
+   (the diagram falls back to its static base). */
+const DUR = "6s"
+const TRAVEL_KT = "0;0.06;0.80;1"
+const TRAVEL_KS = "0 0 1 1;0.42 0 0.58 1;0 0 1 1"
+const NODE_AT = [0.06, 0.256, 0.604, 0.8]
+
+/* Build an eased 0 -> peak -> 0 opacity pulse centred on keyTime `at`, used to
+   light an icon (and its glow) as the travelling pulse passes its node. */
+function ignite(at: number, peak: number) {
+  const w = 0.07
+  const times: number[] = [0]
+  const vals: number[] = [0]
+  if (at - w > 0.001) {
+    times.push(at - w)
+    vals.push(0)
+  }
+  times.push(at, Math.min(at + w, 0.999), 1)
+  vals.push(peak, 0, 0)
+  const keySplines = Array(times.length - 1)
+    .fill("0.4 0 0.2 1")
+    .join(";")
+  return { keyTimes: times.map((t) => +t.toFixed(3)).join(";"), values: vals.join(";"), keySplines }
+}
 
 /* channel source icons — original 16-unit artwork scaled to 20px (×1.25) */
 function ChannelIcon({ label, cx, cy }: { label: string; cx: number; cy: number }) {
@@ -88,6 +119,14 @@ function ChannelIcon({ label, cx, cy }: { label: string; cx: number; cy: number 
 }
 
 /* pipeline stage icons — original 24-unit artwork scaled to 50px (×2.0833) */
+/* Optical centering: each glyph's bounding box is already centred on the node x,
+   but the asymmetric shapes (the bubble's tail, the arrowheads) carry their
+   visual weight off to one side, so a geometrically centred icon still reads as
+   sitting slightly left of its dot and label. A small per-icon rightward nudge
+   sits each glyph's visual mass over the node, so icon, dot and label share one
+   centre axis. Values tuned by rendering against a guide line through each node. */
+const ICON_OPTICAL_DX: Record<StageKind, number> = { message: 3, send: 3, refresh: 3, check: 2 }
+
 function StageIcon({ x, kind, stroke }: { x: number; kind: StageKind; stroke: string }) {
   const s = {
     fill: "none",
@@ -97,7 +136,7 @@ function StageIcon({ x, kind, stroke }: { x: number; kind: StageKind; stroke: st
     style: { stroke },
   }
   return (
-    <g transform={`translate(${x - 25} 71) scale(2.08333)`}>
+    <g transform={`translate(${x - 25 + ICON_OPTICAL_DX[kind]} 71) scale(2.08333)`}>
       {kind === "message" && <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" {...s} />}
       {kind === "send" && (
         <>
@@ -120,15 +159,15 @@ const mobileStageIcons = [MessageSquare, Send, RefreshCw, Check] as const
 
 export function EnquiryFlow() {
   return (
-    <section className="relative overflow-hidden pb-14 pt-2 sm:pb-16 sm:pt-4 lg:-mt-24 lg:pb-16 lg:pt-24">
+    <section className="relative overflow-hidden pb-4 pt-2 sm:pb-10 sm:pt-4 lg:-mt-24 lg:pb-2 lg:pt-15">
       <div className="relative mx-auto max-w-[1440px] px-5 sm:px-6 lg:px-8">
         <Reveal>
           {/* Compact responsive flow for phones and tablets. It keeps the same
               story as the wide diagram without horizontal scrolling. */}
           <div className="lg:hidden">
             <div className="text-center">
-              <span className="ps-label !text-[10px]">Enquiries from</span>
-              <div className="mx-auto mt-4 flex max-w-[34rem] flex-wrap justify-center gap-2">
+              <span className="ps-label !text-[10px] block">Enquiries from</span>
+              <div className="mx-auto mt-3 flex max-w-[34rem] flex-wrap justify-center gap-2">
                 {channels.map((channel) => (
                   <span
                     key={channel.label}
@@ -172,11 +211,11 @@ export function EnquiryFlow() {
             </ol>
           </div>
 
-          <div className="hidden lg:block">
+          <div className="hidden lg:mx-auto lg:block lg:max-w-[87%]">
           <svg
             viewBox="0 0 1500 276"
             role="img"
-            aria-label="Enquiry channels Website, Google, Facebook, Instagram and SMS all merge into one system: new enquiry, Solren replies, Solren follows up, job booked."
+            aria-label="Enquiry channels Website, Google, Facebook, Instagram and SMS all merge into one flow: enquiry from any channel, reply in seconds, follow-up until answered, booked with the customer confirmed."
             className="h-auto w-full"
             style={{ overflow: "visible", fontFamily: "inherit" }}
             textRendering="geometricPrecision"
@@ -246,8 +285,8 @@ export function EnquiryFlow() {
 
             {/* blue rail fill that grows as the signal travels, then resets */}
             <rect className="ef-motion" x={MERGE_X} y={177.25} height={1.5} width={0} fill="url(#ef-railfill)">
-              <animate attributeName="width" values={`0;0;${RAIL_END_X - MERGE_X};${RAIL_END_X - MERGE_X}`} keyTimes="0;0.05;0.82;1" dur="4s" repeatCount="indefinite" />
-              <animate attributeName="opacity" values="1;1;1;0" keyTimes="0;0.05;0.82;1" dur="4s" repeatCount="indefinite" />
+              <animate attributeName="width" dur={DUR} repeatCount="indefinite" calcMode="spline" keyTimes={TRAVEL_KT} keySplines={TRAVEL_KS} values={`0;0;${RAIL_END_X - MERGE_X};${RAIL_END_X - MERGE_X}`} />
+              <animate attributeName="opacity" dur={DUR} repeatCount="indefinite" keyTimes="0;0.06;0.8;0.92;1" values="1;1;1;0;0" />
             </rect>
 
             {/* the three pipeline stages */}
@@ -268,15 +307,32 @@ export function EnquiryFlow() {
               </g>
             ))}
 
+            {/* each step's icon gently lights up as the pulse reaches its node */}
+            {stages.map((s, i) => {
+              const litIcon = ignite(NODE_AT[i]!, 0.85)
+              const litGlow = ignite(NODE_AT[i]!, 0.5)
+              return (
+                <g className="ef-motion" key={`lit-${s.x}`}>
+                  <circle cx={s.x} cy={96} r={s.haloR} fill="url(#ef-halo)" opacity={0}>
+                    <animate attributeName="opacity" dur={DUR} repeatCount="indefinite" calcMode="spline" keyTimes={litGlow.keyTimes} values={litGlow.values} keySplines={litGlow.keySplines} />
+                  </circle>
+                  <g opacity={0} filter="url(#ef-glow-sm)">
+                    <animate attributeName="opacity" dur={DUR} repeatCount="indefinite" calcMode="spline" keyTimes={litIcon.keyTimes} values={litIcon.values} keySplines={litIcon.keySplines} />
+                    <StageIcon x={s.x} kind={s.kind} stroke="#cfe0ff" />
+                  </g>
+                </g>
+              )
+            })}
+
             {/* the travelling signal pulse: comet trail + bright head */}
             <g className="ef-motion">
               <rect y={176.5} height={3} rx={1.5} width={64} fill="url(#ef-comet)">
-                <animate attributeName="x" values={`${MERGE_X - 64};${MERGE_X - 64};${RAIL_END_X - 64};${RAIL_END_X - 64}`} keyTimes="0;0.05;0.82;1" dur="4s" repeatCount="indefinite" />
-                <animate attributeName="opacity" values="0;0.9;0.9;0" keyTimes="0;0.05;0.82;1" dur="4s" repeatCount="indefinite" />
+                <animate attributeName="x" dur={DUR} repeatCount="indefinite" calcMode="spline" keyTimes={TRAVEL_KT} keySplines={TRAVEL_KS} values={`${MERGE_X - 64};${MERGE_X - 64};${RAIL_END_X - 64};${RAIL_END_X - 64}`} />
+                <animate attributeName="opacity" dur={DUR} repeatCount="indefinite" keyTimes="0;0.06;0.8;0.88;1" values="0;0.9;0.9;0;0" />
               </rect>
               <circle cy={178} r={7.5} filter="url(#ef-pulse)" style={{ fill: "var(--ef-pulse)" }}>
-                <animate attributeName="cx" values={`${MERGE_X};${MERGE_X};${RAIL_END_X};${RAIL_END_X}`} keyTimes="0;0.05;0.82;1" dur="4s" repeatCount="indefinite" />
-                <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.05;0.82;1" dur="4s" repeatCount="indefinite" />
+                <animate attributeName="cx" dur={DUR} repeatCount="indefinite" calcMode="spline" keyTimes={TRAVEL_KT} keySplines={TRAVEL_KS} values={`${MERGE_X};${MERGE_X};${RAIL_END_X};${RAIL_END_X}`} />
+                <animate attributeName="opacity" dur={DUR} repeatCount="indefinite" keyTimes="0;0.06;0.8;0.88;1" values="0;1;1;0;0" />
               </circle>
             </g>
           </svg>

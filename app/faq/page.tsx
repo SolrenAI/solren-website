@@ -23,14 +23,16 @@ export default function FaqPage() {
         eyebrow="FAQ"
         title={<>Straight answers.</>}
         sub="No jargon. Here's how Solren works, what it costs, and what stays in your hands."
+        divider={false}
+        bottomClass="pb-8 sm:pb-8 lg:pb-7"
       />
 
-      <section className="py-16 sm:py-24">
+      <section className="pt-4 pb-12 sm:pt-5 sm:pb-16 md:pb-12 lg:pt-4">
         <div className="mx-auto max-w-[860px] px-5 sm:px-6">
           <FaqAccordion />
 
           <Reveal>
-            <div className="ps-card ps-card-warm mt-12 flex flex-col items-stretch justify-between gap-6 rounded-[22px] p-6 sm:mt-14 sm:flex-row sm:items-center sm:p-8">
+            <div className="ps-card ps-card-warm mt-10 flex flex-col items-stretch justify-between gap-6 rounded-[22px] p-6 sm:flex-row sm:items-center sm:p-8">
               <div>
                 <h2 className="text-[20px] font-medium tracking-tight text-white">
                   Still have a question?
@@ -43,7 +45,7 @@ export default function FaqPage() {
                 href="/contact"
                 className="group inline-flex min-h-12 shrink-0 items-center justify-center gap-2 rounded-full bg-[#537FEA] px-6 py-3 text-[14.5px] font-medium text-black transition-colors hover:bg-[#6A8FEE]"
               >
-                Talk to us
+                Book a call
                 <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
               </Link>
             </div>

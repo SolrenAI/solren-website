@@ -19,6 +19,7 @@ export function ImageFrame({
   srcDesktop,
   tall = false,
   priority = false,
+  blurDataURL,
   sizes = "(min-width: 1024px) 420px, 100vw",
   objectPosition = "center",
   fit = "cover",
@@ -39,6 +40,9 @@ export function ImageFrame({
   srcDesktop?: string
   tall?: boolean
   priority?: boolean
+  /* tiny base64 LQIP; when set the photo blurs up from it (placeholder="blur")
+     instead of popping in over the dark frame */
+  blurDataURL?: string
   sizes?: string
   objectPosition?: string
   fit?: "cover" | "contain"
@@ -75,6 +79,8 @@ export function ImageFrame({
             fill
             sizes={sizes}
             priority={priority}
+            placeholder={blurDataURL ? "blur" : undefined}
+            blurDataURL={blurDataURL}
             className={`${
               fit === "contain" ? "object-contain" : "object-cover"
             } ${clear ? "if-photo-clear" : "if-photo"} ${srcDesktop ? "lg:hidden" : ""}`}

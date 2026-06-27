@@ -65,6 +65,24 @@
   color: transparent;
 }
 
+/* Descender-safe variant for a specific mobile headline. `-webkit-background-clip:
+   text` clips the bottom hook of descenders (j, g, y, p, q) on the last line at
+   small sizes — padding on an inline span can't extend the text-clip paint area.
+   So below the sm breakpoint we render a solid near-white fill (no text-clip, so
+   nothing can be clipped); at sm and up the exact .ps-silver gradient is restored,
+   leaving tablet and desktop pixel-identical. */
+.ps-silver-safe {
+  color: #edeff2;
+}
+@media (min-width: 640px) {
+  .ps-silver-safe {
+    background: linear-gradient(180deg, #ffffff 0%, #eceef1 46%, #c3c6cd 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+}
+
 /* Clean card: a near-flat dark surface defined by a hairline and a single
    crisp top highlight. No heavy gradients or deep shadows — structure comes
    from the border, the way Linear and Vercel build surfaces. Lighter to paint. */
@@ -239,10 +257,19 @@
 }
 .ps-flow-pulse-y { animation: ps-flow-pulse-y 4.5s ease-in-out infinite; }
 
+/* Hero "Leads. Quotes. Messages." — a one-time staggered light-in so the line
+   reads as intentional rather than decorative. Per-word delay is set inline. */
+@keyframes rh-word-in {
+  from { opacity: 0; transform: translateY(0.3em); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.rh-word { animation: rh-word-in 0.6s cubic-bezier(0.2, 0.65, 0.3, 1) both; }
+
 @media (prefers-reduced-motion: reduce) {
   .ps-reveal { opacity: 1; transform: none; transition: none; }
   .ps-marquee { animation: none; }
   .ps-live-dot, .ps-scan, .ps-flow-pulse, .ps-flow-pulse-y { animation: none; }
+  .rh-word { animation: none; }
   .ef-motion { display: none; }
 }
 
