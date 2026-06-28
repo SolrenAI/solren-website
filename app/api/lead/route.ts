@@ -75,6 +75,19 @@ export async function POST(req: Request) {
   }
 
   const webhookUrl = process.env.SOLREN_N8N_LEAD_WEBHOOK_URL
+
+  // TEMP DEBUG — remove once the n8n pipeline is verified. Logs presence and the
+  // host/path of the webhook (never the full URL or any secret/query value).
+  console.log("[lead][debug] env var present:", Boolean(webhookUrl))
+  if (webhookUrl) {
+    try {
+      const u = new URL(webhookUrl)
+      console.log("[lead][debug] webhook host:", u.hostname, "pathname:", u.pathname)
+    } catch {
+      console.log("[lead][debug] webhook URL is not a valid URL")
+    }
+  }
+
   if (!webhookUrl) {
     console.error("[lead] SOLREN_N8N_LEAD_WEBHOOK_URL is not set — cannot forward lead.")
     return NextResponse.json({ ok: false, error: "The form is not configured yet." }, { status: 500 })
@@ -104,6 +117,9 @@ export async function POST(req: Request) {
       }),
     })
 
+    // TEMP DEBUG — remove once verified.
+    console.log("[lead][debug] fetch response status:", res.status)
+
     if (!res.ok) {
       console.error("[lead] n8n webhook responded with status", res.status)
       return NextResponse.json(
@@ -112,6 +128,10 @@ export async function POST(req: Request) {
       )
     }
   } catch (err) {
+    // TEMP DEBUG — remove once verified. Logs error name/message only.
+    const errName = err instanceof Error ? err.name : "Unknown"
+    const errMessage = err instanceof Error ? err.message : String(err)
+    console.error("[lead][debug] fetch threw:", errName, "-", errMessage)
     console.error("[lead] Failed to reach n8n webhook:", err)
     return NextResponse.json(
       { ok: false, error: "We could not send your details just now." },
