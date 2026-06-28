@@ -413,19 +413,26 @@ export function BookDemo() {
     setErrorMsg("")
 
     try {
-      const res = await fetch("/api/contact", {
+      const res = await fetch("/api/lead", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          ...fields,
+          name: fields.name,
+          email: fields.email,
+          phone: fields.phone,
+          business_name: fields.business,
+          service_needed: fields.trade,
           message,
-          channels: selChannels,
-          tools: selTools,
+          page_url: typeof window !== "undefined" ? window.location.href : "",
+          form_name: "book-demo",
+          website: fields.website,
+          preferred_call_date: preferredCallDate,
+          preferred_call_time: preferredCallTime,
+          timezone: tz,
+          lead_channels: selChannels,
+          current_tools: selTools,
           problems: selProblems,
           urgency,
-          preferredCallDate,
-          preferredCallTime,
-          timezone: tz,
           hp,
         }),
       })
@@ -551,8 +558,8 @@ export function BookDemo() {
               </Field>
             </div>
 
-            {/* Preferred call time — optional; collected with the enquiry and
-                included in the same /api/contact email. Not a live booking. */}
+            {/* Preferred call time — optional; collected with the enquiry.
+                Not a live booking. */}
             <div className="mt-5">
               <span className="text-[13px] font-medium text-[var(--silver)]">Preferred call time</span>
               <div className="mt-3 grid grid-cols-1 gap-5 sm:grid-cols-2">
