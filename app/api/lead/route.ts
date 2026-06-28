@@ -75,6 +75,9 @@ export async function POST(req: Request) {
   }
 
   const webhookUrl = process.env.SOLREN_N8N_LEAD_WEBHOOK_URL
+  // Temporary: confirm the deployed route can see the env var. Logs presence
+  // only (boolean) — never the secret value itself. Remove once verified.
+  console.log("[lead] SOLREN_N8N_LEAD_WEBHOOK_URL present:", Boolean(webhookUrl))
   if (!webhookUrl) {
     console.error("[lead] SOLREN_N8N_LEAD_WEBHOOK_URL is not set — cannot forward lead.")
     return NextResponse.json({ ok: false, error: "The form is not configured yet." }, { status: 500 })
