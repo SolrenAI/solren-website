@@ -6,6 +6,7 @@ import { PublicNav } from "@/components/public-site/nav"
 import { PublicFooter } from "@/components/public-site/footer"
 import { StructuredData } from "@/components/public-site/structured-data"
 import { ThemeToggle } from "@/components/public-site/theme-toggle"
+import { SpeedInsights } from "@vercel/speed-insights/next"
 
 const inter = Inter({
   variable: "--font-inter",
@@ -122,6 +123,7 @@ export default function RootLayout({
               finished dark experience, so it is not shown in production. */}
           {process.env.NODE_ENV === "development" && <ThemeToggle />}
         </div>
+        <SpeedInsights />
       </body>
     </html>
   )
