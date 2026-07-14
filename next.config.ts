@@ -13,6 +13,13 @@ const nextConfig: NextConfig = {
     minimumCacheTTL: 2_678_400, // 31 days — optimized images rarely change
   },
 
+  /* The round "N" badge is Next's dev-tools indicator — `next dev` only, never
+     part of a production build. Bottom-left collides with the site's fixed
+     theme toggle, so park it in the opposite corner during development. */
+  devIndicators: {
+    position: "bottom-right",
+  },
+
   /* The standalone Book a Call page was folded into /contact, the single
      conversion page. Permanently redirect the old route so it never 404s and
      any existing links keep working. */

@@ -11,6 +11,7 @@ export function FaqAccordion({
   items = faqs,
   defaultOpenIndex = null,
   idPrefix = "",
+  numeralClassName = "text-[var(--faint)]",
 }: {
   items?: { q: string; a: ReactNode }[]
   /* Which item starts expanded; pass null to start with all collapsed. */
@@ -18,6 +19,9 @@ export function FaqAccordion({
   /* prefix for panel ids so two instances on one page (e.g. a trimmed mobile set
      and the full desktop set) don't produce duplicate DOM ids / broken aria. */
   idPrefix?: string
+  /* Tone of the 01/02/… markers. Defaults to --faint; /pricing lifts them to
+     --silver. Kept a prop so recolouring one page cannot leak into another. */
+  numeralClassName?: string
 }) {
   const [open, setOpen] = useState<number | null>(defaultOpenIndex)
 
@@ -34,7 +38,7 @@ export function FaqAccordion({
               aria-controls={`${idPrefix}faq-panel-${i}`}
             >
               <span className="flex items-baseline gap-3 sm:gap-5">
-                <span className="ps-label !text-[11px] text-[var(--faint)]">
+                <span className={`ps-label !text-[11px] ${numeralClassName}`}>
                   {String(i + 1).padStart(2, "0")}
                 </span>
                 <span className="text-[16px] font-medium leading-snug tracking-tight text-white sm:text-[20px]">

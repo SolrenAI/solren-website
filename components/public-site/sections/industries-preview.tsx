@@ -54,18 +54,22 @@ const trades: Trade[] = [
 
 export function IndustriesPreview() {
   return (
-    <section className="relative pt-6 pb-2 sm:pt-8 sm:pb-6 lg:pt-7 lg:pb-6">
+    <section className="relative pt-6 pb-2 sm:pt-8 sm:pb-6 lg:pt-14 lg:pb-4">
       <div className="mx-auto max-w-[1240px] px-5 sm:px-6">
         <Reveal>
           <div className="mb-6 sm:mb-8">
-            <span className="ps-label block">Who it&apos;s for</span>
-            <h2 className="mt-3 max-w-xl text-[clamp(1.7rem,7.5vw,3rem)] font-medium leading-[1.08] tracking-[-0.02em] sm:leading-[1.05]">
-              <span className="ps-silver">Built for trades</span>{" "}
-              <span className="text-[var(--muted)]">where fast replies win jobs.</span>
+            {/* Eyebrow is the category, heading is the question — the eyebrow
+                used to stutter against "Who is this for?". */}
+            <span className="ps-label block">The trades</span>
+            <h2 className="mt-3 max-w-xl text-[clamp(1.7rem,7.5vw,3rem)] font-medium leading-[1.08] tracking-[-0.02em] ps-silver sm:leading-[1.05]">
+              Who is this for?
             </h2>
             <p className="mt-3 max-w-lg text-[15px] leading-relaxed text-[var(--silver)] sm:mt-4">
-              For electricians, plumbers, roofers, HVAC and service businesses.
-              No enquiry missed. No follow-up forgotten.
+              Anyone whose next job arrives as a message.
+            </p>
+            <p className="mt-3 max-w-lg text-[15px] leading-relaxed text-[var(--silver)]">
+              Electricians, plumbers, roofers, HVAC. Not because the trade matters,
+              but because the clock does.
             </p>
             <Link
               href="/industries"

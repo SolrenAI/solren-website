@@ -1,9 +1,6 @@
 import type { Metadata } from "next"
-import Link from "next/link"
-import { ArrowUpRight } from "lucide-react"
 
-import { PageHeader } from "@/components/public-site/page-header"
-import { HowItWorks, WorkSplit, InstalledAround } from "@/components/public-site/sections/how-it-works"
+import { PlatformHero, LeadsGoingCold, WorkSplit, ApprovalGate, InstalledAround } from "@/components/public-site/sections/how-it-works"
 import { Trust } from "@/components/public-site/sections/trust"
 
 export const metadata: Metadata = {
@@ -15,43 +12,34 @@ export const metadata: Metadata = {
 
 export default function HowItWorksPage() {
   return (
-    <>
-      <PageHeader
-        divider={false}
-        bottomClass="pb-12 sm:pb-16 lg:pb-10"
-        eyebrowPulse
-        eyebrow="How it works"
-        title={
-          <span className="block overflow-visible text-balance pb-2 leading-[1.1]">
-            Missed enquiry. Fast reply. Booked job.
-          </span>
-        }
-        sub="Solren catches new leads, prepares the reply, follows up automatically, and keeps the job moving while you work."
-        actions={
-          <>
-            <Link
-              href="/contact"
-              className="group inline-flex items-center gap-2 rounded-full bg-[#537FEA] px-7 py-3.5 text-[15px] font-medium text-black transition-colors hover:bg-[#6A8FEE]"
-            >
-              Book a call
-              <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-            </Link>
-            <Link
-              href="/pricing"
-              className="inline-flex items-center gap-2 rounded-full border border-[var(--hair-strong)] px-7 py-3.5 text-[15px] font-medium text-white transition-colors hover:bg-white/[0.03]"
-            >
-              View pricing
-            </Link>
-            <p className="basis-full text-[12.5px] leading-relaxed text-[var(--muted)] sm:text-[13px]">
-              From A$497/month. One booked job covers it.
-            </p>
-          </>
-        }
-      />
+    /* ps-hiw scopes this page's desktop type scale (see public-site.css). */
+    <div className="ps-hiw">
+      {/* The arc: win (hero) → pain (leads going cold) → relief (Solren handles
+          the chase, you approve) → proof (tools, trust strip). */}
+      <PlatformHero />
 
-      <HowItWorks />
+      <LeadsGoingCold />
 
       <WorkSplit />
+
+      {/* The ONLY divider on the page — deliberately not a reusable separator.
+          It marks the one hinge in the arc: the chase ends ("That's it. You stay
+          on the tools.") and the control claim begins. --hair is the site's
+          existing hairline, rgba(255,255,255,0.08).
+
+          The divider OWNS the section break: below lg both neighbours contribute
+          zero padding (WorkSplit pb-0, ApprovalGate pt-0), so the symmetric
+          --space-block margins here centre the line in the gap by construction.
+          At lg the same balance holds a size up: the lg top margin mirrors
+          ApprovalGate's --space-section top padding below the line. Keep the
+          neighbours' paddings zero — any padding they add stacks on one side of
+          the line and reads as a void. */}
+      <div className="ps-container mt-[var(--space-block)] mb-[var(--space-block)] lg:mt-[var(--space-section)] lg:mb-0">
+        <div className="h-px w-full bg-[var(--hair)]" />
+      </div>
+
+      {/* The key trust moment: every reply is approved by the owner before it sends. */}
+      <ApprovalGate />
 
       {/* The "Custom-built" pill is removed from the md+ layout in favour of the
           simpler closing trust strip below; kept on phones (where Trust is hidden)
@@ -61,6 +49,6 @@ export default function HowItWorksPage() {
       </div>
 
       <Trust />
-    </>
+    </div>
   )
 }

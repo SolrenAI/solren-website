@@ -13,7 +13,24 @@
       "Bash(node -e \"require\\('sharp'\\); console.log\\('sharp OK', require\\('sharp/package.json'\\).version\\)\")",
       "Bash(node -e \"const s=require\\('sharp'\\); s\\('public/logos/solren-wordmark-clean.png'\\).metadata\\(\\).then\\(m=>console.log\\(m.width+'x'+m.height\\)\\)\")",
       "Bash(python -c \"import PIL; print\\('PIL', PIL.__version__\\)\")",
-      "Bash(node -e \"try{require\\('sharp'\\);console.log\\('sharp ok'\\)}catch\\(e\\){console.log\\('no sharp'\\)}\")"
+      "Bash(node -e \"try{require\\('sharp'\\);console.log\\('sharp ok'\\)}catch\\(e\\){console.log\\('no sharp'\\)}\")",
+      "PowerShell(npx tsc --noEmit 2>&1 | Select-Object -First 30)",
+      "Bash(curl *)",
+      "Bash(DIST_DIR=.next-build npx next build)",
+      "Read(//c/Users/James/Desktop/F/**)",
+      "Read(//c/Users/James/Desktop/**)",
+      "PowerShell(Get-ChildItem *)",
+      "Bash(echo \"/pricing -> $\\(curl -s -o /dev/null -w '%{http_code}' http://localhost:3100/pricing\\)\")",
+      "Bash(echo \"/ -> $\\(curl -s -o /dev/null -w '%{http_code}' http://localhost:3100/\\)\")",
+      "PowerShell(npx tsc --noEmit)",
+      "PowerShell(Remove-Item *)",
+      "Bash(git add *)",
+      "Bash(git commit -m ' *)",
+      "PowerShell($r = Invoke-WebRequest -Uri http://localhost:3100/ -UseBasicParsing -TimeoutSec 30; $html = $r.Content; foreach \\($needle in 'Enquiries left to go cold','&lt; 60 sec','24/7','We follow up until they reply','Who is this for?'\\) { Write-Output \"$needle : $\\($html.Contains\\($needle\\)\\)\" }; $ix1 = $html.IndexOf\\('In seconds'\\); $ix2 = $html.IndexOf\\('Enquiries left to go cold'\\); $ix3 = $html.IndexOf\\('Who is this for?'\\); Write-Output \"order: timeline=$ix1 proofband=$ix2 trades=$ix3\")",
+      "Bash(git -C /c/Users/James/solren-website show 32e8795 --stat)",
+      "Bash(git -C /c/Users/James/solren-website show 32e8795 -- app/api/lead/route.ts)",
+      "Bash(git *)",
+      "Bash(npm run *)"
     ]
   }
 }

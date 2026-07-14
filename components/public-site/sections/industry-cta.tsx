@@ -2,11 +2,15 @@ import Link from "next/link"
 import { ArrowUpRight } from "lucide-react"
 import { Reveal } from "../reveal"
 
-/* Desktop closing CTA for the SEO industry pages: two equal cards — Book a
-   15-minute call and Compare plans — replacing the old checklist CTA. Hidden below lg, where the
-   FinalCta card is shown instead. Cards use the pricing surface (ps-card), the
-   same max width as the old CTA, equal height with the buttons pinned to the
-   bottom so their baselines align. Subtle hover only; no gradients or glass. */
+/* Desktop closing CTA for the SEO industry pages: two equal cards — Book a call
+   and Compare plans. Hidden below lg, where the FinalCta card is shown instead.
+
+   These are terminal CTAs at the foot of a teaching page, so the surface is the
+   flat /why-solren card — a hairline and a near-transparent ground, no gradient
+   fill, no inset highlight, no hover lift. Height comes from the copy, not a
+   min-height; the buttons still pin to the bottom so their baselines align. */
+const CARD = "flex flex-col rounded-2xl border border-white/[0.08] bg-white/[0.015] p-7"
+
 export function IndustryCta() {
   return (
     <section className="relative hidden px-6 pb-2 pt-6 lg:block">
@@ -14,7 +18,7 @@ export function IndustryCta() {
         <Reveal>
           <div className="grid grid-cols-2 items-stretch gap-6">
             {/* Book a call — primary */}
-            <div className="ps-card flex min-h-[260px] flex-col rounded-[24px] p-10">
+            <div className={CARD}>
               <h3 className="text-[19px] font-medium tracking-tight text-white">Book a call</h3>
               <p className="mt-3 text-[14.5px] leading-relaxed text-[var(--muted)]">
                 We&apos;ll show you how Solren would handle your enquiries, explain how the installation works, and answer any questions. No pressure, no obligation.
@@ -31,7 +35,7 @@ export function IndustryCta() {
             </div>
 
             {/* Compare plans — secondary outline */}
-            <div className="ps-card flex min-h-[260px] flex-col rounded-[24px] p-10">
+            <div className={CARD}>
               <h3 className="text-[19px] font-medium tracking-tight text-white">Compare plans</h3>
               <p className="mt-3 text-[14.5px] leading-relaxed text-[var(--muted)]">
                 Compare installation packages, monthly management, and everything that&apos;s included before making a decision.

@@ -21,7 +21,7 @@ const reliability = [
   },
   {
     title: "You stay in control",
-    body: "Solren drafts the replies. Your team approves what gets sent, so the final call is always yours.",
+    body: "You approve the first reply to every new lead. The routine follow-ups run themselves, and stop the moment someone answers. The replies that matter are always yours.",
   },
 ]
 
@@ -38,7 +38,7 @@ const cards = [
   },
   {
     title: "AI control",
-    summary: "How Solren uses AI to draft replies, and what stays under your control.",
+    summary: "How Solren uses AI to draft replies, and which ones you approve.",
     href: "/help/openai",
   },
   {
@@ -89,8 +89,8 @@ export default function TrustPage() {
               </h2>
               <p className="mt-2 max-w-[800px] text-[15.5px] leading-relaxed text-[var(--silver)] sm:mt-4">
                 Solren is designed to keep enquiries moving, keep an eye on how
-                things run, and keep your team in control, so work does not slip
-                when you are busy.
+                things run, and keep the replies that matter with you, so work
+                does not slip when you are busy.
               </p>
               {/* No divider rules: on mobile the blocks read as one continuous
                   story, with generous vertical breathing room between each pair

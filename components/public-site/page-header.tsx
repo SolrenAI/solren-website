@@ -14,6 +14,10 @@ export function PageHeader({
   containerClass = "max-w-[1240px]",
   bottomClass = "pb-12 sm:pb-16 lg:pb-20",
   topClass = "pt-24 sm:pt-30 lg:pt-30",
+  /* The header clips its decoration by default. A route whose decoration is a
+     real object (not a bleed/glow) and whose hero owns no bottom padding can
+     opt out, so a top-aligned decoration taller than the copy is not cut off. */
+  overflowClass = "overflow-hidden",
   titleClass = "text-[clamp(2.05rem,8.5vw,4.4rem)]",
   subClass = "mt-5 sm:mt-7",
   noteClass,
@@ -50,6 +54,7 @@ export function PageHeader({
      pt-24 sm:pt-30 lg:pt-30 — one global desktop hero height across all pages
      (legal pages keep a tighter mobile/tablet via their own override) */
   topClass?: string
+  overflowClass?: string
   /* override the hero title size classes (e.g. a smaller, more compact title on
      a utility page); defaults to the standard large hero clamp */
   titleClass?: string
@@ -88,7 +93,7 @@ export function PageHeader({
   void subClass
   return (
     <>
-      <header className={`relative overflow-hidden ${topClass} ${bottomClass}`}>
+      <header className={`relative ${overflowClass} ${topClass} ${bottomClass}`}>
       {decoration}
       <div
         className={`relative z-10 mx-auto ${containerClass} px-5 sm:px-6 ${

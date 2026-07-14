@@ -57,7 +57,7 @@ const urgencies = ["Just exploring", "Want to install this month", "Need help ur
 
 const nextSteps = [
   "We review your business.",
-  "We identify where enquiries are being lost.",
+  "We identify where your enquiries are being lost.",
   "We show you exactly how Solren would work for you.",
 ]
 
@@ -584,7 +584,7 @@ export function BookDemo() {
                   value={message}
                   onChange={(e) => setMessage(e.target.value)}
                   rows={4}
-                  placeholder="Missed calls, slow replies, quotes not followed up, leads going quiet…"
+                  placeholder="Slow replies, quotes not followed up, enquiries going quiet…"
                   className={`${fieldClass} resize-none`}
                 />
               </Field>
@@ -680,7 +680,8 @@ export function BookDemo() {
               <span className="text-[13px] font-medium text-[var(--silver)]">After you submit</span>
               <NextStepsList />
               <p className="mt-5 text-[13px] leading-relaxed text-[var(--muted)]">
-                You speak to the people who build and run your install.
+                You&rsquo;ll talk to the person who builds and runs your install.
+                Not a ticket queue.
               </p>
             </div>
           </>

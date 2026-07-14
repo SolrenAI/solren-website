@@ -1,10 +1,9 @@
 import Link from "next/link"
 import { ArrowUpRight } from "lucide-react"
-import { RotatingHighlight } from "../rotating-highlight"
 
 export function Hero() {
   return (
-    <section className="relative pb-5 pt-24 sm:pb-24 sm:pt-36 lg:pb-20 lg:pt-[136px]">
+    <section className="relative pb-4 pt-24 sm:pb-24 sm:pt-36 lg:pb-20 lg:pt-[112px]">
       {/* heading block — one centred vertical stack */}
       <div className="mx-auto max-w-[1080px] px-5 text-center sm:px-6">
         <div className="inline-flex items-center gap-2">
@@ -18,11 +17,21 @@ export function Hero() {
           Missed enquiry. Fast reply. Booked job.
         </h1>
 
-        <p className="mx-auto mt-6 text-[clamp(1rem,4.5vw,1.25rem)] font-medium tracking-[-0.01em] sm:mt-8">
-          <RotatingHighlight />
+        {/* Subheading, one step below the h1: white, both lines. Replaces the
+            removed rotating line and the old grey footnote below the CTAs. */}
+        <p className="mx-auto mt-6 max-w-[24ch] text-[clamp(1.2rem,5vw,1.6rem)] font-medium leading-[1.2] tracking-[-0.01em] text-white sm:mt-8">
+          Most jobs aren&apos;t lost on price.
+          <br />
+          They&apos;re lost on the clock.
         </p>
+
+        {/* Body: two lines — the promise in silver, the one claim no competitor
+            can copy in white on its own line. */}
         <p className="mx-auto mt-4 max-w-[34rem] text-[15px] leading-[1.6] text-[var(--silver)] sm:mt-5 sm:text-[16px]">
-          Solren catches every enquiry. Replies fast. Follows up. You stay on the job.
+          Solren catches every enquiry, replies in seconds, and follows up until the job is booked.
+        </p>
+        <p className="mx-auto mt-3 max-w-[34rem] text-[15px] leading-[1.6] text-white sm:text-[16px]">
+          Nothing goes out until you say so.
         </p>
 
         {/* CTAs — deliberately quiet so they never compete with the headline */}
@@ -42,12 +51,9 @@ export function Hero() {
           </Link>
         </div>
 
-        <p className="mx-auto mt-6 max-w-[42ch] text-[12.5px] leading-relaxed text-[var(--muted)] sm:mt-8 sm:max-w-none sm:text-[13px]">
-          From A$497/month. One booked job covers it.
-        </p>
-
-        <p className="mx-auto mt-6 max-w-[42ch] text-[12.5px] leading-relaxed text-[var(--muted)] sm:mt-8 sm:max-w-none sm:text-[13px]">
-          Most jobs aren&apos;t lost on price. They&apos;re lost on response time.
+        <p className="mx-auto mt-6 max-w-[42ch] text-[15px] leading-relaxed sm:mt-8 sm:max-w-none sm:text-[16px]">
+          <span className="text-white">A$497 a month.</span>
+          <span className="text-[var(--silver)]"> One booked job covers it.</span>
         </p>
       </div>
     </section>

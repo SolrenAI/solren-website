@@ -29,6 +29,14 @@ const channels = [
 
 type StageKind = "message" | "send" | "refresh" | "check"
 
+/* Each stage carries the quantified stake that used to live in the standalone
+   proof-band: a node-scale metric above the icon and a short stake line below
+   the title. All three metrics are capability claims, not measured stats —
+   "< 60 sec" is the hedged boundary of "in seconds" (keep the <; do not commit
+   to a hard measured figure without real data), "24/7" and "0 cold" describe
+   system behaviour. Booked stays metric-free: it is the payoff the three
+   stakes build toward. `stake` is pre-split into lines because SVG text does
+   not wrap; keep each line comfortably inside the ~395-unit node spacing. */
 const stages: {
   x: number
   kind: StageKind
@@ -40,13 +48,15 @@ const stages: {
   title: string
   titleFill: string
   titleWeight: number
-  sub: string
-  subFill: string
+  metric: string | null
+  stake: string[]
 }[] = [
-  { x: MERGE_X, kind: "message", iconStroke: "var(--ef-icon-stage)", node: "hollow", tick: 0.08, halo: 0.05, haloR: 42, title: "Enquiry", titleFill: "var(--ef-strong)", titleWeight: 500, sub: "Any channel", subFill: "var(--ef-muted)" },
-  { x: 650, kind: "send", iconStroke: "var(--ef-icon-stage)", node: "fill", tick: 0.18, halo: 0.14, haloR: 42, title: "Reply", titleFill: "var(--ef-strong)", titleWeight: 500, sub: "In seconds", subFill: "var(--ef-muted)" },
-  { x: 1045, kind: "refresh", iconStroke: "var(--ef-icon-stage)", node: "fill", tick: 0.18, halo: 0.14, haloR: 42, title: "Follow-up", titleFill: "var(--ef-strong)", titleWeight: 500, sub: "Until answered", subFill: "var(--ef-muted)" },
-  { x: RAIL_END_X, kind: "check", iconStroke: "var(--ef-icon-stage)", node: "fillLg", tick: 0.24, halo: 0.22, haloR: 50, title: "Booked", titleFill: "var(--ef-accent)", titleWeight: 500, sub: "Customer confirmed", subFill: "var(--ef-muted)" },
+  { x: MERGE_X, kind: "message", iconStroke: "var(--ef-icon-stage)", node: "hollow", tick: 0.08, halo: 0.05, haloR: 42, title: "Enquiry", titleFill: "var(--ef-strong)", titleWeight: 500, metric: "24/7", stake: ["Every enquiry answered,", "while you're up a ladder."] },
+  { x: 650, kind: "send", iconStroke: "var(--ef-icon-stage)", node: "fill", tick: 0.18, halo: 0.14, haloR: 42, title: "Reply", titleFill: "var(--ef-strong)", titleWeight: 500, metric: "< 60 sec", stake: ["First to reply wins.", "You always are."] },
+  { x: 1045, kind: "refresh", iconStroke: "var(--ef-icon-stage)", node: "fill", tick: 0.18, halo: 0.14, haloR: 42, title: "Follow-up", titleFill: "var(--ef-strong)", titleWeight: 500, metric: "Never cold", stake: ["Nothing slips. We chase", "every lead till they book."] },
+  /* Booked's top label is the word itself, in the accent payoff colour, so the
+     top row completes as a closing sentence: 24/7, < 60 sec, Zero — Booked. */
+  { x: RAIL_END_X, kind: "check", iconStroke: "var(--ef-icon-stage)", node: "fillLg", tick: 0.24, halo: 0.22, haloR: 50, title: "Booked", titleFill: "var(--ef-accent)", titleWeight: 500, metric: "Booked", stake: ["The job's yours."] },
 ]
 
 /* ----- looping signal timeline (desktop SVG) -------------------------------
@@ -159,7 +169,9 @@ const mobileStageIcons = [MessageSquare, Send, RefreshCw, Check] as const
 
 export function EnquiryFlow() {
   return (
-    <section className="relative overflow-hidden pb-4 pt-2 sm:pb-10 sm:pt-4 lg:-mt-24 lg:pb-2 lg:pt-15">
+    /* -mt-12 (was -24): the metric row now sits at the very top of the SVG
+       canvas, so the old overlap crowded the hero's A$497 line. */
+    <section className="relative overflow-hidden pb-4 pt-6 sm:pb-10 sm:pt-6 lg:-mt-12 lg:pb-2 lg:pt-12">
       <div className="relative mx-auto max-w-[1440px] px-5 sm:px-6 lg:px-8">
         <Reveal>
           {/* Compact responsive flow for phones and tablets. It keeps the same
@@ -201,10 +213,18 @@ export function EnquiryFlow() {
                     >
                       <Icon className="h-[18px] w-[18px]" strokeWidth={1.7} />
                     </span>
-                    <div className="min-w-0">
+                    <div className="min-w-0 flex-1">
                       <p className="text-[15px] font-medium text-white">{stage.title}</p>
-                      <p className="mt-0.5 text-[12.5px] text-[var(--muted)]">{stage.sub}</p>
+                      <p className="mt-0.5 text-[12.5px] text-[var(--silver)]">{stage.stake.join(" ")}</p>
                     </div>
+                    {/* Skip the metric when it just repeats the card title
+                        (Booked): the card's blue outcome treatment already
+                        carries the payoff beat on mobile. */}
+                    {stage.metric && stage.metric !== stage.title && (
+                      <p className="shrink-0 self-center pl-1 text-[21px] font-medium leading-none tracking-[-0.02em] text-white">
+                        {stage.metric}
+                      </p>
+                    )}
                   </li>
                 )
               })}
@@ -213,9 +233,9 @@ export function EnquiryFlow() {
 
           <div className="hidden lg:mx-auto lg:block lg:max-w-[87%]">
           <svg
-            viewBox="0 0 1500 276"
+            viewBox="0 0 1500 292"
             role="img"
-            aria-label="Enquiry channels Website, Google, Facebook, Instagram and SMS all merge into one flow: enquiry from any channel, reply in seconds, follow-up until answered, booked with the customer confirmed."
+            aria-label="Enquiry channels Website, Google, Facebook, Instagram and SMS all merge into one flow: enquiries answered 24/7 while you're up a ladder, first reply in under 60 seconds, zero leads left cold with follow-up until they book, and it ends booked: the job's yours."
             className="h-auto w-full"
             style={{ overflow: "visible", fontFamily: "inherit" }}
             textRendering="geometricPrecision"
@@ -289,9 +309,18 @@ export function EnquiryFlow() {
               <animate attributeName="opacity" dur={DUR} repeatCount="indefinite" keyTimes="0;0.06;0.8;0.92;1" values="1;1;1;0;0" />
             </rect>
 
-            {/* the three pipeline stages */}
+            {/* the three pipeline stages. The metric and stake texts are plain
+                static elements — deliberately NOT inside .ef-motion — so the
+                quantified layer never moves or fights the travelling pulse. */}
             {stages.map((s) => (
               <g key={s.x}>
+                {s.metric && (
+                  /* titleFill doubles as the metric colour: strong (white) for
+                     the three stakes, accent for Booked's payoff label. */
+                  <text x={s.x} y={38} textAnchor="middle" fontSize={40} fontWeight={500} style={{ fill: s.titleFill, letterSpacing: "-0.02em" }}>
+                    {s.metric}
+                  </text>
+                )}
                 <line x1={s.x} y1={148} x2={s.x} y2={178} stroke={BLUE} strokeOpacity={s.tick} strokeWidth={1} />
                 {s.halo > 0 && <circle cx={s.x} cy={96} r={s.haloR} fill="url(#ef-halo)" opacity={s.halo} />}
                 <StageIcon x={s.x} kind={s.kind} stroke={s.iconStroke} />
@@ -301,9 +330,11 @@ export function EnquiryFlow() {
                 <text x={s.x} y={230} textAnchor="middle" fontSize={21} fontWeight={s.titleWeight} style={{ fill: s.titleFill, letterSpacing: "-0.014em" }}>
                   {s.title}
                 </text>
-                <text x={s.x} y={256} textAnchor="middle" fontSize={14} fontWeight={400} style={{ fill: s.subFill, letterSpacing: "-0.005em" }}>
-                  {s.sub}
-                </text>
+                {s.stake.map((line, li) => (
+                  <text key={line} x={s.x} y={256 + li * 20} textAnchor="middle" fontSize={14} fontWeight={400} style={{ fill: "var(--ef-text)", letterSpacing: "-0.005em" }}>
+                    {line}
+                  </text>
+                ))}
               </g>
             ))}
 

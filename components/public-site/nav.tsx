@@ -198,13 +198,14 @@ export function PublicNav() {
             className="-my-1 inline-flex items-center py-1"
           >
             <Image
-              src="/logos/solren-wordmark-blue-s.png"
+              src="/logos/solren-logo.svg"
               alt="Solren"
-              width={1305}
-              height={183}
+              width={4062}
+              height={700}
               priority
-              sizes="210px"
-              className="h-[28px] w-auto sm:h-[29px]"
+              unoptimized
+              sizes="175px"
+              className="h-[34px] w-auto sm:h-[36px]"
             />
           </Link>
         </div>

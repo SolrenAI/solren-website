@@ -5,17 +5,21 @@ import { Reveal } from "./reveal"
 import { ImageFrame } from "./image-frame"
 import { FinalCta } from "./sections/final-cta"
 import { IndustryCta } from "./sections/industry-cta"
+import { NumberedSteps, type NumberedStep } from "./numbered-steps"
 import { FaqStructuredData } from "./structured-data"
 import { getIndustry } from "./industries-data"
 
 /* The workflow is the one shared section: the mechanism is identical for every
    trade. The hero, common problems, how-it-helps and FAQs are tailored per
    industry in industries-data so each page reads like it was written for it. */
-const WORKFLOWS: { title: string; body: string }[] = [
-  { title: "Enquiry captured", body: "A new call, email or form is logged the moment it arrives." },
-  { title: "Reply drafted in seconds", body: "Solren prepares a clear first reply for you to approve." },
-  { title: "Follow-up scheduled", body: "If the lead goes quiet, Solren checks back in before they call someone else." },
-  { title: "Job booked", body: "Details are organised and the next step is ready for your team." },
+/* "message, email or form" — NOT "call". Solren never answers a phone; it
+   catches what the missed call turns into. The claim propagates to all twelve
+   pages, so it has to be literally true on every one of them. */
+const WORKFLOWS: NumberedStep[] = [
+  { title: "Enquiry captured", body: "The message, email or form lands and Solren logs it straight away." },
+  { title: "Reply drafted in seconds", body: "Solren writes a first reply in your voice, ready for you to send." },
+  { title: "Follow-up scheduled", body: "If they go quiet, Solren nudges them again before they look elsewhere." },
+  { title: "Job booked", body: "The details are sorted and the job's on your calendar, not lost." },
 ]
 
 function Block({
@@ -109,31 +113,21 @@ export function IndustryPage({ slug }: { slug: string }) {
             </Block>
 
             <Block title="How Solren helps">
-              <p className="mb-5 text-[15px] leading-relaxed text-[var(--silver)]">
-                {industry.helpsIntro}
-              </p>
+              {/* Optional: trades whose copy has been rewritten let the hero sub
+                  carry this job and omit the intro. The eleven not yet rewritten
+                  still supply one, and must not silently lose the paragraph. */}
+              {industry.helpsIntro && (
+                <p className="mb-5 text-[15px] leading-relaxed text-[var(--silver)]">
+                  {industry.helpsIntro}
+                </p>
+              )}
               <Bullets items={industry.helps} />
             </Block>
 
             <Block title="Typical workflow">
-              <ol className="space-y-4">
-                {WORKFLOWS.map((w, i) => (
-                  <li key={w.title} className="flex items-start gap-3.5">
-                    <span
-                      className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full border border-[#537FEA]/30 bg-[#537FEA]/[0.08] text-[10.5px] font-medium tabular-nums text-[#86A2F0]"
-                      style={{ fontFamily: "var(--font-geist-mono), monospace" }}
-                    >
-                      {i + 1}
-                    </span>
-                    <div className="pt-0.5">
-                      <div className="text-[15px] font-medium text-white">{w.title}</div>
-                      <div className="mt-1 text-[14px] leading-relaxed text-[var(--muted)]">
-                        {w.body}
-                      </div>
-                    </div>
-                  </li>
-                ))}
-              </ol>
+              {/* The numbered-row primitive from the homepage flow — not a list.
+                  Bullets are reserved for the two genuine lists above. */}
+              <NumberedSteps steps={WORKFLOWS} />
             </Block>
 
             <Block title="FAQs">

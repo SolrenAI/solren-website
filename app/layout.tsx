@@ -1,9 +1,12 @@
+import { Analytics } from "@vercel/analytics/next";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import type { Metadata, Viewport } from "next"
-import { Inter, Inter_Tight, Geist_Mono } from "next/font/google"
+import { Inter, Inter_Tight, Geist_Mono, Playfair_Display } from "next/font/google"
 import "./globals.css"
 import "./public-site.css"
 import { PublicNav } from "@/components/public-site/nav"
 import { PublicFooter } from "@/components/public-site/footer"
+import { SiteChrome } from "@/components/public-site/site-chrome"
 import { StructuredData } from "@/components/public-site/structured-data"
 import { ThemeToggle } from "@/components/public-site/theme-toggle"
 
@@ -24,6 +27,15 @@ const interTight = Inter_Tight({
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
+  display: "swap",
+})
+
+/* Brand serif: matches the high-contrast heritage cut of the SOLREN wordmark.
+   Used sparingly — currently only the footer stance line. */
+const playfair = Playfair_Display({
+  variable: "--font-serif",
+  subsets: ["latin"],
+  weight: ["500"],
   display: "swap",
 })
 
@@ -83,7 +95,10 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en" className={`${inter.variable} ${interTight.variable} ${geistMono.variable} antialiased`}>
+    <html
+      lang="en"
+      className={`${inter.variable} ${interTight.variable} ${geistMono.variable} ${playfair.variable} antialiased`}
+    >
       <body>
         {/* No-flash: apply the saved theme before the page paints */}
         <script
@@ -92,18 +107,22 @@ export default function RootLayout({
               "(function(){try{if(localStorage.getItem('solren-theme')==='light'){document.documentElement.dataset.theme='light';}}catch(e){}})();",
           }}
         />
+
         <StructuredData />
+
         <a
           href="#main"
           className="ps sr-only z-[100] rounded-full border border-[var(--hair-strong)] bg-[#040506] px-5 py-3 text-[14px] font-medium text-white focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:outline-none focus:ring-2 focus:ring-[#537FEA]/60"
         >
           Skip to content
         </a>
+
         <div className="ps relative min-h-screen">
           {/* Clean ground. No imagery, no glows — a single static depth gradient
               gives the page quiet dimension. Fixed, so there is nothing to repaint
               on scroll. Uses the theme variable so it adapts in light mode. */}
           <div className="fixed inset-0 -z-10 bg-[var(--ground)]" />
+
           <div
             className="pointer-events-none fixed inset-0 -z-10"
             aria-hidden="true"
@@ -112,16 +131,21 @@ export default function RootLayout({
                 "radial-gradient(120% 65% at 50% -16%, rgba(83, 127, 234, 0.014) 0%, transparent 50%)",
             }}
           />
+
           {/* fine film grain; very subtle, static, never blocks clicks */}
           <div className="ps-grain" aria-hidden="true" />
 
-          <PublicNav />
-          <main id="main" tabIndex={-1} className="outline-none">{children}</main>
-          <PublicFooter />
+          <SiteChrome nav={<PublicNav />} footer={<PublicFooter />}>
+            {children}
+          </SiteChrome>
+
           {/* Theme toggle is a dev-only testing affordance. The public site is a
               finished dark experience, so it is not shown in production. */}
           {process.env.NODE_ENV === "development" && <ThemeToggle />}
         </div>
+
+        <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   )

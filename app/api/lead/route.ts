@@ -12,15 +12,24 @@ type Payload = {
   name?: string
   email?: string
   phone?: string
+  address?: string
+  location?: string
   business_name?: string
   service_needed?: string
   message?: string
   page_url?: string
   form_name?: string
+  // Routing/attribution tags set by the universal /book form (hidden defaults).
+  source?: string
+  channel?: string
+  client_slug?: string
   // Additional context the form collects — forwarded so no lead data is lost.
   website?: string
   preferred_call_date?: string
   preferred_call_time?: string
+  // Lightweight follow-up preferences collected by the universal /book form.
+  preferred_contact_method?: string
+  preferred_contact_time?: string
   timezone?: string
   lead_channels?: unknown
   current_tools?: unknown
@@ -53,14 +62,21 @@ export async function POST(req: Request) {
   const name = str(body.name, 120)
   const email = str(body.email, 200)
   const phone = str(body.phone, 60)
+  const address = str(body.address, 200)
+  const location = str(body.location, 200)
   const business_name = str(body.business_name, 160)
   const service_needed = str(body.service_needed, 80)
   const message = str(body.message, 4000)
   const page_url = str(body.page_url, 300)
   const form_name = str(body.form_name, 80)
+  const source = str(body.source, 80)
+  const channel = str(body.channel, 80)
+  const client_slug = str(body.client_slug, 120)
   const website = str(body.website, 200)
   const preferred_call_date = str(body.preferred_call_date, 40)
   const preferred_call_time = str(body.preferred_call_time, 40)
+  const preferred_contact_method = str(body.preferred_contact_method, 40)
+  const preferred_contact_time = str(body.preferred_contact_time, 40)
   const timezone = str(body.timezone, 80)
   const lead_channels = list(body.lead_channels)
   const current_tools = list(body.current_tools)
@@ -75,19 +91,6 @@ export async function POST(req: Request) {
   }
 
   const webhookUrl = process.env.SOLREN_N8N_LEAD_WEBHOOK_URL
-
-  // TEMP DEBUG — remove once the n8n pipeline is verified. Logs presence and the
-  // host/path of the webhook (never the full URL or any secret/query value).
-  console.log("[lead][debug] env var present:", Boolean(webhookUrl))
-  if (webhookUrl) {
-    try {
-      const u = new URL(webhookUrl)
-      console.log("[lead][debug] webhook host:", u.hostname, "pathname:", u.pathname)
-    } catch {
-      console.log("[lead][debug] webhook URL is not a valid URL")
-    }
-  }
-
   if (!webhookUrl) {
     console.error("[lead] SOLREN_N8N_LEAD_WEBHOOK_URL is not set — cannot forward lead.")
     return NextResponse.json({ ok: false, error: "The form is not configured yet." }, { status: 500 })
@@ -101,14 +104,21 @@ export async function POST(req: Request) {
         name,
         email,
         phone,
+        address,
+        location,
         business_name,
         service_needed,
         message,
         page_url,
         form_name,
+        source,
+        channel,
+        client_slug,
         website,
         preferred_call_date,
         preferred_call_time,
+        preferred_contact_method,
+        preferred_contact_time,
         timezone,
         lead_channels,
         current_tools,
@@ -116,9 +126,6 @@ export async function POST(req: Request) {
         urgency,
       }),
     })
-
-    // TEMP DEBUG — remove once verified.
-    console.log("[lead][debug] fetch response status:", res.status)
 
     if (!res.ok) {
       console.error("[lead] n8n webhook responded with status", res.status)
@@ -128,10 +135,6 @@ export async function POST(req: Request) {
       )
     }
   } catch (err) {
-    // TEMP DEBUG — remove once verified. Logs error name/message only.
-    const errName = err instanceof Error ? err.name : "Unknown"
-    const errMessage = err instanceof Error ? err.message : String(err)
-    console.error("[lead][debug] fetch threw:", errName, "-", errMessage)
     console.error("[lead] Failed to reach n8n webhook:", err)
     return NextResponse.json(
       { ok: false, error: "We could not send your details just now." },

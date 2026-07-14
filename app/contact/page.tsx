@@ -16,7 +16,7 @@ export default function ContactPage() {
       <PageHeader
         eyebrow="Contact"
         title={<>Talk to Solren.</>}
-        sub="Tell us where your enquiries come from. We will show you what Solren could handle."
+        sub="Tell us where your enquiries come from. We'll show you what Solren could handle."
         divider={false}
         bottomClass="pb-6 sm:pb-9 lg:pb-7"
         subClass="mt-[18px] sm:mt-7"
