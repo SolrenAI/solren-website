@@ -7,8 +7,9 @@ import { usePathname } from "next/navigation"
    /thank-you (its post-submit confirmation) are shown "bare" — no nav, no
    footer — so they feel like a form app rather than a marketing page. The
    nav/footer are passed in as already-rendered nodes so they stay server
-   components; this gate only decides whether to show them. */
-const BARE_ROUTES = new Set(["/book", "/thank-you"])
+   components; this gate only decides whether to show them. /jinksy-cleaning is
+   a standalone unlinked page with its own branding, so it renders bare too. */
+const BARE_ROUTES = new Set(["/book", "/thank-you", "/jinksy-cleaning"])
 
 export function SiteChrome({
   nav,

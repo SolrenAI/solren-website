@@ -20,6 +20,23 @@ const nextConfig: NextConfig = {
     position: "bottom-right",
   },
 
+  /* /jinksy-cleaning is an unlinked standalone page that must stay out of
+     search engines. Its metadata already sets noindex; the response header
+     backs that up at the HTTP layer. */
+  async headers() {
+    return [
+      {
+        source: "/jinksy-cleaning",
+        headers: [
+          {
+            key: "X-Robots-Tag",
+            value: "noindex, nofollow, noarchive",
+          },
+        ],
+      },
+    ]
+  },
+
   /* The standalone Book a Call page was folded into /contact, the single
      conversion page. Permanently redirect the old route so it never 404s and
      any existing links keep working. */
