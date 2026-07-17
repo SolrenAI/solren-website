@@ -2,7 +2,7 @@ import { NextResponse } from "next/server"
 
 /* Jinksy Clean enquiry delivery. The /jinksy-cleaning form posts here; this
    route validates the payload and forwards it to the S00 Universal Lead Intake
-   webhook with the Jinksy Clean install key. Both SOLREN_LEAD_WEBHOOK_URL and
+   webhook with the Jinksy Clean install key. Both SOLREN_S00_LEAD_WEBHOOK_URL and
    JINKSY_CLEAN_INSTALL_KEY are server-only env vars, so neither ever reaches
    the browser. Payload property names (install_key, name, email, phone,
    service, message, source) match the S00 workflow contract — do not rename
@@ -62,11 +62,11 @@ export async function POST(req: Request) {
     )
   }
 
-  const webhookUrl = process.env.SOLREN_LEAD_WEBHOOK_URL
+  const webhookUrl = process.env.SOLREN_S00_LEAD_WEBHOOK_URL
   const installKey = process.env.JINKSY_CLEAN_INSTALL_KEY
   if (!webhookUrl || !installKey) {
     // Names only — never log the values.
-    console.error("[jinksy-lead] SOLREN_LEAD_WEBHOOK_URL or JINKSY_CLEAN_INSTALL_KEY is not set.")
+    console.error("[jinksy-lead] SOLREN_S00_LEAD_WEBHOOK_URL or JINKSY_CLEAN_INSTALL_KEY is not set.")
     return NextResponse.json({ ok: false, error: "The form is not configured yet." }, { status: 500 })
   }
 
