@@ -9,8 +9,8 @@ import { QuoteForm } from "./quote-form"
    branding — logo, accent colour, services, contact details. Unknown or
    deactivated slugs 404.
 
-   Like /jinksy-cleaning, these pages are standalone client properties hosted
-   on solren.ai: rendered bare (no Solren nav/footer via SiteChrome), excluded
+   These pages are standalone client properties hosted on
+   solren.ai: rendered bare (no Solren nav/footer via SiteChrome), excluded
    from the sitemap, noindexed via metadata + an X-Robots-Tag header
    (next.config.ts), and reachable only by their exact URL. */
 

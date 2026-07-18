@@ -20,22 +20,12 @@ const nextConfig: NextConfig = {
     position: "bottom-right",
   },
 
-  /* /jinksy-cleaning is an unlinked standalone page that must stay out of
-     search engines. Its metadata already sets noindex; the response header
-     backs that up at the HTTP layer. */
+  /* Hosted client quote pages (/q/[slug]) are unlinked client properties
+     served from solren.ai that must stay out of search engines. Their
+     metadata already sets noindex; the response header backs that up at the
+     HTTP layer. */
   async headers() {
     return [
-      {
-        source: "/jinksy-cleaning",
-        headers: [
-          {
-            key: "X-Robots-Tag",
-            value: "noindex, nofollow, noarchive",
-          },
-        ],
-      },
-      /* Hosted client quote pages (/q/[slug]) are client properties served
-         from solren.ai — kept out of search engines the same way. */
       {
         source: "/q/:path*",
         headers: [
