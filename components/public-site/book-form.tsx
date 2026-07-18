@@ -140,6 +140,12 @@ export function BookForm() {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
+          /* S00 tenant routing: this is a main Solren website form, so
+             installation_slug is always the fixed public Solren slug — never
+             derived from ?client= or any other browser-controlled value.
+             business_slug remains a legacy attribution tag only; it must not
+             control S00 routing. */
+          installation_slug: "solren-website",
           business_slug: clientSlug || "solren",
           source: "website",
           lead_name: fields.name,

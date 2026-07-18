@@ -34,6 +34,17 @@ const nextConfig: NextConfig = {
           },
         ],
       },
+      /* Hosted client quote pages (/q/[slug]) are client properties served
+         from solren.ai — kept out of search engines the same way. */
+      {
+        source: "/q/:path*",
+        headers: [
+          {
+            key: "X-Robots-Tag",
+            value: "noindex, nofollow, noarchive",
+          },
+        ],
+      },
     ]
   },
 

@@ -296,13 +296,13 @@ function SuccessPanel({
 }) {
   const hasSlot = Boolean(preferredCallDate && preferredCallTime)
   return (
-    <div className="ps-card ps-card-warm rounded-[24px] p-6 sm:mx-auto sm:max-w-[540px] sm:p-10">
+    <div className="rounded-[24px] border border-[var(--hair)] bg-[var(--ground)] p-6 sm:mx-auto sm:max-w-[540px] sm:p-10">
       <div className="flex items-center gap-2.5">
         <span className="ps-live-dot h-1.5 w-1.5 rounded-full bg-[#537FEA]" />
         <span className="ps-label !text-[10px] text-white">Request received</span>
       </div>
       <h2 className="mt-5 text-[21px] font-medium leading-tight tracking-tight text-white lg:text-[24px]">
-        Thanks. We’ve received your details.
+        That’s the last enquiry you’ll lose.
       </h2>
       {hasSlot ? (
         <div className="mt-4">
@@ -316,6 +316,9 @@ function SuccessPanel({
           </p>
           <p className="mt-3 text-[15px] leading-relaxed text-[var(--silver)]">
             We’ll review your details and confirm the next step by email.
+          </p>
+          <p className="mt-2 text-[13px] leading-relaxed text-[var(--muted)]">
+            No pitch, no pressure. Just a look at what you’re missing.
           </p>
         </div>
       ) : (

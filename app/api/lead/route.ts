@@ -101,6 +101,10 @@ export async function POST(req: Request) {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
+        /* S00 Universal Lead Intake requires installation_slug (or install_key)
+           on every lead. The main Solren website identifies itself with this
+           fixed public slug; S00 resolves it to the right client record. */
+        installation_slug: "solren-website",
         name,
         email,
         phone,

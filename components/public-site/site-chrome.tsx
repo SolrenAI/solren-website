@@ -8,8 +8,10 @@ import { usePathname } from "next/navigation"
    footer — so they feel like a form app rather than a marketing page. The
    nav/footer are passed in as already-rendered nodes so they stay server
    components; this gate only decides whether to show them. /jinksy-cleaning is
-   a standalone unlinked page with its own branding, so it renders bare too. */
+   a standalone unlinked page with its own branding, so it renders bare too,
+   as do the hosted client quote pages under /q/. */
 const BARE_ROUTES = new Set(["/book", "/thank-you", "/jinksy-cleaning"])
+const BARE_PREFIXES = ["/q/"]
 
 export function SiteChrome({
   nav,
@@ -21,7 +23,8 @@ export function SiteChrome({
   children: React.ReactNode
 }) {
   const pathname = usePathname()
-  const bare = BARE_ROUTES.has(pathname)
+  const bare =
+    BARE_ROUTES.has(pathname) || BARE_PREFIXES.some((p) => pathname.startsWith(p))
 
   return (
     <>
