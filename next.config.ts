@@ -35,6 +35,20 @@ const nextConfig: NextConfig = {
           },
         ],
       },
+      /* Logo used by the Supabase invite email. Static files default to
+         "max-age=0, must-revalidate" plus a Content-Disposition carrying a
+         filename, which reads as a download hint rather than an inline image.
+         Mail image proxies (Gmail, Outlook/Exchange) are strict about both, so
+         pin an immutable cache and a bare inline disposition. */
+      {
+        source: "/solren-invite-logo.png",
+        headers: [
+          { key: "Cache-Control", value: "public, max-age=31536000, immutable" },
+          { key: "Content-Disposition", value: "inline" },
+          { key: "Content-Type", value: "image/png" },
+          { key: "Access-Control-Allow-Origin", value: "*" },
+        ],
+      },
     ]
   },
 
