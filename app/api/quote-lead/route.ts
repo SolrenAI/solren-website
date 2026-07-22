@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server"
-import { INSTALL_SLUG_RE } from "@/lib/quote/config"
+import { INSTALL_SLUG_RE, getPublicQuoteConfig } from "@/lib/quote/config"
 
 /* Universal quote-lead delivery for the hosted pages (/q/[slug]). The browser
    submits the installation slug plus the lead fields; this route validates
@@ -68,6 +68,24 @@ export async function POST(req: Request) {
         error: "Please provide your name, a valid email, the service required, and a message.",
       },
       { status: 422 }
+    )
+  }
+
+  /* The slug must resolve to a live installation, not merely look like one.
+     get_public_quote_config already requires active = true AND
+     installation_type = 'hosted_page', so this reuses the exact check the page
+     itself passes — no second source of truth, and nothing new is exposed: the
+     config it returns is the same public branding the page already renders, and
+     it is used here only as a yes/no.
+
+     Without this, a well-formed but unknown slug was forwarded to S00 anyway,
+     making this route an open relay into the lead pipeline for guessed slugs.
+     S00 still resolves the installation authoritatively — this is defence in
+     depth, not a replacement for it. */
+  if (!(await getPublicQuoteConfig(slug))) {
+    return NextResponse.json(
+      { ok: false, error: "This enquiry form is unavailable." },
+      { status: 404 }
     )
   }
 
