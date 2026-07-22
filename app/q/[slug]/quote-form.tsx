@@ -135,7 +135,7 @@ export function QuoteForm({ slug, services }: { slug: string; services: string[]
         className="rounded-2xl border border-[color-mix(in_srgb,var(--qp-accent)_35%,transparent)] bg-[color-mix(in_srgb,var(--qp-accent)_8%,transparent)] p-6 sm:p-7"
       >
         <h3 className="text-[17px] font-semibold tracking-tight text-[#f4f5f7]">
-          Thanks — your enquiry has been sent.
+          Thanks, your enquiry has been sent.
         </h3>
         <p className="mt-2 text-[14.5px] leading-relaxed text-[#a8afb9]">
           Your details have been received. You&rsquo;ll get a reply by email with a
