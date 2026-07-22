@@ -35,7 +35,11 @@ type Payload = {
   current_tools?: unknown
   problems?: unknown
   urgency?: string
-  hp?: string // honeypot — real users never fill this
+  /* Honeypot. Deliberately non-semantic: the previous name, company_url, read
+     to password managers as a website field, so they autofilled it and silently
+     discarded genuine enquiries. Not forwarded to n8n, so unlike the payload
+     names below it is safe to rename. */
+  hp_check?: string
 }
 
 const isEmail = (v: string) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)
@@ -54,9 +58,20 @@ export async function POST(req: Request) {
     return NextResponse.json({ ok: false, error: "Invalid request." }, { status: 400 })
   }
 
-  // Silently accept and drop bot submissions caught by the honeypot.
-  if (str(body.hp, 100)) {
-    return NextResponse.json({ ok: true })
+  /* Honeypot. Logged — with nothing about the submission itself — so a false
+     positive is one log line away instead of an investigation.
+
+     Returns a generic failure rather than the previous { ok: true }: a real
+     person whose password manager filled the field must never be shown a
+     success screen for an enquiry that was discarded. Status and wording match
+     the webhook-failure branch below, so the response reveals nothing about why
+     it was rejected. */
+  if (str(body.hp_check, 100)) {
+    console.warn("[lead] honeypot triggered")
+    return NextResponse.json(
+      { ok: false, error: "We could not send your details just now." },
+      { status: 400 }
+    )
   }
 
   const name = str(body.name, 120)

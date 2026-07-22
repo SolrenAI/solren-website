@@ -129,9 +129,18 @@ export function BookForm() {
     setStatus("submitting")
     setErrorMsg("")
 
-    // Honeypot: silently drop bot submissions (real users never fill `hp`).
+    /* Honeypot: drop bot submissions (real users never fill `hp`). The lead is
+       not sent, so this must not route to /thank-you — a real person whose
+       password manager filled the field would otherwise be told their request
+       was received when it was discarded. The error state below offers the
+       mailto fallback, so a false positive still has a way through.
+
+       This form posts straight to n8n, so there is no server route to log from;
+       the warning is client-side and deliberately carries no lead data. */
     if (hp) {
-      router.push("/thank-you")
+      console.warn("[book-form] honeypot triggered")
+      setStatus("error")
+      setErrorMsg("Something went wrong. Please try again.")
       return
     }
 
@@ -176,13 +185,25 @@ export function BookForm() {
 
   return (
     <form onSubmit={handleSubmit}>
-      {/* honeypot: hidden from users, catches bots that fill every field */}
+      {/* Honeypot: hidden from users, catches bots that fill every field.
+
+          The name is deliberately non-semantic. It was previously company_url,
+          which password managers read as a website field and autofilled — which
+          silently discarded genuine enquiries. autoComplete="off" alone does not
+          stop them; the data-* attributes below are the opt-outs 1Password,
+          LastPass and Chrome actually honour.
+
+          tabIndex={-1} keeps it out of tab order and aria-hidden keeps it from
+          screen readers, so it stays invisible to real users by every route. */}
       <input
         type="text"
-        name="company_url"
+        name="hp_check"
         tabIndex={-1}
         autoComplete="off"
         aria-hidden="true"
+        data-1p-ignore=""
+        data-lpignore="true"
+        data-form-type="other"
         value={hp}
         onChange={(e) => setHp(e.target.value)}
         className="absolute left-[-9999px] h-0 w-0 opacity-0"
