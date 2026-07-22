@@ -101,11 +101,18 @@ export function QuoteForm({ slug, services }: { slug: string; services: string[]
       const res = await fetch("/api/quote-lead", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ slug, ...trimmed, source: "hosted_quote_page", hp }),
+        body: JSON.stringify({ slug, ...trimmed, source: "hosted_quote_page", hp_check: hp }),
       })
 
-      if (!res.ok) {
-        const data = (await res.json().catch(() => null)) as { error?: string } | null
+      /* Success requires an explicit ok:true, not merely a 2xx. The route
+         returns that only after the enquiry has actually been forwarded to S00,
+         so a request it accepted but discarded can never render the
+         confirmation below. */
+      const data = (await res.json().catch(() => null)) as
+        | { ok?: boolean; error?: string }
+        | null
+
+      if (!res.ok || data?.ok !== true) {
         throw new Error(data?.error || "")
       }
 
@@ -147,13 +154,25 @@ export function QuoteForm({ slug, services }: { slug: string; services: string[]
 
   return (
     <form onSubmit={handleSubmit} noValidate>
-      {/* honeypot: hidden from users, catches bots that fill every field */}
+      {/* Honeypot: hidden from users, catches bots that fill every field.
+
+          The name is deliberately non-semantic. It was previously company_url,
+          which password managers read as a website field and autofilled — which
+          silently discarded genuine enquiries. autoComplete="off" alone does not
+          stop them; the data-* attributes below are the opt-outs 1Password,
+          LastPass and Chrome actually honour.
+
+          tabIndex={-1} keeps it out of tab order and aria-hidden keeps it from
+          screen readers, so it stays invisible to real users by every route. */}
       <input
         type="text"
-        name="company_url"
+        name="hp_check"
         tabIndex={-1}
         autoComplete="off"
         aria-hidden="true"
+        data-1p-ignore=""
+        data-lpignore="true"
+        data-form-type="other"
         value={hp}
         onChange={(e) => setHp(e.target.value)}
         className="absolute left-[-9999px] h-0 w-0 opacity-0"
